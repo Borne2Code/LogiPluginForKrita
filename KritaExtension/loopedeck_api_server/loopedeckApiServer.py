@@ -28,24 +28,9 @@ class Server(QtCore.QObject):
                     connected = False
                     QtCore.qDebug('Connection closed')
                 else:
-                    context, object, method, parameters = self.parseRequest(msg)
-                    
                     try:
-                        match object:
-                            case 'currentCanvas':
-                                canvas = Krita.instance().activeWindow().activeView().canvas()
-                                match method:
-                                    case "setZoomLevel":
-                                        QtCore.qDebug("try faulty set zoom")
-                                        result = canvas.setZoomLevel()
-                                    case "zoomLevel":
-                                        result = canvas.zoomLevel()
-                            case 'currentDocument':
-                                document = Krita.instance().activeDocument()
-                                match method:
-                                    case "resolution":
-                                        result = document.resolution()
-                        
+                        context, method, parameters = self.parseRequest(msg)
+                        result = method(*parameters)
                         c.send(json.dumps({"result": "OK", "returnValue": result}).encode(encoding="utf-8"))
                     except Exception as ex:
                         QtCore.qDebug(str(ex))
@@ -67,8 +52,10 @@ class Server(QtCore.QObject):
         # }
         
         context = request["context"]
-        object = request["object"]
-        method = request["method"]
+        objectName = request["object"]
+        object = self.getObject(objectName)
+        methodName = request["method"]
+        method = self.getMethod(object, methodName)
         parameters = request["parameters"]
 
         parametersArray = []
@@ -84,9 +71,19 @@ class Server(QtCore.QObject):
                         parametersArray.append(float(param["value"]))
 
         parametersString = ", ".join(map(lambda obj: str(obj), parametersArray))
-        QtCore.qDebug(f"[{context}]{object}.{method}({parametersString})")
+        QtCore.qDebug(f"[{context}]{objectName}.{methodName}({parametersString})")
         
-        return context, object, method, parametersArray
+        return context, method, parametersArray
+
+    def getObject(self, objectName):
+        match objectName:
+            case 'currentCanvas':
+                return Krita.instance().activeWindow().activeView().canvas()
+            case 'currentDocument':
+                return Krita.instance().activeDocument()
+
+    def getMethod(self, object, functionName):
+        return getattr(object, functionName)
 
 class LoopedeckApiServer(Extension):
     def __init__(self, parent):

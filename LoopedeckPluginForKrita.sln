@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoupedeckClient", "Loupedec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoupedeckKritaApiClient", "LoupedeckKritaApiClient\LoupedeckKritaApiClient.csproj", "{D6382EBF-34D5-4168-9377-E42690B57524}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KritaExtension", "KritaExtension", "{8395C1B6-5601-4EBA-BCF9-196145AF2F2C}"
+	ProjectSection(SolutionItems) = preProject
+		KritaExtension\loopedeck_api_server\loopedeckApiServer.py = KritaExtension\loopedeck_api_server\loopedeckApiServer.py
+		KritaExtension\loopedeck_api_server.desktop = KritaExtension\loopedeck_api_server.desktop
+		KritaExtension\loopedeck_api_server\__init__.py = KritaExtension\loopedeck_api_server\__init__.py
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
