@@ -14,17 +14,11 @@ namespace LoupedeckClient
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            //using var client = new Client();
-            //await client.Connect();
-
             await client.ExecuteCall("currentCanvas", "setZoomLevel", 1.0f);
         }
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            //using var client = new Client();
-            //await client.Connect();
-
             var zoomLevel = (double)await client.ExecuteCall("currentCanvas", "zoomLevel");
 
             var zoom = (int)(zoomLevel * 72 / dpi * 100);
@@ -39,12 +33,14 @@ namespace LoupedeckClient
 
             dpi = (long)await client.ExecuteCall("currentDocument", "resolution");
             var zoomLevel = (double)await client.ExecuteCall("currentCanvas", "zoomLevel");
+            var rotation = (double)await client.ExecuteCall("currentCanvas", "rotation");
 
             var zoom = (int)(zoomLevel * 72 / dpi * 100);
             label1.Text = zoom.ToString();
 
             isRunning = true;
             trackBar1.Value = zoom;
+            trackBar2.Value = (int)rotation;
             isRunning = false;
         }
 
@@ -61,16 +57,12 @@ namespace LoupedeckClient
                 try
                 {
                     isRunning = true;
-
                     Thread.Sleep(20);
-
                     var zoom = (float)(trackBar1.Value);
-
                     await client.ExecuteCall("currentCanvas", "setZoomLevel", zoom / 100);
-
                     label1.Text = zoom.ToString();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     label1.Text = "Erreur : " + ex.Message;
                 }
@@ -84,6 +76,38 @@ namespace LoupedeckClient
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             client.Dispose();
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            var rotation = (double)await client.ExecuteCall("currentCanvas", "rotation");
+            trackBar2.Value = (int)rotation;
+        }
+
+        private async void trackBar2_ValueChanged(object sender, EventArgs e)
+        {
+            //if (!isRunning)
+            //{
+            //    try
+            //    {
+            //        isRunning = true;
+            //        Thread.Sleep(20);
+            //        await client.ExecuteCall("currentCanvas", "setRotation", (float)trackBar2.Value);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        label1.Text = "Erreur : " + ex.Message;
+            //    }
+            //    finally
+            //    {
+            //        isRunning = false;
+            //    }
+            //}
+        }
+
+        private async void button4_Click(object sender, EventArgs e)
+        {
+            await client.ExecuteCall("currentCanvas", "setRotation", 10f);
         }
     }
 }

@@ -32,7 +32,11 @@
             button2 = new Button();
             label1 = new Label();
             trackBar1 = new TrackBar();
+            trackBar2 = new TrackBar();
+            button3 = new Button();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)trackBar2).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -80,20 +84,59 @@
             trackBar1.Scroll += trackBar1_Scroll;
             trackBar1.ValueChanged += trackBar1_ValueChanged;
             // 
+            // trackBar2
+            // 
+            trackBar2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            trackBar2.LargeChange = 50;
+            trackBar2.Location = new Point(12, 152);
+            trackBar2.Maximum = 180;
+            trackBar2.Minimum = -180;
+            trackBar2.Name = "trackBar2";
+            trackBar2.Size = new Size(1100, 56);
+            trackBar2.SmallChange = 10;
+            trackBar2.TabIndex = 3;
+            trackBar2.TickFrequency = 100;
+            trackBar2.TickStyle = TickStyle.TopLeft;
+            trackBar2.ValueChanged += trackBar2_ValueChanged;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(12, 214);
+            button3.Name = "button3";
+            button3.Size = new Size(155, 29);
+            button3.TabIndex = 1;
+            button3.Text = "get rotation";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(173, 214);
+            button4.Name = "button4";
+            button4.Size = new Size(155, 29);
+            button4.TabIndex = 0;
+            button4.Text = "Reset rotation";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1124, 450);
+            Controls.Add(trackBar2);
             Controls.Add(trackBar1);
             Controls.Add(label1);
+            Controls.Add(button3);
             Controls.Add(button2);
+            Controls.Add(button4);
             Controls.Add(button1);
             Name = "Form1";
             Text = "Form1";
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)trackBar2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -104,5 +147,8 @@
         private Button button2;
         private Label label1;
         private TrackBar trackBar1;
+        private TrackBar trackBar2;
+        private Button button3;
+        private Button button4;
     }
 }

@@ -98,7 +98,12 @@ class LoopedeckApiServer(Extension):
         self.thread.start()
 
     def createActions(self, window):
-        pass
+        action = window.createAction("", "Rotation 10")
+        action.triggered.connect(self.rotation)
+
+    def rotation(self):
+        Krita.instance().activeWindow().activeView().canvas().setRotation(float(10))
+
         
 # And add the extension to Krita's list of extensions:
 Krita.instance().addExtension(LoopedeckApiServer(Krita.instance()))
