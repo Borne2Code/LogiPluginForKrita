@@ -1,16 +1,20 @@
 from krita import *
 import sys
 import socket
+import time
 import json
 
-class Server(QtCore.QObject):
-    message = QtCore.pyqtSignal(str)
+class Server(QObject):
+    message = pyqtSignal(str)
+    returnValue = None
+    result = None
 
     def __init__(self):
         super().__init__()
         self.__abort = False
-        
+      
     def run(self):
+        
         s = socket.socket()
         host = socket.gethostname()
         port = 1247
@@ -29,13 +33,26 @@ class Server(QtCore.QObject):
                     QtCore.qDebug('Connection closed')
                 else:
                     try:
-                        context, method, parameters = self.parseRequest(msg)
-                        result = method(*parameters)
-                        c.send(json.dumps({"result": "OK", "returnValue": result}).encode(encoding="utf-8"))
-                    except Exception as ex:
-                        QtCore.qDebug(str(ex))
-                        c.send(json.dumps({"result": "KO", "error": str(ex)}).encode(encoding="utf-8"))
+                        self.returnValue = None
+                        self.result = None
+
+                        self.message.emit(str(msg))
                     
+                        while self.result == None:
+                            time.sleep(0.01)
+                    
+                        if self.result:
+                            c.send(json.dumps({"result": "OK", "returnValue": self.returnValue}).encode(encoding="utf-8"))
+                        else:
+                            c.send(json.dumps({"result": "KO", "error": str(self.returnValue)}).encode(encoding="utf-8"))
+                    except Exception as ex:
+                        QtCore.qDebug('Error: ' + str(ex))
+
+class LoopedeckApiServer(Extension):
+    def __init__(self, parent):
+        # This is initialising the parent, always important when subclassing.
+        super().__init__(parent)
+
     def parseRequest(self, msg):
         request = json.loads(msg)
         
@@ -84,16 +101,23 @@ class Server(QtCore.QObject):
 
     def getMethod(self, object, functionName):
         return getattr(object, functionName)
-
-class LoopedeckApiServer(Extension):
-    def __init__(self, parent):
-        # This is initialising the parent, always important when subclassing.
-        super().__init__(parent)
+        
+    @pyqtSlot(str)
+    def computeMessage(self, msg):
+        try:
+            context, method, parameters = self.parseRequest(msg)
+            self.worker.returnValue = method(*parameters)
+            self.worker.result = True
+        except Exception as ex:
+            QtCore.qDebug(str(ex))
+            self.worker.returnValue = ex
+            self.worker.result = False
 
     def setup(self):
         self.thread = QtCore.QThread()
         self.worker = Server()
         self.worker.moveToThread(self.thread)
+        self.worker.message.connect(self.computeMessage)
         self.thread.started.connect(self.worker.run)
         self.thread.start()
 

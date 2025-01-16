@@ -73,10 +73,9 @@
             trackBar1.LargeChange = 50;
             trackBar1.Location = new Point(12, 12);
             trackBar1.Maximum = 3000;
-            trackBar1.Minimum = 10;
+            trackBar1.Minimum = 1;
             trackBar1.Name = "trackBar1";
             trackBar1.Size = new Size(1100, 56);
-            trackBar1.SmallChange = 10;
             trackBar1.TabIndex = 3;
             trackBar1.TickFrequency = 100;
             trackBar1.TickStyle = TickStyle.TopLeft;

@@ -86,23 +86,23 @@ namespace LoupedeckClient
 
         private async void trackBar2_ValueChanged(object sender, EventArgs e)
         {
-            //if (!isRunning)
-            //{
-            //    try
-            //    {
-            //        isRunning = true;
-            //        Thread.Sleep(20);
-            //        await client.ExecuteCall("currentCanvas", "setRotation", (float)trackBar2.Value);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        label1.Text = "Erreur : " + ex.Message;
-            //    }
-            //    finally
-            //    {
-            //        isRunning = false;
-            //    }
-            //}
+            if (!isRunning)
+            {
+                try
+                {
+                    isRunning = true;
+                    Thread.Sleep(20);
+                    await client.ExecuteCall("currentCanvas", "setRotation", (float)trackBar2.Value);
+                }
+                catch (Exception ex)
+                {
+                    label1.Text = "Erreur : " + ex.Message;
+                }
+                finally
+                {
+                    isRunning = false;
+                }
+            }
         }
 
         private async void button4_Click(object sender, EventArgs e)
