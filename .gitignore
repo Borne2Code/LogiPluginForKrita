@@ -2,3 +2,4 @@
 bin
 obj
 *.user
+KritaExtension/loopedeck_api_server/__pycache__

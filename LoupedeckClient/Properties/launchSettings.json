@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "LoupedeckClient": {
+      "commandName": "Project"
+    },
+    "Profile 1": {
+      "commandName": "Executable",
+      "executablePath": "C:\\DEV\\LoopedeckPluginForKrita\\LoupedeckClient\\StartWithKrita.cmd"
+    }
+  }
+}
