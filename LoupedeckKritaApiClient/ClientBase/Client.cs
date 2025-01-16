@@ -3,14 +3,18 @@ using System.Net;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace LoupedeckKritaApiClient
+namespace LoupedeckKritaApiClient.ClientBase
 {
-    public class Client: IDisposable
+    public class Client : IDisposable
     {
         private Socket client;
+        private CurrentCanvas _currentCanvas;
+        private CurrentDocument _currentDocument;
 
-        public Client() 
+        public Client()
         {
+            _currentCanvas = new CurrentCanvas(this);
+            _currentDocument = new CurrentDocument(this);
         }
 
         public async Task Connect()
@@ -27,10 +31,10 @@ namespace LoupedeckKritaApiClient
             await client.ConnectAsync(ipEndPoint);
         }
 
-        public async Task<object> ExecuteCall(string objectName, string methodName, params object[] parameters)
+        internal async Task<ReturnValue> ExecuteCall(string objectName, string methodName, params object[] parameters)
         {
             var parametersListString = "[" + string.Join(',', parameters
-                .Select<object, string>((val) =>
+                .Select((val) =>
                     {
                         var type = val.GetType().Name switch
                         {
@@ -42,13 +46,13 @@ namespace LoupedeckKritaApiClient
                         var value = val.GetType().Name switch
                         {
                             "String" => $"\"{val.ToString()}\"",
-                            _ => $"{val.ToString().Replace(',','.')}"
+                            _ => $"{val.ToString().Replace(',', '.')}"
                         };
                         return $"{{\"type\": \"{type}\",\"value\":{value}}}";
                     })
                 ) + "]";
 
-            var messageBytes = Encoding.UTF8.GetBytes($"{{\"context\":null,\"method\":\"{methodName}\",\"object\":\"{objectName}\",\"parameters\":{parametersListString}}}");
+            var messageBytes = Encoding.UTF8.GetBytes($"{{\"method\":\"{methodName}\",\"object\":\"{objectName}\",\"parameters\":{parametersListString}}}");
             _ = await client.SendAsync(messageBytes, SocketFlags.None);
 
             var responseBytes = new byte[1024];
@@ -57,12 +61,16 @@ namespace LoupedeckKritaApiClient
                 dynamic response = JsonConvert.DeserializeObject(Encoding.UTF8.GetString(responseBytes));
 
                 if (response.result == "OK")
-                    return response.returnValue.Value;
+                    return new ReturnValue
+                    {
+                        Type = response.returnType.Value,
+                        Value = response.returnValue.Value
+                    };
                 else
                     throw new Exception((string)response.error);
             }
 
-            return null;
+            throw new Exception("Could not get a return");
         }
 
         public void Dispose()
@@ -73,5 +81,8 @@ namespace LoupedeckKritaApiClient
             }
             client.Dispose();
         }
+
+        public CurrentCanvas CurrentCanvas { get => _currentCanvas; }
+        public CurrentDocument CurrentDocument { get => _currentDocument; }
     }
 }

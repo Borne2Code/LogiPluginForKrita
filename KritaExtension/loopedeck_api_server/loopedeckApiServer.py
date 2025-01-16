@@ -3,6 +3,7 @@ import sys
 import socket
 import time
 import json
+import uuid
 
 class Server(QObject):
     message = pyqtSignal(str)
@@ -25,6 +26,7 @@ class Server(QObject):
             c, addr = s.accept()
             QtCore.qDebug("Connection accepted from " + repr(addr[1]))
             connected = True
+            # objects = {}
             while connected:
                 msg = c.recv(1026).decode(encoding="utf-8")
 
@@ -42,7 +44,24 @@ class Server(QObject):
                             time.sleep(0.01)
                     
                         if self.result:
-                            c.send(json.dumps({"result": "OK", "returnValue": self.returnValue}).encode(encoding="utf-8"))
+                            match type(self.returnValue).__name__:
+                                case "str":
+                                    self.returnType = "str"
+                                case "int":
+                                    self.returnType = "int"
+                                case "float":
+                                    self.returnType = "float"
+                                case "NoneType":
+                                    self.returnType = "None"
+                                case _:
+                                    self.returnType = "None"
+                                    self.returnValue = None
+                                #     self.returnType = type(self.returnValue).__name__
+                                #     key = str(uuid.uuid4())
+                                #     objects[key] = self.returnValue
+                                #     self.returnValue = key
+                            
+                            c.send(json.dumps({"result": "OK", "returnType": self.returnType, "returnValue": self.returnValue}).encode(encoding="utf-8"))
                         else:
                             c.send(json.dumps({"result": "KO", "error": str(self.returnValue)}).encode(encoding="utf-8"))
                     except Exception as ex:
@@ -57,7 +76,6 @@ class LoopedeckApiServer(Extension):
         request = json.loads(msg)
         
         # {
-        #   context: null,
         #   object: xxxx,
         #   method: xxxx,
         #   parameters: [
@@ -68,7 +86,6 @@ class LoopedeckApiServer(Extension):
         #   ]
         # }
         
-        context = request["context"]
         objectName = request["object"]
         object = self.getObject(objectName)
         methodName = request["method"]
@@ -88,9 +105,9 @@ class LoopedeckApiServer(Extension):
                         parametersArray.append(float(param["value"]))
 
         parametersString = ", ".join(map(lambda obj: str(obj), parametersArray))
-        QtCore.qDebug(f"[{context}]{objectName}.{methodName}({parametersString})")
+        QtCore.qDebug(f"{objectName}.{methodName}({parametersString})")
         
-        return context, method, parametersArray
+        return method, parametersArray
 
     def getObject(self, objectName):
         match objectName:
@@ -105,7 +122,7 @@ class LoopedeckApiServer(Extension):
     @pyqtSlot(str)
     def computeMessage(self, msg):
         try:
-            context, method, parameters = self.parseRequest(msg)
+            method, parameters = self.parseRequest(msg)
             self.worker.returnValue = method(*parameters)
             self.worker.result = True
         except Exception as ex:
