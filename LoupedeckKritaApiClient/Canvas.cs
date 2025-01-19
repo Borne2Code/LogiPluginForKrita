@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient
 {
-    public class CurrentCanvas(Client client) : LooupedeckClientKritaBaseClass(client, "currentCanvas")
+    public class Canvas(): LooupedeckClientKritaBaseClass
     {
         public async Task<float> GetRotation() => await GetFloat("rotation");
         public async Task SetRotation(float rotation) => await Execute("setRotation", rotation);

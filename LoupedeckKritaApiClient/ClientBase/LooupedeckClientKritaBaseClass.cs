@@ -1,9 +1,13 @@
-﻿namespace LoupedeckKritaApiClient.ClientBase
+﻿using System.Security.AccessControl;
+
+namespace LoupedeckKritaApiClient.ClientBase
 {
-    public class LooupedeckClientKritaBaseClass(Client client, string objectName)
+    public abstract class LooupedeckClientKritaBaseClass
     {
-        private Client Client = client;
-        private string ObjectName = objectName;
+        internal Client? Client { get; set; }
+        internal string? ObjectName { get; set; }
+
+        public LooupedeckClientKritaBaseClass() { }
 
         public async Task Execute(string methodName, params object[] parameters)
         {
@@ -44,6 +48,22 @@
             }
 
             return (string)returnValue.Value;
+        }
+
+        public async Task<T> Get<T>(string methodName, params object[] parameters) where T : LooupedeckClientKritaBaseClass, new()
+        {
+            var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+
+            if (returnValue.Type != typeof(T).Name)
+            {
+                throw new Exception($"The method call didn't return a {typeof(T).Name} ({returnValue.Type})");
+            }
+
+            return new T()
+            {
+                ObjectName = (string)returnValue.Value,
+                Client = Client
+            };
         }
     }
 }

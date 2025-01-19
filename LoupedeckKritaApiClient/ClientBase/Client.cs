@@ -8,13 +8,27 @@ namespace LoupedeckKritaApiClient.ClientBase
     public class Client : IDisposable
     {
         private Socket client;
-        private CurrentCanvas _currentCanvas;
-        private CurrentDocument _currentDocument;
+        private KritaInstance _kritaInstance;
+        private Canvas _currentCanvas;
+        private Document _currentDocument;
 
         public Client()
         {
-            _currentCanvas = new CurrentCanvas(this);
-            _currentDocument = new CurrentDocument(this);
+            _kritaInstance = new KritaInstance()
+            {
+                Client = this,
+                ObjectName = "kritaInstance"
+            };
+            _currentCanvas = new Canvas()
+            {
+                Client = this,
+                ObjectName = "currentCanvas"
+            };
+            _currentDocument = new Document()
+            {
+                Client = this,
+                ObjectName = "CurrentDocument"
+            };
         }
 
         public async Task Connect()
@@ -82,7 +96,8 @@ namespace LoupedeckKritaApiClient.ClientBase
             client.Dispose();
         }
 
-        public CurrentCanvas CurrentCanvas { get => _currentCanvas; }
-        public CurrentDocument CurrentDocument { get => _currentDocument; }
+        public KritaInstance KritaInstance { get => _kritaInstance; }
+        public Canvas CurrentCanvas { get => _currentCanvas; }
+        public Document CurrentDocument { get => _currentDocument; }
     }
 }

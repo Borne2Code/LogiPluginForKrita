@@ -7,6 +7,7 @@ import uuid
 
 class Server(QObject):
     message = pyqtSignal(str)
+    objects = {}
     returnValue = None
     result = None
 
@@ -14,6 +15,12 @@ class Server(QObject):
         super().__init__()
         self.__abort = False
       
+    def prepareResponse(self):
+        if self.result:
+            return json.dumps({"result": "OK", "returnType": self.returnType, "returnValue": self.returnValue}).encode(encoding="utf-8")
+        else:
+            return json.dumps({"result": "KO", "error": str(self.returnValue)}).encode(encoding="utf-8")
+
     def run(self):
         
         s = socket.socket()
@@ -26,12 +33,13 @@ class Server(QObject):
             c, addr = s.accept()
             QtCore.qDebug("Connection accepted from " + repr(addr[1]))
             connected = True
-            # objects = {}
+
             while connected:
                 msg = c.recv(1026).decode(encoding="utf-8")
 
                 if not msg:
                     connected = False
+                    self.objects = {} #clean objects cache
                     QtCore.qDebug('Connection closed')
                 else:
                     try:
@@ -43,27 +51,7 @@ class Server(QObject):
                         while self.result == None:
                             time.sleep(0.01)
                     
-                        if self.result:
-                            match type(self.returnValue).__name__:
-                                case "str":
-                                    self.returnType = "str"
-                                case "int":
-                                    self.returnType = "int"
-                                case "float":
-                                    self.returnType = "float"
-                                case "NoneType":
-                                    self.returnType = "None"
-                                case _:
-                                    self.returnType = "None"
-                                    self.returnValue = None
-                                #     self.returnType = type(self.returnValue).__name__
-                                #     key = str(uuid.uuid4())
-                                #     objects[key] = self.returnValue
-                                #     self.returnValue = key
-                            
-                            c.send(json.dumps({"result": "OK", "returnType": self.returnType, "returnValue": self.returnValue}).encode(encoding="utf-8"))
-                        else:
-                            c.send(json.dumps({"result": "KO", "error": str(self.returnValue)}).encode(encoding="utf-8"))
+                        c.send(self.prepareResponse())
                     except Exception as ex:
                         QtCore.qDebug('Error: ' + str(ex))
 
@@ -80,18 +68,38 @@ class LoopedeckApiServer(Extension):
         #   method: xxxx,
         #   parameters: [
         #     {
-        #       type: int|str,
+        #       type: int|float|str,
         #       value: xxxx
         #     }
         #   ]
         # }
         
         objectName = request["object"]
-        object = self.getObject(objectName)
+        objectInstance = self.getObject(objectName)
         methodName = request["method"]
-        method = self.getMethod(object, methodName)
-        parameters = request["parameters"]
+        method = self.getMethod(objectInstance, methodName)
+        parameters = self.parseParameters(request["parameters"])
 
+        parametersString = ", ".join(map(lambda obj: str(obj), parameters))
+        QtCore.qDebug(f"{objectName}.{methodName}({parametersString})")
+        
+        return method, parameters
+
+    def getObject(self, objectName):
+        match objectName:
+            case "kritaInstance":
+                return Krita.instance()
+            case 'currentCanvas':
+                return Krita.instance().activeWindow().activeView().canvas()
+            case 'currentDocument':
+                return Krita.instance().activeDocument()
+            case _:
+                return self.worker.objects[objectName]
+
+    def getMethod(self, object, functionName):
+        return getattr(object, functionName)
+        
+    def parseParameters(self, parameters):
         parametersArray = []
         
         if parameters:
@@ -103,27 +111,37 @@ class LoopedeckApiServer(Extension):
                         parametersArray.append(int(param["value"]))
                     case "float":
                         parametersArray.append(float(param["value"]))
+                    case _:
+                        parametersArray.append(self.worker.objects[str(param["value"])])
 
-        parametersString = ", ".join(map(lambda obj: str(obj), parametersArray))
-        QtCore.qDebug(f"{objectName}.{methodName}({parametersString})")
-        
-        return method, parametersArray
+        return parametersArray
 
-    def getObject(self, objectName):
-        match objectName:
-            case 'currentCanvas':
-                return Krita.instance().activeWindow().activeView().canvas()
-            case 'currentDocument':
-                return Krita.instance().activeDocument()
+    def computeResponse(self, returnValue):
+        match type(returnValue).__name__:
+            case "str":
+                self.worker.returnType = "str"
+                self.worker.returnValue = returnValue
+            case "int":
+                self.worker.returnType = "int"
+                self.worker.returnValue = returnValue
+            case "float":
+                self.worker.returnType = "float"
+                self.worker.returnValue = returnValue
+            case "NoneType":
+                self.worker.returnType = "None"
+                self.worker.returnValue = None
+            case _:
+                self.worker.returnType = type(returnValue).__name__
+                key = str(uuid.uuid4())
+                self.worker.objects[key] = returnValue
+                self.worker.returnValue = key
 
-    def getMethod(self, object, functionName):
-        return getattr(object, functionName)
-        
     @pyqtSlot(str)
     def computeMessage(self, msg):
         try:
             method, parameters = self.parseRequest(msg)
-            self.worker.returnValue = method(*parameters)
+            returnValue = method(*parameters)
+            self.computeResponse(returnValue)
             self.worker.result = True
         except Exception as ex:
             QtCore.qDebug(str(ex))
