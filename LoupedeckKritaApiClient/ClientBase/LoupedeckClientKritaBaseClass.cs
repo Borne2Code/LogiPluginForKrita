@@ -1,20 +1,18 @@
-﻿using System.Security.AccessControl;
-
-namespace LoupedeckKritaApiClient.ClientBase
+﻿namespace LoupedeckKritaApiClient.ClientBase
 {
-    public abstract class LooupedeckClientKritaBaseClass
+    public abstract class LoupedeckClientKritaBaseClass
     {
         internal Client? Client { get; set; }
         internal string? ObjectName { get; set; }
 
-        public LooupedeckClientKritaBaseClass() { }
+        public LoupedeckClientKritaBaseClass() { }
 
-        public async Task Execute(string methodName, params object[] parameters)
+        protected async Task Execute(string methodName, params object[] parameters)
         {
             await Client.ExecuteCall(ObjectName, methodName, parameters);
         }
 
-        public async Task<float> GetFloat(string methodName, params object[] parameters)
+        protected async Task<float> GetFloat(string methodName, params object[] parameters)
         {
             var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
 
@@ -26,7 +24,7 @@ namespace LoupedeckKritaApiClient.ClientBase
             return (float)(double)returnValue.Value;
         }
 
-        public async Task<int> GetInt(string methodName, params object[] parameters)
+        protected async Task<int> GetInt(string methodName, params object[] parameters)
         {
             var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
 
@@ -38,7 +36,7 @@ namespace LoupedeckKritaApiClient.ClientBase
             return (int)(long)returnValue.Value;
         }
 
-        public async Task<string> GetStr(string methodName, params object[] parameters)
+        protected async Task<string> GetStr(string methodName, params object[] parameters)
         {
             var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
 
@@ -50,7 +48,31 @@ namespace LoupedeckKritaApiClient.ClientBase
             return (string)returnValue.Value;
         }
 
-        public async Task<T> Get<T>(string methodName, params object[] parameters) where T : LooupedeckClientKritaBaseClass, new()
+        protected async Task<IEnumerable<string>> GetStringList(string methodName, params object[] parameters)
+        {
+            var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+
+            if (returnValue.Type != "list")
+            {
+                throw new Exception($"The method call didn't return a list ({returnValue.Type}");
+            }
+
+            return (IEnumerable<string>)returnValue.Value;
+        }
+
+        protected async Task<bool> GetBool(string methodName, params object[] parameters)
+        {
+            var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+
+            if (returnValue.Type != "bool")
+            {
+                throw new Exception($"The method call didn't return a int ({returnValue.Type}");
+            }
+
+            return (bool)returnValue.Value;
+        }
+
+        protected async Task<T> Get<T>(string methodName, params object[] parameters) where T : LoupedeckClientKritaBaseClass, new()
         {
             var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
 

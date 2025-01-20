@@ -2,15 +2,14 @@
 
 namespace LoupedeckKritaApiClient
 {
-    public class Canvas(): LooupedeckClientKritaBaseClass
+    public class Canvas(): LoupedeckClientKritaBaseClass
     {
-        public async Task<float> GetRotation() => await GetFloat("rotation");
-        public async Task SetRotation(float rotation) => await Execute("setRotation", rotation);
-        public async Task ResetRotation() => await Execute("resetRotation");
-
-        public async Task<float> GetZoomLevel() => await GetFloat("zoomLevel");
-        public async Task SetZoomLevel(float zoomLevel) => await Execute("setZoomLevel", zoomLevel);
-        public async Task ResetZoom() => await Execute("resetZoom");
+        public Task<float> Rotation() => GetFloat("rotation");
+        public Task SetRotation(float rotation) => Execute("setRotation", rotation);
+        public Task ResetRotation() => Execute("resetRotation");
+        public Task<float> ZoomLevel() => GetFloat("zoomLevel");
+        public Task SetZoomLevel(float zoomLevel) => Execute("setZoomLevel", zoomLevel);
+        public Task ResetZoom() => Execute("resetZoom");
 
         // TODO: manage bools
     }

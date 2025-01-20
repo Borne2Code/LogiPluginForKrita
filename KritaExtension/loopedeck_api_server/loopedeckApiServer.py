@@ -81,7 +81,7 @@ class LoopedeckApiServer(Extension):
         parameters = self.parseParameters(request["parameters"])
 
         parametersString = ", ".join(map(lambda obj: str(obj), parameters))
-        QtCore.qDebug(f"{objectName}.{methodName}({parametersString})")
+        QtCore.qDebug(f"Execute method: {objectName}.{methodName}({parametersString})")
         
         return method, parameters
 
@@ -111,6 +111,8 @@ class LoopedeckApiServer(Extension):
                         parametersArray.append(int(param["value"]))
                     case "float":
                         parametersArray.append(float(param["value"]))
+                    case "bool":
+                        parametersArray.append(bool(param["value"]))
                     case _:
                         parametersArray.append(self.worker.objects[str(param["value"])])
 
@@ -126,6 +128,12 @@ class LoopedeckApiServer(Extension):
                 self.worker.returnValue = returnValue
             case "float":
                 self.worker.returnType = "float"
+                self.worker.returnValue = returnValue
+            case "bool":
+                self.worker.returnType = "bool"
+                self.worker.returnValue = returnValue
+            case "list":
+                self.worker.returnType = "list"
                 self.worker.returnValue = returnValue
             case "NoneType":
                 self.worker.returnType = "None"
@@ -144,7 +152,7 @@ class LoopedeckApiServer(Extension):
             self.computeResponse(returnValue)
             self.worker.result = True
         except Exception as ex:
-            QtCore.qDebug(str(ex))
+            QtCore.qDebug("Error: " + str(ex))
             self.worker.returnValue = ex
             self.worker.result = False
 

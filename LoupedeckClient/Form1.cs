@@ -17,14 +17,14 @@ namespace LoupedeckClient
             InitializeComponent();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             trackBar1.Value = 100;
         }
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            trackBar1.Value = (int)(await canvas.GetZoomLevel() * 7200 / dpi);
+            trackBar1.Value = (int)(await canvas.ZoomLevel() * 7200 / dpi);
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -37,8 +37,11 @@ namespace LoupedeckClient
             window = await client.KritaInstance.ActiveWindow();
             view = await window.ActiveView();
             canvas = await view.CurrentCanvas();
-            trackBar1.Value = (int)(await canvas.GetZoomLevel() * 75 * 100 / dpi);
-            trackBar2.Value = (int)(await canvas.GetRotation());
+            trackBar1.Value = (int)(await canvas.ZoomLevel() * 75 * 100 / dpi);
+            trackBar2.Value = (int)(await canvas.Rotation());
+
+            var response = await client.KritaInstance.Filters();
+            label1.Text = string.Join(',', response);
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -75,7 +78,7 @@ namespace LoupedeckClient
 
         private async void button3_Click(object sender, EventArgs e)
         {
-            trackBar2.Value = (int)(await canvas.GetRotation());
+            trackBar2.Value = (int)(await canvas.Rotation());
         }
 
         private async void trackBar2_ValueChanged(object sender, EventArgs e)
@@ -98,7 +101,7 @@ namespace LoupedeckClient
             }
         }
 
-        private async void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
             trackBar2.Value = 0;
         }

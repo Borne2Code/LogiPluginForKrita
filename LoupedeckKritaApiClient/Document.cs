@@ -2,9 +2,10 @@
 
 namespace LoupedeckKritaApiClient
 {
-    public class Document(): LooupedeckClientKritaBaseClass
+    public class Document(): LoupedeckClientKritaBaseClass
     {
-        public async Task<int> GetResolution() => await GetInt("resolution");
-        public async Task SetResolution(int resolution) => await Execute("resolution", resolution);
+        public Task<int> GetResolution() => GetInt("resolution");
+        public Task SetResolution(int resolution) => Execute("resolution", resolution);
+        public Task Close() => Execute("close");
     }
 }

@@ -2,8 +2,8 @@
 
 namespace LoupedeckKritaApiClient
 {
-    public class View() : LooupedeckClientKritaBaseClass
+    public class View() : LoupedeckClientKritaBaseClass
     {
-        public async Task<Canvas> CurrentCanvas() => await Get<Canvas>("canvas");
+        public Task<Canvas> CurrentCanvas() => Get<Canvas>("canvas");
     }
 }
