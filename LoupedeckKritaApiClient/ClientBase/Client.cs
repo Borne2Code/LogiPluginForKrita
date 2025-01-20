@@ -29,7 +29,7 @@ namespace LoupedeckKritaApiClient.ClientBase
             _currentDocument = new Document()
             {
                 Client = this,
-                ObjectName = "CurrentDocument"
+                ObjectName = "currentDocument"
             };
         }
 
