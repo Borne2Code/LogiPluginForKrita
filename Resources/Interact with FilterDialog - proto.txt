@@ -1,0 +1,23 @@
+from krita import *
+import time
+
+FilteredChildren = list(filter(lambda w: w.objectName() == 'FilterDialog', Krita.instance().activeWindow().qwindow().children()))
+if len(FilteredChildren) == 0:
+    print("No filter")
+else:
+    dialog = FilteredChildren[0]
+
+    filterconfig = dialog.children()[1].children()[-1].children()[0].children()[0].children()[1].children()[1]
+    print(list(map(lambda w: w.objectName(), filterconfig.children())))
+
+    obj = filterconfig.children()[16]
+
+    for i in range(0, 50, 5):
+        obj.setValue(i)
+        QApplication.processEvents()
+        time.sleep(0.05)
+
+#spinboxinputblack = .children()[0].children()[0].children()[1].children()[1].children()[16].children()[0]
+#print(spinboxinputblack.objectName())
+#print(spinboxinputblack)
+#print(dir(spinboxinputblack))
