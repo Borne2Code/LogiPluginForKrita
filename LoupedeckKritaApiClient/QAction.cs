@@ -4,5 +4,6 @@ namespace LoupedeckKritaApiClient
 {
     public class QAction() : LoupedeckClientKritaBaseClass
     {
+        public Task Trigger() => Execute("trigger");
     }
 }

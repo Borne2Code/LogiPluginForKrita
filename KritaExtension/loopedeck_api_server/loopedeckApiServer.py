@@ -36,6 +36,7 @@ class Server(QObject):
 
             while connected:
                 msg = c.recv(1026).decode(encoding="utf-8")
+                QtCore.qDebug(str(msg))
 
                 if not msg:
                     connected = False
@@ -63,8 +64,10 @@ class LoopedeckApiServer(Extension):
     def parseRequest(self, msg):
         request = json.loads(msg)
         
+        # Execute method
         # {
-        #   object: xxxx,
+        #   action: "E"
+        #   object: "Primitive Name or Reference",
         #   method: xxxx,
         #   parameters: [
         #     {
@@ -72,18 +75,40 @@ class LoopedeckApiServer(Extension):
         #       value: xxxx
         #     }
         #   ]
+        #   serilizeResult: bool, // If true, no reference stored, but result is serialized
+        # }
+
+        # Get object reference
+        # {
+        #   action: "G"
+        #   object: "Primitive Name"
+        # }
+
+        # Delete reference
+        # {
+        #   action: "D"
+        #   object: "reference"
         # }
         
+        if 'action' not in request: raise ValueError("action is mandatory in the request")
+        action = request["action"]
+
+        if 'object' not in request: raise ValueError("object is mandatory in the request")
         objectName = request["object"]
         objectInstance = self.getObject(objectName)
-        methodName = request["method"]
-        method = self.getMethod(objectInstance, methodName)
-        parameters = self.parseParameters(request["parameters"])
 
-        parametersString = ", ".join(map(lambda obj: str(obj), parameters))
-        QtCore.qDebug(f"Execute method: {objectName}.{methodName}({parametersString})")
-        
-        return method, parameters
+        if 'method' in request:
+            methodName = request["method"]
+            method = self.getMethod(objectInstance, methodName)
+        else:
+            method = None
+
+        if 'parameters' in request:
+            parameters = self.parseParameters(request["parameters"])
+        else:
+            parameters = []
+
+        return action, objectName, method, parameters
 
     def getObject(self, objectName):
         match objectName:
@@ -134,12 +159,19 @@ class LoopedeckApiServer(Extension):
                 self.worker.returnValue = returnValue
             case "list":
                 self.worker.returnType = "list"
-                self.worker.returnValue = returnValue
+                if len(returnValue) == 0 or type(returnValue[0]).__name__ == "str":
+                    self.worker.returnValue = returnValue
+                elif getattr(returnValue[0], "objectName", None) != None:
+                    self.worker.returnValue = list(map(lambda val: getattr(val, "objectName")(), returnValue))
+                else:
+                    self.worker.returnValue = list(map(lambda val: str(val), returnValue))
             case "NoneType":
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
             case _:
-                self.worker.returnType = type(returnValue).__name__
+                typeName = type(returnValue).__name__
+                if typeName == "QWidgetAction": typeName = "QAction"
+                self.worker.returnType = typeName
                 key = str(uuid.uuid4())
                 self.worker.objects[key] = returnValue
                 self.worker.returnValue = key
@@ -147,12 +179,22 @@ class LoopedeckApiServer(Extension):
     @pyqtSlot(str)
     def computeMessage(self, msg):
         try:
-            method, parameters = self.parseRequest(msg)
-            returnValue = method(*parameters)
-            self.computeResponse(returnValue)
-            self.worker.result = True
+            action, objectName, method, parameters = self.parseRequest(msg)
+
+            if action == "E":
+                parametersString = ", ".join(map(lambda obj: str(obj), parameters))
+                QtCore.qDebug(f"Execute method: {objectName}.{method.__name__}({parametersString})")
+                returnValue = method(*parameters)
+                self.computeResponse(returnValue)
+                self.worker.result = True
+            elif action == "D":
+                QtCore.qDebug(f"Delete instance: {objectName}")
+                self.worker.objects.pop(objectName, None)
+                self.worker.returnType = "None"
+                self.worker.returnValue = None
+                self.worker.result = True
         except Exception as ex:
-            QtCore.qDebug("Error: " + str(ex))
+            QtCore.qDebug(f"Error: [{type(ex).__name__}] {str(ex)}")
             self.worker.returnValue = ex
             self.worker.result = False
 

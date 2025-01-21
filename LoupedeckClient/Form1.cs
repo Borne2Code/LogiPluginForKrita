@@ -6,25 +6,15 @@ namespace LoupedeckClient
     public partial class Form1 : Form
     {
         private long dpi;
-        private Client client;
+        private Client? client;
 
-        private Window window;
-        private LoupedeckKritaApiClient.View view;
-        private Canvas canvas;
+        private Window? window;
+        private LoupedeckKritaApiClient.View? view;
+        private Canvas? canvas;
 
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            trackBar1.Value = 100;
-        }
-
-        private async void button2_Click(object sender, EventArgs e)
-        {
-            trackBar1.Value = (int)(await canvas.ZoomLevel() * 7200 / dpi);
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -32,27 +22,34 @@ namespace LoupedeckClient
             client = new Client();
             await client.Connect();
 
-            var activeDocument = await client.KritaInstance.ActiveDocument();
+            await using var activeDocument = await client.KritaInstance.ActiveDocument();
             dpi = await activeDocument.GetResolution();
             window = await client.KritaInstance.ActiveWindow();
             view = await window.ActiveView();
             canvas = await view.CurrentCanvas();
-            trackBar1.Value = (int)(await canvas.ZoomLevel() * 75 * 100 / dpi);
-            trackBar2.Value = (int)(await canvas.Rotation());
+            //trackBar1.Value = (int)(await canvas.ZoomLevel() * 75 * 100 / dpi);
+            //trackBar2.Value = (int)(await canvas.Rotation());
 
-            var response = await client.KritaInstance.Filters();
-            label1.Text = string.Join(',', response);
+            //ActionList.Items.AddRange((await client.KritaInstance.Actions()).ToArray());
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
+            trackBar1.Value = 100;
+        }
 
+        private async void Button2_Click(object sender, EventArgs e)
+        {
+            if (canvas != null)
+            {
+                trackBar1.Value = (int)(await canvas.ZoomLevel() * 7200 / dpi);
+            }
         }
 
         bool isRunning = false;
-        private async void trackBar1_ValueChanged(object sender, EventArgs e)
+        private async void TrackBar1_ValueChanged(object sender, EventArgs e)
         {
-            if (!isRunning)
+            if (!isRunning && canvas != null)
             {
                 try
                 {
@@ -71,19 +68,25 @@ namespace LoupedeckClient
             }
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private async void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            client.Dispose();
+            if (window != null) await window.DisposeAsync();
+            if (view != null) await view.DisposeAsync();
+            if (canvas != null) await canvas.DisposeAsync();
+            client?.Dispose();
+    }
+
+    private async void Button3_Click(object sender, EventArgs e)
+        {
+            if (canvas != null)
+            {
+                trackBar2.Value = (int)(await canvas.Rotation());
+            }
         }
 
-        private async void button3_Click(object sender, EventArgs e)
+        private async void TrackBar2_ValueChanged(object sender, EventArgs e)
         {
-            trackBar2.Value = (int)(await canvas.Rotation());
-        }
-
-        private async void trackBar2_ValueChanged(object sender, EventArgs e)
-        {
-            if (!isRunning)
+            if (!isRunning && canvas != null)
             {
                 try
                 {
@@ -101,9 +104,18 @@ namespace LoupedeckClient
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
             trackBar2.Value = 0;
+        }
+
+        private async void TriggerAction_Click(object sender, EventArgs e)
+        {
+            if (ActionList.SelectedItem != null && client != null)
+            {
+                var action = await client.KritaInstance.Action((string)ActionList.SelectedItem);
+                action?.Trigger();
+            }
         }
     }
 }

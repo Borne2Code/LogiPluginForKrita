@@ -5,8 +5,8 @@ namespace LoupedeckKritaApiClient
 {
     public class KritaInstance() : LoupedeckClientKritaBaseClass
     {
-        //public Task<QAction> Action(string actionName) => Get<QAction>("action");
-        //public Task<object> Actions() => Get<QAction>("actions");
+        public Task<QAction> Action(string actionName) => Get<QAction>("action", actionName);
+        public Task<IEnumerable<string>> Actions() => GetStringList("actions");
         public Task<Document> ActiveDocument() => Get<Document>("activeDocument");
         public Task<Window> ActiveWindow() => Get<Window>("activeWindow");
         public Task<bool> Batchmode() => GetBool("batchmode");

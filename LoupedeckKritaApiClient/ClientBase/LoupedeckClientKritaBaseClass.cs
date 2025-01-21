@@ -1,6 +1,6 @@
 ﻿namespace LoupedeckKritaApiClient.ClientBase
 {
-    public abstract class LoupedeckClientKritaBaseClass
+    public abstract class LoupedeckClientKritaBaseClass: IAsyncDisposable
     {
         internal Client? Client { get; set; }
         internal string? ObjectName { get; set; }
@@ -9,12 +9,25 @@
 
         protected async Task Execute(string methodName, params object[] parameters)
         {
+            ValidateInstance();
+
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             await Client.ExecuteCall(ObjectName, methodName, parameters);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8604 // Possible null reference argument.
         }
+
 
         protected async Task<float> GetFloat(string methodName, params object[] parameters)
         {
+            ValidateInstance();
+
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8604 // Possible null reference argument.
 
             if (returnValue.Type != "float")
             {
@@ -26,7 +39,13 @@
 
         protected async Task<int> GetInt(string methodName, params object[] parameters)
         {
+            ValidateInstance();
+
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8604 // Possible null reference argument.
 
             if (returnValue.Type != "int")
             {
@@ -38,7 +57,13 @@
 
         protected async Task<string> GetStr(string methodName, params object[] parameters)
         {
+            ValidateInstance();
+
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8604 // Possible null reference argument.
 
             if (returnValue.Type != "str")
             {
@@ -50,7 +75,13 @@
 
         protected async Task<IEnumerable<string>> GetStringList(string methodName, params object[] parameters)
         {
+            ValidateInstance();
+
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8604 // Possible null reference argument.
 
             if (returnValue.Type != "list")
             {
@@ -62,7 +93,13 @@
 
         protected async Task<bool> GetBool(string methodName, params object[] parameters)
         {
+            ValidateInstance();
+
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8604 // Possible null reference argument.
 
             if (returnValue.Type != "bool")
             {
@@ -74,7 +111,13 @@
 
         protected async Task<T> Get<T>(string methodName, params object[] parameters) where T : LoupedeckClientKritaBaseClass, new()
         {
+            ValidateInstance();
+
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8604 // Possible null reference argument.
 
             if (returnValue.Type != typeof(T).Name)
             {
@@ -86,6 +129,26 @@
                 ObjectName = (string)returnValue.Value,
                 Client = Client
             };
+        }
+
+        private void ValidateInstance()
+        {
+            if (Client == null)
+            {
+                throw new InvalidOperationException("Please add a client");
+            }
+            if (ObjectName == null)
+            {
+                throw new InvalidOperationException("Please configure an ObjectName");
+            }
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            if (Client != null && ObjectName != null)
+            {
+                await Client.Delete(ObjectName);
+            }
         }
     }
 }

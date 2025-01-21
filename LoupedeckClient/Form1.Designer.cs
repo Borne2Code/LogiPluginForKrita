@@ -35,6 +35,8 @@
             trackBar2 = new TrackBar();
             button3 = new Button();
             button4 = new Button();
+            ActionList = new ListBox();
+            TriggerAction = new Button();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar2).BeginInit();
             SuspendLayout();
@@ -47,7 +49,7 @@
             button1.TabIndex = 0;
             button1.Text = "Set zoom 1";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += Button1_Click;
             // 
             // button2
             // 
@@ -57,7 +59,7 @@
             button2.TabIndex = 1;
             button2.Text = "get zoom level";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            button2.Click += Button2_Click;
             // 
             // label1
             // 
@@ -80,8 +82,7 @@
             trackBar1.TickFrequency = 100;
             trackBar1.TickStyle = TickStyle.TopLeft;
             trackBar1.Value = 10;
-            trackBar1.Scroll += trackBar1_Scroll;
-            trackBar1.ValueChanged += trackBar1_ValueChanged;
+            trackBar1.ValueChanged += TrackBar1_ValueChanged;
             // 
             // trackBar2
             // 
@@ -96,7 +97,7 @@
             trackBar2.TabIndex = 3;
             trackBar2.TickFrequency = 100;
             trackBar2.TickStyle = TickStyle.TopLeft;
-            trackBar2.ValueChanged += trackBar2_ValueChanged;
+            trackBar2.ValueChanged += TrackBar2_ValueChanged;
             // 
             // button3
             // 
@@ -106,7 +107,7 @@
             button3.TabIndex = 1;
             button3.Text = "get rotation";
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            button3.Click += Button3_Click;
             // 
             // button4
             // 
@@ -116,13 +117,34 @@
             button4.TabIndex = 0;
             button4.Text = "Reset rotation";
             button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            button4.Click += Button4_Click;
+            // 
+            // ActionList
+            // 
+            ActionList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ActionList.FormattingEnabled = true;
+            ActionList.Location = new Point(12, 249);
+            ActionList.Name = "ActionList";
+            ActionList.Size = new Size(316, 188);
+            ActionList.TabIndex = 4;
+            // 
+            // TriggerAction
+            // 
+            TriggerAction.Location = new Point(334, 249);
+            TriggerAction.Name = "TriggerAction";
+            TriggerAction.Size = new Size(94, 29);
+            TriggerAction.TabIndex = 5;
+            TriggerAction.Text = "Run";
+            TriggerAction.UseVisualStyleBackColor = true;
+            TriggerAction.Click += TriggerAction_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1124, 450);
+            Controls.Add(TriggerAction);
+            Controls.Add(ActionList);
             Controls.Add(trackBar2);
             Controls.Add(trackBar1);
             Controls.Add(label1);
@@ -149,5 +171,7 @@
         private TrackBar trackBar2;
         private Button button3;
         private Button button4;
+        private ListBox ActionList;
+        private Button TriggerAction;
     }
 }
