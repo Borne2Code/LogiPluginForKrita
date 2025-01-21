@@ -3,7 +3,8 @@
     public abstract class LoupedeckClientKritaBaseClass: IAsyncDisposable
     {
         internal Client? Client { get; set; }
-        internal string? ObjectName { get; set; }
+        internal string? Reference { get; set; }
+        internal string? PrimitiveName { get; set; }
 
         public LoupedeckClientKritaBaseClass() { }
 
@@ -13,7 +14,7 @@
 
 #pragma warning disable CS8604 // Possible null reference argument.
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-            await Client.ExecuteCall(ObjectName, methodName, parameters);
+            await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 #pragma warning restore CS8604 // Possible null reference argument.
         }
@@ -25,7 +26,7 @@
 
 #pragma warning disable CS8604 // Possible null reference argument.
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+            var returnValue = await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 #pragma warning restore CS8604 // Possible null reference argument.
 
@@ -43,7 +44,7 @@
 
 #pragma warning disable CS8604 // Possible null reference argument.
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+            var returnValue = await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 #pragma warning restore CS8604 // Possible null reference argument.
 
@@ -61,7 +62,7 @@
 
 #pragma warning disable CS8604 // Possible null reference argument.
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+            var returnValue = await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 #pragma warning restore CS8604 // Possible null reference argument.
 
@@ -79,7 +80,7 @@
 
 #pragma warning disable CS8604 // Possible null reference argument.
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+            var returnValue = await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 #pragma warning restore CS8604 // Possible null reference argument.
 
@@ -97,7 +98,7 @@
 
 #pragma warning disable CS8604 // Possible null reference argument.
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+            var returnValue = await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 #pragma warning restore CS8604 // Possible null reference argument.
 
@@ -115,7 +116,7 @@
 
 #pragma warning disable CS8604 // Possible null reference argument.
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var returnValue = await Client.ExecuteCall(ObjectName, methodName, parameters);
+            var returnValue = await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 #pragma warning restore CS8604 // Possible null reference argument.
 
@@ -126,7 +127,7 @@
 
             return new T()
             {
-                ObjectName = (string)returnValue.Value,
+                Reference = (string)returnValue.Value,
                 Client = Client
             };
         }
@@ -137,7 +138,7 @@
             {
                 throw new InvalidOperationException("Please add a client");
             }
-            if (ObjectName == null)
+            if ((Reference ?? PrimitiveName) == null)
             {
                 throw new InvalidOperationException("Please configure an ObjectName");
             }
@@ -145,9 +146,9 @@
 
         public async ValueTask DisposeAsync()
         {
-            if (Client != null && ObjectName != null)
+            if (Client != null && Reference != null)
             {
-                await Client.Delete(ObjectName);
+                await Client.Delete(Reference);
             }
         }
     }

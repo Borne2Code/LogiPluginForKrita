@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace LoupedeckKritaApiClient.ClientBase
 {
-    public class Client : IDisposable
+    public class Client : IAsyncDisposable
     {
         private Socket? client;
         private readonly KritaInstance _kritaInstance;
@@ -19,17 +19,17 @@ namespace LoupedeckKritaApiClient.ClientBase
             _kritaInstance = new KritaInstance()
             {
                 Client = this,
-                ObjectName = "kritaInstance"
+                PrimitiveName = "kritaInstance"
             };
             _currentCanvas = new Canvas()
             {
                 Client = this,
-                ObjectName = "currentCanvas"
+                PrimitiveName = "currentCanvas"
             };
             _currentDocument = new Document()
             {
                 Client = this,
-                ObjectName = "currentDocument"
+                PrimitiveName = "currentDocument"
             };
         }
 
@@ -42,6 +42,11 @@ namespace LoupedeckKritaApiClient.ClientBase
                 SocketType.Stream,
                 ProtocolType.Tcp);
             await client.ConnectAsync(ipEndPoint);
+        }
+
+        public async Task Close()
+        {
+            client?.Close(100);
         }
 
         internal async Task<ReturnValue> ExecuteCall(string objectName, string methodName, params object[] parameters)
@@ -88,7 +93,7 @@ namespace LoupedeckKritaApiClient.ClientBase
                                         if (typeof(LoupedeckClientKritaBaseClass).IsInstanceOfType(val))
                                         {
                                             type = val.GetType().Name;
-                                            value = $"\"{((LoupedeckClientKritaBaseClass)val).ObjectName}\"";
+                                            value = $"\"{((LoupedeckClientKritaBaseClass)val).Reference}\"";
                                         }
                                         else
                                             throw new ArgumentException($"Unmanaged argument type: {val.GetType().Name}");
@@ -156,6 +161,8 @@ namespace LoupedeckKritaApiClient.ClientBase
                 throw new Exception("Please connect before calling a method");
             }
 
+            if (!client.Connected) return;
+
             await _semaphore.WaitAsync();
 
             try
@@ -195,14 +202,18 @@ namespace LoupedeckKritaApiClient.ClientBase
             }
         }
 
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
+            await _semaphore.WaitAsync();
+
             if (client?.Connected ?? false)
             {
                 client.Close();
             }
 
             client?.Dispose();
+
+            _semaphore.Release();
         }
 
         public KritaInstance KritaInstance { get => _kritaInstance; }

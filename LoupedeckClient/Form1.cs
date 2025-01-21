@@ -70,13 +70,13 @@ namespace LoupedeckClient
 
         private async void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (window != null) await window.DisposeAsync();
-            if (view != null) await view.DisposeAsync();
-            if (canvas != null) await canvas.DisposeAsync();
-            client?.Dispose();
-    }
+            //if (window != null) await window.DisposeAsync();
+            //if (view != null) await view.DisposeAsync();
+            //if (canvas != null) await canvas.DisposeAsync();
+            if (client != null) await client.DisposeAsync();
+        }
 
-    private async void Button3_Click(object sender, EventArgs e)
+        private async void Button3_Click(object sender, EventArgs e)
         {
             if (canvas != null)
             {
