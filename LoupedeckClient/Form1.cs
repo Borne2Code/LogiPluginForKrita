@@ -30,7 +30,7 @@ namespace LoupedeckClient
             //trackBar1.Value = (int)(await canvas.ZoomLevel() * 75 * 100 / dpi);
             //trackBar2.Value = (int)(await canvas.Rotation());
 
-            //ActionList.Items.AddRange((await client.KritaInstance.Actions()).ToArray());
+            ActionList.Items.AddRange((await client.KritaInstance.Actions()).ToArray());
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -113,7 +113,7 @@ namespace LoupedeckClient
         {
             if (ActionList.SelectedItem != null && client != null)
             {
-                var action = await client.KritaInstance.Action((string)ActionList.SelectedItem);
+                await using var action = await client.KritaInstance.Action((string)ActionList.SelectedItem);
                 action?.Trigger();
             }
         }

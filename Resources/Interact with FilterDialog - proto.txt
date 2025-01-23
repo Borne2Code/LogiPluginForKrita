@@ -1,3 +1,7 @@
+###########################################################################################
+####                      Interact with filters Panel                                 #####
+###########################################################################################
+
 from krita import *
 import time
 
@@ -21,3 +25,44 @@ else:
 #print(spinboxinputblack.objectName())
 #print(spinboxinputblack)
 #print(dir(spinboxinputblack))
+
+###########################################################################################
+####                      Interact with filters treeView                              #####
+###########################################################################################
+
+from krita import *
+import time
+
+def listChildrenWidgets(widget, prefix = ""):
+    for w in widget.children():
+            print(f"{prefix}{w.objectName()} [{type(w).__name__}]")
+            listChildrenWidgets(w, prefix + "  ")
+
+def listCHildrenNodes(dialog, filterList, index, prefix = ""):
+    model = filterList.model()
+    for id in range(0, model.rowCount(index)):
+        childIndex = model.index(id, 0, index)
+        print(f"{prefix}{model.data(childIndex)}")
+        filterList.setCurrentIndex(childIndex)
+        filterList.clicked.emit(childIndex)
+        QCoreApplication.processEvents()
+        filterconfig = dialog.children()[1].children()[-1].children()[0].children()[0].children()[1].children()[1]
+        listChildrenWidgets(filterconfig, prefix + "|  ");
+        listCHildrenNodes(dialog, filterList, childIndex, prefix + "  ")
+
+def listTreeViewNodes(dialog, filterList):
+    model = filterList.model()
+    for id in range(0, model.rowCount()):
+        index = model.index(id, 0)
+        parent = model.data(index)
+        print(f"  {parent}")
+        listCHildrenNodes(dialog, filterList, index, "    ")
+    
+FilteredChildren = list(filter(lambda w: w.objectName() == 'FilterDialog', Krita.instance().activeWindow().qwindow().children()))
+if len(FilteredChildren) == 0:
+    print("No filter Dialog")
+else:
+    dialog = FilteredChildren[0]
+    filterlist = dialog.children()[1].children()[1]
+    print(type(filterlist).__name__)
+    listTreeViewNodes(dialog, filterlist)

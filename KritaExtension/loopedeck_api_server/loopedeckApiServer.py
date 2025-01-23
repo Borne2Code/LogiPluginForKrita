@@ -36,7 +36,6 @@ class Server(QObject):
 
             while connected:
                 msg = c.recv(1026).decode(encoding="utf-8")
-                QtCore.qDebug(str(msg))
 
                 if not msg:
                     connected = False
@@ -56,7 +55,24 @@ class Server(QObject):
                     except Exception as ex:
                         QtCore.qDebug('Error: ' + str(ex))
 
+class AuthorizedAction:
+    objectIsMandatory: bool #True: mandatory, False: optional, None: forbidden
+    methodIsMandatory: bool
+    parametersIsMandatory: bool
+
+    def new(objectIsMandatory, methodIsMandatory, parametersIsMandatory):
+        instance = AuthorizedAction()
+        instance.objectIsMandatory = objectIsMandatory
+        instance.methodIsMandatory = methodIsMandatory
+        instance.parametersIsMandatory = parametersIsMandatory
+        return instance
+
 class LoopedeckApiServer(Extension):
+    authorizedActions = {
+        'D': AuthorizedAction.new(True, None, None),
+        'E': AuthorizedAction.new(True, True, False)
+    }
+
     def __init__(self, parent):
         # This is initialising the parent, always important when subclassing.
         super().__init__(parent)
@@ -92,40 +108,54 @@ class LoopedeckApiServer(Extension):
         
         if 'action' not in request: raise ValueError("action is mandatory in the request")
         action = request["action"]
+        if action not in self.authorizedActions.keys(): raise ValueError(f"action mst be an authorized value: {str(self.authorizedActions.keys())}")
 
-        if 'object' not in request: raise ValueError("object is mandatory in the request")
-        objectName = request["object"]
-        objectInstance = self.getObject(objectName)
+        authorizedAction = self.authorizedActions[action]
 
-        if 'method' in request:
-            methodName = request["method"]
-            method = self.getMethod(objectInstance, methodName)
+        if 'object' not in request and authorizedAction.objectIsMandatory == True: raise ValueError("object is mandatory in the request")
+        if 'object' in request and authorizedAction.objectIsMandatory == None: raise ValueError("object is forbidden in the request")
+        if 'method' not in request and authorizedAction.methodIsMandatory == True: raise ValueError("method is mandatory in the request")
+        if 'method' in request and authorizedAction.methodIsMandatory == None: raise ValueError("method is forbidden in the request")
+        if 'parameters' not in request and authorizedAction.parametersIsMandatory == True: raise ValueError("parameters is mandatory in the request")
+        if 'parameters' in request and authorizedAction.parametersIsMandatory == None: raise ValueError("parameters is forbidden in the request")
+
+        objectName, objectInstance = self.getObject(request)
+        method = self.getMethod(objectInstance, request)
+        parameters = self.parseParameters(request)
+
+        return action, objectName, objectInstance, method, parameters
+
+    def getObject(self, request):
+        if 'object' in request:
+            objectName = request["object"]
         else:
-            method = None
+            return None, None
 
-        if 'parameters' in request:
-            parameters = self.parseParameters(request["parameters"])
-        else:
-            parameters = []
-
-        return action, objectName, method, parameters
-
-    def getObject(self, objectName):
         match objectName:
             case "kritaInstance":
-                return Krita.instance()
+                return objectName, Krita.instance()
             case 'currentCanvas':
-                return Krita.instance().activeWindow().activeView().canvas()
+                return objectName, Krita.instance().activeWindow().activeView().canvas()
             case 'currentDocument':
-                return Krita.instance().activeDocument()
+                return objectName, Krita.instance().activeDocument()
             case _:
-                return self.worker.objects[objectName]
+                return objectName, self.worker.objects[objectName]
 
-    def getMethod(self, object, functionName):
-        return getattr(object, functionName)
+    def getMethod(self, object, request):
+        if 'method' in request:
+            methodName = request["method"]
+        else:
+            return None
+
+        return getattr(object, methodName)
         
-    def parseParameters(self, parameters):
+    def parseParameters(self, request):
         parametersArray = []
+
+        if 'parameters' in request:
+            parameters = request["parameters"]
+        else:
+            return parametersArray
         
         if parameters:
             for param in parameters:
@@ -179,16 +209,16 @@ class LoopedeckApiServer(Extension):
     @pyqtSlot(str)
     def computeMessage(self, msg):
         try:
-            action, objectName, method, parameters = self.parseRequest(msg)
+            action, objectName, objectInstance, method, parameters = self.parseRequest(msg)
 
             if action == "E":
                 parametersString = ", ".join(map(lambda obj: str(obj), parameters))
-                QtCore.qDebug(f"Execute method: {objectName}.{method.__name__}({parametersString})")
+                QtCore.qDebug(f"Execute method: {type(objectInstance).__name__}.{method.__name__}({parametersString})")
                 returnValue = method(*parameters)
                 self.computeResponse(returnValue)
                 self.worker.result = True
             elif action == "D":
-                QtCore.qDebug(f"Delete instance: {objectName}")
+                QtCore.qDebug(f"Delete instance {objectName} of type {type(objectInstance).__name__}")
                 self.worker.objects.pop(objectName, None)
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
