@@ -4,6 +4,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Threading;
+using System.Security.AccessControl;
 
 namespace LoupedeckKritaApiClient.ClientBase
 {
@@ -49,7 +50,12 @@ namespace LoupedeckKritaApiClient.ClientBase
             client?.Close(100);
         }
 
-        internal async Task<ReturnValue> ExecuteCall(string objectName, string methodName, params object[] parameters)
+        internal Task<ReturnValue> ExecuteCall(string objectName, string methodName, params object[] parameters)
+        {
+            return InternalExecuteCall("E", objectName, methodName, parameters);
+        }
+
+        private async Task<ReturnValue> InternalExecuteCall(string action, string? objectName = null, string? methodName = null, params object[] parameters)
         {
             if (client == null)
             {
@@ -90,10 +96,10 @@ namespace LoupedeckKritaApiClient.ClientBase
                                     }; break;
                                 default:
                                     {
-                                        if (typeof(LoupedeckClientKritaBaseClass).IsInstanceOfType(val))
+                                        if (val is LoupedeckClientKritaBaseClass typedVal)
                                         {
                                             type = val.GetType().Name;
-                                            value = $"\"{((LoupedeckClientKritaBaseClass)val).Reference}\"";
+                                            value = $"\"{typedVal.Reference}\"";
                                         }
                                         else
                                             throw new ArgumentException($"Unmanaged argument type: {val.GetType().Name}");
@@ -104,7 +110,12 @@ namespace LoupedeckKritaApiClient.ClientBase
                         })
                     ) + "]";
 
-                var messageBytes = Encoding.UTF8.GetBytes($"{{\"action\":\"E\",\"method\":\"{methodName}\",\"object\":\"{objectName}\",\"parameters\":{parametersListString}}}");
+                var message = $"{{\"action\":\"{action}\"";
+                if (methodName != null) message += $",\"method\":\"{methodName}\"";
+                if (objectName != null) message += $",\"object\":\"{objectName}\"";
+                if (parameters.Length > 0) message += $",\"parameters\":{parametersListString}";
+                message += "}";
+                var messageBytes = Encoding.UTF8.GetBytes(message);
                 _ = await client.SendAsync(messageBytes, SocketFlags.None).ConfigureAwait(true);
 
                 var responseBytes = new byte[1024];
@@ -154,52 +165,27 @@ namespace LoupedeckKritaApiClient.ClientBase
             }
         }
 
-        public async Task Delete(string objectName)
+        public Task Delete(string objectName)
         {
-            if (client == null)
-            {
-                throw new Exception("Please connect before calling a method");
-            }
+            return InternalExecuteCall("D", objectName);
+        }
 
-            if (!client.Connected) return;
+        public Task<ReturnValue> GetFilterConfigWidget()
+        {
+            return InternalExecuteCall("F");
+        }
 
-            await _semaphore.WaitAsync();
+        internal Task ClickFilterRadio(string filterConfigWidgetReference, string[] widgetPathNames)
+        {
+            return InternalExecuteCall("FR", filterConfigWidgetReference, parameters:  widgetPathNames);
+        }
 
-            try
-            {
-                var messageBytes = Encoding.UTF8.GetBytes($"{{\"action\":\"D\",\"object\":\"{objectName}\"}}");
-                _ = await client.SendAsync(messageBytes, SocketFlags.None).ConfigureAwait(true);
-
-                var responseBytes = new byte[1024];
-                var byteCount = await client.ReceiveAsync(responseBytes, SocketFlags.None).ConfigureAwait(true);
-                if (byteCount > 0)
-                {
-                    var sb = new StringBuilder();
-
-                    sb.Append(Encoding.UTF8.GetString(responseBytes, 0, byteCount));
-
-                    while (client.Available > 0)
-                    {
-                        byteCount = await client.ReceiveAsync(responseBytes, SocketFlags.None).ConfigureAwait(true);
-                        sb.Append(Encoding.UTF8.GetString(responseBytes, 0, byteCount));
-                    }
-
-                    dynamic? response = JsonConvert.DeserializeObject(sb.ToString());
-
-                    if (response?.result != "OK")
-                    {
-                        throw new Exception((string)(response?.error ?? "Unknown error"));
-                    }
-
-                    return;
-                }
-
-                throw new Exception("Could not delete instance");
-            }
-            finally
-            {
-                _semaphore.Release();
-            }
+        internal Task SetSpinBoxValue(string filterConfigWidgetReference, int value, string[] widgetPathNames)
+        {
+            var parameters = new List<object>();
+            parameters.Add(value);
+            parameters.AddRange(widgetPathNames);
+            return InternalExecuteCall("FS", filterConfigWidgetReference, parameters: parameters.ToArray());
         }
 
         public async ValueTask DisposeAsync()

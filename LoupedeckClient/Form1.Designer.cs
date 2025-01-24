@@ -37,8 +37,16 @@
             button4 = new Button();
             ActionList = new ListBox();
             TriggerAction = new Button();
+            button5 = new Button();
+            groupBox1 = new GroupBox();
+            radioButton3 = new RadioButton();
+            radioButton2 = new RadioButton();
+            radioButton1 = new RadioButton();
+            trackBar3 = new TrackBar();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar2).BeginInit();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)trackBar3).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -138,11 +146,81 @@
             TriggerAction.UseVisualStyleBackColor = true;
             TriggerAction.Click += TriggerAction_Click;
             // 
+            // button5
+            // 
+            button5.Location = new Point(539, 257);
+            button5.Name = "button5";
+            button5.Size = new Size(94, 29);
+            button5.TabIndex = 6;
+            button5.Text = "button5";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(radioButton3);
+            groupBox1.Controls.Add(radioButton2);
+            groupBox1.Controls.Add(radioButton1);
+            groupBox1.Location = new Point(752, 229);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(250, 125);
+            groupBox1.TabIndex = 7;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "groupBox1";
+            // 
+            // radioButton3
+            // 
+            radioButton3.AutoSize = true;
+            radioButton3.Location = new Point(10, 92);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new Size(106, 27);
+            radioButton3.TabIndex = 0;
+            radioButton3.TabStop = true;
+            radioButton3.Text = "highlights";
+            radioButton3.UseVisualStyleBackColor = true;
+            radioButton3.CheckedChanged += radioButton3_CheckedChanged;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(10, 62);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(60, 27);
+            radioButton2.TabIndex = 0;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "mid";
+            radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(10, 29);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(70, 27);
+            radioButton1.TabIndex = 0;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "black";
+            radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
+            // 
+            // trackBar3
+            // 
+            trackBar3.Location = new Point(705, 376);
+            trackBar3.Maximum = 100;
+            trackBar3.Name = "trackBar3";
+            trackBar3.Size = new Size(378, 56);
+            trackBar3.TabIndex = 8;
+            trackBar3.ValueChanged += trackBar3_ValueChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1124, 450);
+            Controls.Add(trackBar3);
+            Controls.Add(groupBox1);
+            Controls.Add(button5);
             Controls.Add(TriggerAction);
             Controls.Add(ActionList);
             Controls.Add(trackBar2);
@@ -158,6 +236,9 @@
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackBar2).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)trackBar3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -173,5 +254,11 @@
         private Button button4;
         private ListBox ActionList;
         private Button TriggerAction;
+        private Button button5;
+        private GroupBox groupBox1;
+        private RadioButton radioButton3;
+        private RadioButton radioButton2;
+        private RadioButton radioButton1;
+        private TrackBar trackBar3;
     }
 }

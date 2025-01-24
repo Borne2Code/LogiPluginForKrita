@@ -1,58 +1,24 @@
 ﻿using LoupedeckKritaApiClient.ClientBase;
+using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace LoupedeckKritaApiClient
 {
     public class Filter() : LoupedeckClientKritaBaseClass
     {
         public Task Apply() => Execute("apply");
+        public static async Task<FilterDialog> GetFilterDialog(Client client, FiltersEnum filterType)
+        {
+            var dialog = filterType switch
+            {
+                FiltersEnum.AscCdl => (FilterDialog)new KritaFilterAscCdl(client),
+                FiltersEnum.AutoConstrast => new KritaFilterAutoConstrast(client),
+                FiltersEnum.Burn => new KritaFilterBurn(client),
+                _ => throw new Exception("Not implement filter dialog")
+            };
+
+            await dialog.OpenDialog();
+
+            return dialog;
+        }
     }
 }
-/*
-['apply'
-'blockSignals'
-'childEvent'
-'children'
-'configuration'
-'connectNotify'
-'customEvent'
-'deleteLater'
-'destroyed'
-'disconnect'
-'disconnectNotify'
-'dumpObjectInfo'
-'dumpObjectTree'
-'dynamicPropertyNames'
-'event'
-'eventFilter'
-'findChild'
-'findChildren'
-'inherits'
-'installEventFilter'
-'isSignalConnected'
-'isWidgetType'
-'isWindowType'
-'killTimer'
-'metaObject'
-'moveToThread'
-'name'
-'objectName'
-'objectNameChanged'
-'parent'
-'property'
-'pyqtConfigure'
-'receivers'
-'removeEventFilter'
-'sender'
-'senderSignalIndex'
-'setConfiguration'
-'setName'
-'setObjectName'
-'setParent'
-'setProperty'
-'signalsBlocked'
-'startFilter'
-'startTimer'
-'thread'
-'timerEvent'
-'tr']
- */

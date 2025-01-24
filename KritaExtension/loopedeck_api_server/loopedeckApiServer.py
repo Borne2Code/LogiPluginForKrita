@@ -36,6 +36,7 @@ class Server(QObject):
 
             while connected:
                 msg = c.recv(1026).decode(encoding="utf-8")
+                QtCore.qDebug(str(msg))
 
                 if not msg:
                     connected = False
@@ -70,7 +71,10 @@ class AuthorizedAction:
 class LoopedeckApiServer(Extension):
     authorizedActions = {
         'D': AuthorizedAction.new(True, None, None),
-        'E': AuthorizedAction.new(True, True, False)
+        'E': AuthorizedAction.new(True, True, False),
+        'F': AuthorizedAction.new(None, None, None),
+        'FR': AuthorizedAction.new(True, None, True),
+        'FS': AuthorizedAction.new(True, None, True)
     }
 
     def __init__(self, parent):
@@ -206,6 +210,13 @@ class LoopedeckApiServer(Extension):
                 self.worker.objects[key] = returnValue
                 self.worker.returnValue = key
 
+    def child(self, parentWidget, childName):
+        filteredChildren = list(filter(lambda w: w.objectName() == childName, parentWidget.children()))
+        if len(filteredChildren) == 0:
+            return None
+        else:
+            return filteredChildren[0]
+
     @pyqtSlot(str)
     def computeMessage(self, msg):
         try:
@@ -223,6 +234,39 @@ class LoopedeckApiServer(Extension):
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
                 self.worker.result = True
+            elif action == "F":
+                QtCore.qDebug(f"Get filter configuration widget")
+                dialog = self.child(Krita.instance().activeWindow().qwindow(), "FilterDialog")
+                filterconfig = dialog.children()[1].children()[-1].children()[0].children()[0].children()[1].children()[1]
+                if (filterconfig is not None):
+                    key = str(uuid.uuid4())
+                    self.worker.objects[key] = filterconfig
+                    self.worker.returnValue = key
+                    self.worker.returnType = type(filterconfig).__name__
+                    self.worker.result = True
+                else:
+                    self.worker.returnType = "None"
+                    self.worker.returnValue = None
+                    self.worker.result = False
+            elif action == "FR":
+                QtCore.qDebug(f"Activate filter configuration radio")
+                widget = objectInstance
+                for param in parameters:
+                    widget = self.child(widget, param)
+                widget.setChecked(True)
+                self.worker.returnType = "None"
+                self.worker.returnValue = None
+                self.worker.result = False
+            elif action == "FS":
+                QtCore.qDebug(f"Change filter configuration spinBox")
+                widget = objectInstance
+                value = parameters[0]
+                for param in parameters[slice(1, 500)]:
+                    widget = self.child(widget, param)
+                widget.setValue(value)
+                self.worker.returnType = "None"
+                self.worker.returnValue = None
+                self.worker.result = False
         except Exception as ex:
             QtCore.qDebug(f"Error: [{type(ex).__name__}] {str(ex)}")
             self.worker.returnValue = ex

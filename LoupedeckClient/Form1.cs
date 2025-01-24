@@ -1,5 +1,6 @@
 using LoupedeckKritaApiClient;
 using LoupedeckKritaApiClient.ClientBase;
+using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace LoupedeckClient
 {
@@ -11,6 +12,8 @@ namespace LoupedeckClient
         private Window? window;
         private LoupedeckKritaApiClient.View? view;
         private Canvas? canvas;
+
+        private KritaFilterBurn filterDialog;
 
         public Form1()
         {
@@ -116,6 +119,31 @@ namespace LoupedeckClient
                 await using var action = await client.KritaInstance.Action((string)ActionList.SelectedItem);
                 action?.Trigger();
             }
+        }
+
+        private async void button5_Click(object sender, EventArgs e)
+        {
+            filterDialog = (KritaFilterBurn)await Filter.GetFilterDialog(client, LoupedeckKritaApiClient.FiltersDialogs.FiltersEnum.Burn);
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked) filterDialog.SelectHighLights();
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked) filterDialog.SelectShadows();
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked) filterDialog.SelectMidTones();
+        }
+
+        private void trackBar3_ValueChanged(object sender, EventArgs e)
+        {
+            filterDialog.SetExposureValue(trackBar3.Value);
         }
     }
 }
