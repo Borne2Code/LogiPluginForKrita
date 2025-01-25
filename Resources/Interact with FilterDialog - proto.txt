@@ -57,12 +57,51 @@ def listTreeViewNodes(dialog, filterList):
         parent = model.data(index)
         print(f"  {parent}")
         listCHildrenNodes(dialog, filterList, index, "    ")
-    
-FilteredChildren = list(filter(lambda w: w.objectName() == 'FilterDialog', Krita.instance().activeWindow().qwindow().children()))
-if len(FilteredChildren) == 0:
+
+def child(self, childName):
+    filteredChildren = list(filter(lambda w: w.objectName() == childName, self.children()))
+    if len(filteredChildren) == 0:
+        return None
+    else:
+        return filteredChildren[0]
+
+dialog = child(Krita.instance().activeWindow().qwindow(), "FilterDialog")
+if dialog == None:
     print("No filter Dialog")
 else:
-    dialog = FilteredChildren[0]
     filterlist = dialog.children()[1].children()[1]
     print(type(filterlist).__name__)
     listTreeViewNodes(dialog, filterlist)
+	
+    filterconfig = dialog.children()[1].children()[-1].children()[0].children()[0].children()[1].children()[1]
+    group = child(filterconfig, "buttonGroup1")
+    shadows = child(group, "radioButtonHighlights")
+    shadows.setChecked(True)
+
+    exposure = child(filterconfig, "sliderExposure")
+    exposure.setValue(75)
+
+
+
+
+
+
+###########################################################################################
+####                      Interact with filters widgets                              #####
+###########################################################################################
+
+from krita import *
+
+def child(self, childName):
+    filteredChildren = list(filter(lambda w: w.objectName() == childName, self.children()))
+    if len(filteredChildren) == 0:
+        return None
+    else:
+        return filteredChildren[0]
+
+dialog = child(Krita.instance().activeWindow().qwindow(), "FilterDialog")
+if dialog == None:
+    print("No filter Dialog")
+else:
+    filterconfig = dialog.children()[1].children()[-1].children()[0].children()[0].children()[1].children()[1]
+    widget = child(filterconfig, "name")

@@ -175,17 +175,24 @@ namespace LoupedeckKritaApiClient.ClientBase
             return InternalExecuteCall("F");
         }
 
-        internal Task ClickFilterRadio(string filterConfigWidgetReference, string[] widgetPathNames)
+        internal Task ClickFilterWidget(string filterConfigWidgetReference, string[] widgetPathNames)
         {
-            return InternalExecuteCall("FR", filterConfigWidgetReference, parameters:  widgetPathNames);
+            return InternalExecuteCall("FB", filterConfigWidgetReference, parameters:  widgetPathNames);
         }
 
-        internal Task SetSpinBoxValue(string filterConfigWidgetReference, int value, string[] widgetPathNames)
+        internal Task SetFilterSpinBoxValue(string filterConfigWidgetReference, int value, string[] widgetPathNames)
         {
-            var parameters = new List<object>();
-            parameters.Add(value);
-            parameters.AddRange(widgetPathNames);
-            return InternalExecuteCall("FS", filterConfigWidgetReference, parameters: parameters.ToArray());
+            return InternalExecuteCall("FS", filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+        }
+
+        internal Task SetFilterAngleSelectorValue(string filterConfigWidgetReference, int value, string[] widgetPathNames)
+        {
+            return InternalExecuteCall("FA", filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+        }
+
+        internal Task SetFilterComboBoxSelectedItem(string filterConfigWidgetReference, int value, string[] widgetPathNames)
+        {
+            return InternalExecuteCall("FC", filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
         public async ValueTask DisposeAsync()

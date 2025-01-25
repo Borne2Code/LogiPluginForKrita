@@ -12,7 +12,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             _client = client;
         }
 
-        public abstract string ActionName { get; }
+        protected abstract string ActionName { get; }
 
         public async Task OpenDialog()
         {
@@ -21,14 +21,34 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             _filterConfigWidgetReference = (string)(await _client.GetFilterConfigWidget()).Value;
         }
 
-        public async Task ClickRadio(params string[] widgetPathNames)
+        protected async Task ClickRadio(params string[] widgetPathNames)
         {
-            await _client.ClickFilterRadio(_filterConfigWidgetReference, widgetPathNames);
+            await _client.ClickFilterWidget(_filterConfigWidgetReference, widgetPathNames);
         }
 
-        public async Task SetSpinBoxValue(int value, params string[] widgetPathNames)
+        protected async Task ClickPushButton(params string[] widgetPathNames)
         {
-            await _client.SetSpinBoxValue(_filterConfigWidgetReference, value, widgetPathNames);
+            await _client.ClickFilterWidget(_filterConfigWidgetReference, widgetPathNames);
+        }
+
+        protected async Task ClickCheckBox(params string[] widgetPathNames)
+        {
+            await _client.ClickFilterWidget(_filterConfigWidgetReference, widgetPathNames);
+        }
+
+        protected async Task SetSpinBoxValue(int value, params string[] widgetPathNames)
+        {
+            await _client.SetFilterSpinBoxValue(_filterConfigWidgetReference, value, widgetPathNames);
+        }
+
+        protected async Task SetAngleSelectorValue(int value, params string[] widgetPathNames)
+        {
+            await _client.SetFilterAngleSelectorValue(_filterConfigWidgetReference, value, widgetPathNames);
+        }
+
+        protected async Task SetComboBoxSelectedIndex(int value, params string[] widgetPathNames)
+        {
+            await _client.SetFilterComboBoxSelectedItem(_filterConfigWidgetReference, value, widgetPathNames);
         }
 
         public async ValueTask DisposeAsync()

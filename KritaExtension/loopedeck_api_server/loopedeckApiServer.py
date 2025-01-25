@@ -70,11 +70,13 @@ class AuthorizedAction:
 
 class LoopedeckApiServer(Extension):
     authorizedActions = {
-        'D': AuthorizedAction.new(True, None, None),
-        'E': AuthorizedAction.new(True, True, False),
-        'F': AuthorizedAction.new(None, None, None),
-        'FR': AuthorizedAction.new(True, None, True),
-        'FS': AuthorizedAction.new(True, None, True)
+        'D': AuthorizedAction.new(True, None, None), # Delete instance
+        'E': AuthorizedAction.new(True, True, False), # Execute method
+        'F': AuthorizedAction.new(None, None, None), # Open filter dialog
+        'FA': AuthorizedAction.new(True, None, True), # Set filter angle selector value
+        'FB': AuthorizedAction.new(True, None, True), # Click on filter button, radio or checkbox
+        'FC': AuthorizedAction.new(True, None, True), # Select filter combo box selected index
+        'FS': AuthorizedAction.new(True, None, True) # Set filter spinbox value
     }
 
     def __init__(self, parent):
@@ -248,15 +250,6 @@ class LoopedeckApiServer(Extension):
                     self.worker.returnType = "None"
                     self.worker.returnValue = None
                     self.worker.result = False
-            elif action == "FR":
-                QtCore.qDebug(f"Activate filter configuration radio")
-                widget = objectInstance
-                for param in parameters:
-                    widget = self.child(widget, param)
-                widget.setChecked(True)
-                self.worker.returnType = "None"
-                self.worker.returnValue = None
-                self.worker.result = False
             elif action == "FS":
                 QtCore.qDebug(f"Change filter configuration spinBox")
                 widget = objectInstance
@@ -266,7 +259,37 @@ class LoopedeckApiServer(Extension):
                 widget.setValue(value)
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
-                self.worker.result = False
+                self.worker.result = True
+            elif action == "FA":
+                QtCore.qDebug(f"Change filter configuration angle")
+                widget = objectInstance
+                value = parameters[0]
+                for param in parameters[slice(1, 500)]:
+                    widget = self.child(widget, param)
+                widget.children()[1].setValue(value)
+                self.worker.returnType = "None"
+                self.worker.returnValue = None
+                self.worker.result = True
+            elif action == "FC":
+                QtCore.qDebug(f"Change filter configuration combo box")
+                widget = objectInstance
+                value = parameters[0]
+                for param in parameters[slice(1, 500)]:
+                    widget = self.child(widget, param)
+                widget.setCurrentIndex(value)
+                self.worker.returnType = "None"
+                self.worker.returnValue = None
+                self.worker.result = True
+            elif action == "FB":
+                QtCore.qDebug(f"Click filter configuration widget")
+                widget = objectInstance
+                value = parameters[0]
+                for param in parameters[slice(1, 500)]:
+                    widget = self.child(widget, param)
+                widget.click(value)
+                self.worker.returnType = "None"
+                self.worker.returnValue = None
+                self.worker.result = True
         except Exception as ex:
             QtCore.qDebug(f"Error: [{type(ex).__name__}] {str(ex)}")
             self.worker.returnValue = ex

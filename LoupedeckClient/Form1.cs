@@ -13,7 +13,7 @@ namespace LoupedeckClient
         private LoupedeckKritaApiClient.View? view;
         private Canvas? canvas;
 
-        private KritaFilterBurn filterDialog;
+        private FilterDialog filterDialog;
 
         public Form1()
         {
@@ -121,29 +121,89 @@ namespace LoupedeckClient
             }
         }
 
+        private async Task ActivateFilterDialog(FiltersEnum filterType)
+        {
+            if (filterDialog != null)
+            {
+                await filterDialog.DisposeAsync();
+            }
+
+            filterDialog = await Filter.GetFilterDialog(client, filterType);
+        }
+
         private async void button5_Click(object sender, EventArgs e)
         {
-            filterDialog = (KritaFilterBurn)await Filter.GetFilterDialog(client, LoupedeckKritaApiClient.FiltersDialogs.FiltersEnum.Burn);
+            await ActivateFilterDialog(FiltersEnum.Burn);
         }
 
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        private async void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton3.Checked) filterDialog.SelectHighLights();
+            if (filterDialog is KritaFilterBurn filter)
+                if (radioButton3.Checked) await filter.SelectHighLights();
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private async void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton1.Checked) filterDialog.SelectShadows();
+            if (filterDialog is KritaFilterBurn filter)
+                if (radioButton1.Checked) await filter.SelectShadows();
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private async void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton2.Checked) filterDialog.SelectMidTones();
+            if (filterDialog is KritaFilterBurn filter)
+                if (radioButton2.Checked) await filter.SelectMidTones();
         }
 
-        private void trackBar3_ValueChanged(object sender, EventArgs e)
+        private async void trackBar3_ValueChanged(object sender, EventArgs e)
         {
-            filterDialog.SetExposureValue(trackBar3.Value);
+            if (filterDialog is KritaFilterBurn filter)
+                await filter.SetExposureValue(trackBar3.Value);
+        }
+
+        private async void bBlurActivate_Click(object sender, EventArgs e)
+        {
+            await ActivateFilterDialog(FiltersEnum.Blur);
+        }
+
+        private async void sliderBlurHorRadius_ValueChanged(object sender, EventArgs e)
+        {
+            if (filterDialog is KritaFilterBlur filter)
+                await filter.SetHorizontalRadiusValue(sliderBlurHorRadius.Value);
+        }
+
+        private async void sliderBlurVerRadius_ValueChanged(object sender, EventArgs e)
+        {
+            if (filterDialog is KritaFilterBlur filter)
+                await filter.SetVerticalRadiusValue(sliderBlurVerRadius.Value);
+        }
+
+        private async void sliderBlurStrength_ValueChanged(object sender, EventArgs e)
+        {
+            if (filterDialog is KritaFilterBlur filter)
+                await filter.SetStrengthValue(sliderBlurStrength.Value);
+        }
+
+        private async void BlurSliderAngle_ValueChanged(object sender, EventArgs e)
+        {
+            if (filterDialog is KritaFilterBlur filter)
+                await filter.SetAngle(BlurSliderAngle.Value);
+        }
+
+        private async void BlurCbShape_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (filterDialog is KritaFilterBlur filter)
+                await filter.SetShape(BlurCbShape.SelectedIndex == 0 ? KritaFilterBlur.ShapeEnum.Circle : KritaFilterBlur.ShapeEnum.Rectangle);
+        }
+
+        private async void ColorBalanceActivate_Click(object sender, EventArgs e)
+        {
+            await ActivateFilterDialog(FiltersEnum.ColorBalance);
+        }
+
+        private async void ColorBalanceCyanRedShadows_ValueChanged(object sender, EventArgs e)
+        {
+            if (filterDialog is KritaFilterColorBalance filter)
+                await filter.SetShadowsCyanRedValue(ColorBalanceCyanRedShadows.Value);
         }
     }
 }

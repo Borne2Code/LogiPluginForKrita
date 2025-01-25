@@ -3,9 +3,9 @@ using LoupedeckKritaApiClient.ClientBase;
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterBurn(Client client) : FilterDialog(client)
+    public class KritaFilterDodge(Client client) : FilterDialog(client)
     {
-        protected override string ActionName => "krita_filter_burn";
+        protected override string ActionName => "krita_filter_dodge";
 
         public Task SelectShadows()
         {

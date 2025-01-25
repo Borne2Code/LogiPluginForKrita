@@ -25,7 +25,7 @@
         /// <summary>
         /// krita_filter_colorbalance
         /// </summary>
-        COlorBalance,
+        ColorBalance,
 
         /// <summary>
         /// krita_filter_colortoalpha
