@@ -180,7 +180,7 @@ namespace LoupedeckKritaApiClient.ClientBase
             return InternalExecuteCall("FB", filterConfigWidgetReference, parameters:  widgetPathNames);
         }
 
-        internal Task SetFilterSpinBoxValue(string filterConfigWidgetReference, int value, string[] widgetPathNames)
+        internal Task SetFilterSpinBoxValue(string filterConfigWidgetReference, float value, string[] widgetPathNames)
         {
             return InternalExecuteCall("FS", filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }

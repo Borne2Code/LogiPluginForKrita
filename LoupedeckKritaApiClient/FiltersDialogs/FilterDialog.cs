@@ -36,7 +36,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             await _client.ClickFilterWidget(_filterConfigWidgetReference, widgetPathNames);
         }
 
-        protected async Task SetSpinBoxValue(int value, params string[] widgetPathNames)
+        protected async Task SetSpinBoxValue(float value, params string[] widgetPathNames)
         {
             await _client.SetFilterSpinBoxValue(_filterConfigWidgetReference, value, widgetPathNames);
         }
