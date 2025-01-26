@@ -47,6 +47,19 @@ namespace LoupedeckKritaApiClient
                 FiltersEnum.OilPaint => new KritaFilterOilPaint(client),
                 FiltersEnum.Palettize => new KritaFilterPalettize(client),
                 FiltersEnum.PerChannelColorAdjustment => new KritaFilterPerChannelColorAdjustment(client),
+                FiltersEnum.PhongBumpMap => new KritaFilterPhongBumpMap(client),
+                FiltersEnum.Pixelize => new KritaFilterPixelize(client),
+                FiltersEnum.Posterize => new KritaFilterPosterize(client),
+                FiltersEnum.RainDrops => new KritaFilterRainDrops(client),
+                FiltersEnum.RandomPick => new KritaFilterRandomPick(client),
+                FiltersEnum.ResetTransparent => new KritaFilterResetTransparent(client),
+                FiltersEnum.RoundCorners => new KritaFilterRoundCorners(client),
+                FiltersEnum.Sharpen => new KritaFilterSharpen(client),
+                FiltersEnum.SmallTiles => new KritaFilterSmallTiles(client),
+                FiltersEnum.Threshold => new KritaFilterThreshold(client),
+                FiltersEnum.Unsharp => new KritaFilterUnsharp(client),
+                FiltersEnum.Wave => new KritaFilterWave(client),
+                FiltersEnum.WaveletNoiseReducer => new KritaFilterWaveletNoiseReducer(client),
                 _ => throw new Exception("Not implement filter dialog")
             };
 
