@@ -12,24 +12,29 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 
         protected override string ActionName => "krita_filter_blur";
 
-        public Task SetHorizontalRadiusValue(int value)
+        public Task<int> AdjustHorizontalRadiusValue(int value)
         {
-            return SetSpinBoxValue(value, "intHalfWidth");
+            return AdjustIntSpinBoxValue(value, "intHalfWidth");
         }
 
-        public Task SetVerticalRadiusValue(int value)
+        public Task<int> AdjustVerticalRadiusValue(int value)
         {
-            return SetSpinBoxValue(value, "intHalfHeight");
+            return AdjustIntSpinBoxValue(value, "intHalfHeight");
         }
 
-        public Task SetStrengthValue(int value)
+        public Task ToggleLockAspect()
         {
-            return SetSpinBoxValue(value, "intStrength");
+            return ClickPushButton("aspectButton");
         }
 
-        public Task SetAngle(int value)
+        public Task<int> AdjustStrengthValue(int value)
         {
-            return SetAngleSelectorValue(value, "angleSelector");
+            return AdjustIntSpinBoxValue(value, "intStrength");
+        }
+
+        public Task<int> AdjustAngle(int value)
+        {
+            return AdjustAngleSelectorValue(value, "angleSelector");
         }
 
         public Task SetShape(ShapeEnum value)

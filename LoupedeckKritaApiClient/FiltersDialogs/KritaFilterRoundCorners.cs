@@ -6,9 +6,9 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_roundcorners";
 
-        public Task SetRadius(int radius)
+        public Task<int> AdjustRadius(int radius)
         {
-            return SetSpinBoxValue(radius, "radius");
+            return AdjustIntSpinBoxValue(radius, "radius");
         }
     }
 }

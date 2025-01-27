@@ -6,19 +6,19 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_randompick";
 
-        public Task SetLevel(int level)
+        public Task<int> AdjustLevel(int level)
         {
-            return SetSpinBoxValue(level, "intLevel");
+            return AdjustIntSpinBoxValue(level, "intLevel");
         }
 
-        public Task SetWindowSize(int size)
+        public Task<int> AdjustWindowSize(int size)
         {
-            return SetSpinBoxValue(size, "intWindowSize");
+            return AdjustIntSpinBoxValue(size, "intWindowSize");
         }
 
-        public Task SetOpacity(int opacity)
+        public Task<int> AdjustOpacity(int opacity)
         {
-            return SetSpinBoxValue(opacity, "intOpacity");
+            return AdjustIntSpinBoxValue(opacity, "intOpacity");
         }
     }
 }

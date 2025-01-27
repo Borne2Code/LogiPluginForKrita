@@ -6,9 +6,9 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_posterize";
 
-        public Task SetSteps(int steps)
+        public Task<int> AdjustSteps(int steps)
         {
-            return SetSpinBoxValue(steps, "steps");
+            return AdjustIntSpinBoxValue(steps, "steps");
         }
     }
 }

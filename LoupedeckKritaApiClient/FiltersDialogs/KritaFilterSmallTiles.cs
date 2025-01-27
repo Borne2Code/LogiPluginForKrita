@@ -6,9 +6,9 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_smalltiles";
 
-        public Task SetNumberOfTiles(int value)
+        public Task<int> AdjustNumberOfTiles(int value)
         {
-            return SetSpinBoxValue(value, "numberOfTiles");
+            return AdjustIntSpinBoxValue(value, "numberOfTiles");
         }
     }
 }

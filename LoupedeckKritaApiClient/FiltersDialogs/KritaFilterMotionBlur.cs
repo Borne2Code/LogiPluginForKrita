@@ -6,14 +6,14 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_motion blur";
 
-        public Task SetBlurAngle(int value)
+        public Task<int> AdjustBlurAngle(int value)
         {
-            return SetAngleSelectorValue(value, "blurAngleSelector");
+            return AdjustAngleSelectorValue(value, "blurAngleSelector");
         }
 
-        public Task SetLength(int value)
+        public Task<int> AdjustLength(int value)
         {
-            return SetSpinBoxValue(value, "blurLength");
+            return AdjustIntSpinBoxValue(value, "blurLength");
         }
     }
 }

@@ -22,9 +22,9 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return ClickRadio("buttonGroup1", "radioButtonHighlights");
         }
 
-        public Task SetExposureValue(int value)
+        public Task<int> AdjustExposureValue(int value)
         {
-            return SetSpinBoxValue(value, "sliderExposure");
+            return AdjustIntSpinBoxValue(value, "sliderExposure");
         }
     }
 }

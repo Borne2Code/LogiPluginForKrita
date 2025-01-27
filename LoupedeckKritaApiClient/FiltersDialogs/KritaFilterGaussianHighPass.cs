@@ -6,9 +6,9 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_gaussianhighpass";
 
-        public Task SetRadius(float value)
+        public Task<float> AdjustRadius(float value)
         {
-            return SetSpinBoxValue(value, "doubleblurAmount");
+            return AdjustFloatSpinBoxValue(value, "doubleblurAmount");
         }
     }
 }

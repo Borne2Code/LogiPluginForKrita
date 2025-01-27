@@ -33,14 +33,14 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return ClickCheckBox("WdgPerChannel", "resetButton");
         }
 
-        public Task SetInValue(int value)
+        public Task<int> AdjustInValue(int value)
         {
-            return SetSpinBoxValue(value, "WdgPerChannel", "intIn");
+            return AdjustIntSpinBoxValue(value, "WdgPerChannel", "intIn");
         }
 
-        public Task SetOutValue(int value)
+        public Task<int> AdjustOutValue(int value)
         {
-            return SetSpinBoxValue(value, "WdgPerChannel", "intOut");
+            return AdjustIntSpinBoxValue(value, "WdgPerChannel", "intOut");
         }
     }
 }

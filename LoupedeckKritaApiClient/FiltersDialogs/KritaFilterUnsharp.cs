@@ -6,19 +6,19 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_unsharp";
 
-        public Task SetRadius(float radius)
+        public Task<float> AdjustRadius(float radius)
         {
-            return SetSpinBoxValue(radius, "doubleHalfSize");
+            return AdjustFloatSpinBoxValue(radius, "doubleHalfSize");
         }
 
-        public Task SetAmount(float amount)
+        public Task<float> AdjustAmount(float amount)
         {
-            return SetSpinBoxValue(amount, "doubleAmount");
+            return AdjustFloatSpinBoxValue(amount, "doubleAmount");
         }
 
-        public Task SetThreshold(int value)
+        public Task<int> AdjustThreshold(int value)
         {
-            return SetSpinBoxValue(value, "intThreshold");
+            return AdjustIntSpinBoxValue(value, "intThreshold");
         }
     }
 }

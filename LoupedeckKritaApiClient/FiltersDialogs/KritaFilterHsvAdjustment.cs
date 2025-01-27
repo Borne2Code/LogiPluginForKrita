@@ -20,19 +20,19 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return SetComboBoxSelectedIndex((int)type, "cmbType");
         }
 
-        public Task SetHue(int value)
+        public Task<int> AdjustHue(int value)
         {
-            return SetSpinBoxValue(value, "hSpinBox");
+            return AdjustIntSpinBoxValue(value, "hSpinBox");
         }
 
-        public Task SetSaturation(int value)
+        public Task<int> AdjustSaturation(int value)
         {
-            return SetSpinBoxValue(value, "sSpinBox");
+            return AdjustIntSpinBoxValue(value, "sSpinBox");
         }
 
-        public Task SetValue(int value)
+        public Task<int> AdjustValue(int value)
         {
-            return SetSpinBoxValue(value, "vSpinBox");
+            return AdjustIntSpinBoxValue(value, "vSpinBox");
         }
 
         public Task ToggleColorize()

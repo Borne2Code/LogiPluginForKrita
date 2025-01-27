@@ -46,14 +46,14 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return ClickPushButton("btnAspect");
         }
 
-        public Task SetHorizontalRadius(float value)
+        public Task<float> AdjustHorizontalRadius(float value)
         {
-            return SetSpinBoxValue(value, "sldHorizontalRadius");
+            return AdjustFloatSpinBoxValue(value, "sldHorizontalRadius");
         }
 
-        public Task SetVerticalRadius(float value)
+        public Task<float> AdjustVerticalRadius(float value)
         {
-            return SetSpinBoxValue(value, "sldVerticalRadius");
+            return AdjustFloatSpinBoxValue(value, "sldVerticalRadius");
         }
 
         public Task SetXValue(XYZ value)

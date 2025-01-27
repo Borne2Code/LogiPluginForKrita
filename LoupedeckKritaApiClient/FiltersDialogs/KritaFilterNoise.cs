@@ -6,14 +6,14 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_noise";
 
-        public Task SetLevel(int value)
+        public Task<int> AdjustLevel(int value)
         {
-            return SetSpinBoxValue(value, "intLevel");
+            return AdjustIntSpinBoxValue(value, "intLevel");
         }
 
-        public Task SetOpacity(int value)
+        public Task<int> AdjustOpacity(int value)
         {
-            return SetSpinBoxValue(value, "intOpacity");
+            return AdjustIntSpinBoxValue(value, "intOpacity");
         }
     }
 }

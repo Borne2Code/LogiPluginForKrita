@@ -6,19 +6,19 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_raindrops";
 
-        public Task SetDropSize(int size)
+        public Task<int> AdjustDropSize(int size)
         {
-            return SetSpinBoxValue(size, "dropsize");
+            return AdjustIntSpinBoxValue(size, "dropsize");
         }
 
-        public Task SetNumberOfDrops(int number)
+        public Task<int> AdjustNumberOfDrops(int number)
         {
-            return SetSpinBoxValue(number, "number");
+            return AdjustIntSpinBoxValue(number, "number");
         }
 
-        public Task SetFishEyes(int value)
+        public Task<int> AdjustFishEyes(int value)
         {
-            return SetSpinBoxValue(value, "fishEyes");
+            return AdjustIntSpinBoxValue(value, "fishEyes");
         }
     }
 }

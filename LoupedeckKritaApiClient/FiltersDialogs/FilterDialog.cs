@@ -36,14 +36,40 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             await _client.ClickFilterWidget(_filterConfigWidgetReference, widgetPathNames);
         }
 
-        protected async Task SetSpinBoxValue(float value, params string[] widgetPathNames)
+        protected async Task<int> AdjustIntSpinBoxValue(int value, params string[] widgetPathNames)
         {
-            await _client.SetFilterSpinBoxValue(_filterConfigWidgetReference, value, widgetPathNames);
+            var returnValue = await _client.AdjustFilterIntSpinBoxValue(_filterConfigWidgetReference, value, widgetPathNames);
+
+            if (returnValue.Type != "int")
+            {
+                throw new Exception($"The method call didn't return a int ({returnValue.Type}");
+            }
+
+            return (int)(long)returnValue.Value;
         }
 
-        protected async Task SetAngleSelectorValue(int value, params string[] widgetPathNames)
+        protected async Task<float> AdjustFloatSpinBoxValue(float value, params string[] widgetPathNames)
         {
-            await _client.SetFilterAngleSelectorValue(_filterConfigWidgetReference, value, widgetPathNames);
+            var returnValue = await _client.AdjustFilterFloatSpinBoxValue(_filterConfigWidgetReference, value, widgetPathNames);
+
+            if (returnValue.Type != "float")
+            {
+                throw new Exception($"The method call didn't return a float ({returnValue.Type}");
+            }
+
+            return (float)(double)returnValue.Value;
+        }
+
+        protected async Task<int> AdjustAngleSelectorValue(int value, params string[] widgetPathNames)
+        {
+            var returnValue = await _client.SetFilterAngleSelectorValue(_filterConfigWidgetReference, value, widgetPathNames);
+
+            if (returnValue.Type != "float" && returnValue.Type != "int")
+            {
+                throw new Exception($"The method call didn't return a float ({returnValue.Type}");
+            }
+
+            return (int)returnValue.Value;
         }
 
         protected async Task SetComboBoxSelectedIndex(int value, params string[] widgetPathNames)

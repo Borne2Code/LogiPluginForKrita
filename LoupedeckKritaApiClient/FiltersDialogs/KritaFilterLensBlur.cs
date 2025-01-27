@@ -21,14 +21,14 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return SetComboBoxSelectedIndex((int)shape, "groupBox", "irisShapeCombo");
         }
 
-        public Task SetRadius(int radius)
+        public Task<int> AdjustRadius(int radius)
         {
-            return SetSpinBoxValue(radius, "groupBox", "irisRadiusSlider");
+            return AdjustIntSpinBoxValue(radius, "groupBox", "irisRadiusSlider");
         }
 
-        public Task SetIrisRotation(int angle)
+        public Task<int> AdjustIrisRotation(int angle)
         {
-            return SetAngleSelectorValue(angle, "groupBox", "irisRotationSelector");
+            return AdjustAngleSelectorValue(angle, "groupBox", "irisRotationSelector");
         }
     }
 }

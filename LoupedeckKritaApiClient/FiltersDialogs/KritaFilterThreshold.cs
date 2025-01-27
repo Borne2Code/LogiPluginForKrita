@@ -6,9 +6,9 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_threshold";
 
-        public Task SetThreshold(int value)
+        public Task<int> AdjustThreshold(int value)
         {
-            return SetSpinBoxValue(value, "intThreshold");
+            return AdjustIntSpinBoxValue(value, "intThreshold");
         }
     }
 }

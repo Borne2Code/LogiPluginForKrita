@@ -45,6 +45,8 @@
             trackBar3 = new TrackBar();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            BurnExposurePlus = new Button();
+            BurnExposureMinus = new Button();
             tabPage2 = new TabPage();
             BlurCbShape = new ComboBox();
             label6 = new Label();
@@ -58,9 +60,9 @@
             sliderBlurVerRadius = new TrackBar();
             sliderBlurHorRadius = new TrackBar();
             tabPage3 = new TabPage();
+            ColorBalanceActivate = new Button();
             label7 = new Label();
             ColorBalanceCyanRedShadows = new TrackBar();
-            ColorBalanceActivate = new Button();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar2).BeginInit();
             groupBox1.SuspendLayout();
@@ -254,6 +256,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(BurnExposurePlus);
+            tabPage1.Controls.Add(BurnExposureMinus);
             tabPage1.Controls.Add(button5);
             tabPage1.Controls.Add(trackBar3);
             tabPage1.Controls.Add(groupBox1);
@@ -264,6 +268,26 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Burn...";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // BurnExposurePlus
+            // 
+            BurnExposurePlus.Location = new Point(511, 182);
+            BurnExposurePlus.Name = "BurnExposurePlus";
+            BurnExposurePlus.Size = new Size(94, 29);
+            BurnExposurePlus.TabIndex = 10;
+            BurnExposurePlus.Text = "+";
+            BurnExposurePlus.UseVisualStyleBackColor = true;
+            BurnExposurePlus.Click += BurnExposureplus_Click;
+            // 
+            // BurnExposureMinus
+            // 
+            BurnExposureMinus.Location = new Point(409, 178);
+            BurnExposureMinus.Name = "BurnExposureMinus";
+            BurnExposureMinus.Size = new Size(94, 29);
+            BurnExposureMinus.TabIndex = 9;
+            BurnExposureMinus.Text = "-";
+            BurnExposureMinus.UseVisualStyleBackColor = true;
+            BurnExposureMinus.Click += BurnExposureMinus_Click;
             // 
             // tabPage2
             // 
@@ -404,6 +428,16 @@
             tabPage3.Text = "ColorBalance";
             tabPage3.UseVisualStyleBackColor = true;
             // 
+            // ColorBalanceActivate
+            // 
+            ColorBalanceActivate.Location = new Point(16, 10);
+            ColorBalanceActivate.Name = "ColorBalanceActivate";
+            ColorBalanceActivate.Size = new Size(94, 29);
+            ColorBalanceActivate.TabIndex = 2;
+            ColorBalanceActivate.Text = "Activate";
+            ColorBalanceActivate.UseVisualStyleBackColor = true;
+            ColorBalanceActivate.Click += ColorBalanceActivate_Click;
+            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -423,16 +457,6 @@
             ColorBalanceCyanRedShadows.Size = new Size(742, 56);
             ColorBalanceCyanRedShadows.TabIndex = 0;
             ColorBalanceCyanRedShadows.ValueChanged += ColorBalanceCyanRedShadows_ValueChanged;
-            // 
-            // ColorBalanceActivate
-            // 
-            ColorBalanceActivate.Location = new Point(16, 10);
-            ColorBalanceActivate.Name = "ColorBalanceActivate";
-            ColorBalanceActivate.Size = new Size(94, 29);
-            ColorBalanceActivate.TabIndex = 2;
-            ColorBalanceActivate.Text = "Activate";
-            ColorBalanceActivate.UseVisualStyleBackColor = true;
-            ColorBalanceActivate.Click += ColorBalanceActivate_Click;
             // 
             // Form1
             // 
@@ -509,5 +533,7 @@
         private Label label7;
         private TrackBar ColorBalanceCyanRedShadows;
         private Button ColorBalanceActivate;
+        private Button BurnExposurePlus;
+        private Button BurnExposureMinus;
     }
 }

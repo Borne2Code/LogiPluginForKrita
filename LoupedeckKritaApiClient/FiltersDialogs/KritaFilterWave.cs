@@ -12,19 +12,19 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             Triangle
         }
 
-        public Task SetHorizontalWaveLength(int length)
+        public Task<int> AdjustHorizontalWaveLength(int length)
         {
-            return SetSpinBoxValue(length, "groupBox1", "intHWavelength");
+            return AdjustIntSpinBoxValue(length, "groupBox1", "intHWavelength");
         }
 
-        public Task SetHorizontalShift(int value)
+        public Task<int> AdjustHorizontalShift(int value)
         {
-            return SetSpinBoxValue(value, "groupBox1", "intHShift");
+            return AdjustIntSpinBoxValue(value, "groupBox1", "intHShift");
         }
 
-        public Task SetHorizontalAmplitude(int value)
+        public Task<int> AdjustHorizontalAmplitude(int value)
         {
-            return SetSpinBoxValue(value, "groupBox1", "intHAmplitude");
+            return AdjustIntSpinBoxValue(value, "groupBox1", "intHAmplitude");
         }
 
         public Task SetHorizontalShape(Shape shape)
@@ -32,19 +32,19 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return SetComboBoxSelectedIndex((int)shape, "groupBox1", "cbHShape");
         }
 
-        public Task SetVerticalWaveLength(int length)
+        public Task<int> AdjustVerticalWaveLength(int length)
         {
-            return SetSpinBoxValue(length, "Vertical_wave", "intVWavelength");
+            return AdjustIntSpinBoxValue(length, "Vertical_wave", "intVWavelength");
         }
 
-        public Task SetVerticalShift(int value)
+        public Task<int> AdjustVerticalShift(int value)
         {
-            return SetSpinBoxValue(value, "Vertical_wave", "intVShift");
+            return AdjustIntSpinBoxValue(value, "Vertical_wave", "intVShift");
         }
 
-        public Task SetVerticalAmplitude(int value)
+        public Task<int> AdjustVerticalAmplitude(int value)
         {
-            return SetSpinBoxValue(value, "Vertical_wave", "intVAmplitude");
+            return AdjustIntSpinBoxValue(value, "Vertical_wave", "intVAmplitude");
         }
 
         public Task SetVerticalShape(Shape shape)

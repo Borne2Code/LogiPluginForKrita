@@ -6,14 +6,14 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_oilpaint";
 
-        public Task SetBrushSize(int value)
+        public Task<int> AdjustBrushSize(int value)
         {
-            return SetSpinBoxValue(value, "brushSize");
+            return AdjustIntSpinBoxValue(value, "brushSize");
         }
 
-        public Task SetSmooth(int value)
+        public Task<int> AdjustSmooth(int value)
         {
-            return SetSpinBoxValue(value, "smooth");
+            return AdjustIntSpinBoxValue(value, "smooth");
         }
     }
 }

@@ -6,14 +6,14 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_gaussiannoisereducer";
 
-        public Task SetThreshold(int value)
+        public Task<int> AdjustThreshold(int value)
         {
-            return SetSpinBoxValue(value, "threshold");
+            return AdjustIntSpinBoxValue(value, "threshold");
         }
 
-        public Task SetWindowSize(int value)
+        public Task<int> AdjustWindowSize(int value)
         {
-            return SetSpinBoxValue(value, "windowsize");
+            return AdjustIntSpinBoxValue(value, "windowsize");
         }
     }
 }

@@ -6,14 +6,14 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_gaussian blur";
 
-        public Task SetHorizontalRadius(float value)
+        public Task<float> AdjustHorizontalRadius(float value)
         {
-            return SetSpinBoxValue(value, "horizontalRadius");
+            return AdjustFloatSpinBoxValue(value, "horizontalRadius");
         }
 
-        public Task SetVerticalRadius(float value)
+        public Task<float> AdjustVerticalRadius(float value)
         {
-            return SetSpinBoxValue(value, "verticalRadius");
+            return AdjustFloatSpinBoxValue(value, "verticalRadius");
         }
     }
 }

@@ -76,7 +76,8 @@ class LoopedeckApiServer(Extension):
         'FA': AuthorizedAction.new(True, None, True), # Set filter angle selector value
         'FB': AuthorizedAction.new(True, None, True), # Click on filter button, radio or checkbox
         'FC': AuthorizedAction.new(True, None, True), # Select filter combo box selected index
-        'FS': AuthorizedAction.new(True, None, True) # Set filter spinbox value
+        'FI': AuthorizedAction.new(True, None, True), # Set filter spinbox int value
+        'FF': AuthorizedAction.new(True, None, True) # Set filter spinbox float value
     }
 
     def __init__(self, parent):
@@ -250,15 +251,27 @@ class LoopedeckApiServer(Extension):
                     self.worker.returnType = "None"
                     self.worker.returnValue = None
                     self.worker.result = False
-            elif action == "FS":
+            elif action == "FI":
                 QtCore.qDebug(f"Change filter configuration spinBox")
                 widget = objectInstance
-                value = parameters[0]
+                value = int(parameters[0])
                 for param in parameters[slice(1, 500)]:
                     widget = self.child(widget, param)
-                widget.setValue(value)
-                self.worker.returnType = "None"
-                self.worker.returnValue = None
+                newValue = widget.value() + value
+                widget.setValue(newValue)
+                newValue = widget.value()
+                self.computeResponse(newValue)
+                self.worker.result = True
+            elif action == "FF":
+                QtCore.qDebug(f"Change filter configuration spinBox")
+                widget = objectInstance
+                value = float(parameters[0])
+                for param in parameters[slice(1, 500)]:
+                    widget = self.child(widget, param)
+                newValue = widget.value() + value
+                widget.setValue(newValue)
+                newValue = widget.value()
+                self.computeResponse(newValue)
                 self.worker.result = True
             elif action == "FA":
                 QtCore.qDebug(f"Change filter configuration angle")

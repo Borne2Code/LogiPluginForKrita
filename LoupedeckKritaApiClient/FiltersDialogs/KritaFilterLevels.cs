@@ -68,19 +68,19 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return ClickPushButton("buttonResetInputLevels");
         }
 
-        public Task SetInputBlackValue(int value)
+        public Task<int> AdjustInputBlackValue(int value)
         {
-            return SetSpinBoxValue(value, "spinBoxInputBlackPoint");
+            return AdjustIntSpinBoxValue(value, "spinBoxInputBlackPoint");
         }
 
-        public Task SetInputGamma(float value)
+        public Task<float> AdjustInputGamma(float value)
         {
-            return SetSpinBoxValue(value, "spinBoxInputGamma");
+            return AdjustFloatSpinBoxValue(value, "spinBoxInputGamma");
         }
 
-        public Task SetInputWhiteValue(int value)
+        public Task<int> AdjustInputWhiteValue(int value)
         {
-            return SetSpinBoxValue(value, "spinBoxInputWhitePoint");
+            return AdjustIntSpinBoxValue(value, "spinBoxInputWhitePoint");
         }
 
         public Task ResetoutputLevels()
@@ -88,14 +88,14 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return ClickPushButton("buttonResetOutputLevels");
         }
 
-        public Task SetOutputBlackValue(int value)
+        public Task<int> AdjustOutputBlackValue(int value)
         {
-            return SetSpinBoxValue(value, "spinBoxOutputBlackPoint");
+            return AdjustIntSpinBoxValue(value, "spinBoxOutputBlackPoint");
         }
 
-        public Task SetOutputWhiteValue(int value)
+        public Task<int> AdjustOutputWhiteValue(int value)
         {
-            return SetSpinBoxValue(value, "spinBoxOutputWhitePoint");
+            return AdjustIntSpinBoxValue(value, "spinBoxOutputWhitePoint");
         }
 
         public Task ApplyAutoLevelsOnAllChannels()
@@ -107,7 +107,5 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
         {
             return ClickPushButton("containerAllChannels", "buttonResetAllChannels");
         }
-
-
     }
 }

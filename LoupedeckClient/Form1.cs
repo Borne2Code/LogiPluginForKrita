@@ -156,8 +156,26 @@ namespace LoupedeckClient
 
         private async void trackBar3_ValueChanged(object sender, EventArgs e)
         {
+            //if (filterDialog is KritaFilterBurn filter)
+            //    await filter.AdjustExposureValue(trackBar3.Value);
+        }
+
+        private async void BurnExposureMinus_Click(object sender, EventArgs e)
+        {
             if (filterDialog is KritaFilterBurn filter)
-                await filter.SetExposureValue(trackBar3.Value);
+            {
+                var value = await filter.AdjustExposureValue(-5);
+                trackBar3.Value = value;
+            }
+        }
+
+        private async void BurnExposureplus_Click(object sender, EventArgs e)
+        {
+            if (filterDialog is KritaFilterBurn filter)
+            {
+                var value = await filter.AdjustExposureValue(5);
+                trackBar3.Value = value;
+            }
         }
 
         private async void bBlurActivate_Click(object sender, EventArgs e)
@@ -168,25 +186,25 @@ namespace LoupedeckClient
         private async void sliderBlurHorRadius_ValueChanged(object sender, EventArgs e)
         {
             if (filterDialog is KritaFilterBlur filter)
-                await filter.SetHorizontalRadiusValue(sliderBlurHorRadius.Value);
+                await filter.AdjustHorizontalRadiusValue(sliderBlurHorRadius.Value);
         }
 
         private async void sliderBlurVerRadius_ValueChanged(object sender, EventArgs e)
         {
             if (filterDialog is KritaFilterBlur filter)
-                await filter.SetVerticalRadiusValue(sliderBlurVerRadius.Value);
+                await filter.AdjustVerticalRadiusValue(sliderBlurVerRadius.Value);
         }
 
         private async void sliderBlurStrength_ValueChanged(object sender, EventArgs e)
         {
             if (filterDialog is KritaFilterBlur filter)
-                await filter.SetStrengthValue(sliderBlurStrength.Value);
+                await filter.AdjustStrengthValue(sliderBlurStrength.Value);
         }
 
         private async void BlurSliderAngle_ValueChanged(object sender, EventArgs e)
         {
             if (filterDialog is KritaFilterBlur filter)
-                await filter.SetAngle(BlurSliderAngle.Value);
+                await filter.AdjustAngle(BlurSliderAngle.Value);
         }
 
         private async void BlurCbShape_SelectedIndexChanged(object sender, EventArgs e)
@@ -203,7 +221,7 @@ namespace LoupedeckClient
         private async void ColorBalanceCyanRedShadows_ValueChanged(object sender, EventArgs e)
         {
             if (filterDialog is KritaFilterColorBalance filter)
-                await filter.SetShadowsCyanRedValue(ColorBalanceCyanRedShadows.Value);
+                await filter.AdjustShadowsCyanRedValue(ColorBalanceCyanRedShadows.Value);
         }
     }
 }

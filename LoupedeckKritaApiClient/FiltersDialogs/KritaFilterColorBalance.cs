@@ -8,17 +8,17 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_colorbalance";
 
-        public Task SetShadowsCyanRedValue(int value)
+        public Task<int> AdjustShadowsCyanRedValue(int value)
         {
-            return SetSpinBoxValue(value, "cyanRedShadowsSpinbox");
+            return AdjustIntSpinBoxValue(value, "cyanRedShadowsSpinbox");
         }
-        public Task SetShadowsMagentaGreenValue(int value)
+        public Task<int> AdjustShadowsMagentaGreenValue(int value)
         {
-            return SetSpinBoxValue(value, "magentaGreenShadowsSpinbox");
+            return AdjustIntSpinBoxValue(value, "magentaGreenShadowsSpinbox");
         }
-        public Task SetShadowsYellowBlueValue(int value)
+        public Task<int> AdjustShadowsYellowBlueValue(int value)
         {
-            return SetSpinBoxValue(value, "yellowBlueShadowsSpinbox");
+            return AdjustIntSpinBoxValue(value, "yellowBlueShadowsSpinbox");
         }
 
         public Task ResetShadows()
@@ -26,17 +26,17 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return ClickPushButton("pushResetShadows");
         }
 
-        public Task SetMidTonesCyanRedValue(int value)
+        public Task<int> AdjustMidTonesCyanRedValue(int value)
         {
-            return SetSpinBoxValue(value, "cyanRedMidtonesSpinbox");
+            return AdjustIntSpinBoxValue(value, "cyanRedMidtonesSpinbox");
         }
-        public Task SetMidTonesMagentaGreenValue(int value)
+        public Task<int> AdjustMidTonesMagentaGreenValue(int value)
         {
-            return SetSpinBoxValue(value, "magentaGreenMidtonesSpinbox");
+            return AdjustIntSpinBoxValue(value, "magentaGreenMidtonesSpinbox");
         }
-        public Task SetMidTonesYellowBlueValue(int value)
+        public Task<int> AdjustMidTonesYellowBlueValue(int value)
         {
-            return SetSpinBoxValue(value, "yellowBlueMidtonesSpinbox");
+            return AdjustIntSpinBoxValue(value, "yellowBlueMidtonesSpinbox");
         }
 
         public Task ResetMidTones()
@@ -44,17 +44,17 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return ClickPushButton("pushResetMidtones");
         }
 
-        public Task SetHighLightsCyanRedValue(int value)
+        public Task<int> AdjustHighLightsCyanRedValue(int value)
         {
-            return SetSpinBoxValue(value, "cyanRedHighlightsSpinbox");
+            return AdjustIntSpinBoxValue(value, "cyanRedHighlightsSpinbox");
         }
-        public Task SetHighLightsMagentaGreenValue(int value)
+        public Task<int> AdjustHighLightsMagentaGreenValue(int value)
         {
-            return SetSpinBoxValue(value, "magentaGreenHighlightsSpinbox");
+            return AdjustIntSpinBoxValue(value, "magentaGreenHighlightsSpinbox");
         }
-        public Task SetHighLightsYellowBlueValue(int value)
+        public Task<int> AdjustHighLightsYellowBlueValue(int value)
         {
-            return SetSpinBoxValue(value, "yellowBlueHighlightsSpinbox");
+            return AdjustIntSpinBoxValue(value, "yellowBlueHighlightsSpinbox");
         }
 
         public Task ResetHighLights()

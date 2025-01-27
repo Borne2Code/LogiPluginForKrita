@@ -6,14 +6,14 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_pixelize";
 
-        public Task SetPixelWidth(int width)
+        public Task<int> AdjustPixelWidth(int width)
         {
-            return SetSpinBoxValue(width, "pixelWidth");
+            return AdjustIntSpinBoxValue(width, "pixelWidth");
         }
 
-        public Task SetPixelHeight(int height)
+        public Task<int> AdjustPixelHeight(int height)
         {
-            return SetSpinBoxValue(height, "pixelHeight");
+            return AdjustIntSpinBoxValue(height, "pixelHeight");
         }
     }
 }

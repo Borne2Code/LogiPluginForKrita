@@ -6,9 +6,9 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
     {
         protected override string ActionName => "krita_filter_emboss";
 
-        public Task SetDepth(int depth)
+        public Task<int> AdjustDepth(int depth)
         {
-            return SetSpinBoxValue(depth, "depth");
+            return AdjustIntSpinBoxValue(depth, "depth");
         }
     }
 }
