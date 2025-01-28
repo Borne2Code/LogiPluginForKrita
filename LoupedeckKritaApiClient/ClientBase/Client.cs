@@ -45,11 +45,6 @@ namespace LoupedeckKritaApiClient.ClientBase
             await client.ConnectAsync(ipEndPoint);
         }
 
-        public async Task Close()
-        {
-            client?.Close(100);
-        }
-
         internal Task<ReturnValue> ExecuteCall(string objectName, string methodName, params object[] parameters)
         {
             return InternalExecuteCall("E", objectName, methodName, parameters);
@@ -57,7 +52,13 @@ namespace LoupedeckKritaApiClient.ClientBase
 
         private async Task<ReturnValue> InternalExecuteCall(string action, string? objectName = null, string? methodName = null, params object[] parameters)
         {
-            if (client == null)
+
+            if (client == null || !client.Connected)
+            try
+            {
+                    await Connect();
+            }
+            catch
             {
                 throw new Exception("Please connect before calling a method");
             }
