@@ -1,5 +1,3 @@
-using Loupedeck.KritaPlugin.Actions;
-
 namespace Loupedeck.KritaPlugin
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.

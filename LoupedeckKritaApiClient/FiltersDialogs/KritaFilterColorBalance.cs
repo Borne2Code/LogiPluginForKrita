@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using LoupedeckKritaApiClient.ClientBase;
-using Newtonsoft.Json.Linq;
+﻿using LoupedeckKritaApiClient.ClientBase;
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {

@@ -296,10 +296,9 @@ class LoopedeckApiServer(Extension):
             elif action == "FB":
                 QtCore.qDebug(f"Click filter configuration widget")
                 widget = objectInstance
-                value = parameters[0]
-                for param in parameters[slice(1, 500)]:
+                for param in parameters:
                     widget = self.child(widget, param)
-                widget.click(value)
+                widget.click()
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
                 self.worker.result = True
