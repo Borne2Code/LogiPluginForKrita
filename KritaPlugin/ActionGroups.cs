@@ -2,7 +2,8 @@
 {
     internal class ActionGroups
     {
-        public const string CanvasAdjustements = "Canvas Adjustmeents";
-        public const string Filters = "Filters",
+        public const string CanvasAdjustements = "Current Canvas Adjustments";
+        public const string BrushAdjustements = "Current View Adjustments";
+        public const string Filters = "Filters";
     }
 }

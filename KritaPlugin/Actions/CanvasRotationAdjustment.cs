@@ -16,6 +16,11 @@ namespace Loupedeck.KritaPlugin
         {
         }
 
+        protected override BitmapImage GetAdjustmentImage(string actionParameter, PluginImageSize imageSize)
+        {
+            return EmbeddedResources.ReadImage(EmbeddedResources.FindFile("CanvasRotation.png"));
+        }
+
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {

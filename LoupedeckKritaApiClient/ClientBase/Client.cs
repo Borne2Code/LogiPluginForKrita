@@ -1,10 +1,8 @@
-﻿using System.Net.Sockets;
-using System.Net;
+﻿using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Threading;
-using System.Security.AccessControl;
 
 namespace LoupedeckKritaApiClient.ClientBase
 {
@@ -13,6 +11,7 @@ namespace LoupedeckKritaApiClient.ClientBase
         private Socket? client;
         private readonly KritaInstance _kritaInstance;
         private readonly Canvas _currentCanvas;
+        private readonly View _currentView;
         private readonly Document _currentDocument;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
         public Client()
@@ -26,6 +25,11 @@ namespace LoupedeckKritaApiClient.ClientBase
             {
                 Client = this,
                 PrimitiveName = "currentCanvas"
+            };
+            _currentView = new View()
+            {
+                Client = this,
+                PrimitiveName = "currentView"
             };
             _currentDocument = new Document()
             {
@@ -217,6 +221,7 @@ namespace LoupedeckKritaApiClient.ClientBase
 
         public KritaInstance KritaInstance { get => _kritaInstance; }
         public Canvas CurrentCanvas { get => _currentCanvas; }
+        public View CurrentView { get => _currentView; }
         public Document CurrentDocument { get => _currentDocument; }
     }
 }
