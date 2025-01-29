@@ -6,6 +6,14 @@ namespace LoupedeckKritaApiClient
     public class KritaInstance() : LoupedeckClientKritaBaseClass
     {
         public Task<QAction> Action(string actionName) => Get<QAction>("action", actionName);
+        public async Task ExecuteAction(string actionName) 
+        {
+            await using (var action = await Action(actionName))
+            {
+                await action.Trigger();
+            }
+        }
+
         public Task<IEnumerable<string>> Actions() => GetStringList("actions");
         public Task<Document> ActiveDocument() => Get<Document>("activeDocument");
         public Task<Window> ActiveWindow() => Get<Window>("activeWindow");

@@ -1,3 +1,5 @@
+using LoupedeckKritaApiClient.ClientBase;
+
 namespace Loupedeck.KritaPlugin
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
@@ -23,11 +25,11 @@ namespace Loupedeck.KritaPlugin
         {
             if (diff > 0)
             {
-                Plugin.ClientApplication.SendKeyboardShortcut(VirtualKeyCode.PageDown);
+                KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.ActivatePreviousLayer).Wait();
             }
             else
             {
-                Plugin.ClientApplication.SendKeyboardShortcut(VirtualKeyCode.PageUp);
+                KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.ActivateNextLayer).Wait();
             }
             //this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
         }
@@ -35,14 +37,13 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
-            Plugin.ClientApplication.SendKeyboardShortcut(VirtualKeyCode.KeyA, ModifierKey.Control | ModifierKey.Shift);
+            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Toggle_layer_soloing).Wait();
         }
 
         // Returns the adjustment value that is shown next to the dial.
         protected override String GetAdjustmentValue(String actionParameter)
         {
             return string.Empty;
-            //return Math.Round(KritaPlugin.Client.CurrentView.BrushSize().Result, 2).ToString();
         }
     }
 }

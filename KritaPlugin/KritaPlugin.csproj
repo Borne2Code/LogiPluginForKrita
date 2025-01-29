@@ -21,22 +21,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="images\BrushFlow.png" />
-    <None Remove="images\BrushOpacity.png" />
-    <None Remove="images\CanvasRotation.png" />
-    <None Remove="images\CanvasZoom.png" />
-    <None Remove="images\Layers.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="images\BrushFlow.png" />
     <EmbeddedResource Include="images\BrushOpacity.png" />
-    <EmbeddedResource Include="images\BrushSize.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="images\BrushPatternSize.png" />
+    <EmbeddedResource Include="images\BrushRotation.png" />
+    <EmbeddedResource Include="images\BrushSize.png" />
     <EmbeddedResource Include="images\CanvasRotation.png" />
     <EmbeddedResource Include="images\CanvasZoom.png" />
     <EmbeddedResource Include="images\Layers.png" />
+    <EmbeddedResource Include="images\ToolBrush.png" />
+    <EmbeddedResource Include="images\ToolFill.png" />
+    <EmbeddedResource Include="images\ToolGradient.png" />
+    <EmbeddedResource Include="images\ToolSelectBezier.png" />
+    <EmbeddedResource Include="images\ToolSelectContiguous.png" />
+    <EmbeddedResource Include="images\ToolSelectEliptical.png" />
+    <EmbeddedResource Include="images\ToolSelectFreehand.png" />
+    <EmbeddedResource Include="images\ToolSelectMagnetic.png" />
+    <EmbeddedResource Include="images\ToolSelectPolygonal.png" />
+    <EmbeddedResource Include="images\ToolSelectRectangular.png" />
+    <EmbeddedResource Include="images\ToolSelectSimilarColors.png" />
   </ItemGroup>
 
   <ItemGroup>
