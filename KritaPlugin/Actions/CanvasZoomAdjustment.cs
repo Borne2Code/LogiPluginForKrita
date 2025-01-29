@@ -36,7 +36,8 @@ namespace Loupedeck.KritaPlugin
         // Returns the adjustment value that is shown next to the dial.
         protected override String GetAdjustmentValue(String actionParameter)
         {
-            return Math.Round(KritaPlugin.Client.CurrentCanvas.ZoomLevel().Result * 100, 1).ToString() + " %";
+            var zoomLevel = KritaPlugin.Client.CurrentCanvas.ZoomLevel().Result * 100;
+            return Math.Round(zoomLevel, zoomLevel >= 1000 ? 0 : 1).ToString() + " %";
         }
     }
 }
