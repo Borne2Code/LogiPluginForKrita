@@ -1,0 +1,153 @@
+1. Tools workspace
+	- Adjustments: 
+		Zoom 
+		Rotation 
+		Layer (Prev/Next) + Push Open/close group
+		Brush size
+		Brush Opacity
+		Brush FLow
+		----------------
+		Brush Rotation
+		Brush Pattern size
+	- Buttons: (main page)
+		Brush
+		Fill
+		Gradient
+		Go to Other tools page...
+		Select Square
+		Select lines
+		Select free
+		Select page...
+		Color Picker
+		Move
+		Transform
+		Crop
+		------------------ (Select page)
+		Select Square
+		Select circle
+		Select lines
+		Select free
+		Select Contiguous
+		Select similar colors
+		Select Bezier
+		Select Magnetic
+		Back to main page...
+		------------------ (Other tools page)
+		Brush
+		Fill
+		Gradient
+		Text
+		Caligraphy
+		Line
+		Circle
+		Rectangle
+		Polygone
+		Polyline
+		Bezier
+		Freehand path
+		Dynamic
+		Multibrush
+		Colorize mask
+		Smart Patch
+		Enclose and Fill
+	- Directions:
+		Canvas move
+		E: eraser
+	- Wheel
+		Zoom / Rotation / Layer (Prev/Next) + Push Open/close group
+		Brush size / Brush Opacity / Brush FLow / Brush Rotation / Brush Pattern size
+
+2. Photo
+	- Adjustments: 
+		Zoom 
+		Rotation 
+		Layer (Prev/Next) + Push Open/close group
+		Brush size
+		Brush Opacity
+		Brush FLow
+		----------------
+		Brush Rotation
+		Brush Pattern size
+	- Buttons:
+		
+	- Directions:
+		Canvas move
+		E: eraser
+	- Wheel
+
+3. Filters
+	- Adjustments: 
+		Go main
+	- Buttons
+		Adjust
+		Artistic
+		Blur
+		Colors
+		Edge Detection
+		Emboss
+		Enhance
+		Map
+		Other
+		Apply Again
+		Apply Again...
+		---------------- (Adjust)
+		Slope/Offset/Power
+		Auto-contrast
+		Burn...
+		Color Balance
+		Cross-channel color adjustment
+		Desaturate
+		Dodge...
+		HSV/HSL Adjustment
+		Invert
+		Levels
+		Color Adjustment
+		Threshold
+		---------------- (Artistic & Blur)
+		Halftone (Artistic)
+		Index colors (Artistic)
+		Blur (Blur)
+		Gaussian Blur (Blur)
+		Oilpaint (Artistic)
+		Pixelize (Artistic)
+		Lens Blur (Blur)
+		Motion Blur (Blur)
+		Posterize (Artistic)
+		Raindrops (Artistic)
+		---------------- (Colors & Edge Detection)
+		Color to Alpha (Colors)
+		Color Transfer (Colors)
+		Edge Detection (Edge Detection)
+		Gaussian High pass (Edge Detection)
+		Maximize Channel (Colors)
+		Minimize Channel (Colors)
+		Height to Normal Map (Edge Detection)
+		---------------- (Emboss & Enhance)
+		Emboss with Variable Depth
+		Emboss in All Directions
+		Gaussian Noise Reducer (Enhance)
+		Mean Removal (Enhance)
+		Emboss Horizontal & Vertical
+		Emboss Horizontal Only
+		Sharpen (Enhance)
+		Unsharp Mask (Enhance)
+		Emboss (Laplacian)
+		Emboss Vertical Only
+		Wavelet Noise Reducer (Enhance)
+		---------------- (Map & Other)
+		Gradient Map
+		Normalize
+		Random Noise (Other)
+		Random Pick (Other)
+		Palettize
+		Phong Bumpmap
+		Reset Transparent (Other)
+		Wave (Other)
+		Round Corners
+		Small Tiles
+
+4. Digital Painting
+
+5. Vector
+
+6. Animation

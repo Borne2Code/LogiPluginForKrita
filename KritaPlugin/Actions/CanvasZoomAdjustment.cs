@@ -6,9 +6,6 @@ namespace Loupedeck.KritaPlugin
     {
         private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
 
-        // This variable holds the current value of the counter.
-        private Int32 _counter = 0;
-
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public CanvasZoomAdjustment()
@@ -39,7 +36,7 @@ namespace Loupedeck.KritaPlugin
         // Returns the adjustment value that is shown next to the dial.
         protected override String GetAdjustmentValue(String actionParameter)
         {
-            return Math.Round(KritaPlugin.Client.CurrentCanvas.ZoomLevel().Result * 100, 1).ToString();
+            return Math.Round(KritaPlugin.Client.CurrentCanvas.ZoomLevel().Result * 100, 1).ToString() + " %";
         }
     }
 }

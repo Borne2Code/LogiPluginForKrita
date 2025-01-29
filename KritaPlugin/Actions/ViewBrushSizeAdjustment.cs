@@ -6,9 +6,6 @@ namespace Loupedeck.KritaPlugin
     {
         private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
 
-        // This variable holds the current value of the counter.
-        private Int32 _counter = 0;
-
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public ViewBrushSizeAdjustment()

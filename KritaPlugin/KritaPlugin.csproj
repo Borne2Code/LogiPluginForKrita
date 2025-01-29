@@ -21,18 +21,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\BrushFlow.png" />
     <None Remove="images\BrushOpacity.png" />
     <None Remove="images\CanvasRotation.png" />
     <None Remove="images\CanvasZoom.png" />
+    <None Remove="images\Layers.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="images\BrushFlow.png" />
     <EmbeddedResource Include="images\BrushOpacity.png" />
     <EmbeddedResource Include="images\BrushSize.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="images\CanvasRotation.png" />
     <EmbeddedResource Include="images\CanvasZoom.png" />
+    <EmbeddedResource Include="images\Layers.png" />
   </ItemGroup>
 
   <ItemGroup>
