@@ -68,6 +68,10 @@ class AuthorizedAction:
         instance.parametersIsMandatory = parametersIsMandatory
         return instance
 
+class FilterData:
+    dialog: object
+    config: object
+
 class LoopedeckApiServer(Extension):
     authorizedActions = {
         'D': AuthorizedAction.new(True, None, None), # Delete instance
@@ -77,7 +81,9 @@ class LoopedeckApiServer(Extension):
         'FB': AuthorizedAction.new(True, None, True), # Click on filter button, radio or checkbox
         'FC': AuthorizedAction.new(True, None, True), # Select filter combo box selected index
         'FI': AuthorizedAction.new(True, None, True), # Set filter spinbox int value
-        'FF': AuthorizedAction.new(True, None, True) # Set filter spinbox float value
+        'FF': AuthorizedAction.new(True, None, True), # Set filter spinbox float value
+        'FO': AuthorizedAction.new(True, None, None), # Validate filter dialog
+        'FK': AuthorizedAction.new(True, None, None) # Cancel filter dialog
     }
 
     def __init__(self, parent):
@@ -241,13 +247,14 @@ class LoopedeckApiServer(Extension):
                 self.worker.result = True
             elif action == "F":
                 QtCore.qDebug(f"Get filter configuration widget")
-                dialog = self.child(Krita.instance().activeWindow().qwindow(), "FilterDialog")
-                filterconfig = dialog.children()[1].children()[-1].children()[0].children()[0].children()[1].children()[1]
-                if (filterconfig is not None):
+                filterData = FilterData()
+                filterData.dialog = self.child(Krita.instance().activeWindow().qwindow(), "FilterDialog")
+                filterData.config = filterData.dialog.children()[1].children()[-1].children()[0].children()[0].children()[1].children()[1]
+                if (filterData.config is not None):
                     key = str(uuid.uuid4())
-                    self.worker.objects[key] = filterconfig
+                    self.worker.objects[key] = filterData
                     self.worker.returnValue = key
-                    self.worker.returnType = type(filterconfig).__name__
+                    self.worker.returnType = type(filterData.config).__name__
                     self.worker.result = True
                 else:
                     self.worker.returnType = "None"
@@ -255,7 +262,7 @@ class LoopedeckApiServer(Extension):
                     self.worker.result = False
             elif action == "FI":
                 QtCore.qDebug(f"Change filter configuration spinBox")
-                widget = objectInstance
+                widget = objectInstance.config
                 value = int(parameters[0])
                 for param in parameters[slice(1, 500)]:
                     widget = self.child(widget, param)
@@ -266,7 +273,7 @@ class LoopedeckApiServer(Extension):
                 self.worker.result = True
             elif action == "FF":
                 QtCore.qDebug(f"Change filter configuration spinBox")
-                widget = objectInstance
+                widget = objectInstance.config
                 value = float(parameters[0])
                 for param in parameters[slice(1, 500)]:
                     widget = self.child(widget, param)
@@ -277,7 +284,7 @@ class LoopedeckApiServer(Extension):
                 self.worker.result = True
             elif action == "FA":
                 QtCore.qDebug(f"Change filter configuration angle")
-                widget = objectInstance
+                widget = objectInstance.config
                 value = parameters[0]
                 for param in parameters[slice(1, 500)]:
                     widget = self.child(widget, param)
@@ -287,7 +294,7 @@ class LoopedeckApiServer(Extension):
                 self.worker.result = True
             elif action == "FC":
                 QtCore.qDebug(f"Change filter configuration combo box")
-                widget = objectInstance
+                widget = objectInstance.config
                 value = parameters[0]
                 for param in parameters[slice(1, 500)]:
                     widget = self.child(widget, param)
@@ -297,10 +304,26 @@ class LoopedeckApiServer(Extension):
                 self.worker.result = True
             elif action == "FB":
                 QtCore.qDebug(f"Click filter configuration widget")
-                widget = objectInstance
+                widget = objectInstance.config
                 for param in parameters:
                     widget = self.child(widget, param)
                 widget.click()
+                self.worker.returnType = "None"
+                self.worker.returnValue = None
+                self.worker.result = True
+            elif action == "FO":
+                QtCore.qDebug(f"Validate filter")
+                widget = objectInstance.dialog
+                widget = self.child(widget, "buttonBox")
+                widget.children()[1].click()
+                self.worker.returnType = "None"
+                self.worker.returnValue = None
+                self.worker.result = True
+            elif action == "FK":
+                QtCore.qDebug(f"Cancel filter")
+                widget = objectInstance.dialog
+                widget = self.child(widget, "buttonBox")
+                widget.children()[2].click()
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
                 self.worker.result = True

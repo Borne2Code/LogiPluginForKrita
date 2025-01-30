@@ -11,7 +11,7 @@ namespace Loupedeck.KritaPlugin
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public ViewCurrentLayerAdjustment()
-            : base(displayName: "Current Layer Selector", description: "Adjust current layer selection", groupName: ActionGroups.InterfaceAdjustments, hasReset: true)
+            : base(displayName: "Current Layer Selector", description: "Adjust current layer selection", groupName: ActionGroups.ViewAdjustements, hasReset: true)
         {
         }
 
@@ -37,7 +37,7 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
-            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Toggle_layer_soloing).Wait();
+            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Isolate_active_layer).Wait();
         }
 
         // Returns the adjustment value that is shown next to the dial.

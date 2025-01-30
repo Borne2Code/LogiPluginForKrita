@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public ViewBrushOpacityAdjustment()
-            : base(displayName: "Brush opacity", description: "Adjust brush opacity", groupName: ActionGroups.BrushAdjustements, hasReset: true)
+            : base(displayName: "Brush opacity", description: "Adjust brush opacity", groupName: ActionGroups.ViewAdjustements, hasReset: true)
         {
         }
 

@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public ViewBrushSizeAdjustment()
-            : base(displayName: "Brush size", description: "Adjust brush size", groupName: ActionGroups.BrushAdjustements, hasReset: false)
+            : base(displayName: "Brush size", description: "Adjust brush size", groupName: ActionGroups.ViewAdjustements, hasReset: false)
         {
         }
 

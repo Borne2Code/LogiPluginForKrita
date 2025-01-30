@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public ViewBrushFlowAdjustment()
-            : base(displayName: "Brush flow", description: "Adjust brush flow", groupName: ActionGroups.BrushAdjustements, hasReset: true)
+            : base(displayName: "Brush flow", description: "Adjust brush flow", groupName: ActionGroups.ViewAdjustements, hasReset: true)
         {
         }
 

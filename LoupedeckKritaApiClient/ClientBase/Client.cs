@@ -180,6 +180,17 @@ namespace LoupedeckKritaApiClient.ClientBase
             return InternalExecuteCall("F");
         }
 
+        internal Task ConfirmFilter(string filterConfigWidgetReference)
+        {
+            return InternalExecuteCall("FO", filterConfigWidgetReference);
+        }
+
+        internal Task CancelFilter(string filterConfigWidgetReference)
+        {
+            return InternalExecuteCall("FK", filterConfigWidgetReference);
+        }
+
+
         internal Task ClickFilterWidget(string filterConfigWidgetReference, string[] widgetPathNames)
         {
             return InternalExecuteCall("FB", filterConfigWidgetReference, parameters:  widgetPathNames);

@@ -3,7 +3,7 @@ using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
-    public class ColorsBalance: PluginDynamicFolder
+    public class ColorsBalance : PluginDynamicFolder
     {
         private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
 
@@ -25,6 +25,8 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         private const string ResetHighlights = "Reset Highlights";
 
         private const string PreserveLuminosity = "Preserve Luminosity";
+        private const string Cancel = "Cancel";
+        private const string Validate = "OK";
 
         private int ShadowsCyanRedValue = 0;
         private int ShadowsMagentaGreenValue = 0;
@@ -36,7 +38,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         private int HighlightsMagentaGreenValue = 0;
         private int HighlightsYellowBlueValue = 0;
 
-        public ColorsBalance() 
+        public ColorsBalance()
         {
             this.DisplayName = "Colors adjustment";
             this.GroupName = ActionGroups.Filters;
@@ -44,7 +46,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         public override PluginDynamicFolderNavigation GetNavigationArea(DeviceType _)
         {
-            return PluginDynamicFolderNavigation.ButtonArea;
+            return PluginDynamicFolderNavigation.None;
         }
 
         public override bool Activate()
@@ -76,13 +78,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 this.CreateCommandName(ResetMidtones),
                 this.CreateCommandName(ResetHighlights),
                 string.Empty,
-                string.Empty,
-                string.Empty,
-                string.Empty,
-                string.Empty,
-                string.Empty,
-                string.Empty,
                 this.CreateCommandName(PreserveLuminosity),
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                this.CreateCommandName(Cancel),
+                this.CreateCommandName(Validate),
             };
         }
 
@@ -107,85 +110,133 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         public override void ApplyAdjustment(string actionParameter, int diff)
         {
-            switch(actionParameter)
+            try
             {
-                case ShadowsCyanRed:
-                    ShadowsCyanRedValue = dialog.AdjustShadowsCyanRedValue(diff).Result;
-                    this.AdjustmentValueChanged(actionParameter);
-                    break;
-                case ShadowsMagentaGreen:
-                    ShadowsMagentaGreenValue = dialog.AdjustShadowsMagentaGreenValue(diff).Result;
-                    this.AdjustmentValueChanged(actionParameter);
-                    break;
+                switch (actionParameter)
+                {
+                    case ShadowsCyanRed:
+                        ShadowsCyanRedValue = dialog.AdjustShadowsCyanRedValue(diff).Result;
+                        this.AdjustmentValueChanged(actionParameter);
+                        break;
+                    case ShadowsMagentaGreen:
+                        ShadowsMagentaGreenValue = dialog.AdjustShadowsMagentaGreenValue(diff).Result;
+                        this.AdjustmentValueChanged(actionParameter);
+                        break;
 
-                case ShadowsYellowBlue:
-                    ShadowsYellowBlueValue = dialog.AdjustShadowsYellowBlueValue(diff).Result;
-                    this.AdjustmentValueChanged(actionParameter);
-                    break;
-                case MidtonesCyanRed:
-                    MidtonesCyanRedValue = dialog.AdjustMidTonesCyanRedValue(diff).Result;
-                    this.AdjustmentValueChanged(actionParameter);
-                    break;
-                case MidtonesMagentaGreen:
-                    MidtonesMagentaGreenValue = dialog.AdjustMidTonesMagentaGreenValue(diff).Result;
-                    this.AdjustmentValueChanged(actionParameter);
-                    break;
+                    case ShadowsYellowBlue:
+                        ShadowsYellowBlueValue = dialog.AdjustShadowsYellowBlueValue(diff).Result;
+                        this.AdjustmentValueChanged(actionParameter);
+                        break;
+                    case MidtonesCyanRed:
+                        MidtonesCyanRedValue = dialog.AdjustMidTonesCyanRedValue(diff).Result;
+                        this.AdjustmentValueChanged(actionParameter);
+                        break;
+                    case MidtonesMagentaGreen:
+                        MidtonesMagentaGreenValue = dialog.AdjustMidTonesMagentaGreenValue(diff).Result;
+                        this.AdjustmentValueChanged(actionParameter);
+                        break;
 
-                case MidtonesYellowBlue:
-                    MidtonesYellowBlueValue = dialog.AdjustMidTonesYellowBlueValue(diff).Result;
-                    this.AdjustmentValueChanged(actionParameter);
-                    break;
-                case HighlightsCyanRed:
-                    HighlightsCyanRedValue = dialog.AdjustHighLightsCyanRedValue(diff).Result;
-                    this.AdjustmentValueChanged(actionParameter);
-                    break;
-                case HighlightsMagentaGreen:
-                    HighlightsMagentaGreenValue = dialog.AdjustHighLightsMagentaGreenValue(diff).Result;
-                    this.AdjustmentValueChanged(actionParameter);
-                    break;
+                    case MidtonesYellowBlue:
+                        MidtonesYellowBlueValue = dialog.AdjustMidTonesYellowBlueValue(diff).Result;
+                        this.AdjustmentValueChanged(actionParameter);
+                        break;
+                    case HighlightsCyanRed:
+                        HighlightsCyanRedValue = dialog.AdjustHighLightsCyanRedValue(diff).Result;
+                        this.AdjustmentValueChanged(actionParameter);
+                        break;
+                    case HighlightsMagentaGreen:
+                        HighlightsMagentaGreenValue = dialog.AdjustHighLightsMagentaGreenValue(diff).Result;
+                        this.AdjustmentValueChanged(actionParameter);
+                        break;
 
-                case HighlightsYellowBlue:
-                    HighlightsYellowBlueValue = dialog.AdjustHighLightsYellowBlueValue(diff).Result;
-                    this.AdjustmentValueChanged(actionParameter);
-                    break;
-                default:
-                    break;
+                    case HighlightsYellowBlue:
+                        HighlightsYellowBlueValue = dialog.AdjustHighLightsYellowBlueValue(diff).Result;
+                        this.AdjustmentValueChanged(actionParameter);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch
+            {
+                this.Close();
             }
         }
 
         public override void RunCommand(string actionParameter)
         {
-            switch(actionParameter)
+            switch (actionParameter)
             {
                 case ResetShadows:
-                    dialog.ResetShadows();
-                    ShadowsCyanRedValue = 0;
-                    ShadowsMagentaGreenValue = 0;
-                    ShadowsYellowBlueValue = 0;
-                    this.AdjustmentValueChanged(ShadowsCyanRed);
-                    this.AdjustmentValueChanged(ShadowsMagentaGreen);
-                    this.AdjustmentValueChanged(ShadowsYellowBlue);
+                    try
+                    {
+                        dialog.ResetShadows().Wait();
+                        ShadowsCyanRedValue = 0;
+                        ShadowsMagentaGreenValue = 0;
+                        ShadowsYellowBlueValue = 0;
+                        this.AdjustmentValueChanged(ShadowsCyanRed);
+                        this.AdjustmentValueChanged(ShadowsMagentaGreen);
+                        this.AdjustmentValueChanged(ShadowsYellowBlue);
+                    }
+                    catch
+                    {
+                        this.Close();
+                    }
                     break;
                 case ResetMidtones:
-                    dialog.ResetMidTones();
-                    MidtonesCyanRedValue = 0;
-                    MidtonesMagentaGreenValue = 0;
-                    MidtonesYellowBlueValue = 0;
-                    this.AdjustmentValueChanged(MidtonesCyanRed);
-                    this.AdjustmentValueChanged(MidtonesMagentaGreen);
-                    this.AdjustmentValueChanged(MidtonesYellowBlue);
+                    try
+                    {
+                        dialog.ResetMidTones().Wait();
+                        MidtonesCyanRedValue = 0;
+                        MidtonesMagentaGreenValue = 0;
+                        MidtonesYellowBlueValue = 0;
+                        this.AdjustmentValueChanged(MidtonesCyanRed);
+                        this.AdjustmentValueChanged(MidtonesMagentaGreen);
+                        this.AdjustmentValueChanged(MidtonesYellowBlue);
+                    }
+                    catch
+                    {
+                        this.Close();
+                    }
                     break;
                 case ResetHighlights:
-                    dialog.ResetHighLights();
-                    HighlightsCyanRedValue = 0;
-                    HighlightsMagentaGreenValue = 0;
-                    HighlightsYellowBlueValue = 0;
-                    this.AdjustmentValueChanged(HighlightsCyanRed);
-                    this.AdjustmentValueChanged(HighlightsMagentaGreen);
-                    this.AdjustmentValueChanged(HighlightsYellowBlue);
+                    try
+                    {
+                        dialog.ResetHighLights().Wait();
+                        HighlightsCyanRedValue = 0;
+                        HighlightsMagentaGreenValue = 0;
+                        HighlightsYellowBlueValue = 0;
+                        this.AdjustmentValueChanged(HighlightsCyanRed);
+                        this.AdjustmentValueChanged(HighlightsMagentaGreen);
+                        this.AdjustmentValueChanged(HighlightsYellowBlue);
+                    }
+                    catch
+                    {
+                        this.Close();
+                    }
                     break;
                 case PreserveLuminosity:
-                    dialog.TogglePreserveLuminosity();
+                    dialog.TogglePreserveLuminosity().Wait();
+                    break;
+                case Validate:
+                    try
+                    {
+                        dialog.Confirm().Wait();
+                    }
+                    finally
+                    {
+                        this.Close();
+                    }
+                    break;
+                case Cancel:
+                    try
+                    {
+                        dialog.Cancel().Wait();
+                    }
+                    finally
+                    {
+                        this.Close();
+                    }
                     break;
                 default:
                     break;
