@@ -36,7 +36,7 @@ class Server(QObject):
 
             while connected:
                 msg = c.recv(1026).decode(encoding="utf-8")
-                QtCore.qDebug(str(msg))
+                # QtCore.qDebug(str(msg))
 
                 if not msg:
                     connected = False

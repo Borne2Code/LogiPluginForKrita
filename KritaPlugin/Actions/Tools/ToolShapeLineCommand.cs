@@ -4,24 +4,24 @@ namespace Loupedeck.KritaPlugin
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
-    public class ToolContiguousSelectionCommand : PluginDynamicCommand
+    public class ToolShapeLineCommand : PluginDynamicCommand
     {
         private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
 
         // Initializes the command class.
-        public ToolContiguousSelectionCommand()
-            : base(displayName: "Contiguous selection", description: "Activate Contiguous selection tool", groupName: ActionGroups.Tools)
+        public ToolShapeLineCommand()
+            : base(displayName: "Line", description: "Activate Line tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return EmbeddedResources.ReadImage(EmbeddedResources.FindFile("ToolSelectContiguous.png"));
+            return EmbeddedResources.ReadImage(EmbeddedResources.FindFile("ShapeLine.png"));
         }
 
         protected override void RunCommand(string actionParameter)
         {
-            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.KisToolSelectContiguous).Wait();
+            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.KritaShape_KisToolLine).Wait();
         }
     }
 }

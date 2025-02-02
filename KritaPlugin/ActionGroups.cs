@@ -6,6 +6,7 @@
         public const string ViewAdjustements = "Current View Adjustments";
         public const string InterfaceAdjustments = "Interface Adjustments";
         public const string Tools = "Tools";
+        public const string Selection = "Selection";
         public const string General = "General";
         public const string Filters = "Filters";
     }

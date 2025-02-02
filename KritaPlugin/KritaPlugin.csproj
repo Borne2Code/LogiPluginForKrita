@@ -21,6 +21,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\DeleteSelection.png" />
+    <None Remove="images\InvertSelection.png" />
+    <None Remove="images\ShapeBezier.png" />
+    <None Remove="images\ShapeCalligraphy.png" />
+    <None Remove="images\ShapeEdit.png" />
+    <None Remove="images\ShapeEllipse.png" />
+    <None Remove="images\ShapeFreehandPath.png" />
+    <None Remove="images\ShapeLine.png" />
+    <None Remove="images\ShapePolygon.png" />
+    <None Remove="images\ShapePolyline.png" />
+    <None Remove="images\ShapeRectangle.png" />
+    <None Remove="images\ShapeSelect.png" />
+    <None Remove="images\ShapeText.png" />
+    <None Remove="images\ToggleMirrorView.png" />
+    <None Remove="images\ToolColorizeMask.png" />
+    <None Remove="images\ToolCrop.png" />
+    <None Remove="images\ToolEncloseAndFill.png" />
+    <None Remove="images\ToolMove.png" />
+    <None Remove="images\ToolPaintDynamic.png" />
+    <None Remove="images\ToolPaintMultibrush.png" />
+    <None Remove="images\ToolSelectSimilarColors.png" />
+    <None Remove="images\ToolSmartPatch.png" />
+    <None Remove="images\ToolTransform.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="images\BrushFlow.png" />
     <EmbeddedResource Include="images\BrushOpacity.png" />
     <EmbeddedResource Include="images\BrushPatternSize.png" />
@@ -28,10 +54,30 @@
     <EmbeddedResource Include="images\BrushSize.png" />
     <EmbeddedResource Include="images\CanvasRotation.png" />
     <EmbeddedResource Include="images\CanvasZoom.png" />
+    <EmbeddedResource Include="images\DeleteSelection.png" />
+    <EmbeddedResource Include="images\InvertSelection.png" />
     <EmbeddedResource Include="images\Layers.png" />
+    <EmbeddedResource Include="images\ShapeBezier.png" />
+    <EmbeddedResource Include="images\ShapeCalligraphy.png" />
+    <EmbeddedResource Include="images\ShapeEdit.png" />
+    <EmbeddedResource Include="images\ShapeEllipse.png" />
+    <EmbeddedResource Include="images\ShapeFreehandPath.png" />
+    <EmbeddedResource Include="images\ShapeLine.png" />
+    <EmbeddedResource Include="images\ShapePolygon.png" />
+    <EmbeddedResource Include="images\ShapePolyline.png" />
+    <EmbeddedResource Include="images\ShapeRectangle.png" />
+    <EmbeddedResource Include="images\ShapeSelect.png" />
+    <EmbeddedResource Include="images\ShapeText.png" />
+    <EmbeddedResource Include="images\ToggleMirrorView.png" />
     <EmbeddedResource Include="images\ToolBrush.png" />
+    <EmbeddedResource Include="images\ToolColorizeMask.png" />
+    <EmbeddedResource Include="images\ToolCrop.png" />
+    <EmbeddedResource Include="images\ToolEncloseAndFill.png" />
     <EmbeddedResource Include="images\ToolFill.png" />
     <EmbeddedResource Include="images\ToolGradient.png" />
+    <EmbeddedResource Include="images\ToolMove.png" />
+    <EmbeddedResource Include="images\ToolPaintDynamic.png" />
+    <EmbeddedResource Include="images\ToolPaintMultibrush.png" />
     <EmbeddedResource Include="images\ToolSelectBezier.png" />
     <EmbeddedResource Include="images\ToolSelectContiguous.png" />
     <EmbeddedResource Include="images\ToolSelectEliptical.png" />
@@ -40,6 +86,8 @@
     <EmbeddedResource Include="images\ToolSelectPolygonal.png" />
     <EmbeddedResource Include="images\ToolSelectRectangular.png" />
     <EmbeddedResource Include="images\ToolSelectSimilarColors.png" />
+    <EmbeddedResource Include="images\ToolSmartPatch.png" />
+    <EmbeddedResource Include="images\ToolTransform.png" />
   </ItemGroup>
 
   <ItemGroup>

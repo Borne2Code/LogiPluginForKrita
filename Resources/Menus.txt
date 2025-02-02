@@ -2,7 +2,7 @@
 	- Adjustments: 
 		Zoom 
 		Rotation 
-		Layer (Prev/Next) + Push Open/close group
+		Layer (Prev/Next) + push to isolate Isolate
 		Brush size
 		Brush Opacity
 		Brush FLow
@@ -12,16 +12,103 @@
 	- Buttons: (main page)
 		Brush
 		Fill
-		Gradient
-		Go to Other tools page...
+		Go to Paint tools...
+		Go to Shapes tools...
 		Select Square
-		Select lines
 		Select free
-		Select page...
-		Color Picker
-		Move
+		Delete selection
+		Selection page... / Invert Selection ?
 		Transform
+		Move
 		Crop
+		Layer... / Mirror ?
+		------------------ (Paint tools)
+		Brush
+		Fill
+		Gradient
+		Dynamic
+		Multibrush
+		Colorize mask
+		Smart Patch
+		Enclose and Fill
+		Transform
+		Move
+		Crop
+		Layer...
+		------------------ (Shape tools)
+		Select
+		Text
+		Edit Shapes
+		Caligraphy
+		Line
+		Circle
+		Rectangle
+		Polygone
+		Polyline
+		Bezier
+		Freehand path
+		Main...
+	- Directions:
+		Canvas move
+		E: eraser
+	- Wheel
+		Zoom / Rotation
+		Brush size / Brush Opacity / Brush FLow / Brush Rotation / Brush Pattern size
+
+2. Layers
+	- Adjustments: 
+		Zoom
+		Rotation
+		Layer (Prev/Next) + Push Open/close group
+		Move layer up/down
+		Layer opacity (push to reset 100%)
+		Extend selection
+	- Buttons:
+		Layer properties
+		Layer Style
+		..
+		Global selection layer
+		Duplicate layer
+		Delete layer
+		New...
+		Group...
+		Lock
+		Visible
+		Alpha Inheritance
+		Alpha Lock
+		--------------------- (New layer)
+		New Paint layer
+		New Vector Layer
+		New filter layer
+		New Transparency Mask
+		New Filter Mask
+		New Transform Mask
+		New clone layer
+		New File layer
+		New colorize mask
+		New Local selection
+		--------------------- (Groups)
+		Quick group
+		New Group
+		Ungroup
+		Quick Clipping group
+		Merge with below
+		Flatten Layer
+
+	- Directions:
+		Select layers up/down
+		E: Toggle visible
+	- Wheel
+		Zoom / Rotation
+		Layer opacity / Select layers / Move Layer
+
+3. Selections
+	- Adjustments: 
+		Zoom 
+		Rotation 
+		Layer (Prev/Next) + Push Open/close group
+		Grow/shrink selection
+	- Buttons:
 		------------------ (Select page)
 		Select Square
 		Select circle
@@ -31,65 +118,40 @@
 		Select similar colors
 		Select Bezier
 		Select Magnetic
-		Back to main page...
-		------------------ (Other tools page)
-		Brush
-		Fill
-		Gradient
-		Text
-		Caligraphy
-		Line
-		Circle
-		Rectangle
-		Polygone
-		Polyline
-		Bezier
-		Freehand path
-		Dynamic
-		Multibrush
-		Colorize mask
-		Smart Patch
-		Enclose and Fill
-	- Directions:
-		Canvas move
-		E: eraser
+		Select All
+		Delete selection
+		Invert
+		Edit selection
+		-----------------------
+		Convert to vector selection
+		Convert to Raster selection
+		Shape to Vector selection
+		Convert to shape
+		Feather
+		Border
+		Smooth
+		..
+		Show Selection
+		Show global selection layer
 	- Wheel
-		Zoom / Rotation / Layer (Prev/Next) + Push Open/close group
-		Brush size / Brush Opacity / Brush FLow / Brush Rotation / Brush Pattern size
+		Zoom / Rotation 
+		Grow/shrink selection
 
-2. Photo
-	- Adjustments: 
-		Zoom 
-		Rotation 
-		Layer (Prev/Next) + Push Open/close group
-		Brush size
-		Brush Opacity
-		Brush FLow
-		----------------
-		Brush Rotation
-		Brush Pattern size
-	- Buttons:
-		
-	- Directions:
-		Canvas move
-		E: eraser
-	- Wheel
-
-3. Filters
-	- Adjustments: 
-		Go main
+4. Filters
+	- Adjustments:
 	- Buttons
-		Adjust
-		Artistic
-		Blur
-		Colors
-		Edge Detection
-		Emboss
-		Enhance
-		Map
-		Other
+		Adjust (Blue)
+		Artistic (Red)
+		Blur (Green)
+		Colors (Yellow)
+		Edge Detection (Magenta)
+		Emboss (Cyan)
+		Enhance (Light blue)
+		Map (Pink)
+		Other (Light green)
 		Apply Again
 		Apply Again...
+		Go to Tools...
 		---------------- (Adjust)
 		Slope/Offset/Power
 		Auto-contrast
@@ -146,8 +208,4 @@
 		Round Corners
 		Small Tiles
 
-4. Digital Painting
-
-5. Vector
-
-6. Animation
+5. Animation

@@ -4,13 +4,13 @@ namespace Loupedeck.KritaPlugin
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
-    public class ToolFreehandSelectionCommand : PluginDynamicCommand
+    public class ToolSelectFreehandCommand : PluginDynamicCommand
     {
         private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
 
         // Initializes the command class.
-        public ToolFreehandSelectionCommand()
-            : base(displayName: "Freehand selection", description: "Activate Freehand selection tool", groupName: ActionGroups.Tools)
+        public ToolSelectFreehandCommand()
+            : base(displayName: "Freehand selection", description: "Activate Freehand selection tool", groupName: ActionGroups.Selection)
         {
         }
 
