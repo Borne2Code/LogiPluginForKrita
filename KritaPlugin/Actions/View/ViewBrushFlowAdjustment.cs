@@ -23,9 +23,13 @@ namespace Loupedeck.KritaPlugin
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
             var flow = KritaPlugin.Client.CurrentView.PaintingFlow().Result;
-            flow = (float)Math.Min(Math.Max(flow + (float)diff / 100, 0), 1);
-            KritaPlugin.Client.CurrentView.SetPaintingFlow(flow).Wait();
-            this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+            var newFlow = (float)Math.Min(Math.Max(flow + (float)diff / 100, 0), 1);
+
+            if (newFlow != flow)
+            {
+                KritaPlugin.Client.CurrentView.SetPaintingFlow(newFlow).Wait();
+                this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+            }
         }
 
         // This method is called when the reset command related to the adjustment is executed.

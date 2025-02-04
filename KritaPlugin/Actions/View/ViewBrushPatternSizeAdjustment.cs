@@ -22,10 +22,14 @@ namespace Loupedeck.KritaPlugin
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
             var brushPatternSize = KritaPlugin.Client.CurrentView.PatternSize().Result;
-            brushPatternSize = (float)Math.Round(brushPatternSize + diff / 100, 2);
-            brushPatternSize = (float)Math.Min(Math.Max(brushPatternSize, 0.01), 20);
-            KritaPlugin.Client.CurrentView.SetPatternSize(brushPatternSize).Wait();
-            this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+            var newBrushPatternSize = (float)Math.Round(brushPatternSize + diff / 100, 2);
+            newBrushPatternSize = (float)Math.Min(Math.Max(newBrushPatternSize, 0.01), 20);
+
+            if (newBrushPatternSize != brushPatternSize)
+            {
+                KritaPlugin.Client.CurrentView.SetPatternSize(newBrushPatternSize).Wait();
+                this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+            }
         }
 
         // This method is called when the reset command related to the adjustment is executed.

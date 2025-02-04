@@ -23,10 +23,14 @@ namespace Loupedeck.KritaPlugin
         {
             var brushSize = KritaPlugin.Client.CurrentView.BrushSize().Result;
             var delta = Math.Max(brushSize * (float)Math.Abs(diff) / 20, 0.01) * Math.Sign(diff);
-            brushSize = (float)Math.Round(brushSize + delta, 2);
-            brushSize = (float)Math.Min(Math.Max(brushSize, 0.01), 3000);
-            KritaPlugin.Client.CurrentView.SetBrushSize(brushSize).Wait();
-            this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+            var newBrushSize = (float)Math.Round(brushSize + delta, 2);
+            newBrushSize = (float)Math.Min(Math.Max(newBrushSize, 0.01), 3000);
+
+            if (newBrushSize != brushSize)
+            {
+                KritaPlugin.Client.CurrentView.SetBrushSize(newBrushSize).Wait();
+                this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+            }
         }
 
         // This method is called when the reset command related to the adjustment is executed.

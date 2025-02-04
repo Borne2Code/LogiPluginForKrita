@@ -23,9 +23,13 @@ namespace Loupedeck.KritaPlugin
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
             var opacity = KritaPlugin.Client.CurrentView.PaintingOpacity().Result;
-            opacity = (float)Math.Min(Math.Max(opacity + (float)diff / 100, 0), 1);
-            KritaPlugin.Client.CurrentView.SetPaintingOpacity(opacity).Wait();
-            this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+            var newOpacity = (float)Math.Min(Math.Max(opacity + (float)diff / 100, 0), 1);
+
+            if (newOpacity != opacity)
+            {
+                KritaPlugin.Client.CurrentView.SetPaintingOpacity(newOpacity).Wait();
+                this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+            }
         }
 
         // This method is called when the reset command related to the adjustment is executed.
