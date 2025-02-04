@@ -4,20 +4,20 @@ namespace Loupedeck.KritaPlugin
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
-    public class ViewCurrentLayerAdjustment : PluginDynamicAdjustment
+    public class ViewMoveLayerAdjustment : PluginDynamicAdjustment
     {
         private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
 
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
-        public ViewCurrentLayerAdjustment()
-            : base(displayName: "Current Layer Selector", description: "Adjust current layer selection", groupName: ActionGroups.ViewAdjustements, hasReset: true)
+        public ViewMoveLayerAdjustment()
+            : base(displayName: "Move Layer", description: "Move layer in the stack", groupName: ActionGroups.Layers, hasReset: true)
         {
         }
 
         protected override BitmapImage GetAdjustmentImage(string actionParameter, PluginImageSize imageSize)
         {
-            return EmbeddedResources.ReadImage(EmbeddedResources.FindFile("Layers.png"));
+            return EmbeddedResources.ReadImage(EmbeddedResources.FindFile("MoveLayer.png"));
         }
 
         // This method is called when the adjustment is executed.
@@ -25,11 +25,11 @@ namespace Loupedeck.KritaPlugin
         {
             if (diff > 0)
             {
-                KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.ActivatePreviousLayer).Wait();
+                KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_down).Wait();
             }
             else
             {
-                KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.ActivateNextLayer).Wait();
+                KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_up).Wait();
             }
             //this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
         }
@@ -37,7 +37,7 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
-            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Isolate_active_layer).Wait();
+            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Toggle_layer_visibility).Wait();
         }
 
         // Returns the adjustment value that is shown next to the dial.

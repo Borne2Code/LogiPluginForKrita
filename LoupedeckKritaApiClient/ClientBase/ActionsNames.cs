@@ -473,7 +473,7 @@
         public const string Zoom_to_fit_range = "zoom_to_fit_range";
         public const string Zoom_to_fit_curve = "zoom_to_fit_curve";
         public const string Drop_frames = "drop_frames";
-        public const string Show_global_selection_mask = "show_global-selection-mask";
+        public const string Show_global_selection_mask = "show-global-selection-mask";
         public const string RenameCurrentLayer = "RenameCurrentLayer";
         public const string Layer_properties = "layer_properties";
         public const string Remove_layer = "remove_layer";

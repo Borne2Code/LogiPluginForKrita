@@ -153,6 +153,8 @@ class LoopedeckApiServer(Extension):
                 return objectName, Krita.instance().activeWindow().activeView()
             case 'currentDocument':
                 return objectName, Krita.instance().activeDocument()
+            case 'currentNode':
+                return objectName, Krita.instance().activeDocument().activeNode()
             case _:
                 return objectName, self.worker.objects[objectName]
 

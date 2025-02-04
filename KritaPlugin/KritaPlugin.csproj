@@ -22,7 +22,13 @@
 
   <ItemGroup>
     <None Remove="images\DeleteSelection.png" />
+    <None Remove="images\GlobalSelection.png" />
     <None Remove="images\InvertSelection.png" />
+    <None Remove="images\LayerOpacity.png" />
+    <None Remove="images\LayerProperties.png" />
+    <None Remove="images\LayerStyle.png" />
+    <None Remove="images\LockLayer.png" />
+    <None Remove="images\MoveLayer.png" />
     <None Remove="images\ShapeBezier.png" />
     <None Remove="images\ShapeCalligraphy.png" />
     <None Remove="images\ShapeEdit.png" />
@@ -35,6 +41,7 @@
     <None Remove="images\ShapeSelect.png" />
     <None Remove="images\ShapeText.png" />
     <None Remove="images\ToggleMirrorView.png" />
+    <None Remove="images\ToggleVisibleLayer.png" />
     <None Remove="images\ToolColorizeMask.png" />
     <None Remove="images\ToolCrop.png" />
     <None Remove="images\ToolEncloseAndFill.png" />
@@ -44,6 +51,15 @@
     <None Remove="images\ToolSelectSimilarColors.png" />
     <None Remove="images\ToolSmartPatch.png" />
     <None Remove="images\ToolTransform.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="images\GlobalSelection.png" />
+    <EmbeddedResource Include="images\LayerOpacity.png" />
+    <EmbeddedResource Include="images\LayerProperties.png" />
+    <EmbeddedResource Include="images\LayerStyle.png" />
+    <EmbeddedResource Include="images\LockLayer.png" />
+    <EmbeddedResource Include="images\MoveLayer.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -69,6 +85,7 @@
     <EmbeddedResource Include="images\ShapeSelect.png" />
     <EmbeddedResource Include="images\ShapeText.png" />
     <EmbeddedResource Include="images\ToggleMirrorView.png" />
+    <EmbeddedResource Include="images\ToggleVisibleLayer.png" />
     <EmbeddedResource Include="images\ToolBrush.png" />
     <EmbeddedResource Include="images\ToolColorizeMask.png" />
     <EmbeddedResource Include="images\ToolCrop.png" />
