@@ -24,8 +24,11 @@
     <None Remove="images\DeleteSelection.png" />
     <None Remove="images\GlobalSelection.png" />
     <None Remove="images\InvertSelection.png" />
+    <None Remove="images\LayerInheritAlpha.png" />
+    <None Remove="images\LayerLockAlpha.png" />
     <None Remove="images\LayerOpacity.png" />
     <None Remove="images\LayerProperties.png" />
+    <None Remove="images\LayerRename.png" />
     <None Remove="images\LayerStyle.png" />
     <None Remove="images\LockLayer.png" />
     <None Remove="images\MoveLayer.png" />
@@ -55,8 +58,11 @@
 
   <ItemGroup>
     <EmbeddedResource Include="images\GlobalSelection.png" />
+    <EmbeddedResource Include="images\LayerInheritAlpha.png" />
+    <EmbeddedResource Include="images\LayerLockAlpha.png" />
     <EmbeddedResource Include="images\LayerOpacity.png" />
     <EmbeddedResource Include="images\LayerProperties.png" />
+    <EmbeddedResource Include="images\LayerRename.png" />
     <EmbeddedResource Include="images\LayerStyle.png" />
     <EmbeddedResource Include="images\LockLayer.png" />
     <EmbeddedResource Include="images\MoveLayer.png" />
