@@ -17,11 +17,11 @@
 		Select Square
 		Select free
 		Delete selection
-		Selection page... / Invert Selection ?
+		Invert Selection
 		Transform
 		Move
 		Crop
-		Layer... / Mirror ?
+		Mirror
 		------------------ (Paint tools)
 		Brush
 		Fill
@@ -31,10 +31,6 @@
 		Colorize mask
 		Smart Patch
 		Enclose and Fill
-		Transform
-		Move
-		Crop
-		Layer...
 		------------------ (Shape tools)
 		Select
 		Text
@@ -114,25 +110,29 @@
 		Select circle
 		Select lines
 		Select free
+		Select All
+		Delete selection
+		Invert
+		Activate selection Mask
+		Transform
+		Move
+		Crop
+		-----------------------
 		Select Contiguous
 		Select similar colors
 		Select Bezier
 		Select Magnetic
-		Select All
-		Delete selection
-		Invert
-		Edit selection
-		-----------------------
 		Convert to vector selection
 		Convert to Raster selection
 		Shape to Vector selection
 		Convert to shape
+		Edit selection
 		Feather
 		Border
 		Smooth
-		..
+		-----------------------
 		Show Selection
-		Show global selection layer
+		Show global selection Mask
 	- Wheel
 		Zoom / Rotation 
 		Grow/shrink selection
