@@ -138,25 +138,34 @@ class LoopedeckApiServer(Extension):
 
         return action, objectName, objectInstance, method, parameters
 
+    def getObjectByName(self, objectName):
+        match objectName:
+            case "kritaInstance":
+                return Krita.instance()
+            case 'currentCanvas':
+                return Krita.instance().activeWindow().activeView().canvas()
+            case 'currentView':
+                return Krita.instance().activeWindow().activeView()
+            case 'currentDocument':
+                return Krita.instance().activeDocument()
+            case 'currentNode':
+                return Krita.instance().activeDocument().activeNode()
+            case 'globalSelectionNode':
+                node = Krita.instance().activeDocument().rootNode().childNodes()[-1]
+                if node.type() == 'selectionmask':
+                    return node
+                else:
+                    return None
+            case _:
+                return self.worker.objects[objectName]
+
     def getObject(self, request):
         if 'object' in request:
             objectName = request["object"]
+            return objectName, self.getObjectByName(objectName)
         else:
             return None, None
 
-        match objectName:
-            case "kritaInstance":
-                return objectName, Krita.instance()
-            case 'currentCanvas':
-                return objectName, Krita.instance().activeWindow().activeView().canvas()
-            case 'currentView':
-                return objectName, Krita.instance().activeWindow().activeView()
-            case 'currentDocument':
-                return objectName, Krita.instance().activeDocument()
-            case 'currentNode':
-                return objectName, Krita.instance().activeDocument().activeNode()
-            case _:
-                return objectName, self.worker.objects[objectName]
 
     def getMethod(self, object, request):
         if 'method' in request:
@@ -186,7 +195,7 @@ class LoopedeckApiServer(Extension):
                     case "bool":
                         parametersArray.append(bool(param["value"]))
                     case _:
-                        parametersArray.append(self.worker.objects[str(param["value"])])
+                        parametersArray.append(self.getObjectByName(str(param["value"])))
 
         return parametersArray
 

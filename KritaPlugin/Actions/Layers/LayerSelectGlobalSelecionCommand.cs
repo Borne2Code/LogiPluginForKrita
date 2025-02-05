@@ -21,7 +21,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override void RunCommand(string actionParameter)
         {
-            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Show_global_selection_mask).Wait();
+            KritaPlugin.Client.CurrentDocument.SetActiveNode(KritaPlugin.Client.GlobalSelectionNode).Wait();
         }
     }
 }

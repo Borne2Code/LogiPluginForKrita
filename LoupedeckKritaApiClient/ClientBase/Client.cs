@@ -14,6 +14,7 @@ namespace LoupedeckKritaApiClient.ClientBase
         private readonly View _currentView;
         private readonly Document _currentDocument;
         private readonly Node _currentNode;
+        private readonly Node _globalSelectionNode;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
         public Client()
         {
@@ -41,6 +42,11 @@ namespace LoupedeckKritaApiClient.ClientBase
             {
                 Client = this,
                 PrimitiveName = "currentNode"
+            };
+            _globalSelectionNode = new Node()
+            {
+                Client = this,
+                PrimitiveName = "globalSelectionNode"
             };
         }
 
@@ -110,7 +116,7 @@ namespace LoupedeckKritaApiClient.ClientBase
                                         if (val is LoupedeckClientKritaBaseClass typedVal)
                                         {
                                             type = val.GetType().Name;
-                                            value = $"\"{typedVal.Reference}\"";
+                                            value = $"\"{typedVal.Reference ?? typedVal.PrimitiveName}\"";
                                         }
                                         else
                                             throw new ArgumentException($"Unmanaged argument type: {val.GetType().Name}");
@@ -241,5 +247,6 @@ namespace LoupedeckKritaApiClient.ClientBase
         public View CurrentView { get => _currentView; }
         public Document CurrentDocument { get => _currentDocument; }
         public Node CurrentNode { get => _currentNode; }
+        public Node GlobalSelectionNode { get => _globalSelectionNode; }
     }
 }

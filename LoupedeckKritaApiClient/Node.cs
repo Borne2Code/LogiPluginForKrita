@@ -12,6 +12,5 @@ namespace LoupedeckKritaApiClient
         public Task SetInheritAlpha(bool inherit) => Execute("setInheritAlpha", inherit);
         public Task<bool> Locked() => GetBool("locked");
         public Task SetLocked(bool locked) => Execute("setLocked", locked);
-
     }
 }
