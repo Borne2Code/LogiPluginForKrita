@@ -21,11 +21,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DefaultProfile\DefaultProfile20.lp5" />
     <None Remove="images\DeleteSelection.png" />
     <None Remove="images\GlobalSelection.png" />
     <None Remove="images\InvertSelection.png" />
     <None Remove="images\LayerInheritAlpha.png" />
     <None Remove="images\LayerLockAlpha.png" />
+    <None Remove="images\LayerNewClone.png" />
+    <None Remove="images\LayerNewColorize.png" />
+    <None Remove="images\LayerNewFile.png" />
+    <None Remove="images\LayerNewFill.png" />
+    <None Remove="images\LayerNewFilter.png" />
+    <None Remove="images\LayerNewFilterMask.png" />
+    <None Remove="images\LayerNewRaster.png" />
+    <None Remove="images\LayerNewSelection.png" />
+    <None Remove="images\LayerNewTransform.png" />
+    <None Remove="images\LayerNewTransparency.png" />
+    <None Remove="images\LayerNewVector.png" />
     <None Remove="images\LayerOpacity.png" />
     <None Remove="images\LayerProperties.png" />
     <None Remove="images\LayerRename.png" />
@@ -57,9 +69,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="DefaultProfile\DefaultProfile20.lp5" />
     <EmbeddedResource Include="images\GlobalSelection.png" />
     <EmbeddedResource Include="images\LayerInheritAlpha.png" />
     <EmbeddedResource Include="images\LayerLockAlpha.png" />
+    <EmbeddedResource Include="images\LayerNewClone.png" />
+    <EmbeddedResource Include="images\LayerNewColorize.png" />
+    <EmbeddedResource Include="images\LayerNewFile.png" />
+    <EmbeddedResource Include="images\LayerNewFill.png" />
+    <EmbeddedResource Include="images\LayerNewFilter.png" />
+    <EmbeddedResource Include="images\LayerNewFilterMask.png" />
+    <EmbeddedResource Include="images\LayerNewRaster.png" />
+    <EmbeddedResource Include="images\LayerNewSelection.png" />
+    <EmbeddedResource Include="images\LayerNewTransform.png" />
+    <EmbeddedResource Include="images\LayerNewTransparency.png" />
+    <EmbeddedResource Include="images\LayerNewVector.png" />
     <EmbeddedResource Include="images\LayerOpacity.png" />
     <EmbeddedResource Include="images\LayerProperties.png" />
     <EmbeddedResource Include="images\LayerRename.png" />

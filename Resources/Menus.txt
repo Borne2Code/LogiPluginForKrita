@@ -62,7 +62,7 @@
 	- Buttons:
 		Layer properties
 		Layer Style
-		..
+		Rename layer
 		Global selection layer
 		Duplicate layer
 		Delete layer
@@ -75,6 +75,7 @@
 		--------------------- (New layer)
 		New Paint layer
 		New Vector Layer
+		New Fill layer
 		New filter layer
 		New Transparency Mask
 		New Filter Mask
