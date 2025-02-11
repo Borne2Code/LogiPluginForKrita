@@ -1,3 +1,7 @@
+	- Directions:
+		Canvas move
+		E: eraser
+
 1. Tools workspace
 	- Adjustments: 
 		Zoom 
@@ -44,9 +48,6 @@
 		Bezier
 		Freehand path
 		Main...
-	- Directions:
-		Canvas move
-		E: eraser
 	- Wheel
 		Zoom / Rotation
 		Brush size / Brush Opacity / Brush FLow / Brush Rotation / Brush Pattern size
@@ -91,10 +92,6 @@
 		Quick Clipping group
 		Merge with below
 		Flatten Layer
-
-	- Directions:
-		Select layers up/down
-		E: Toggle visible
 	- Wheel
 		Zoom / Rotation
 		Layer opacity / Select layers / Move Layer
@@ -112,12 +109,13 @@
 		Select lines
 		Select free
 		Select All
-		Delete selection
-		Invert
-		Activate selection Mask
 		Transform
 		Move
+		...
+		Activate selection Mask
 		Crop
+		Invert
+		Delete selection
 		-----------------------
 		Select Contiguous
 		Select similar colors

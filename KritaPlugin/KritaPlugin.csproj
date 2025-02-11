@@ -25,6 +25,8 @@
     <None Remove="images\DeleteSelection.png" />
     <None Remove="images\GlobalSelection.png" />
     <None Remove="images\InvertSelection.png" />
+    <None Remove="images\LayerDelete.png" />
+    <None Remove="images\LayerDuplicate.png" />
     <None Remove="images\LayerInheritAlpha.png" />
     <None Remove="images\LayerLockAlpha.png" />
     <None Remove="images\LayerNewClone.png" />
@@ -71,6 +73,8 @@
   <ItemGroup>
     <EmbeddedResource Include="DefaultProfile\DefaultProfile20.lp5" />
     <EmbeddedResource Include="images\GlobalSelection.png" />
+    <EmbeddedResource Include="images\LayerDelete.png" />
+    <EmbeddedResource Include="images\LayerDuplicate.png" />
     <EmbeddedResource Include="images\LayerInheritAlpha.png" />
     <EmbeddedResource Include="images\LayerLockAlpha.png" />
     <EmbeddedResource Include="images\LayerNewClone.png" />
