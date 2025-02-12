@@ -3,9 +3,9 @@
     internal class FilterCommandDefinition
     {
         public string Name { get; }
-        public Action<FilterDialogBase> Action { get; }
+        public Func<FilterDialogBase, Task> Action { get; }
 
-        public FilterCommandDefinition(string name, Action<FilterDialogBase> action)
+        public FilterCommandDefinition(string name, Func<FilterDialogBase, Task> action)
         {
             Name = name;
             Action = action;

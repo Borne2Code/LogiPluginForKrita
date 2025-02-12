@@ -31,7 +31,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             ResetDialog();
 
-            Dialog = (KritaFilterColorBalance)(Filter.GetFilterDialog(KritaPlugin.Client, filterDialogDefinition.FilterType).Result);
+            Dialog = (Filter.GetFilterDialog(KritaPlugin.Client, filterDialogDefinition.FilterType).Result);
             return true;
         }
 

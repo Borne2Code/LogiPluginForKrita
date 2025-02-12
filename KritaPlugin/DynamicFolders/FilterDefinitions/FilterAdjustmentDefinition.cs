@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
+﻿namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
 {
     internal class FilterAdjustmentDefinition
     {
@@ -22,13 +20,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
         public int DisplayDigits { get; }
         public string DisplayUnit { get; }
 
-        public FilterAdjustmentDefinition(string name, Func<FilterDialogBase, int, float> adjust, Action<FilterDialogBase> action = null, int displayDecimals = 0, string displayUnit = "")
+        public FilterAdjustmentDefinition(string name, Func<FilterDialogBase, int, float> adjust, float defaultValue = 0, Action<FilterDialogBase> action = null, int displayDecimals = 0, string displayUnit = "")
         {
             Name = name;
             Adjust = adjust;
             Action = action;
             DisplayDigits = displayDecimals;
             DisplayUnit = displayUnit;
+            _value = defaultValue;
         }
 
         public override string ToString()

@@ -36,31 +36,31 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             var resetShadows = new FilterCommandDefinition("Reset Shadows",
                 (filterDialog) =>
                 {
-                    ((KritaFilterColorBalance)filterDialog.Dialog).ResetShadows();
                     shadowCyanRedAdj.Value = 0;
                     shadowMagentaGreenAdj.Value = 0;
                     shadowYellowBlueAdj.Value = 0;
+                    return ((KritaFilterColorBalance)filterDialog.Dialog).ResetShadows();
                 });
             var resetMidtones = new FilterCommandDefinition("Reset Midtones",
                 (filterDialog) =>
                 {
-                    ((KritaFilterColorBalance)filterDialog.Dialog).ResetMidTones();
                     midtonesCyanRedAdj.Value = 0;
                     midtonesMagentaGreenAdj.Value = 0;
                     midtonesYellowBlueAdj.Value = 0;
+                    return ((KritaFilterColorBalance)filterDialog.Dialog).ResetMidTones();
                 });
             var resetHighlights = new FilterCommandDefinition("Reset Highlights",
                 (filterDialog) =>
                 {
-                    ((KritaFilterColorBalance)filterDialog.Dialog).ResetHighLights();
                     highlightsCyanRedAdj.Value = 0;
                     highlightsMagentaGreenAdj.Value = 0;
                     highlightsYellowBlueAdj.Value = 0;
+                    return ((KritaFilterColorBalance)filterDialog.Dialog).ResetHighLights();
                 });
             var preserveLuminosity = new FilterCommandDefinition("Preserve Luminosity",
                 (filterDialog) => ((KritaFilterColorBalance)filterDialog.Dialog).TogglePreserveLuminosity());
 
-            return new FilterDialogDefinition("Colors adjustment",
+            return new FilterDialogDefinition("Colors balance",
                 FiltersEnum.ColorBalance,
                 [
                     resetShadows,

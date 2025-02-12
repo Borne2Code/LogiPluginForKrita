@@ -9,7 +9,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
         public enum Type
         {
             HueSaturationValue = 0,
-            HueStaturationLightness,
+            HueSaturationLightness,
             HueSaturationIntensity,
             HueSaturationLuma,
             BlueChromaRedChromaLuma
