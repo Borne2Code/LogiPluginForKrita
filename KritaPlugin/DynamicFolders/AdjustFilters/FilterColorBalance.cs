@@ -13,25 +13,25 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         static internal FilterDialogDefinition GetDefinition()
         {
             var shadowCyanRedAdj = new FilterAdjustmentDefinition("Shadows Cyan/Red",
-                (filterDialog, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustShadowsCyanRedValue(diff).Result);
+                (filterDialog, _, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustShadowsCyanRedValue(diff).Result);
             var shadowMagentaGreenAdj = new FilterAdjustmentDefinition("Shadows Magenta/Green",
-                (filterDialog, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustShadowsMagentaGreenValue(diff).Result);
+                (filterDialog, _, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustShadowsMagentaGreenValue(diff).Result);
             var shadowYellowBlueAdj = new FilterAdjustmentDefinition("Shadows Yellow/Blue",
-                (filterDialog, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustShadowsYellowBlueValue(diff).Result);
+                (filterDialog, _, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustShadowsYellowBlueValue(diff).Result);
 
             var midtonesCyanRedAdj = new FilterAdjustmentDefinition("Midtones Cyan/Red",
-                (filterDialog, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustMidTonesCyanRedValue(diff).Result);
+                (filterDialog, _, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustMidTonesCyanRedValue(diff).Result);
             var midtonesMagentaGreenAdj = new FilterAdjustmentDefinition("Midtones Magenta/Green",
-                (filterDialog, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustMidTonesMagentaGreenValue(diff).Result);
+                (filterDialog, _, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustMidTonesMagentaGreenValue(diff).Result);
             var midtonesYellowBlueAdj = new FilterAdjustmentDefinition("Midtones Yellow/Blue",
-                (filterDialog, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustMidTonesYellowBlueValue(diff).Result);
+                (filterDialog, _, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustMidTonesYellowBlueValue(diff).Result);
 
             var highlightsCyanRedAdj = new FilterAdjustmentDefinition("Highlights Cyan/Red",
-    (filterDialog, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustHighLightsCyanRedValue(diff).Result);
+                (filterDialog, _, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustHighLightsCyanRedValue(diff).Result);
             var highlightsMagentaGreenAdj = new FilterAdjustmentDefinition("Highlights Magenta/Green",
-                (filterDialog, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustHighLightsMagentaGreenValue(diff).Result);
+                (filterDialog, _, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustHighLightsMagentaGreenValue(diff).Result);
             var highlightsYellowBlueAdj = new FilterAdjustmentDefinition("Highlights Yellow/Blue",
-                (filterDialog, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustHighLightsYellowBlueValue(diff).Result);
+                (filterDialog, _, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustHighLightsYellowBlueValue(diff).Result);
 
             var resetShadows = new FilterCommandDefinition("Reset Shadows",
                 (filterDialog) =>

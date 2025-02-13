@@ -6,7 +6,7 @@
         public event EventHandler<ValueCHangedEventArg> ValueChanged;
 
         public string Name { get; }
-        public Func<FilterDialogBase, int, float> Adjust { get; }
+        public Func<FilterDialogBase, float, int, float> Adjust { get; }
         public Action<FilterDialogBase> Action { get; }
         public float Value
         {
@@ -20,7 +20,7 @@
         public int DisplayDigits { get; }
         public string DisplayUnit { get; }
 
-        public FilterAdjustmentDefinition(string name, Func<FilterDialogBase, int, float> adjust, float defaultValue = 0, Action<FilterDialogBase> action = null, int displayDecimals = 0, string displayUnit = "")
+        public FilterAdjustmentDefinition(string name, Func<FilterDialogBase, float, int, float> adjust, float defaultValue = 0, Action<FilterDialogBase> action = null, int displayDecimals = 0, string displayUnit = "")
         {
             Name = name;
             Adjust = adjust;

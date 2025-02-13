@@ -1,8 +1,7 @@
-﻿using Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions;
-using LoupedeckKritaApiClient;
+﻿using LoupedeckKritaApiClient;
 using LoupedeckKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
 {
     public abstract class FilterDialogBase : PluginDynamicFolder
     {
@@ -17,8 +16,8 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         internal FilterDialogBase(FilterDialogDefinition filterDefinition)
         {
-            this.DisplayName = filterDefinition.Name;
-            this.GroupName = ActionGroups.Filters;
+            DisplayName = filterDefinition.Name;
+            GroupName = ActionGroups.Filters;
             filterDialogDefinition = filterDefinition;
         }
 
@@ -31,7 +30,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             ResetDialog();
 
-            Dialog = (Filter.GetFilterDialog(KritaPlugin.Client, filterDialogDefinition.FilterType).Result);
+            Dialog = Filter.GetFilterDialog(KritaPlugin.Client, filterDialogDefinition.FilterType).Result;
             return true;
         }
 
@@ -103,13 +102,13 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         private void Adjustment_ValueChanged(object sender, ValueCHangedEventArg e)
         {
-            this.AdjustmentValueChanged(((FilterAdjustmentDefinition)sender).Name);
+            AdjustmentValueChanged(((FilterAdjustmentDefinition)sender).Name);
         }
 
         public override void ApplyAdjustment(string actionParameter, int diff)
         {
             var adjustment = filterDialogDefinition.Adjustments.Where(adj => adj.Name == actionParameter).First();
-            adjustment.Value = adjustment.Adjust(this, diff);
+            adjustment.Value = adjustment.Adjust(this, adjustment.Value, diff);
         }
 
         public override void RunCommand(string actionParameter)
@@ -150,8 +149,8 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             }
             catch
             {
-                this.Deactivate();
-                this.Activate();
+                Deactivate();
+                Activate();
             }
         }
 
@@ -163,8 +162,8 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             }
             finally
             {
-                this.Deactivate();
-                this.Close();
+                Deactivate();
+                Close();
             }
         }
     }
