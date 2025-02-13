@@ -4,7 +4,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterPerChannelColorAdjustment(Client client) : FilterDialog(client)
     {
-        protected override string ActionName => "PerChannelColorAdjustment";
+        protected override string ActionName => "krita_filter_perchannel";
 
         public enum Channel
         {
