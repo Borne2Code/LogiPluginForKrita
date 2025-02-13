@@ -299,9 +299,9 @@ class LoopedeckApiServer(Extension):
                 value = parameters[0]
                 for param in parameters[slice(1, 500)]:
                     widget = self.child(widget, param)
-                widget.children()[1].setValue(value)
-                self.worker.returnType = "None"
-                self.worker.returnValue = None
+                newValue = widget.children()[1].value() + value
+                widget.children()[1].setValue(newValue)
+                self.computeResponse(newValue)
                 self.worker.result = True
             elif action == "FC":
                 QtCore.qDebug(f"Change filter configuration combo box")

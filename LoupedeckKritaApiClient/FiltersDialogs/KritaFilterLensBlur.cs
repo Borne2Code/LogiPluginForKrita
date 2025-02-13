@@ -26,7 +26,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return AdjustIntSpinBoxValue(radius, "groupBox", "irisRadiusSlider");
         }
 
-        public Task<int> AdjustIrisRotation(int angle)
+        public Task<float> AdjustIrisRotation(int angle)
         {
             return AdjustAngleSelectorValue(angle, "groupBox", "irisRotationSelector");
         }

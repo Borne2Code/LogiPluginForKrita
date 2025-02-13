@@ -32,7 +32,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return AdjustIntSpinBoxValue(value, "intStrength");
         }
 
-        public Task<int> AdjustAngle(int value)
+        public Task<float> AdjustAngle(int value)
         {
             return AdjustAngleSelectorValue(value, "angleSelector");
         }

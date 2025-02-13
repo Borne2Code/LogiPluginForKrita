@@ -84,18 +84,18 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return (float)(double)returnValue.Value;
         }
 
-        protected async Task<int> AdjustAngleSelectorValue(int value, params string[] widgetPathNames)
+        protected async Task<float> AdjustAngleSelectorValue(float value, params string[] widgetPathNames)
         {
 #pragma warning disable CS8604 // Possible null reference argument.
             var returnValue = await _client.SetFilterAngleSelectorValue(_filterConfigWidgetReference, value, widgetPathNames);
 #pragma warning restore CS8604 // Possible null reference argument.
 
-            if (returnValue.Type != "float" && returnValue.Type != "int")
+            if (returnValue.Type != "float")
             {
                 throw new Exception($"The method call didn't return a float ({returnValue.Type}");
             }
 
-            return (int)returnValue.Value;
+            return (float)(double)returnValue.Value;
         }
 
         protected async Task SetComboBoxSelectedIndex(int value, params string[] widgetPathNames)

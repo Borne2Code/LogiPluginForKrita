@@ -218,7 +218,7 @@ namespace LoupedeckKritaApiClient.ClientBase
             return InternalExecuteCall("FF", filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
-        internal Task<ReturnValue> SetFilterAngleSelectorValue(string filterConfigWidgetReference, int value, string[] widgetPathNames)
+        internal Task<ReturnValue> SetFilterAngleSelectorValue(string filterConfigWidgetReference, float value, string[] widgetPathNames)
         {
             return InternalExecuteCall("FA", filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
