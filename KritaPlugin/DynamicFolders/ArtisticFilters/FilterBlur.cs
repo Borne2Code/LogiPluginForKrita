@@ -23,7 +23,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     new FilterAdjustmentDefinition("Horizontal radius", (dialog, _, delta) => ((KritaFilterBlur)dialog.Dialog).AdjustHorizontalRadiusValue(delta).Result),
                     new FilterAdjustmentDefinition("Vertical radius", (dialog, _, delta) => ((KritaFilterBlur)dialog.Dialog).AdjustVerticalRadiusValue(delta).Result),
                     new FilterAdjustmentDefinition("Strength", (dialog, _, delta) => ((KritaFilterBlur)dialog.Dialog).AdjustStrengthValue(delta).Result),
-                    new FilterAdjustmentDefinition("Angle", (dialog, _, delta) => ((KritaFilterBlur)dialog.Dialog).AdjustAngle(-delta).Result),
+                    new FilterAdjustmentDefinition("Angle", (dialog, _, delta) => ((KritaFilterBlur)dialog.Dialog).AdjustAngle(-delta).Result, 0, displayDecimals: 0, displayUnit: "°"),
                 ]);
         }
     }
