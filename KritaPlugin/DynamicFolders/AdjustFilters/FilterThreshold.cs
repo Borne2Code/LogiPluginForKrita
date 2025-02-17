@@ -16,7 +16,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FiltersEnum.Threshold,
                 [],
                 [
-                    new FilterAdjustmentDefinition("Threshold", (dialog, _, delta) => ((KritaFilterThreshold)dialog.Dialog).AdjustThreshold(delta).Result)
+                    new FilterAdjustmentDefinition("Threshold", (dialog, delta) => ((KritaFilterThreshold)dialog.Dialog).AdjustThreshold((int)delta).Result, 128)
                 ]);
         }
     }

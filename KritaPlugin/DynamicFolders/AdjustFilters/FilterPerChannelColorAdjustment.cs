@@ -29,8 +29,8 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     new FilterCommandDefinition("Reset", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).Reset()),
                 ],
                 [
-                    new FilterAdjustmentDefinition("Input", (dialog, _, delta) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).AdjustInValue(delta).Result),
-                    new FilterAdjustmentDefinition("Output", (dialog, _, delta) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).AdjustOutValue(delta).Result),
+                    new FilterAdjustmentDefinition("Input", (dialog, delta) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).AdjustInValue((int)delta).Result),
+                    new FilterAdjustmentDefinition("Output", (dialog, delta) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).AdjustOutValue((int)delta).Result),
                 ]);
         }
     }

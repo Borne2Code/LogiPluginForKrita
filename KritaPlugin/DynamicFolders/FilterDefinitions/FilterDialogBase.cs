@@ -75,14 +75,17 @@ namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
                 }
             }
 
-            while (commandsCount < 10)
+            if (commandsCount > 0)
             {
-                commands.Add(string.Empty);
-                commandsCount++;
-            }
+                while (commandsCount < 10)
+                {
+                    commands.Add(string.Empty);
+                    commandsCount++;
+                }
 
-            commands.Add(CreateCommandName(Cancel));
-            commands.Add(CreateCommandName(Validate));
+                commands.Add(CreateCommandName(Cancel));
+                commands.Add(CreateCommandName(Validate));
+            }
 
             return commands;
         }
@@ -100,6 +103,18 @@ namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
             return adjustments;
         }
 
+        public override IEnumerable<string> GetEncoderPressActionNames(DeviceType _)
+        {
+            List<string> adjustments = new List<string>();
+
+            foreach (var adjustment in filterDialogDefinition.Adjustments)
+            {
+                adjustments.Add(CreateCommandName(adjustment.Name));
+            }
+
+            return adjustments;
+        }
+
         private void Adjustment_ValueChanged(object sender, ValueCHangedEventArg e)
         {
             AdjustmentValueChanged(((FilterAdjustmentDefinition)sender).Name);
@@ -108,7 +123,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
         public override void ApplyAdjustment(string actionParameter, int diff)
         {
             var adjustment = filterDialogDefinition.Adjustments.Where(adj => adj.Name == actionParameter).First();
-            adjustment.Value = adjustment.Adjust(this, adjustment.Value, diff);
+
+            float targetAdjustment = diff;
+            if (adjustment.OverrideAdjustmentCalculation != null)
+            {
+                targetAdjustment = adjustment.OverrideAdjustmentCalculation(adjustment.Value, diff);
+            }
+
+            adjustment.Value = adjustment.Adjust(this, targetAdjustment);
         }
 
         public override void RunCommand(string actionParameter)
@@ -131,7 +153,16 @@ namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
                     });
                     break;
                 default:
-                    filterDialogDefinition.Commands.Where(cmd => cmd.Name == actionParameter).First().Action(this);
+                    var command = filterDialogDefinition.Commands.Where(cmd => cmd.Name == actionParameter).FirstOrDefault();
+                    if (command != null)
+                    {
+                        command.Action(this);
+                    }
+                    else
+                    {
+                        var adjustment = filterDialogDefinition.Adjustments.Where(adj => adj.Name == actionParameter).FirstOrDefault();
+                        adjustment.Value = adjustment.Adjust(this, adjustment.DefaultValue - adjustment.Value);
+                    }
                     break;
             }
         }

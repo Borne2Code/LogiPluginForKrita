@@ -20,5 +20,10 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
         {
             return AdjustIntSpinBoxValue(value, "intThreshold");
         }
+
+        public Task ToggleLightnessOnly()
+        {
+            return ClickCheckBox("chkLightnessOnly");
+        }
     }
 }

@@ -15,10 +15,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Gaussian Blur",
                 FiltersEnum.GaussianBlur,
                 [
+                    new FilterCommandDefinition("Lock aspect", (dialog) => ((KritaFilterGaussianBlur)dialog.Dialog).ToggleLockHorizontalVertical()),
                 ],
                 [
-                    new FilterAdjustmentDefinition("Horizontal radius", (dialog, _, delta) => ((KritaFilterGaussianBlur)dialog.Dialog).AdjustHorizontalRadius(delta).Result),
-                    new FilterAdjustmentDefinition("Vertical radius", (dialog, _, delta) => ((KritaFilterGaussianBlur)dialog.Dialog).AdjustVerticalRadius(delta).Result),
+                    new FilterAdjustmentDefinition("Horizontal radius", (dialog, delta) => ((KritaFilterGaussianBlur)dialog.Dialog).AdjustHorizontalRadius(delta).Result, 5),
+                    new FilterAdjustmentDefinition("Vertical radius", (dialog, delta) => ((KritaFilterGaussianBlur)dialog.Dialog).AdjustVerticalRadius(delta).Result, 5),
                 ]);
         }
     }

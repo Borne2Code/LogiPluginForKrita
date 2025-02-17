@@ -15,5 +15,10 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
         {
             return AdjustFloatSpinBoxValue(value, "verticalRadius");
         }
+
+        public Task ToggleLockHorizontalVertical()
+        {
+            return ClickPushButton("aspectButton");
+        }
     }
 }

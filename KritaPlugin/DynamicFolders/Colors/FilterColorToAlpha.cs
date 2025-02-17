@@ -16,7 +16,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FiltersEnum.ColorToAlpha,
                 [],
                 [
-                    new FilterAdjustmentDefinition("Threshold", (dialog, _, delta) => ((KritaFilterColorToAlpha)dialog.Dialog).AdjustThreshold(delta).Result),
+                    new FilterAdjustmentDefinition("Threshold", (dialog, delta) => ((KritaFilterColorToAlpha)dialog.Dialog).AdjustThreshold((int)delta).Result, 100),
                 ]);
         }
     }

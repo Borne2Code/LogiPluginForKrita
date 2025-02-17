@@ -25,9 +25,9 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     new FilterCommandDefinition("Legacy mode", (dialog) => ((KritaFilterHsvAdjustment)dialog.Dialog).ToggleLegacyMode()),
                 ],
                 [
-                    new FilterAdjustmentDefinition("Hue", (dialog, _, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustHue(delta).Result),
-                    new FilterAdjustmentDefinition("Saturation", (dialog, _, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustSaturation(delta).Result),
-                    new FilterAdjustmentDefinition("Value", (dialog, _, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustValue(delta).Result),
+                    new FilterAdjustmentDefinition("Hue", (dialog, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustHue((int)delta).Result),
+                    new FilterAdjustmentDefinition("Saturation", (dialog, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustSaturation((int)delta).Result),
+                    new FilterAdjustmentDefinition("Value", (dialog, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustValue((int)delta).Result),
                 ]);
         }
     }

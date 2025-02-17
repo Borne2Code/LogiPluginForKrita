@@ -6,8 +6,8 @@
         public event EventHandler<ValueCHangedEventArg> ValueChanged;
 
         public string Name { get; }
-        public Func<FilterDialogBase, float, int, float> Adjust { get; }
-        public Action<FilterDialogBase> Action { get; }
+        public Func<float, int, float> OverrideAdjustmentCalculation { get; }
+        public Func<FilterDialogBase, float, float> Adjust { get; }
         public float Value
         {
             get => _value;
@@ -17,16 +17,18 @@
                 ValueChanged(this, new ValueCHangedEventArg(Name));
             }
         }
+        public float DefaultValue { get; private set; }
         public int DisplayDigits { get; }
         public string DisplayUnit { get; }
 
-        public FilterAdjustmentDefinition(string name, Func<FilterDialogBase, float, int, float> adjust, float defaultValue = 0, Action<FilterDialogBase> action = null, int displayDecimals = 0, string displayUnit = "")
+        public FilterAdjustmentDefinition(string name, Func<FilterDialogBase, float, float> adjust, float defaultValue = 0, Func<float, int, float> overrideAdjustmentCalculation = null, int displayDecimals = 0, string displayUnit = "")
         {
             Name = name;
             Adjust = adjust;
-            Action = action;
+            OverrideAdjustmentCalculation = overrideAdjustmentCalculation;
             DisplayDigits = displayDecimals;
             DisplayUnit = displayUnit;
+            DefaultValue = defaultValue;
             _value = defaultValue;
         }
 

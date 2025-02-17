@@ -23,8 +23,8 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     new FilterCommandDefinition("Shape octagon", (dialog) => ((KritaFilterLensBlur)dialog.Dialog).SetShape(KritaFilterLensBlur.Shape.Octagon)),
                 ],
                 [
-                    new FilterAdjustmentDefinition("Radius", (dialog, _, delta) => ((KritaFilterLensBlur)dialog.Dialog).AdjustRadius(delta).Result),
-                    new FilterAdjustmentDefinition("Iris rotation", (dialog, _, delta) => ((KritaFilterLensBlur)dialog.Dialog).AdjustIrisRotation(delta).Result),
+                    new FilterAdjustmentDefinition("Radius", (dialog, delta) => ((KritaFilterLensBlur)dialog.Dialog).AdjustRadius((int)delta).Result, 5),
+                    new FilterAdjustmentDefinition("Iris rotation", (dialog, delta) => ((KritaFilterLensBlur)dialog.Dialog).AdjustIrisRotation((int)delta).Result),
                 ]);
         }
     }

@@ -20,10 +20,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     new FilterCommandDefinition("Shape Rectangle", (dialog) => ((KritaFilterBlur)dialog.Dialog).SetShape(KritaFilterBlur.ShapeEnum.Rectangle)),
                 ],
                 [
-                    new FilterAdjustmentDefinition("Horizontal radius", (dialog, _, delta) => ((KritaFilterBlur)dialog.Dialog).AdjustHorizontalRadiusValue(delta).Result),
-                    new FilterAdjustmentDefinition("Vertical radius", (dialog, _, delta) => ((KritaFilterBlur)dialog.Dialog).AdjustVerticalRadiusValue(delta).Result),
-                    new FilterAdjustmentDefinition("Strength", (dialog, _, delta) => ((KritaFilterBlur)dialog.Dialog).AdjustStrengthValue(delta).Result),
-                    new FilterAdjustmentDefinition("Angle", (dialog, _, delta) => ((KritaFilterBlur)dialog.Dialog).AdjustAngle(-delta).Result, 0, displayDecimals: 0, displayUnit: "°"),
+                    new FilterAdjustmentDefinition("Horizontal radius", (dialog, delta) => ((KritaFilterBlur)dialog.Dialog).AdjustHorizontalRadiusValue((int)delta).Result, 5),
+                    new FilterAdjustmentDefinition("Vertical radius", (dialog, delta) => ((KritaFilterBlur)dialog.Dialog).AdjustVerticalRadiusValue((int)delta).Result, 5),
+                    new FilterAdjustmentDefinition("Strength", (dialog, delta) => ((KritaFilterBlur)dialog.Dialog).AdjustStrengthValue((int)delta).Result),
+                    new FilterAdjustmentDefinition("Angle", (dialog, delta) => ((KritaFilterBlur)dialog.Dialog).AdjustAngle((int)delta).Result, 0,
+                        (val, delta) => -delta, 0, "°"),
                 ]);
         }
     }

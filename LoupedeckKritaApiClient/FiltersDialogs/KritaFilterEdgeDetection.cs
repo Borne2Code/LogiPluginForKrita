@@ -44,6 +44,11 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             return AdjustFloatSpinBoxValue(value, "sldVerticalRadius");
         }
 
+        public Task ToggleLockAspect()
+        {
+            return ClickPushButton("btnAspect");
+        }
+
         public Task ToggleApplyResultToAlphaChannel()
         {
             return ClickCheckBox("chkTransparent");

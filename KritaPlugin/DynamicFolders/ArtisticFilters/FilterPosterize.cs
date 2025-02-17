@@ -17,7 +17,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 [
                 ],
                 [
-                    new FilterAdjustmentDefinition("Steps", (dialog, _, delta) => ((KritaFilterPosterize)dialog.Dialog).AdjustSteps(delta).Result),
+                    new FilterAdjustmentDefinition("Steps", (dialog, delta) => ((KritaFilterPosterize)dialog.Dialog).AdjustSteps((int)delta).Result, 16),
                 ]);
         }
     }

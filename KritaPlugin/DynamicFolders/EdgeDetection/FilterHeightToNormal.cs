@@ -46,8 +46,8 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     new FilterCommandDefinition("Z=-Z", (dialog) => ((KritaFilterHeightToNormal)dialog.Dialog).SetZValue(KritaFilterHeightToNormal.XYZ.ZMinus)),
                 ],
                 [
-                    new FilterAdjustmentDefinition("Horizontal radius", (dialog, _, delta) => ((KritaFilterHeightToNormal)dialog.Dialog).AdjustHorizontalRadius(delta).Result),
-                    new FilterAdjustmentDefinition("Vertical radius", (dialog, _, delta) => ((KritaFilterHeightToNormal)dialog.Dialog).AdjustVerticalRadius(delta).Result),
+                    new FilterAdjustmentDefinition("Horizontal radius", (dialog, delta) => ((KritaFilterHeightToNormal)dialog.Dialog).AdjustHorizontalRadius(delta).Result, 1),
+                    new FilterAdjustmentDefinition("Vertical radius", (dialog, delta) => ((KritaFilterHeightToNormal)dialog.Dialog).AdjustVerticalRadius(delta).Result, 1),
                 ]);
         }
     }
