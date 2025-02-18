@@ -1,0 +1,27 @@
+using LoupedeckKritaApiClient.ClientBase;
+
+namespace Loupedeck.KritaPlugin
+{
+    // This class implements an example adjustment that counts the rotation ticks of a dial.
+
+    public class LayerNewGroup : PluginDynamicCommand
+    {
+        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+
+        // Initializes the command class.
+        public LayerNewGroup()
+            : base(displayName: "New group", description: "Create a new group", groupName: ActionGroups.Layers)
+        {
+        }
+
+        protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
+        {
+            return EmbeddedResources.ReadImage(EmbeddedResources.FindFile("LayerNewGroup.png"));
+        }
+
+        protected override void RunCommand(string actionParameter)
+        {
+            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_group_layer).Wait();
+        }
+    }
+}
