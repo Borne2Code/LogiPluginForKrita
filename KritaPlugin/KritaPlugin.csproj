@@ -23,6 +23,8 @@
   <ItemGroup>
     <None Remove="DefaultProfile\DefaultProfile20.lp5" />
     <None Remove="images\DeleteSelection.png" />
+    <None Remove="images\FilterApplyAgainNoPrompt.png" />
+    <None Remove="images\FilterApplyAgainWithPrompt.png" />
     <None Remove="images\GlobalSelection.png" />
     <None Remove="images\InvertSelection.png" />
     <None Remove="images\LayerDelete.png" />
@@ -72,6 +74,8 @@
 
   <ItemGroup>
     <EmbeddedResource Include="DefaultProfile\DefaultProfile20.lp5" />
+    <EmbeddedResource Include="images\FilterApplyAgainNoPrompt.png" />
+    <EmbeddedResource Include="images\FilterApplyAgainWithPrompt.png" />
     <EmbeddedResource Include="images\GlobalSelection.png" />
     <EmbeddedResource Include="images\LayerDelete.png" />
     <EmbeddedResource Include="images\LayerDuplicate.png" />
