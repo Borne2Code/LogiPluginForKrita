@@ -13,9 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Emboss Laplacian",
-                FiltersEnum.EmbossLaplascian,
-                [],
-                []);
+                FiltersEnum.EmbossLaplascian);
         }
     }
 }

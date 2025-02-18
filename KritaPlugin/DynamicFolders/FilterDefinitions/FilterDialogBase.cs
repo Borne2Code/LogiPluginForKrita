@@ -31,6 +31,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
             ResetDialog();
 
             Dialog = Filter.GetFilterDialog(KritaPlugin.Client, filterDialogDefinition.FilterType).Result;
+
             return true;
         }
 

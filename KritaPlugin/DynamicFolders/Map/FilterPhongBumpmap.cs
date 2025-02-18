@@ -3,17 +3,19 @@ using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
-    public class FilterMeanRemoval : FilterDialogBase
+    public class FilterPhongBumpmap : FilterDialogBase
     {
-        public FilterMeanRemoval()
+        public FilterPhongBumpmap()
             : base(GetDefinition())
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
-            return new FilterDialogDefinition("Mean removal",
-                FiltersEnum.MeanRemoval);
+            return new FilterDialogDefinition("Phong Bumpmap",
+                FiltersEnum.PhongBumpMap,
+                [],
+                []);
         }
     }
 }

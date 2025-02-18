@@ -11,12 +11,24 @@ namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
         {
             Name = name;
             FilterType = filterType;
+            HasDialog = true;
             Commands = commands;
             Adjustments = adjustments;
         }
 
+        public FilterDialogDefinition(string name,
+            FiltersEnum filterType)
+        {
+            Name = name;
+            FilterType = filterType;
+            HasDialog = false;
+            Commands = null;
+            Adjustments = null;
+        }
+
         public string Name { get; }
         public FiltersEnum FilterType { get; }
+        public bool HasDialog { get; }
         public FilterCommandDefinition[] Commands { get; }
         public FilterAdjustmentDefinition[] Adjustments { get; }
     }
