@@ -150,6 +150,8 @@ class LoopedeckApiServer(Extension):
                 return Krita.instance().activeDocument()
             case 'currentNode':
                 return Krita.instance().activeDocument().activeNode()
+            case 'currentSelection':
+                return Krita.instance().activeDocument().selection()
             case 'globalSelectionNode':
                 node = Krita.instance().activeDocument().rootNode().childNodes()[-1]
                 if node.type() == 'selectionmask':

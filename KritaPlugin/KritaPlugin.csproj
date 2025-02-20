@@ -55,6 +55,7 @@
     <None Remove="images\LockLayer.png" />
     <None Remove="images\MoveLayer.png" />
     <None Remove="images\SelectAll.png" />
+    <None Remove="images\SelectionGrowShrink.png" />
     <None Remove="images\ShapeBezier.png" />
     <None Remove="images\ShapeCalligraphy.png" />
     <None Remove="images\ShapeEdit.png" />
@@ -125,6 +126,7 @@
     <EmbeddedResource Include="images\InvertSelection.png" />
     <EmbeddedResource Include="images\Layers.png" />
     <EmbeddedResource Include="images\SelectAll.png" />
+    <EmbeddedResource Include="images\SelectionGrowShrink.png" />
     <EmbeddedResource Include="images\ShapeBezier.png" />
     <EmbeddedResource Include="images\ShapeCalligraphy.png" />
     <EmbeddedResource Include="images\ShapeEdit.png" />

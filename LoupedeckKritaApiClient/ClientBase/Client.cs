@@ -14,6 +14,7 @@ namespace LoupedeckKritaApiClient.ClientBase
         private readonly View _currentView;
         private readonly Document _currentDocument;
         private readonly Node _currentNode;
+        private readonly Selection _currentSelection;
         private readonly Node _globalSelectionNode;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
         public Client()
@@ -42,6 +43,11 @@ namespace LoupedeckKritaApiClient.ClientBase
             {
                 Client = this,
                 PrimitiveName = "currentNode"
+            };
+            _currentSelection= new Selection()
+            {
+                Client = this,
+                PrimitiveName = "currentSelection"
             };
             _globalSelectionNode = new Node()
             {
@@ -247,6 +253,7 @@ namespace LoupedeckKritaApiClient.ClientBase
         public View CurrentView { get => _currentView; }
         public Document CurrentDocument { get => _currentDocument; }
         public Node CurrentNode { get => _currentNode; }
+        public Selection CurrentSelection { get => _currentSelection; }
         public Node GlobalSelectionNode { get => _globalSelectionNode; }
     }
 }
