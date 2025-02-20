@@ -7,7 +7,24 @@ namespace Loupedeck.KritaPlugin
 
     public class KritaPlugin : Plugin
     {
-        public Client Client { get; private set; }
+        private Client _client;
+        public Client Client
+        {
+            get
+            {
+                if (_client == null)
+                {
+                    _client = new Client();
+                    _client.Connect().Wait();
+                }
+
+                return _client;
+            }
+            private set
+            {
+                _client = value;
+            }
+        }
 
         // Gets a value indicating whether this is an API-only plugin.
         public override Boolean UsesApplicationApiOnly => false;
@@ -26,16 +43,17 @@ namespace Loupedeck.KritaPlugin
         }
 
         // This method is called when the plugin is loaded.
-        public override async void Load()
+        public override void Load()
         {
-            Client = new Client();
-            await Client.Connect();
         }
 
         // This method is called when the plugin is unloaded.
         public override async void Unload()
         {
-            await Client.DisposeAsync();
+            if (_client != null)
+            {
+                await Client.DisposeAsync();
+            }
         }
     }
 }
