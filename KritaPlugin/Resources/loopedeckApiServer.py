@@ -1,6 +1,6 @@
 from krita import *
-import sys
-import socket
+import asyncio
+import websockets
 import time
 import json
 import uuid
@@ -345,13 +345,16 @@ class LoopedeckApiServer(Extension):
             self.worker.returnValue = ex
             self.worker.result = False
 
-    def setup(self):
-        self.thread = QtCore.QThread()
+
+    async def messageReceived(self, websocket):
+        async for message in websocket:
+            #self.computeMessage(message)
+            QtCore.qDebug(message)
+        
+    async def setup(self):
         self.worker = Server()
-        self.worker.moveToThread(self.thread)
-        self.worker.message.connect(self.computeMessage)
-        self.thread.started.connect(self.worker.run)
-        self.thread.start()
+        async with websockets.serve(self.messageReceived, "localhost", 1247):
+            await asyncio.Future()  # run forever
 
     def createActions(self, window):
         action = window.createAction("", "Rotation 10")

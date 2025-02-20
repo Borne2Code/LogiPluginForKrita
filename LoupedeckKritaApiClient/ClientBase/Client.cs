@@ -1,6 +1,8 @@
 ﻿using System.Net;
 using System.Net.Sockets;
+using System.Net.WebSockets;
 using System.Text;
+using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -8,7 +10,8 @@ namespace LoupedeckKritaApiClient.ClientBase
 {
     public class Client : IAsyncDisposable
     {
-        private Socket? client;
+        // private Socket? client;
+        private ClientWebSocket client;
         private readonly KritaInstance _kritaInstance;
         private readonly Canvas _currentCanvas;
         private readonly View _currentView;
@@ -60,11 +63,10 @@ namespace LoupedeckKritaApiClient.ClientBase
         {
             IPEndPoint ipEndPoint = new(IPAddress.Parse("127.0.0.1"), 1247);
 
-            client = new(
-                ipEndPoint.AddressFamily,
-                SocketType.Stream,
-                ProtocolType.Tcp);
-            await client.ConnectAsync(ipEndPoint);
+            var ct = new CancellationToken();
+
+            client = new ClientWebSocket();
+            await client.ConnectAsync(new Uri("ws://127.0.0.1:1247"), ct);
         }
 
         internal Task<ReturnValue> ExecuteCall(string objectName, string methodName, params object[] parameters)
@@ -75,7 +77,7 @@ namespace LoupedeckKritaApiClient.ClientBase
         private async Task<ReturnValue> InternalExecuteCall(string action, string? objectName = null, string? methodName = null, params object[] parameters)
         {
 
-            if (client == null || !client.Connected)
+            if (client == null)
             try
             {
                     await Connect();
@@ -139,20 +141,20 @@ namespace LoupedeckKritaApiClient.ClientBase
                 if (parameters.Length > 0) message += $",\"parameters\":{parametersListString}";
                 message += "}";
                 var messageBytes = Encoding.UTF8.GetBytes(message);
-                _ = await client.SendAsync(messageBytes, SocketFlags.None).ConfigureAwait(true);
+                await client.SendAsync(messageBytes, WebSocketMessageType.Text, true, new CancellationToken()).ConfigureAwait(true);
 
                 var responseBytes = new byte[1024];
-                var byteCount = await client.ReceiveAsync(responseBytes, SocketFlags.None).ConfigureAwait(true);
-                if (byteCount > 0)
+                var byteCount = await client.ReceiveAsync(responseBytes, new CancellationToken()).ConfigureAwait(true);
+                if (byteCount.Count > 0)
                 {
                     var sb = new StringBuilder();
 
-                    sb.Append(Encoding.UTF8.GetString(responseBytes, 0, byteCount));
+                    sb.Append(Encoding.UTF8.GetString(responseBytes, 0, byteCount.Count));
 
-                    while (client.Available > 0)
+                    while (!byteCount.EndOfMessage)
                     {
-                        byteCount = await client.ReceiveAsync(responseBytes, SocketFlags.None).ConfigureAwait(true);
-                        sb.Append(Encoding.UTF8.GetString(responseBytes, 0, byteCount));
+                        byteCount = await client.ReceiveAsync(responseBytes, new CancellationToken()).ConfigureAwait(true);
+                        sb.Append(Encoding.UTF8.GetString(responseBytes, 0, byteCount.Count));
                     }
 
                     dynamic? response = JsonConvert.DeserializeObject(sb.ToString());
@@ -238,9 +240,9 @@ namespace LoupedeckKritaApiClient.ClientBase
         {
             await _semaphore.WaitAsync();
 
-            if (client?.Connected ?? false)
+            if ((client?.State ?? WebSocketState.None) == WebSocketState.Open)
             {
-                client.Close();
+                await client.CloseAsync(WebSocketCloseStatus.NormalClosure, null, new CancellationToken());
             }
 
             client?.Dispose();
