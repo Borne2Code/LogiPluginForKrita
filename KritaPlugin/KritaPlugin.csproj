@@ -205,4 +205,8 @@
     <RemoveDir Directories="$(OutputPath)metadata" />
   </Target>
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+	  <Exec Command="for %25%25a in (..\KritaExtension\loopedeck_api_server\loopedeckApiServer.py) do echo %25%25~ta &gt; .\Resources\updatedAt.txt&#xD;&#xA;powershell -NoLogo -NoProfile -Command Compress-Archive -Update ..\KritaExtension\* .\Resources\KritaExtension.zip" />
+  </Target>
+
 </Project>

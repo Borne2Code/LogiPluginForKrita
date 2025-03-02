@@ -6,7 +6,7 @@ namespace Loupedeck.KritaPlugin
 
     public class ToolMoveCommand : PluginDynamicCommand
     {
-        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the command class.
         public ToolMoveCommand()
@@ -21,7 +21,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override void RunCommand(string actionParameter)
         {
-            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.KritaTransform_KisToolMove).Wait();
+            Client.KritaInstance.ExecuteAction(ActionsNames.KritaTransform_KisToolMove).Wait();
         }
     }
 }

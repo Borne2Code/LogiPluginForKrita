@@ -6,7 +6,7 @@ namespace Loupedeck.KritaPlugin
 
     public class ViewMoveLayerAdjustment : PluginDynamicAdjustment
     {
-        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
@@ -25,11 +25,11 @@ namespace Loupedeck.KritaPlugin
         {
             if (diff > 0)
             {
-                KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_down).Wait();
+                Client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_down).Wait();
             }
             else
             {
-                KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_up).Wait();
+                Client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_up).Wait();
             }
             //this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
         }
@@ -37,7 +37,7 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
-            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Toggle_layer_visibility).Wait();
+            Client.KritaInstance.ExecuteAction(ActionsNames.Toggle_layer_visibility).Wait();
         }
 
         // Returns the adjustment value that is shown next to the dial.

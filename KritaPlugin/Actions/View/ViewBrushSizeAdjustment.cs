@@ -1,10 +1,12 @@
+using LoupedeckKritaApiClient.ClientBase;
+
 namespace Loupedeck.KritaPlugin
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
     public class ViewBrushSizeAdjustment : PluginDynamicAdjustment
     {
-        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
@@ -21,14 +23,14 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
-            var brushSize = KritaPlugin.Client.CurrentView.BrushSize().Result;
+            var brushSize = Client.CurrentView.BrushSize().Result;
             var delta = Math.Max(brushSize * (float)Math.Abs(diff) / 20, 0.01) * Math.Sign(diff);
             var newBrushSize = (float)Math.Round(brushSize + delta, 2);
             newBrushSize = (float)Math.Min(Math.Max(newBrushSize, 0.01), 3000);
 
             if (newBrushSize != brushSize)
             {
-                KritaPlugin.Client.CurrentView.SetBrushSize(newBrushSize).Wait();
+                Client.CurrentView.SetBrushSize(newBrushSize).Wait();
                 this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
             }
         }
@@ -41,7 +43,7 @@ namespace Loupedeck.KritaPlugin
         // Returns the adjustment value that is shown next to the dial.
         protected override String GetAdjustmentValue(String actionParameter)
         {
-            return Math.Round(KritaPlugin.Client.CurrentView.BrushSize().Result, 2).ToString();
+            return Math.Round(Client.CurrentView.BrushSize().Result, 2).ToString();
         }
     }
 }

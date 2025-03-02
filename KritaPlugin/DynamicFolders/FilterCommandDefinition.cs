@@ -1,4 +1,4 @@
-﻿namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
+﻿namespace Loupedeck.KritaPlugin.DynamicFolders
 {
     internal class FilterCommandDefinition
     {

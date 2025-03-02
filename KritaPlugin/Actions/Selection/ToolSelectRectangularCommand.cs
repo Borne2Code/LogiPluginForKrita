@@ -6,7 +6,7 @@ namespace Loupedeck.KritaPlugin
 
     public class ToolSelectRectangularCommand : PluginDynamicCommand
     {
-        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the command class.
         public ToolSelectRectangularCommand()
@@ -21,7 +21,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override void RunCommand(string actionParameter)
         {
-            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.KisToolSelectRectangular).Wait();
+            Client.KritaInstance.ExecuteAction(ActionsNames.KisToolSelectRectangular).Wait();
         }
     }
 }

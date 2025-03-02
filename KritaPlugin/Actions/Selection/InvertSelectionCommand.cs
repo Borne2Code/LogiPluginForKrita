@@ -6,7 +6,7 @@ namespace Loupedeck.KritaPlugin
 
     public class InvertSelectionCommand : PluginDynamicCommand
     {
-        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the command class.
         public InvertSelectionCommand()
@@ -21,7 +21,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override void RunCommand(string actionParameter)
         {
-            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Invert_selection).Wait();
+            Client.KritaInstance.ExecuteAction(ActionsNames.Invert_selection).Wait();
         }
     }
 }

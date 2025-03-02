@@ -1,4 +1,4 @@
-﻿namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
+﻿namespace Loupedeck.KritaPlugin.DynamicFolders
 {
     internal class FilterAdjustmentDefinition
     {
@@ -34,7 +34,7 @@
 
         public override string ToString()
         {
-            return $"{Math.Round(Value, DisplayDigits)}{(string.IsNullOrEmpty(DisplayUnit) ? "" : (" " + DisplayUnit))}";
+            return $"{Math.Round(Value, DisplayDigits)}{(string.IsNullOrEmpty(DisplayUnit) ? "" : " " + DisplayUnit)}";
         }
     }
 

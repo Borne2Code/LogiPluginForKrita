@@ -7,6 +7,26 @@ namespace Loupedeck.KritaPlugin
 
     public class KritaApplication : ClientApplication
     {
+        private Client _client;
+        public Client Client
+        {
+            get
+            {
+                if (_client == null)
+                {
+                    var newClient = new Client();
+                    newClient.Connect().Wait();
+                    _client = newClient;
+                }
+
+                return _client;
+            }
+            private set
+            {
+                _client = value;
+            }
+        }
+
         public KritaApplication()
         {
         }

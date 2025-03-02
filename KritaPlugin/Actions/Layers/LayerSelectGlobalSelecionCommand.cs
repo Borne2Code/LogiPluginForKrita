@@ -6,7 +6,7 @@ namespace Loupedeck.KritaPlugin
 
     public class LayerSelectGlobalSelecionCommand : PluginDynamicCommand
     {
-        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the command class.
         public LayerSelectGlobalSelecionCommand()
@@ -21,7 +21,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override void RunCommand(string actionParameter)
         {
-            KritaPlugin.Client.CurrentDocument.SetActiveNode(KritaPlugin.Client.GlobalSelectionNode).Wait();
+            Client.CurrentDocument.SetActiveNode(Client.GlobalSelectionNode).Wait();
         }
     }
 }

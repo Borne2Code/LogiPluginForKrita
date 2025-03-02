@@ -6,7 +6,7 @@ namespace Loupedeck.KritaPlugin
 
     public class SelectionGrowShrinkAdjustment : PluginDynamicAdjustment
     {
-        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
         //private Timer? _timer;
 
         // Initializes the adjustment class.
@@ -26,12 +26,12 @@ namespace Loupedeck.KritaPlugin
         {
             if (diff > 0)
             {
-                var selection = KritaPlugin.Client.CurrentSelection;
+                var selection = Client.CurrentSelection;
                 {
                     if (selection != null)
                     {
                         selection.Grow(diff).Wait();
-                        var action = KritaPlugin.Client.KritaInstance.Action(ActionsNames.Invert_selection).Result;
+                        var action = Client.KritaInstance.Action(ActionsNames.Invert_selection).Result;
                         action.Trigger();
                         action.Trigger();
                         action.DisposeAsync().AsTask().Wait();
@@ -41,13 +41,13 @@ namespace Loupedeck.KritaPlugin
             }
             else if (diff < 0)
             {
-                var selection = KritaPlugin.Client.CurrentSelection;
+                var selection = Client.CurrentSelection;
                 if (selection != null)
                 {
                     if (selection != null)
                     {
                         selection.Shrink(-diff).Wait();
-                        var action = KritaPlugin.Client.KritaInstance.Action(ActionsNames.Invert_selection).Result;
+                        var action = Client.KritaInstance.Action(ActionsNames.Invert_selection).Result;
                         action.Trigger();
                         action.Trigger();
                         action.DisposeAsync().AsTask().Wait();

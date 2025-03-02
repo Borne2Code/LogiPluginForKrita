@@ -6,7 +6,7 @@ namespace Loupedeck.KritaPlugin
 
     public class LayerLockAlphaCommand : PluginDynamicCommand
     {
-        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the command class.
         public LayerLockAlphaCommand()
@@ -21,7 +21,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override void RunCommand(string actionParameter)
         {
-            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Toggle_layer_alpha_lock).Wait();
+            Client.KritaInstance.ExecuteAction(ActionsNames.Toggle_layer_alpha_lock).Wait();
         }
     }
 }

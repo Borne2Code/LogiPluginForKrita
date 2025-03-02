@@ -6,7 +6,7 @@ namespace Loupedeck.KritaPlugin
 
     public class LayerNewGroup : PluginDynamicCommand
     {
-        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the command class.
         public LayerNewGroup()
@@ -21,7 +21,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override void RunCommand(string actionParameter)
         {
-            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_group_layer).Wait();
+            Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_group_layer).Wait();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
-using Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions;
 using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders

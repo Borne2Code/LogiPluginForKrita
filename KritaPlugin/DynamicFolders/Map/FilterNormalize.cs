@@ -1,5 +1,4 @@
-﻿using Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {

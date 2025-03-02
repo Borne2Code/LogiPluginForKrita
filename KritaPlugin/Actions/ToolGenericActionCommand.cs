@@ -1,10 +1,12 @@
+using LoupedeckKritaApiClient.ClientBase;
+
 namespace Loupedeck.KritaPlugin
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
     public class ToolGenericActionCommand : PluginDynamicCommand
     {
-        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the command class.
         public ToolGenericActionCommand()
@@ -15,7 +17,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override void RunCommand(string actionParameter)
         {
-            KritaPlugin.Client.KritaInstance.ExecuteAction(actionParameter).Wait();
+            Client.KritaInstance.ExecuteAction(actionParameter).Wait();
         }
     }
 }

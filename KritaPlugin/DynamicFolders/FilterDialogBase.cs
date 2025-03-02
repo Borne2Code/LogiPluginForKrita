@@ -1,11 +1,12 @@
 ﻿using LoupedeckKritaApiClient;
+using LoupedeckKritaApiClient.ClientBase;
 using LoupedeckKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
+namespace Loupedeck.KritaPlugin.DynamicFolders
 {
     public abstract class FilterDialogBase : PluginDynamicFolder
     {
-        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
         private FilterDialogDefinition filterDialogDefinition;
         internal FilterDialog Dialog { get; private set; }
 
@@ -30,7 +31,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders.FilterDefinitions
         {
             ResetDialog();
 
-            Dialog = Filter.GetFilterDialog(KritaPlugin.Client, filterDialogDefinition.FilterType).Result;
+            Dialog = Filter.GetFilterDialog(Client, filterDialogDefinition.FilterType).Result;
 
             return true;
         }

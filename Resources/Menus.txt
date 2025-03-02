@@ -150,7 +150,6 @@
 		Other (Light green)
 		Apply Again
 		Apply Again...
-		Go to Tools...
 		---------------- (Adjust)
 		Slope/Offset/Power
 		Auto-contrast

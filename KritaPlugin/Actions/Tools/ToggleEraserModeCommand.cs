@@ -6,7 +6,7 @@ namespace Loupedeck.KritaPlugin
 
     public class ToggleEraserModeCommand : PluginDynamicCommand
     {
-        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the command class.
         public ToggleEraserModeCommand()
@@ -16,7 +16,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override void RunCommand(string actionParameter)
         {
-            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Erase_action).Wait();
+            Client.KritaInstance.ExecuteAction(ActionsNames.Erase_action).Wait();
         }
     }
 }

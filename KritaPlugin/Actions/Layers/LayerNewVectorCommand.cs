@@ -6,7 +6,7 @@ namespace Loupedeck.KritaPlugin
 
     public class LayerNewVectorCommand : PluginDynamicCommand
     {
-        private KritaPlugin KritaPlugin => (KritaPlugin)Plugin;
+        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the command class.
         public LayerNewVectorCommand()
@@ -21,7 +21,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override void RunCommand(string actionParameter)
         {
-            KritaPlugin.Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_shape_layer).Wait();
+            Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_shape_layer).Wait();
         }
     }
 }
