@@ -78,6 +78,8 @@
     <None Remove="images\ToolSelectSimilarColors.png" />
     <None Remove="images\ToolSmartPatch.png" />
     <None Remove="images\ToolTransform.png" />
+    <None Remove="Resources\KritaExtension.zip" />
+    <None Remove="Resources\updatedAt.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -159,6 +161,8 @@
     <EmbeddedResource Include="images\ToolSelectSimilarColors.png" />
     <EmbeddedResource Include="images\ToolSmartPatch.png" />
     <EmbeddedResource Include="images\ToolTransform.png" />
+    <EmbeddedResource Include="Resources\KritaExtension.zip" />
+    <EmbeddedResource Include="Resources\updatedAt.txt" />
   </ItemGroup>
 
   <ItemGroup>

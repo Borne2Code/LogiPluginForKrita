@@ -5,3 +5,4 @@ obj
 KritaExtension/loopedeck_api_server/__pycache__
 LogiPluginSdkTools
 *.*~
+KritaPlugin/Resources

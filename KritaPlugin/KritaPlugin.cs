@@ -12,7 +12,7 @@ namespace Loupedeck.KritaPlugin
         // Gets a value indicating whether this is a Universal plugin or an Application plugin.
         public override Boolean HasNoApplication => false;
 
-        KritaApplication KritaApplication { get => (KritaApplication)ClientApplication; }
+        public KritaApplication KritaApplication { get => (KritaApplication)ClientApplication; }
 
         // Initializes a new instance of the plugin class.
         public KritaPlugin()
@@ -27,6 +27,7 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the plugin is loaded.
         public override void Load()
         {
+            KritaApplication.CheckAndUpdateKritaExtension();
         }
 
         // This method is called when the plugin is unloaded.

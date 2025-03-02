@@ -10,8 +10,4 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="xcopy C:\DEV\LoopedeckPluginForKrita\KritaExtension\* &quot;%25appdata%25/krita/pykrita&quot; /s /e /Y" />
-  </Target>
-
 </Project>
