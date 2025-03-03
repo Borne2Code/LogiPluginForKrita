@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "KritaPlugin": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Logi\\LogiPluginService\\LogiPluginService.exe"
+    }
+  }
+}
