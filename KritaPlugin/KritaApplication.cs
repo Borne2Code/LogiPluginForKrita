@@ -60,33 +60,5 @@ namespace Loupedeck.KritaPlugin
                 return ClientApplicationStatus.Unknown;
             }
         }
-
-        public void CheckAndUpdateKritaExtension()
-        {
-            var kritaPluginsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita");
-            var pluginFile = new FileInfo(Path.Combine(kritaPluginsPath, "loopedeck_api_server", "loopedeckApiServer.py"));
-
-            string plugInUpdateContent;
-            var thisAssembly = Assembly.GetExecutingAssembly();
-            using (var stream = thisAssembly.GetManifestResourceStream("Loupedeck.KritaPlugin.Resources.updatedAt.txt"))
-            using (var reader = new StreamReader(stream))
-            {
-                plugInUpdateContent = reader.ReadToEnd();
-            }
-
-            if(!DateTime.TryParse(plugInUpdateContent, out var plugInUpdateDate))
-            {
-                return;
-            }
-
-            if (!pluginFile.Exists || pluginFile.LastWriteTime < plugInUpdateDate)
-            {
-                //install or update extension
-                using (var stream = thisAssembly.GetManifestResourceStream("Loupedeck.KritaPlugin.Resources.KritaExtension.zip"))
-                {
-                    ZipFile.ExtractToDirectory(stream, kritaPluginsPath, true);
-                }
-            }
-        }
     }
 }

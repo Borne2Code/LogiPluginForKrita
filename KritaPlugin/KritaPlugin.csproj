@@ -78,8 +78,9 @@
     <None Remove="images\ToolSelectSimilarColors.png" />
     <None Remove="images\ToolSmartPatch.png" />
     <None Remove="images\ToolTransform.png" />
-    <None Remove="Resources\KritaExtension.zip" />
-    <None Remove="Resources\updatedAt.txt" />
+    <None Remove="Resources\loopedeckApiServer.py" />
+    <None Remove="Resources\loopedeck_api_server.desktop" />
+    <None Remove="Resources\__init__.py" />
   </ItemGroup>
 
   <ItemGroup>
@@ -161,8 +162,9 @@
     <EmbeddedResource Include="images\ToolSelectSimilarColors.png" />
     <EmbeddedResource Include="images\ToolSmartPatch.png" />
     <EmbeddedResource Include="images\ToolTransform.png" />
-    <EmbeddedResource Include="Resources\KritaExtension.zip" />
-    <EmbeddedResource Include="Resources\updatedAt.txt" />
+    <EmbeddedResource Include="Resources\loopedeckApiServer.py" />
+    <EmbeddedResource Include="Resources\loopedeck_api_server.desktop" />
+    <EmbeddedResource Include="Resources\__init__.py" />
   </ItemGroup>
 
   <ItemGroup>
@@ -207,10 +209,6 @@
     <Exec Condition="$(OS) != 'Windows_NT'" Command="rm -f $(PluginDir)$(ProjectName).link" />
 
     <RemoveDir Directories="$(OutputPath)metadata" />
-  </Target>
-
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-	  <Exec Command="for %25%25a in (..\KritaExtension\loopedeck_api_server\loopedeckApiServer.py) do echo %25%25~ta &gt; .\Resources\updatedAt.txt&#xD;&#xA;powershell -NoLogo -NoProfile -Command Compress-Archive -Update ..\KritaExtension\* .\Resources\KritaExtension.zip" />
   </Target>
 
 </Project>

@@ -1,9 +1,9 @@
+using System.IO.Compression;
+using System.Reflection;
+
 namespace Loupedeck.KritaPlugin
 {
-    using System;
-
     // This class contains the plugin-level logic of the Loupedeck plugin.
-
     public class KritaPlugin : Plugin
     {
         // Gets a value indicating whether this is an API-only plugin.
@@ -27,7 +27,6 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the plugin is loaded.
         public override void Load()
         {
-            KritaApplication.CheckAndUpdateKritaExtension();
         }
 
         // This method is called when the plugin is unloaded.
@@ -37,6 +36,48 @@ namespace Loupedeck.KritaPlugin
             {
                 await KritaApplication.Client.DisposeAsync();
             }
+        }
+
+        public override bool Install()
+        {
+            var kritaPluginsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita");
+            var thisAssembly = Assembly.GetExecutingAssembly();
+            thisAssembly.ExtractFileToDirectory("Loupedeck.KritaPlugin.Resources.loopedeck_api_server.desktop", kritaPluginsPath);
+
+            var kritaLoopedeckPluginPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita", "loopedeck_api_server");
+            thisAssembly.ExtractFileToDirectory("Loupedeck.KritaPlugin.Resources.__init__.py", kritaLoopedeckPluginPath);
+            thisAssembly.ExtractFileToDirectory("Loupedeck.KritaPlugin.Resources.loopedeckApiServer.py", kritaLoopedeckPluginPath);
+
+            return true;
+        }
+
+        public override bool Uninstall()
+        {
+            var kritaPluginsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita");
+
+            var kritaplugInDesktopFile = Path.Combine(kritaPluginsPath, "loopedeck_api_server.desktop");
+            if (File.Exists(kritaplugInDesktopFile))
+            {
+                File.Delete(kritaplugInDesktopFile);
+            }
+
+            var kritaLoopedeckPluginPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita", "loopedeck_api_server");
+            if(Directory.Exists(kritaLoopedeckPluginPath))
+            {
+                var kritaplugInInitFile = Path.Combine(kritaLoopedeckPluginPath, "__init__.py");
+                if (File.Exists(kritaplugInInitFile))
+                {
+                    File.Delete(kritaplugInInitFile);
+                }
+
+                var kritaplugInSourceFile = Path.Combine(kritaLoopedeckPluginPath, "loopedeckApiServer.py");
+                if (File.Exists(kritaplugInSourceFile))
+                {
+                    File.Delete(kritaplugInSourceFile);
+                }
+            }
+
+            return true;
         }
     }
 }
