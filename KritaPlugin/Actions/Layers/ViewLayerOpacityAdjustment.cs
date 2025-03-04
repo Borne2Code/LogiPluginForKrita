@@ -1,3 +1,4 @@
+using System.Reflection;
 using LoupedeckKritaApiClient.ClientBase;
 
 namespace Loupedeck.KritaPlugin
@@ -18,7 +19,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override BitmapImage GetAdjustmentImage(string actionParameter, PluginImageSize imageSize)
         {
-            return EmbeddedResources.ReadImage(EmbeddedResources.FindFile("LayerOpacity.png"));
+            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.LayerOpacity.png");
         }
 
         // This method is called when the adjustment is executed.
