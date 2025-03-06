@@ -13,7 +13,7 @@ namespace LoupedeckClient
         private LoupedeckKritaApiClient.View? view;
         private Canvas? canvas;
 
-        private FilterDialog filterDialog;
+        private FilterDialogBase filterDialog;
 
         public Form1()
         {
@@ -121,19 +121,19 @@ namespace LoupedeckClient
             }
         }
 
-        private async Task ActivateFilterDialog(FiltersEnum filterType)
+        private async Task ActivateFilterDialog(string filterName)
         {
             if (filterDialog != null)
             {
                 await filterDialog.DisposeAsync();
             }
 
-            filterDialog = await Filter.GetFilterDialog(client, filterType);
+            filterDialog = await FilterDialog.GetFilterDialog(client, filterName);
         }
 
         private async void button5_Click(object sender, EventArgs e)
         {
-            await ActivateFilterDialog(FiltersEnum.Burn);
+            await ActivateFilterDialog(FilterNames.Burn);
         }
 
         private async void radioButton3_CheckedChanged(object sender, EventArgs e)
@@ -180,7 +180,7 @@ namespace LoupedeckClient
 
         private async void bBlurActivate_Click(object sender, EventArgs e)
         {
-            await ActivateFilterDialog(FiltersEnum.Blur);
+            await ActivateFilterDialog(FilterNames.Blur);
         }
 
         private async void sliderBlurHorRadius_ValueChanged(object sender, EventArgs e)
@@ -215,7 +215,7 @@ namespace LoupedeckClient
 
         private async void ColorBalanceActivate_Click(object sender, EventArgs e)
         {
-            await ActivateFilterDialog(FiltersEnum.ColorBalance);
+            await ActivateFilterDialog(FilterNames.ColorBalance);
         }
 
         private async void ColorBalanceCyanRedShadows_ValueChanged(object sender, EventArgs e)

@@ -1,25 +1,35 @@
 ﻿using LoupedeckKritaApiClient;
 using LoupedeckKritaApiClient.ClientBase;
-using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
     public abstract class FilterDialogBase : PluginDynamicFolder
     {
-        private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
-        private FilterDialogDefinition filterDialogDefinition;
-        internal FilterDialog Dialog { get; private set; }
+        protected Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
+        protected FilterDialogDefinition filterDialogDefinition;
+        internal LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase Dialog { get; set; }
 
         private const string ShowDialog = "Show dialog";
 
+        private const string ShowCreateFilterMaskName = "Set as mask";
         private const string Cancel = "Cancel";
         private const string Validate = "OK";
+        private bool ShowCreateFilterMask;
 
-        internal FilterDialogBase(FilterDialogDefinition filterDefinition)
+        internal FilterDialogBase(string filterName)
         {
-            DisplayName = filterDefinition.Name;
+            filterDialogDefinition = FilterDialogDefinitionsList.FilterDialogDefintionList[filterName];
+            DisplayName = filterDialogDefinition.Name;
             GroupName = ActionGroups.Filters;
-            filterDialogDefinition = filterDefinition;
+            ShowCreateFilterMask = true;
+        }
+
+        internal FilterDialogBase()
+        {
+            DisplayName = "Filter Layer Properties";
+            GroupName = ActionGroups.Filters;
+            filterDialogDefinition = null;
+            ShowCreateFilterMask = false;
         }
 
         public override PluginDynamicFolderNavigation GetNavigationArea(DeviceType _)
@@ -31,7 +41,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             ResetDialog();
 
-            Dialog = Filter.GetFilterDialog(Client, filterDialogDefinition.FilterType).Result;
+            Dialog = FilterDialog.GetFilterDialog(Client, filterDialogDefinition.FilterName).Result;
 
             return true;
         }
@@ -42,7 +52,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return true;
         }
 
-        private void ResetDialog()
+        protected void ResetDialog()
         {
             if (Dialog != null)
             {
@@ -64,27 +74,39 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             commands.Add(CreateCommandName(ShowDialog));
 
             var commandsCount = 1;
-            foreach (var command in filterDialogDefinition.Commands)
+            if (filterDialogDefinition != null)
             {
-                commands.Add(CreateCommandName(command.Name));
-                commandsCount++;
-
-                if (commandsCount == 10)
+                foreach (var command in filterDialogDefinition.Commands)
                 {
-                    commands.Add(CreateCommandName(Cancel));
-                    commands.Add(CreateCommandName(Validate));
-                    commandsCount = 0;
+                    commands.Add(CreateCommandName(command.Name));
+                    commandsCount++;
+
+                    if(commandsCount == 9 && ShowCreateFilterMask)
+                    {
+                        commands.Add(CreateCommandName(ShowCreateFilterMaskName));
+                        commandsCount++;
+                    }
+                    if (commandsCount == 10)
+                    {
+                        commands.Add(CreateCommandName(Cancel));
+                        commands.Add(CreateCommandName(Validate));
+                        commandsCount = 0;
+                    }
                 }
             }
 
             if (commandsCount > 0)
             {
-                while (commandsCount < 10)
+                while (commandsCount < (9 + (ShowCreateFilterMask?0:1)))
                 {
                     commands.Add(string.Empty);
                     commandsCount++;
                 }
 
+                if (ShowCreateFilterMask)
+                {
+                    commands.Add(CreateCommandName(ShowCreateFilterMaskName));
+                }
                 commands.Add(CreateCommandName(Cancel));
                 commands.Add(CreateCommandName(Validate));
             }
@@ -96,10 +118,13 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             List<string> adjustments = new List<string>();
 
-            foreach (var adjustment in filterDialogDefinition.Adjustments)
+            if (filterDialogDefinition != null)
             {
-                adjustments.Add(CreateAdjustmentName(adjustment.Name));
-                adjustment.ValueChanged += Adjustment_ValueChanged;
+                foreach (var adjustment in filterDialogDefinition.Adjustments)
+                {
+                    adjustments.Add(CreateAdjustmentName(adjustment.Name));
+                    adjustment.ValueChanged += Adjustment_ValueChanged;
+                }
             }
 
             return adjustments;
@@ -109,9 +134,12 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             List<string> adjustments = new List<string>();
 
-            foreach (var adjustment in filterDialogDefinition.Adjustments)
+            if (filterDialogDefinition != null)
             {
-                adjustments.Add(CreateCommandName(adjustment.Name));
+                foreach (var adjustment in filterDialogDefinition.Adjustments)
+                {
+                    adjustments.Add(CreateCommandName(adjustment.Name));
+                }
             }
 
             return adjustments;
@@ -152,6 +180,12 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     SecureClose(() =>
                     {
                         Dialog.Cancel().Wait();
+                    });
+                    break;
+                case ShowCreateFilterMaskName:
+                    SecureClose(() =>
+                    {
+                        Dialog.CreateMask().Wait();
                     });
                     break;
                 default:

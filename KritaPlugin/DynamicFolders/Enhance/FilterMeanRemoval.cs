@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterMeanRemoval : FilterDialogBase
     {
         public FilterMeanRemoval()
-            : base(GetDefinition())
+            : base(FilterNames.MeanRemoval)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Mean removal",
-                FiltersEnum.MeanRemoval);
+                FilterNames.MeanRemoval);
         }
     }
 }

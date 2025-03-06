@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterColorTranfer(Client client) : FilterDialog(client)
+    public class KritaFilterColorTranfer(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_colortransfer";
 

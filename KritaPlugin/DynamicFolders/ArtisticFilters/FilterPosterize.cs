@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterPosterize : FilterDialogBase
     {
         public FilterPosterize()
-            : base(GetDefinition())
+            : base(FilterNames.Posterize)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Posterize",
-                FiltersEnum.Posterize,
+                FilterNames.Posterize,
                 [
                 ],
                 [

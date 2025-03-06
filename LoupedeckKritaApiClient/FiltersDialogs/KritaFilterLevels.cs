@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterLevels(Client client) : FilterDialog(client)
+    public class KritaFilterLevels(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_levels";
 

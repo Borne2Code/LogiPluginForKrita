@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterColorMinimize : FilterDialogBase
     {
         public FilterColorMinimize()
-            : base(GetDefinition())
+            : base(FilterNames.Minimize)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Minimize channels",
-                FiltersEnum.Minimize);
+                FilterNames.Minimize);
         }
     }
 }

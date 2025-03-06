@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterPhongBumpmap : FilterDialogBase
     {
         public FilterPhongBumpmap()
-            : base(GetDefinition())
+            : base(FilterNames.PhongBumpMap)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Phong Bumpmap",
-                FiltersEnum.PhongBumpMap,
+                FilterNames.PhongBumpMap,
                 [],
                 []);
         }

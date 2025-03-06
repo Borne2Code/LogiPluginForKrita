@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterBlur : FilterDialogBase
     {
         public FilterBlur()
-            : base(GetDefinition())
+            : base(FilterNames.Blur)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Blur",
-                FiltersEnum.Blur,
+                FilterNames.Blur,
                 [
                     new FilterCommandDefinition("Lock Hor./Vert.", (dialog) => ((KritaFilterBlur)dialog.Dialog).ToggleLockAspect()),
                     new FilterCommandDefinition("Shape Circle", (dialog) => ((KritaFilterBlur)dialog.Dialog).SetShape(KritaFilterBlur.ShapeEnum.Circle)),

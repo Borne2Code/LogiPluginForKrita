@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterGaussianBlur : FilterDialogBase
     {
         public FilterGaussianBlur()
-            : base(GetDefinition())
+            : base(FilterNames.GaussianBlur)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Gaussian Blur",
-                FiltersEnum.GaussianBlur,
+                FilterNames.GaussianBlur,
                 [
                     new FilterCommandDefinition("Lock aspect", (dialog) => ((KritaFilterGaussianBlur)dialog.Dialog).ToggleLockHorizontalVertical()),
                 ],

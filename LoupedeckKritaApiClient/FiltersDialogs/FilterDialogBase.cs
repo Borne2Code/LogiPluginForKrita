@@ -1,13 +1,14 @@
-﻿using LoupedeckKritaApiClient.ClientBase;
+﻿using System.Reflection;
+using LoupedeckKritaApiClient.ClientBase;
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public abstract class FilterDialog : IAsyncDisposable
+    public abstract class FilterDialogBase : IAsyncDisposable
     {
         private Client _client;
         private string? _filterConfigWidgetReference = null;
 
-        public FilterDialog(Client client)
+        public FilterDialogBase(Client client)
         {
             _client = client;
         }
@@ -18,6 +19,11 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
         {
             await using var action = await _client.KritaInstance.Action(ActionName);
             await action.Trigger();
+            _filterConfigWidgetReference = (string)(await _client.GetFilterConfigWidget()).Value;
+        }
+
+        public async Task AttachDialog()
+        {
             _filterConfigWidgetReference = (string)(await _client.GetFilterConfigWidget()).Value;
         }
 
@@ -32,6 +38,13 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
         {
 #pragma warning disable CS8604 // Possible null reference argument.
             await _client.CancelFilter(_filterConfigWidgetReference);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+
+        public async Task CreateMask()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await _client.CreateFilterMask(_filterConfigWidgetReference);
 #pragma warning restore CS8604 // Possible null reference argument.
         }
 

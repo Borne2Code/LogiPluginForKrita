@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterSmallTiles(Client client) : FilterDialog(client)
+    public class KritaFilterSmallTiles(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_smalltiles";
 

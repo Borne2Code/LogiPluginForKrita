@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterEmboss : FilterDialogBase
     {
         public FilterEmboss()
-            : base(GetDefinition())
+            : base(FilterNames.Emboss)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Emboss",
-                FiltersEnum.Emboss,
+                FilterNames.Emboss,
                 [],
                 [
                     new FilterAdjustmentDefinition("Depth", (dialog, delta) => ((KritaFilterEmboss)dialog.Dialog).AdjustDepth((int)delta).Result, 30),

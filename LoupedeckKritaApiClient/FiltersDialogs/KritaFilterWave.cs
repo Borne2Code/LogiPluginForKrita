@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterWave(Client client) : FilterDialog(client)
+    public class KritaFilterWave(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_wave";
 

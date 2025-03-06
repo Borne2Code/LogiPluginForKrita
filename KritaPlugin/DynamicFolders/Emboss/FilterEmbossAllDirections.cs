@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterEmbossAllDirections : FilterDialogBase
     {
         public FilterEmbossAllDirections()
-            : base(GetDefinition())
+            : base(FilterNames.EmbossAllDirections)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Emboss All directions",
-                FiltersEnum.EmbossAllDirections);
+                FilterNames.EmbossAllDirections);
         }
     }
 }

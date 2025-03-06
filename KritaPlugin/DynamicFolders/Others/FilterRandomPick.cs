@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterRandomPick : FilterDialogBase
     {
         public FilterRandomPick()
-            : base(GetDefinition())
+            : base(FilterNames.RandomPick)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Random Pick",
-                FiltersEnum.RandomPick,
+                FilterNames.RandomPick,
                 [],
                 [
                     new FilterAdjustmentDefinition("Level", (dialog, delta) => ((KritaFilterRandomPick)dialog.Dialog).AdjustLevel((int)delta).Result, 50),

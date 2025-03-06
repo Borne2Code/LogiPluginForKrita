@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterAscCdl : FilterDialogBase
     {
         public FilterAscCdl()
-            : base(GetDefinition())
+            : base(FilterNames.AscCdl)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Slope / Offset / Power (Asc-Cdl)",
-                FiltersEnum.AscCdl,
+                FilterNames.AscCdl,
                 [],
                 []);
         }

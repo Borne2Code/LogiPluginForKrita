@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterHeightToNormal : FilterDialogBase
     {
         public FilterHeightToNormal()
-            : base(GetDefinition())
+            : base(FilterNames.HeightToNormal)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Height To Normal",
-                FiltersEnum.HeightToNormal,
+                FilterNames.HeightToNormal,
                 [
                     new FilterCommandDefinition("Formula Prewitt", (dialog) => ((KritaFilterHeightToNormal)dialog.Dialog).SetType(KritaFilterHeightToNormal.Type.Prewitt)),
                     new FilterCommandDefinition("Formula Sobel", (dialog) => ((KritaFilterHeightToNormal)dialog.Dialog).SetType(KritaFilterHeightToNormal.Type.Sobel)),

@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterRainDrops : FilterDialogBase
     {
         public FilterRainDrops()
-            : base(GetDefinition())
+            : base(FilterNames.RainDrops)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Rain Drops",
-                FiltersEnum.RainDrops,
+                FilterNames.RainDrops,
                 [
                 ],
                 [

@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterInvert : FilterDialogBase
     {
         public FilterInvert()
-            : base(GetDefinition())
+            : base(FilterNames.Invert)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Invert",
-                FiltersEnum.Invert);
+                FilterNames.Invert);
         }
     }
 }

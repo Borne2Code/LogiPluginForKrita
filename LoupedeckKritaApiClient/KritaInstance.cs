@@ -35,7 +35,6 @@ namespace LoupedeckKritaApiClient
                 colorDepth,
                 profile,
                 resolution);
-        public Task<Filter> Filter(string name) => Get<Filter>("filter", name);
         public Task<IEnumerable<string>> Filters() => GetStringList("filters");
         public Task<IEnumerable<string>> FilterStrategies() => GetStringList("filterStrategies");
         public Task<string> GetAppDataLocation() => GetStr("getAppDataLocation");

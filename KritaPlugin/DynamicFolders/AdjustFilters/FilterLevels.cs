@@ -6,14 +6,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterLevels : FilterDialogBase
     {
         public FilterLevels()
-            : base(GetDefinition())
+            : base(FilterNames.Levels)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Levels",
-                FiltersEnum.Levels,
+                FilterNames.Levels,
                 [
                     new FilterCommandDefinition("Lightness", (dialog) => ((KritaFilterLevels)dialog.Dialog).SetLightnessMode()),
                     new FilterCommandDefinition("All channels", (dialog) => ((KritaFilterLevels)dialog.Dialog).SetAllChannelsMode()),

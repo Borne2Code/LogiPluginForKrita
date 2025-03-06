@@ -6,14 +6,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterCrossChannelColorAdjustment : FilterDialogBase
     {
         public FilterCrossChannelColorAdjustment()
-            : base(GetDefinition())
+            : base(FilterNames.CrossChannel)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Cross channel Adjustment",
-                FiltersEnum.CrossChannel,
+                FilterNames.CrossChannel,
                 [
                     new FilterCommandDefinition("Channel RGBA", (dialog) => ((KritaFilterCrossChannel)dialog.Dialog).SetTargetChannelIndex(KritaFilterCrossChannel.TargetChannel.RGBA)),
                     new FilterCommandDefinition("Channel Red", (dialog) => ((KritaFilterCrossChannel)dialog.Dialog).SetTargetChannelIndex(KritaFilterCrossChannel.TargetChannel.Red)),

@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterThreshold(Client client) : FilterDialog(client)
+    public class KritaFilterThreshold(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_threshold";
 

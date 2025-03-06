@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterHsvAdjustment(Client client) : FilterDialog(client)
+    public class KritaFilterHsvAdjustment(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_hsvadjustment";
 

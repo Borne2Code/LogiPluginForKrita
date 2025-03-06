@@ -1,6 +1,6 @@
 ﻿namespace Loupedeck.KritaPlugin.DynamicFolders
 {
-    internal class FilterCommandDefinition
+    public class FilterCommandDefinition
     {
         public string Name { get; }
         public Func<FilterDialogBase, Task> Action { get; }

@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterRoundCorners : FilterDialogBase
     {
         public FilterRoundCorners()
-            : base(GetDefinition())
+            : base(FilterNames.RoundCorners)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Round Corners",
-                FiltersEnum.RoundCorners,
+                FilterNames.RoundCorners,
                 [],
                 [
                     new FilterAdjustmentDefinition("Radius", (dialog, delta) => ((KritaFilterRoundCorners)dialog.Dialog).AdjustRadius((int)delta).Result, 30),

@@ -208,6 +208,10 @@ namespace LoupedeckKritaApiClient.ClientBase
             return InternalExecuteCall("FK", filterConfigWidgetReference);
         }
 
+        internal Task CreateFilterMask(string filterConfigWidgetReference)
+        {
+            return InternalExecuteCall("FM", filterConfigWidgetReference);
+        }
 
         internal Task ClickFilterWidget(string filterConfigWidgetReference, string[] widgetPathNames)
         {

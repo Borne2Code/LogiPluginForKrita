@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterIndexColors : FilterDialogBase
     {
         public FilterIndexColors()
-            : base(GetDefinition())
+            : base(FilterNames.IndexColors)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Index colors",
-                FiltersEnum.IndexColors,
+                FilterNames.IndexColors,
                 [],
                 []);
         }

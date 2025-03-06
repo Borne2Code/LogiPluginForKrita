@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterPosterize(Client client) : FilterDialog(client)
+    public class KritaFilterPosterize(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_posterize";
 

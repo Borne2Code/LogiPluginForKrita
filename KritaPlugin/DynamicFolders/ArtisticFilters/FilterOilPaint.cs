@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterOilPaint : FilterDialogBase
     {
         public FilterOilPaint()
-            : base(GetDefinition())
+            : base(FilterNames.OilPaint)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Oil Paint",
-                FiltersEnum.OilPaint,
+                FilterNames.OilPaint,
                 [
                 ],
                 [

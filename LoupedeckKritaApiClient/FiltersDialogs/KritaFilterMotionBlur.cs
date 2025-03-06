@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterMotionBlur(Client client) : FilterDialog(client)
+    public class KritaFilterMotionBlur(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_motion blur";
 

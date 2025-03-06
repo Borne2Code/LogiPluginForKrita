@@ -6,14 +6,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterHsvHsl : FilterDialogBase
     {
         public FilterHsvHsl()
-            : base(GetDefinition())
+            : base(FilterNames.HsvAdjustment)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Hsv/Hsl Adjustment",
-                FiltersEnum.HsvAdjustment,
+                FilterNames.HsvAdjustment,
                 [
                     new FilterCommandDefinition("Mode Hue/Sat/Value", (dialog) => ((KritaFilterHsvAdjustment)dialog.Dialog).SetType(KritaFilterHsvAdjustment.Type.HueSaturationValue)),
                     new FilterCommandDefinition("Mode Hue/Sat/Lightness", (dialog) => ((KritaFilterHsvAdjustment)dialog.Dialog).SetType(KritaFilterHsvAdjustment.Type.HueSaturationLightness)),

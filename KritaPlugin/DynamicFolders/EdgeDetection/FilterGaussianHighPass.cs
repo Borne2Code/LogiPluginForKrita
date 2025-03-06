@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterGaussianHighPass : FilterDialogBase
     {
         public FilterGaussianHighPass()
-            : base(GetDefinition())
+            : base(FilterNames.GaussianHighPass)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Gaussian High-Pass",
-                FiltersEnum.GaussianHighPass,
+                FilterNames.GaussianHighPass,
                 [],
                 [
                     new FilterAdjustmentDefinition("Radius", (dialog, delta) => ((KritaFilterGaussianHighPass)dialog.Dialog).AdjustRadius(delta).Result, 1),

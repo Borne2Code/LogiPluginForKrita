@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterLensBlur(Client client) : FilterDialog(client)
+    public class KritaFilterLensBlur(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_lens blur";
 

@@ -3,7 +3,7 @@ using LoupedeckKritaApiClient.ClientBase;
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterDodge(Client client) : FilterDialog(client)
+    public class KritaFilterDodge(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_dodge";
 

@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterRandomNoise : FilterDialogBase
     {
         public FilterRandomNoise()
-            : base(GetDefinition())
+            : base(FilterNames.Noise)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Random Noise",
-                FiltersEnum.Noise,
+                FilterNames.Noise,
                 [],
                 [
                     new FilterAdjustmentDefinition("Level", (dialog, delta) => ((KritaFilterNoise)dialog.Dialog).AdjustLevel((int)delta).Result, 50),

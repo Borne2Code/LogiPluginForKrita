@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterBurn : FilterDialogBase
     {
         public FilterBurn()
-            : base(GetDefinition())
+            : base(FilterNames.Burn)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Burn",
-                FiltersEnum.Burn,
+                FilterNames.Burn,
                 [
                     new FilterCommandDefinition("Shadows", (dialog) => ((KritaFilterBurn)dialog.Dialog).SelectShadows()),
                     new FilterCommandDefinition("Midtones", (dialog) => ((KritaFilterBurn)dialog.Dialog).SelectMidTones()),

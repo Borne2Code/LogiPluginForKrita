@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterLensBlur : FilterDialogBase
     {
         public FilterLensBlur()
-            : base(GetDefinition())
+            : base(FilterNames.LensBlur)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Lens Blur",
-                FiltersEnum.LensBlur,
+                FilterNames.LensBlur,
                 [
                     new FilterCommandDefinition("Shape triangle", (dialog) => ((KritaFilterLensBlur)dialog.Dialog).SetShape(KritaFilterLensBlur.Shape.Triangle)),
                     new FilterCommandDefinition("Shape quadrilateral", (dialog) => ((KritaFilterLensBlur)dialog.Dialog).SetShape(KritaFilterLensBlur.Shape.Quadrilateral)),

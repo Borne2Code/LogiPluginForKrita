@@ -5,7 +5,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterColorsBalance : FilterDialogBase
     {
         public FilterColorsBalance()
-            : base(GetDefinition())
+            : base(FilterNames.ColorBalance)
         {
         }
 
@@ -60,7 +60,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 (filterDialog) => ((KritaFilterColorBalance)filterDialog.Dialog).TogglePreserveLuminosity());
 
             return new FilterDialogDefinition("Colors balance",
-                FiltersEnum.ColorBalance,
+                FilterNames.ColorBalance,
                 [
                     resetShadows,
                     resetMidtones,

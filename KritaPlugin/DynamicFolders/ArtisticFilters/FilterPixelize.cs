@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterPixelize : FilterDialogBase
     {
         public FilterPixelize()
-            : base(GetDefinition())
+            : base(FilterNames.Pixelize)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Pixelize",
-                FiltersEnum.Pixelize,
+                FilterNames.Pixelize,
                 [
                 ],
                 [

@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterRandomPick(Client client) : FilterDialog(client)
+    public class KritaFilterRandomPick(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_randompick";
 

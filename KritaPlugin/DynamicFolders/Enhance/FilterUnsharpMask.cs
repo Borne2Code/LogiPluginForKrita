@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterUnsharpMask : FilterDialogBase
     {
         public FilterUnsharpMask()
-            : base(GetDefinition())
+            : base(FilterNames.Unsharp)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Unsharp Mask",
-                FiltersEnum.Unsharp,
+                FilterNames.Unsharp,
                 [
                     new FilterCommandDefinition("Lightness only", (dialog) => ((KritaFilterUnsharp)dialog.Dialog).ToggleLightnessOnly()),
                 ],

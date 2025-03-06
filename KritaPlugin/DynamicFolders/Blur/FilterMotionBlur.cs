@@ -2,17 +2,17 @@
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
-    public class FilterLensMotionBlur : FilterDialogBase
+    public class FilterMotionBlur : FilterDialogBase
     {
-        public FilterLensMotionBlur()
-            : base(GetDefinition())
+        public FilterMotionBlur()
+            : base(FilterNames.MotionBlur)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Motion Blur",
-                FiltersEnum.MotionBlur,
+                FilterNames.MotionBlur,
                 [],
                 [
                     new FilterAdjustmentDefinition("Angle", (dialog, delta) => ((KritaFilterMotionBlur)dialog.Dialog).AdjustBlurAngle((int)delta).Result),

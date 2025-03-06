@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterSharpen : FilterDialogBase
     {
         public FilterSharpen()
-            : base(GetDefinition())
+            : base(FilterNames.Sharpen)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Sharpen",
-                FiltersEnum.Sharpen);
+                FilterNames.Sharpen);
         }
     }
 }

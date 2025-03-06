@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterEmbossAllDirections(Client client) : FilterDialog(client)
+    public class KritaFilterEmbossAllDirections(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_emboss all directions";
 

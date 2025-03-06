@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterWave : FilterDialogBase
     {
         public FilterWave()
-            : base(GetDefinition())
+            : base(FilterNames.Wave)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Wave",
-                FiltersEnum.Wave,
+                FilterNames.Wave,
                 [
                     new FilterCommandDefinition("Hor. shape Sinus", (dialog) => ((KritaFilterWave)dialog.Dialog).SetHorizontalShape(KritaFilterWave.Shape.Sinusoidal)),
                     new FilterCommandDefinition("Hor. shape Triangle", (dialog) => ((KritaFilterWave)dialog.Dialog).SetHorizontalShape(KritaFilterWave.Shape.Triangle)),

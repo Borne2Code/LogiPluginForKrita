@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterGaussianBlur(Client client) : FilterDialog(client)
+    public class KritaFilterGaussianBlur(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_gaussian blur";
 

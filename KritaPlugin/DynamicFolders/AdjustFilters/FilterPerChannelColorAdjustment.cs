@@ -1,19 +1,18 @@
-﻿using System.Runtime.CompilerServices;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
     public class FilterPerChannelColorAdjustment : FilterDialogBase
     {
         public FilterPerChannelColorAdjustment()
-            : base(GetDefinition())
+            : base(FilterNames.PerChannelColorAdjustment)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Color Adjustment",
-                FiltersEnum.PerChannelColorAdjustment,
+                FilterNames.PerChannelColorAdjustment,
                 [
                     new FilterCommandDefinition("Channel RGBA", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.RGBA)),
                     new FilterCommandDefinition("Channel Red", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Red)),

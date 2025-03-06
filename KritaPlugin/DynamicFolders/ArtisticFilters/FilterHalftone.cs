@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterHalftone : FilterDialogBase
     {
         public FilterHalftone()
-            : base(GetDefinition())
+            : base(FilterNames.Halftone)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Halftone",
-                FiltersEnum.Halftone,
+                FilterNames.Halftone,
                 [],
                 []);
         }

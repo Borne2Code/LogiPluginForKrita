@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterPalettize : FilterDialogBase
     {
         public FilterPalettize()
-            : base(GetDefinition())
+            : base(FilterNames.Palettize)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Palettize",
-                FiltersEnum.Palettize,
+                FilterNames.Palettize,
                 [],
                 []);
         }

@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterHeightToNormal(Client client) : FilterDialog(client)
+    public class KritaFilterHeightToNormal(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_height to normal";
 

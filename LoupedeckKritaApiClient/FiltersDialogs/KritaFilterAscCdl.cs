@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterAscCdl(Client client) : FilterDialog(client)
+    public class KritaFilterAscCdl(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_asc-cdl";
 

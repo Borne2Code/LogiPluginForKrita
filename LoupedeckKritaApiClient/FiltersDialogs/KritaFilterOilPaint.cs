@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterOilPaint(Client client) : FilterDialog(client)
+    public class KritaFilterOilPaint(Client client) : FilterDialogBase(client)
     {
         protected override string ActionName => "krita_filter_oilpaint";
 

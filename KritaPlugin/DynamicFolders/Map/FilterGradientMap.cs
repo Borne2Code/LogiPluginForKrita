@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterGradientMap : FilterDialogBase
     {
         public FilterGradientMap()
-            : base(GetDefinition())
+            : base(FilterNames.GradientMap)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Gradient Map",
-                FiltersEnum.GradientMap,
+                FilterNames.GradientMap,
                 [],
                 []);
         }

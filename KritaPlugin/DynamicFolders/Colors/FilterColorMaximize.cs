@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterColorMaximize : FilterDialogBase
     {
         public FilterColorMaximize()
-            : base(GetDefinition())
+            : base(FilterNames.Maximize)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Maximize channels",
-                FiltersEnum.Maximize);
+                FilterNames.Maximize);
         }
     }
 }

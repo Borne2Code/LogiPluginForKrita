@@ -1,33 +1,31 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
-
-namespace Loupedeck.KritaPlugin.DynamicFolders
+﻿namespace Loupedeck.KritaPlugin.DynamicFolders
 {
-    internal class FilterDialogDefinition
+    public class FilterDialogDefinition
     {
         public FilterDialogDefinition(string name,
-            FiltersEnum filterType,
+            string filterName,
             FilterCommandDefinition[] commands,
             FilterAdjustmentDefinition[] adjustments)
         {
             Name = name;
-            FilterType = filterType;
+            FilterName = filterName;
             HasDialog = true;
             Commands = commands;
             Adjustments = adjustments;
         }
 
         public FilterDialogDefinition(string name,
-            FiltersEnum filterType)
+            string filterName)
         {
             Name = name;
-            FilterType = filterType;
+            FilterName = filterName;
             HasDialog = false;
             Commands = null;
             Adjustments = null;
         }
 
         public string Name { get; }
-        public FiltersEnum FilterType { get; }
+        public string FilterName { get; }
         public bool HasDialog { get; }
         public FilterCommandDefinition[] Commands { get; }
         public FilterAdjustmentDefinition[] Adjustments { get; }

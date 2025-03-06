@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterEmbossLaplacian : FilterDialogBase
     {
         public FilterEmbossLaplacian()
-            : base(GetDefinition())
+            : base(FilterNames.EmbossLaplascian)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Emboss Laplacian",
-                FiltersEnum.EmbossLaplascian);
+                FilterNames.EmbossLaplascian);
         }
     }
 }

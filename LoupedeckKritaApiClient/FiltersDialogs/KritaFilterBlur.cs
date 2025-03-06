@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterBlur(Client client) : FilterDialog(client)
+    public class KritaFilterBlur(Client client) : FilterDialogBase(client)
     {
         public enum ShapeEnum
         {

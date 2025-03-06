@@ -1,19 +1,18 @@
-﻿using System.Runtime.CompilerServices;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
     public class FilterDesaturate : FilterDialogBase
     {
         public FilterDesaturate()
-            : base(GetDefinition())
+            : base(FilterNames.Desaturate)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Desaturate",
-                FiltersEnum.Desaturate,
+                FilterNames.Desaturate,
                 [
                     new FilterCommandDefinition("Lightness", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectLightness()),
                     new FilterCommandDefinition("Luminosity (BT709)", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectLuminosityBT709()),

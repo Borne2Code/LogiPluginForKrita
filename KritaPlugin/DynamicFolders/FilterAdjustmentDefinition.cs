@@ -1,6 +1,6 @@
 ﻿namespace Loupedeck.KritaPlugin.DynamicFolders
 {
-    internal class FilterAdjustmentDefinition
+    public class FilterAdjustmentDefinition
     {
         private float _value;
         public event EventHandler<ValueCHangedEventArg> ValueChanged;

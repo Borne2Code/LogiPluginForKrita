@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterEmbossVerticalAndHorizontal : FilterDialogBase
     {
         public FilterEmbossVerticalAndHorizontal()
-            : base(GetDefinition())
+            : base(FilterNames.EmbossHorizontalAndVertical)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Emboss Vertical & Horizontal",
-                FiltersEnum.EmbossHorizontalAndVertical);
+                FilterNames.EmbossHorizontalAndVertical);
         }
     }
 }

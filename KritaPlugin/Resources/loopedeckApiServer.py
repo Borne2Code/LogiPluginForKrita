@@ -1,4 +1,6 @@
 from krita import *
+from PyQt5.QtCore import QTimer
+from PyQt5.QtWidgets import QApplication, QPushButton
 import sys
 import socket
 import time
@@ -82,6 +84,7 @@ class LoopedeckApiServer(Extension):
         'FC': AuthorizedAction.new(True, None, True), # Select filter combo box selected index
         'FI': AuthorizedAction.new(True, None, True), # Set filter spinbox int value
         'FF': AuthorizedAction.new(True, None, True), # Set filter spinbox float value
+        'FM': AuthorizedAction.new(True, None, None), # Create filter mask from dialog
         'FO': AuthorizedAction.new(True, None, None), # Validate filter dialog
         'FK': AuthorizedAction.new(True, None, None) # Cancel filter dialog
     }
@@ -249,7 +252,11 @@ class LoopedeckApiServer(Extension):
             if action == "E":
                 parametersString = ", ".join(map(lambda obj: str(obj), parameters))
                 QtCore.qDebug(f"Execute method: {type(objectInstance).__name__}.{method.__name__}({parametersString})")
-                returnValue = method(*parameters)
+                if method.__name__ == "trigger" and objectInstance.objectName() == "layer_properties":
+                    returnValue = None
+                    QTimer.singleShot(0, method)
+                else:
+                    returnValue = method(*parameters)
                 self.computeResponse(returnValue)
                 self.worker.result = True
             elif action == "D":
@@ -262,7 +269,12 @@ class LoopedeckApiServer(Extension):
                 QtCore.qDebug(f"Get filter configuration widget")
                 filterData = FilterData()
                 filterData.dialog = self.child(Krita.instance().activeWindow().qwindow(), "FilterDialog")
-                filterData.config = filterData.dialog.children()[1].children()[-1].children()[0].children()[0].children()[1].children()[1]
+                if filterData.dialog == None:
+                    filterData.dialog = QApplication.activeModalWidget()
+                    filterData.config = filterData.dialog.children()[1].children()[3]
+                else:
+                    filterData.config = filterData.dialog.children()[1].children()[-1].children()[0].children()[0].children()[1].children()[1]
+
                 if (filterData.config is not None):
                     key = str(uuid.uuid4())
                     self.worker.objects[key] = filterData
@@ -324,11 +336,25 @@ class LoopedeckApiServer(Extension):
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
                 self.worker.result = True
+            elif action == "FM":
+                QtCore.qDebug(f"Create filtermask from dialog")
+                widget = objectInstance.dialog
+                widget = self.child(widget, "buttonBox")
+                if widget!= None:
+                    widget.children()[0].click()
+                self.worker.returnType = "None"
+                self.worker.returnValue = None
+                self.worker.result = True
             elif action == "FO":
                 QtCore.qDebug(f"Validate filter")
                 widget = objectInstance.dialog
                 widget = self.child(widget, "buttonBox")
-                widget.children()[1].click()
+                if widget!= None:
+                    widget.children()[1].click()
+                else:
+                    widget = objectInstance.dialog.children()[0]
+                    if widget.children()[1] != None and isinstance(widget.children()[1], QPushButton):
+                        widget.children()[1].click()
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
                 self.worker.result = True
@@ -336,7 +362,12 @@ class LoopedeckApiServer(Extension):
                 QtCore.qDebug(f"Cancel filter")
                 widget = objectInstance.dialog
                 widget = self.child(widget, "buttonBox")
-                widget.children()[2].click()
+                if widget!= None:
+                    widget.children()[2].click()
+                else:
+                    widget = objectInstance.dialog.children()[0]
+                    if widget != None and widget.children()[2] != None and isinstance(widget.children()[2], QPushButton):
+                        widget.children()[2].click()
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
                 self.worker.result = True
@@ -353,13 +384,5 @@ class LoopedeckApiServer(Extension):
         self.thread.started.connect(self.worker.run)
         self.thread.start()
 
-    def createActions(self, window):
-        action = window.createAction("", "Rotation 10")
-        action.triggered.connect(self.rotation)
-
-    def rotation(self):
-        Krita.instance().activeWindow().activeView().canvas().setRotation(float(10))
-
-        
 # And add the extension to Krita's list of extensions:
 Krita.instance().addExtension(LoopedeckApiServer(Krita.instance()))

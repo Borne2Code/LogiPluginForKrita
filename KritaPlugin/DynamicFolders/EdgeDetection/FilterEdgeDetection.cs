@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterEdgeDetection : FilterDialogBase
     {
         public FilterEdgeDetection()
-            : base(GetDefinition())
+            : base(FilterNames.EdgeDetection)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Edge detection",
-                FiltersEnum.EdgeDetection,
+                FilterNames.EdgeDetection,
                 [
                     new FilterCommandDefinition("Formula Prewitt", (dialog) => ((KritaFilterEdgeDetecttion)dialog.Dialog).SelectFormula(KritaFilterEdgeDetecttion.Formula.Prewitt)),
                     new FilterCommandDefinition("Formula Sobel", (dialog) => ((KritaFilterEdgeDetecttion)dialog.Dialog).SelectFormula(KritaFilterEdgeDetecttion.Formula.Sobel)),

@@ -5,14 +5,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     public class FilterWaveletNoiseReducer : FilterDialogBase
     {
         public FilterWaveletNoiseReducer()
-            : base(GetDefinition())
+            : base(FilterNames.WaveletNoiseReducer)
         {
         }
 
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Wavelet Noise Reducer",
-                FiltersEnum.WaveletNoiseReducer,
+                FilterNames.WaveletNoiseReducer,
                 [],
                 [
                     new FilterAdjustmentDefinition("Threshold", (dialog, delta) => ((KritaFilterWaveletNoiseReducer)dialog.Dialog).AdjustThreshold(delta).Result, 7),
