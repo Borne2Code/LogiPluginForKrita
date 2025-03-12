@@ -4,7 +4,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterOilPaint(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_oilpaint";
+        internal override string ActionName => "krita_filter_oilpaint";
 
         public Task<int> AdjustBrushSize(int value)
         {

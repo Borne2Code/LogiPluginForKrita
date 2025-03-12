@@ -4,7 +4,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterSmallTiles(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_smalltiles";
+        internal override string ActionName => "krita_filter_smalltiles";
 
         public Task<int> AdjustNumberOfTiles(int value)
         {

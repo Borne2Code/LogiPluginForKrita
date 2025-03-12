@@ -4,7 +4,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterUnsharp(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_unsharp";
+        internal override string ActionName => "krita_filter_unsharp";
 
         public Task<float> AdjustRadius(float radius)
         {

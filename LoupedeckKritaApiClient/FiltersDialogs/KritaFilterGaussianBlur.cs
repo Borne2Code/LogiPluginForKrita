@@ -4,7 +4,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterGaussianBlur(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_gaussian blur";
+        internal override string ActionName => "krita_filter_gaussian blur";
 
         public Task<float> AdjustHorizontalRadius(float value)
         {

@@ -9,14 +9,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        static internal FilterDialogDefinition GetDefinition()
+        static internal DialogDefinition GetDefinition()
         {
-            return new FilterDialogDefinition("Posterize",
+            return new DialogDefinition("Posterize",
                 FilterNames.Posterize,
                 [
                 ],
                 [
-                    new FilterAdjustmentDefinition("Steps", (dialog, delta) => ((KritaFilterPosterize)dialog.Dialog).AdjustSteps((int)delta).Result, 16),
+                    new AdjustmentDefinition("Steps", (dialog, delta) => (dialog.Dialog as KritaFilterPosterize).AdjustSteps((int)delta).Result, 16),
                 ]);
         }
     }

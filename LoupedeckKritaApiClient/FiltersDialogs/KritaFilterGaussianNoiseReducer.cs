@@ -4,7 +4,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterGaussianNoiseReducer(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_gaussiannoisereducer";
+        internal override string ActionName => "krita_filter_gaussiannoisereducer";
 
         public Task<int> AdjustThreshold(int value)
         {

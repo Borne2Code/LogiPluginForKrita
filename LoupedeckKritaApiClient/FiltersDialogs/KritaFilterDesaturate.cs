@@ -4,7 +4,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterDesaturate(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_desaturate";
+        internal override string ActionName => "krita_filter_desaturate";
 
         public Task SelectLightness()
         {

@@ -4,7 +4,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterRainDrops(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_raindrops";
+        internal override string ActionName => "krita_filter_raindrops";
 
         public Task<int> AdjustDropSize(int size)
         {

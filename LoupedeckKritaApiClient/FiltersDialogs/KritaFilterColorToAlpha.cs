@@ -4,7 +4,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterColorToAlpha(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_colortoalpha";
+        internal override string ActionName => "krita_filter_colortoalpha";
 
         public Task<int> AdjustThreshold(int value)
         {

@@ -9,9 +9,9 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        static internal FilterDialogDefinition GetDefinition()
+        static internal DialogDefinition GetDefinition()
         {
-            return new FilterDialogDefinition("Index colors",
+            return new DialogDefinition("Index colors",
                 FilterNames.IndexColors,
                 [],
                 []);

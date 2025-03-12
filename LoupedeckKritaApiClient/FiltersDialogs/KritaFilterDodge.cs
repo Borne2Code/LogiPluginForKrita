@@ -5,7 +5,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterDodge(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_dodge";
+        internal override string ActionName => "krita_filter_dodge";
 
         public Task SelectShadows()
         {

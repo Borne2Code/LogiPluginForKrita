@@ -10,7 +10,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             Rectangle
         }
 
-        protected override string ActionName => "krita_filter_blur";
+        internal override string ActionName => "krita_filter_blur";
 
         public Task<int> AdjustHorizontalRadiusValue(int value)
         {

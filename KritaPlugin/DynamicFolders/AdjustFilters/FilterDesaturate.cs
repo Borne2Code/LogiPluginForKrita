@@ -9,17 +9,17 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        static internal FilterDialogDefinition GetDefinition()
+        static internal DialogDefinition GetDefinition()
         {
-            return new FilterDialogDefinition("Desaturate",
+            return new DialogDefinition("Desaturate",
                 FilterNames.Desaturate,
                 [
-                    new FilterCommandDefinition("Lightness", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectLightness()),
-                    new FilterCommandDefinition("Luminosity (BT709)", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectLuminosityBT709()),
-                    new FilterCommandDefinition("Luminosity (BT601)", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectLuminosityBT601()),
-                    new FilterCommandDefinition("Average", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectAverage()),
-                    new FilterCommandDefinition("Minimum", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectMin()),
-                    new FilterCommandDefinition("Maximum", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectMax()),
+                    new CommandDefinition("Lightness", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectLightness()),
+                    new CommandDefinition("Luminosity (BT709)", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectLuminosityBT709()),
+                    new CommandDefinition("Luminosity (BT601)", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectLuminosityBT601()),
+                    new CommandDefinition("Average", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectAverage()),
+                    new CommandDefinition("Minimum", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectMin()),
+                    new CommandDefinition("Maximum", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectMax()),
                 ],
                 []);
         }

@@ -4,7 +4,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterPixelize(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_pixelize";
+        internal override string ActionName => "krita_filter_pixelize";
 
         public Task<int> AdjustPixelWidth(int width)
         {

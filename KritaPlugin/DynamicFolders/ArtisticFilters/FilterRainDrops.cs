@@ -9,16 +9,16 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        static internal FilterDialogDefinition GetDefinition()
+        static internal DialogDefinition GetDefinition()
         {
-            return new FilterDialogDefinition("Rain Drops",
+            return new DialogDefinition("Rain Drops",
                 FilterNames.RainDrops,
                 [
                 ],
                 [
-                    new FilterAdjustmentDefinition("Drop size", (dialog, delta) => ((KritaFilterRainDrops)dialog.Dialog).AdjustDropSize((int)delta).Result, 80),
-                    new FilterAdjustmentDefinition("Number", (dialog, delta) => ((KritaFilterRainDrops)dialog.Dialog).AdjustNumberOfDrops((int)delta).Result, 80),
-                    new FilterAdjustmentDefinition("Fish eyes", (dialog, delta) => ((KritaFilterRainDrops)dialog.Dialog).AdjustFishEyes((int)delta).Result, 30),
+                    new AdjustmentDefinition("Drop size", (dialog, delta) => (dialog.Dialog as KritaFilterRainDrops).AdjustDropSize((int)delta).Result, 80),
+                    new AdjustmentDefinition("Number", (dialog, delta) => (dialog.Dialog as KritaFilterRainDrops).AdjustNumberOfDrops((int)delta).Result, 80),
+                    new AdjustmentDefinition("Fish eyes", (dialog, delta) => (dialog.Dialog as KritaFilterRainDrops).AdjustFishEyes((int)delta).Result, 30),
                 ]);
         }
     }

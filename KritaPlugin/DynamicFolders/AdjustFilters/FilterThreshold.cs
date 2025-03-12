@@ -9,13 +9,13 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        static internal FilterDialogDefinition GetDefinition()
+        static internal DialogDefinition GetDefinition()
         {
-            return new FilterDialogDefinition("Threshold",
+            return new DialogDefinition("Threshold",
                 FilterNames.Threshold,
                 [],
                 [
-                    new FilterAdjustmentDefinition("Threshold", (dialog, delta) => ((KritaFilterThreshold)dialog.Dialog).AdjustThreshold((int)delta).Result, 128)
+                    new AdjustmentDefinition("Threshold", (dialog, delta) => (dialog.Dialog as KritaFilterThreshold).AdjustThreshold((int)delta).Result, 128)
                 ]);
         }
     }

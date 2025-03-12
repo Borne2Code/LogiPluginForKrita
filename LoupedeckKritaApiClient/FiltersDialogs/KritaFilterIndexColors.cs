@@ -4,7 +4,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterIndexColors(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_indexcolors";
+        internal override string ActionName => "krita_filter_indexcolors";
 
         // TODO: complete, complex
     }

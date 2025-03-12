@@ -9,15 +9,15 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        static internal FilterDialogDefinition GetDefinition()
+        static internal DialogDefinition GetDefinition()
         {
-            return new FilterDialogDefinition("Oil Paint",
+            return new DialogDefinition("Oil Paint",
                 FilterNames.OilPaint,
                 [
                 ],
                 [
-                    new FilterAdjustmentDefinition("Brush size", (dialog, delta) => ((KritaFilterOilPaint)dialog.Dialog).AdjustBrushSize((int)delta).Result, 1),
-                    new FilterAdjustmentDefinition("Smooth", (dialog, delta) => ((KritaFilterOilPaint)dialog.Dialog).AdjustSmooth((int)delta).Result, 30),
+                    new AdjustmentDefinition("Brush size", (dialog, delta) => (dialog.Dialog as KritaFilterOilPaint).AdjustBrushSize((int)delta).Result, 1),
+                    new AdjustmentDefinition("Smooth", (dialog, delta) => (dialog.Dialog as KritaFilterOilPaint).AdjustSmooth((int)delta).Result, 30),
                 ]);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using LoupedeckKritaApiClient.FiltersDialogs;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -17,6 +18,19 @@ namespace LoupedeckKritaApiClient.ClientBase
         private readonly Selection _currentSelection;
         private readonly Node _globalSelectionNode;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
+
+        private const string DeleteActionName = "Delete"; // delete instance in classes proxy cache
+        private const string ExecuteActionName = "Execute"; // Execute a method in an object's context
+        private const string GetFilterDialogActionName = "GetFilterDialog"; // Drive a filter dialog
+        private const string SetFilterAngleActionName = "SetFilterAngle"; // Set filter angle selector value
+        private const string ClickFilterButtonActionName = "ClickFilterButton"; // Click on filter button, radio or checkbox
+        private const string SetFilterComboSelectActionName = "SetFilterComboSelect"; // Select filter combo box selected index
+        private const string SetFilterSpinboxIntValueActionName = "SetFilterSpinboxIntValue"; // Set filter spinbox int value
+        private const string SetFilterSpinboxFloatValueActionName = "SetFilterSpinboxFloatValue"; // Set filter spinbox float value
+        private const string CreateFilterAsMaskActionName = "CreateFilterAsMask"; // Create filter mask from dialog
+        private const string ValidateFilterDialogActionName = "ValidateFilterDialog"; // Validate filter dialog
+        private const string CancelFilterDialogActionName = "CancelFilterDialog"; // Cancel filter dialog
+
         public Client()
         {
             _kritaInstance = new KritaInstance()
@@ -69,7 +83,7 @@ namespace LoupedeckKritaApiClient.ClientBase
 
         internal Task<ReturnValue> ExecuteCall(string objectName, string methodName, params object[] parameters)
         {
-            return InternalExecuteCall("E", objectName, methodName, parameters);
+            return InternalExecuteCall(ExecuteActionName, objectName, methodName, parameters);
         }
 
         private async Task<ReturnValue> InternalExecuteCall(string action, string? objectName = null, string? methodName = null, params object[] parameters)
@@ -190,52 +204,52 @@ namespace LoupedeckKritaApiClient.ClientBase
 
         public Task Delete(string objectName)
         {
-            return InternalExecuteCall("D", objectName);
+            return InternalExecuteCall(DeleteActionName, objectName);
         }
 
         public Task<ReturnValue> GetFilterConfigWidget()
         {
-            return InternalExecuteCall("F");
+            return InternalExecuteCall(GetFilterDialogActionName);
         }
 
         internal Task ConfirmFilter(string filterConfigWidgetReference)
         {
-            return InternalExecuteCall("FO", filterConfigWidgetReference);
+            return InternalExecuteCall(ValidateFilterDialogActionName, filterConfigWidgetReference);
         }
 
         internal Task CancelFilter(string filterConfigWidgetReference)
         {
-            return InternalExecuteCall("FK", filterConfigWidgetReference);
+            return InternalExecuteCall(CancelFilterDialogActionName, filterConfigWidgetReference);
         }
 
         internal Task CreateFilterMask(string filterConfigWidgetReference)
         {
-            return InternalExecuteCall("FM", filterConfigWidgetReference);
+            return InternalExecuteCall(CreateFilterAsMaskActionName, filterConfigWidgetReference);
         }
 
         internal Task ClickFilterWidget(string filterConfigWidgetReference, string[] widgetPathNames)
         {
-            return InternalExecuteCall("FB", filterConfigWidgetReference, parameters:  widgetPathNames);
+            return InternalExecuteCall(ClickFilterButtonActionName, filterConfigWidgetReference, parameters:  widgetPathNames);
         }
 
         internal Task<ReturnValue> AdjustFilterIntSpinBoxValue(string filterConfigWidgetReference, int value, string[] widgetPathNames)
         {
-            return InternalExecuteCall("FI", filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+            return InternalExecuteCall(SetFilterSpinboxIntValueActionName, filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
         internal Task<ReturnValue> AdjustFilterFloatSpinBoxValue(string filterConfigWidgetReference, float value, string[] widgetPathNames)
         {
-            return InternalExecuteCall("FF", filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+            return InternalExecuteCall(SetFilterSpinboxFloatValueActionName, filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
         internal Task<ReturnValue> SetFilterAngleSelectorValue(string filterConfigWidgetReference, float value, string[] widgetPathNames)
         {
-            return InternalExecuteCall("FA", filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+            return InternalExecuteCall(SetFilterAngleActionName, filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
         internal Task SetFilterComboBoxSelectedItem(string filterConfigWidgetReference, int value, string[] widgetPathNames)
         {
-            return InternalExecuteCall("FC", filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+            return InternalExecuteCall(SetFilterComboSelectActionName, filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
         public async ValueTask DisposeAsync()
@@ -259,5 +273,33 @@ namespace LoupedeckKritaApiClient.ClientBase
         public Node CurrentNode { get => _currentNode; }
         public Selection CurrentSelection { get => _currentSelection; }
         public Node GlobalSelectionNode { get => _globalSelectionNode; }
+        public async Task<FilterDialogBase> GetFilterDialog(string filterName)
+        {
+            FilterDialogBase dialog = FilterNames.GetFilterDialogByFilterName(this, filterName);
+
+            await using var action = await KritaInstance.Action(dialog.ActionName);
+            await action.Trigger();
+
+            await dialog.AttachDialog();
+
+            return dialog;
+        }
+
+        public async Task<(FilterDialogBase? filterDialog, string? filterName)> GetLayerPropertiesDialog()
+        {
+            await using var filter = await CurrentNode.Filter();
+            if (filter == null)
+            {
+                return (null, null);
+            }
+
+            await KritaInstance.ExecuteAction(ActionsNames.Layer_properties);
+
+            var filterName = await filter.name();
+            var dialog = FilterNames.GetFilterDialogByFilterName(this, filterName);
+            await dialog.AttachDialog();
+
+            return (dialog, filterName);
+        }
     }
 }

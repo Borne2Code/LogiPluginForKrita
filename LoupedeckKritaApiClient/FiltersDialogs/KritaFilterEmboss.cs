@@ -4,7 +4,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterEmboss(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_emboss";
+        internal override string ActionName => "krita_filter_emboss";
 
         public Task<int> AdjustDepth(int depth)
         {

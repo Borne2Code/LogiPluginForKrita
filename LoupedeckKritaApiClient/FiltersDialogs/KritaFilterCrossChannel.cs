@@ -4,7 +4,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterCrossChannel(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_crosschannel";
+        internal override string ActionName => "krita_filter_crosschannel";
 
         public enum TargetChannel
         {

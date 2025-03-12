@@ -128,7 +128,7 @@ namespace LoupedeckClient
                 await filterDialog.DisposeAsync();
             }
 
-            filterDialog = await FilterDialog.GetFilterDialog(client, filterName);
+            //filterDialog = await FilterDialog.GetFilterDialog(client, filterName);
         }
 
         private async void button5_Click(object sender, EventArgs e)

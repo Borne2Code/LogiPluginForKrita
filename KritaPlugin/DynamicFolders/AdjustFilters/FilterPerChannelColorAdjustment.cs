@@ -9,26 +9,26 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        static internal FilterDialogDefinition GetDefinition()
+        static internal DialogDefinition GetDefinition()
         {
-            return new FilterDialogDefinition("Color Adjustment",
+            return new DialogDefinition("Color Adjustment",
                 FilterNames.PerChannelColorAdjustment,
                 [
-                    new FilterCommandDefinition("Channel RGBA", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.RGBA)),
-                    new FilterCommandDefinition("Channel Red", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Red)),
-                    new FilterCommandDefinition("Channel Green", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Green)),
-                    new FilterCommandDefinition("Channel Blue", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Blue)),
-                    new FilterCommandDefinition("Channel Alpha", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Alpha)),
-                    new FilterCommandDefinition("Channel Hue", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Hue)),
-                    new FilterCommandDefinition("Channel Saturation", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Saturation)),
-                    new FilterCommandDefinition("Channel Lightness", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Lightness)),
+                    new CommandDefinition("Channel RGBA", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.RGBA)),
+                    new CommandDefinition("Channel Red", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Red)),
+                    new CommandDefinition("Channel Green", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Green)),
+                    new CommandDefinition("Channel Blue", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Blue)),
+                    new CommandDefinition("Channel Alpha", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Alpha)),
+                    new CommandDefinition("Channel Hue", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Hue)),
+                    new CommandDefinition("Channel Saturation", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Saturation)),
+                    new CommandDefinition("Channel Lightness", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.Lightness)),
 
-                    new FilterCommandDefinition("Logarithmic", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).ToggleLogarithmic()),
-                    new FilterCommandDefinition("Reset", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).Reset()),
+                    new CommandDefinition("Logarithmic", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).ToggleLogarithmic()),
+                    new CommandDefinition("Reset", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).Reset()),
                 ],
                 [
-                    new FilterAdjustmentDefinition("Input", (dialog, delta) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).AdjustInValue((int)delta).Result),
-                    new FilterAdjustmentDefinition("Output", (dialog, delta) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).AdjustOutValue((int)delta).Result),
+                    new AdjustmentDefinition("Input", (dialog, delta) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).AdjustInValue((int)delta).Result),
+                    new AdjustmentDefinition("Output", (dialog, delta) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).AdjustOutValue((int)delta).Result),
                 ]);
         }
     }

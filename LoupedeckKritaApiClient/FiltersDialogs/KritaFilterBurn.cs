@@ -5,7 +5,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class KritaFilterBurn(Client client) : FilterDialogBase(client)
     {
-        protected override string ActionName => "krita_filter_burn";
+        internal override string ActionName => "krita_filter_burn";
 
         public Task SelectShadows()
         {

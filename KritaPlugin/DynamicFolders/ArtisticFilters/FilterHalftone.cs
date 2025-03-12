@@ -9,9 +9,9 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        static internal FilterDialogDefinition GetDefinition()
+        static internal DialogDefinition GetDefinition()
         {
-            return new FilterDialogDefinition("Halftone",
+            return new DialogDefinition("Halftone",
                 FilterNames.Halftone,
                 [],
                 []);

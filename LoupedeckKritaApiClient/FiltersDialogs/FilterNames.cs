@@ -1,4 +1,6 @@
-﻿namespace LoupedeckKritaApiClient.FiltersDialogs
+﻿using LoupedeckKritaApiClient.ClientBase;
+
+namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public class FilterNames
     {
@@ -52,5 +54,63 @@
         public const string Unsharp = "unsharp";
         public const string Wave = "wave";
         public const string WaveletNoiseReducer = "waveletnoisereducer";
+
+        public static FilterDialogBase GetFilterDialogByFilterName(Client client, string filterName)
+        {
+            return filterName switch
+            {
+                AscCdl => new KritaFilterAscCdl(client),
+                AutoConstrast => new KritaFilterAutoConstrast(client),
+                Burn => new KritaFilterBurn(client),
+                Blur => new KritaFilterBlur(client),
+                ColorBalance => new KritaFilterColorBalance(client),
+                ColorToAlpha => new KritaFilterColorToAlpha(client),
+                ColorTransfer => new KritaFilterColorTranfer(client),
+                CrossChannel => new KritaFilterCrossChannel(client),
+                Desaturate => new KritaFilterDesaturate(client),
+                Dodge => new KritaFilterDodge(client),
+                EdgeDetection => new KritaFilterEdgeDetecttion(client),
+                Emboss => new KritaFilterEmboss(client),
+                EmbossAllDirections => new KritaFilterEmbossAllDirections(client),
+                EmbossHorizontalAndVertical => new KritaFilterEmbossHorizontalAndVertical(client),
+                EmbossHorizontalOnly => new KritaFilterEmbossHorizontalOnly(client),
+                EmbossLaplascian => new KritaFilterEmbossLaplacian(client),
+                EmbossVerticalOnly => new KritaFilterEmbossVerticalOnly(client),
+                GaussianBlur => new KritaFilterGaussianBlur(client),
+                GaussianHighPass => new KritaFilterGaussianHighPass(client),
+                GaussianNoiseReducer => new KritaFilterGaussianNoiseReducer(client),
+                GradientMap => new KritaFilterGradientMap(client),
+                Halftone => new KritaFilterHalfTone(client),
+                HeightToNormal => new KritaFilterHeightToNormal(client),
+                HsvAdjustment => new KritaFilterHsvAdjustment(client),
+                IndexColors => new KritaFilterIndexColors(client),
+                Invert => new KritaFilterInvert(client),
+                LensBlur => new KritaFilterLensBlur(client),
+                Levels => new KritaFilterLevels(client),
+                Maximize => new KritaFilterMaximize(client),
+                MeanRemoval => new KritaFilterMeanRemoval(client),
+                Minimize => new KritaFilterMinimize(client),
+                MotionBlur => new KritaFilterMotionBlur(client),
+                Noise => new KritaFilterNoise(client),
+                Normalize => new KritaFilterNormalize(client),
+                OilPaint => new KritaFilterOilPaint(client),
+                Palettize => new KritaFilterPalettize(client),
+                PerChannelColorAdjustment => new KritaFilterPerChannelColorAdjustment(client),
+                PhongBumpMap => new KritaFilterPhongBumpMap(client),
+                Pixelize => new KritaFilterPixelize(client),
+                Posterize => new KritaFilterPosterize(client),
+                RainDrops => new KritaFilterRainDrops(client),
+                RandomPick => new KritaFilterRandomPick(client),
+                ResetTransparent => new KritaFilterResetTransparent(client),
+                RoundCorners => new KritaFilterRoundCorners(client),
+                Sharpen => new KritaFilterSharpen(client),
+                SmallTiles => new KritaFilterSmallTiles(client),
+                Threshold => new KritaFilterThreshold(client),
+                Unsharp => new KritaFilterUnsharp(client),
+                Wave => new KritaFilterWave(client),
+                WaveletNoiseReducer => new KritaFilterWaveletNoiseReducer(client),
+                _ => throw new Exception("Not implement filter dialog")
+            };
+        }
     }
 }

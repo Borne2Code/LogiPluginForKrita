@@ -9,15 +9,15 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        static internal FilterDialogDefinition GetDefinition()
+        static internal DialogDefinition GetDefinition()
         {
-            return new FilterDialogDefinition("Pixelize",
+            return new DialogDefinition("Pixelize",
                 FilterNames.Pixelize,
                 [
                 ],
                 [
-                    new FilterAdjustmentDefinition("Pixel width", (dialog, delta) => ((KritaFilterPixelize)dialog.Dialog).AdjustPixelWidth((int)delta).Result, 10),
-                    new FilterAdjustmentDefinition("Pixel height", (dialog, delta) => ((KritaFilterPixelize)dialog.Dialog).AdjustPixelHeight((int)delta).Result, 10),
+                    new AdjustmentDefinition("Pixel width", (dialog, delta) => (dialog.Dialog as KritaFilterPixelize).AdjustPixelWidth((int)delta).Result, 10),
+                    new AdjustmentDefinition("Pixel height", (dialog, delta) => (dialog.Dialog as KritaFilterPixelize).AdjustPixelHeight((int)delta).Result, 10),
                 ]);
         }
     }

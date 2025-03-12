@@ -9,17 +9,17 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        static internal FilterDialogDefinition GetDefinition()
+        static internal DialogDefinition GetDefinition()
         {
-            return new FilterDialogDefinition("Dodge",
+            return new DialogDefinition("Dodge",
                 FilterNames.Dodge,
                 [
-                    new FilterCommandDefinition("Shadows", (dialog) => ((KritaFilterDodge)dialog.Dialog).SelectShadows()),
-                    new FilterCommandDefinition("Midtones", (dialog) => ((KritaFilterDodge)dialog.Dialog).SelectMidTones()),
-                    new FilterCommandDefinition("Highlights", (dialog) => ((KritaFilterDodge)dialog.Dialog).SelectHighLights())
+                    new CommandDefinition("Shadows", (dialog) => ((KritaFilterDodge)dialog.Dialog).SelectShadows()),
+                    new CommandDefinition("Midtones", (dialog) => ((KritaFilterDodge)dialog.Dialog).SelectMidTones()),
+                    new CommandDefinition("Highlights", (dialog) => ((KritaFilterDodge)dialog.Dialog).SelectHighLights())
                 ],
                 [
-                    new FilterAdjustmentDefinition("Exposure", (dialog, delta) => ((KritaFilterDodge)dialog.Dialog).AdjustExposureValue((int)delta).Result, 50)
+                    new AdjustmentDefinition("Exposure", (dialog, delta) => ((KritaFilterDodge)dialog.Dialog).AdjustExposureValue((int)delta).Result, 50)
                 ]);
         }
     }
