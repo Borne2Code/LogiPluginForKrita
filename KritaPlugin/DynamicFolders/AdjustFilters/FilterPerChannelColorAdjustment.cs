@@ -1,4 +1,5 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using System.Reflection;
+using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -7,6 +8,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         public FilterPerChannelColorAdjustment()
             : base(FilterNames.PerChannelColorAdjustment)
         {
+        }
+
+        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
+        {
+            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.filters-ColorAdjustment.png");
         }
 
         static internal DialogDefinition GetDefinition()
