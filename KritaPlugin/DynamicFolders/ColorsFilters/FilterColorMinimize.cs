@@ -1,4 +1,5 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using System.Reflection;
+using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -7,6 +8,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         public FilterColorMinimize()
             : base(FilterNames.Minimize)
         {
+        }
+
+        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
+        {
+            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.filters-Minimize.png");
         }
 
         static internal DialogDefinition GetDefinition()
