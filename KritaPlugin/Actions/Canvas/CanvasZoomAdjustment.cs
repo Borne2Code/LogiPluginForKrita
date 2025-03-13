@@ -24,7 +24,7 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
-            var zoom = Client.CurrentCanvas.ZoomLevel().Result;
+            var zoom = Client.CurrentCanvas.ZoomLevel().Result * 72 / Client.CurrentDocument.GetResolution().Result;
             Client.CurrentCanvas.SetZoomLevel(zoom + (float)diff * zoom / 100).Wait();
             this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
         }
