@@ -5,12 +5,12 @@ namespace Loupedeck.KritaPlugin
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
-    public class LayerQuickClippingGroup : PluginDynamicCommand
+    public class LayerQuickClippingGroupCommand : PluginDynamicCommand
     {
         private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the command class.
-        public LayerQuickClippingGroup()
+        public LayerQuickClippingGroupCommand()
             : base(displayName: "Quick clipping group", description: "Quick clipping group", groupName: ActionGroups.Layers)
         {
         }

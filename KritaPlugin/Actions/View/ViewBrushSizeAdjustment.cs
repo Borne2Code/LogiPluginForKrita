@@ -8,6 +8,8 @@ namespace Loupedeck.KritaPlugin
     public class ViewBrushSizeAdjustment : PluginDynamicAdjustment
     {
         private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
+        private float Size = 0;
+        private DateTime LastAdjust = DateTime.MinValue;
 
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
@@ -24,27 +26,34 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
-            var brushSize = Client.CurrentView.BrushSize().Result;
-            var delta = Math.Max(brushSize * (float)Math.Abs(diff) / 20, 0.01) * Math.Sign(diff);
-            var newBrushSize = (float)Math.Round(brushSize + delta, 2);
+            UpdateAdjustValueIfNecessary();
+
+            var delta = Math.Max(Size * (float)Math.Abs(diff) / 40, 0.01) * Math.Sign(diff);
+            var newBrushSize = (float)Math.Round(Size + delta, 2);
             newBrushSize = (float)Math.Min(Math.Max(newBrushSize, 0.01), 3000);
 
-            if (newBrushSize != brushSize)
+            if (newBrushSize != Size)
             {
-                Client.CurrentView.SetBrushSize(newBrushSize).Wait();
+                Size = newBrushSize;
+                Client.CurrentView.SetBrushSize(Size).Wait();
                 this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
             }
-        }
-
-        // This method is called when the reset command related to the adjustment is executed.
-        protected override void RunCommand(String actionParameter)
-        {
         }
 
         // Returns the adjustment value that is shown next to the dial.
         protected override String GetAdjustmentValue(String actionParameter)
         {
-            return Math.Round(Client.CurrentView.BrushSize().Result, 2).ToString();
+            UpdateAdjustValueIfNecessary();
+            return Math.Round(Size, 2).ToString();
+        }
+
+        private void UpdateAdjustValueIfNecessary()
+        {
+            if ((DateTime.Now - LastAdjust).TotalMilliseconds > 500)
+            {
+                Size = Client.CurrentView.BrushSize().Result;
+                LastAdjust = DateTime.Now;
+            }
         }
     }
 }

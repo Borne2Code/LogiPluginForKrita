@@ -8,6 +8,8 @@ namespace Loupedeck.KritaPlugin
     public class CanvasRotationAdjustment : PluginDynamicAdjustment
     {
         private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
+        private float Rotation = 0;
+        private DateTime LastAdjust = DateTime.MinValue;
 
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
@@ -24,8 +26,9 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
-            var rotation = Client.CurrentCanvas.Rotation().Result;
-            Client.CurrentCanvas.SetRotation(rotation + diff).Wait();
+            UpdateAdjustValueIfNecessary();
+            Rotation += diff;
+            Client.CurrentCanvas.SetRotation(Rotation).Wait();
             this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
         }
 
@@ -33,13 +36,24 @@ namespace Loupedeck.KritaPlugin
         protected override void RunCommand(String actionParameter)
         {
             Client.CurrentCanvas.ResetRotation().Wait();
+            Rotation = 0;
             this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
         }
 
         // Returns the adjustment value that is shown next to the dial.
         protected override String GetAdjustmentValue(String actionParameter)
         {
-            return Math.Round(Client.CurrentCanvas.Rotation().Result, 2).ToString() + " °";
+            UpdateAdjustValueIfNecessary();
+            return Math.Round(Rotation, 2).ToString() + " °";
+        }
+
+        private void UpdateAdjustValueIfNecessary()
+        {
+            if ((DateTime.Now - LastAdjust).TotalMilliseconds > 500)
+            {
+                Rotation = Client.CurrentCanvas.Rotation().Result;
+                LastAdjust = DateTime.Now;
+            }
         }
     }
 }

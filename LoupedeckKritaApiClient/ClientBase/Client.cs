@@ -273,6 +273,7 @@ namespace LoupedeckKritaApiClient.ClientBase
         public Node CurrentNode { get => _currentNode; }
         public Selection CurrentSelection { get => _currentSelection; }
         public Node GlobalSelectionNode { get => _globalSelectionNode; }
+
         public async Task<FilterDialogBase> GetFilterDialog(string filterName)
         {
             FilterDialogBase dialog = FilterNames.GetFilterDialogByFilterName(this, filterName);

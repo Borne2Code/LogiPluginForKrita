@@ -5,24 +5,24 @@ namespace Loupedeck.KritaPlugin
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
-    public class LayerMergeWithBelow : PluginDynamicCommand
+    public class LayerFlattenCommand : PluginDynamicCommand
     {
         private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the command class.
-        public LayerMergeWithBelow()
-            : base(displayName: "Merge with below", description: "Merge with layer below", groupName: ActionGroups.Layers)
+        public LayerFlattenCommand()
+            : base(displayName: "Flatten layer", description: "Flatten layer", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.LayerMergeWithBelow.png");
+            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.LayerFlatten.png");
         }
 
         protected override void RunCommand(string actionParameter)
         {
-            Client.KritaInstance.ExecuteAction(ActionsNames.Merge_layer).Wait();
+            Client.KritaInstance.ExecuteAction(ActionsNames.Flatten_layer).Wait();
         }
     }
 }

@@ -8,7 +8,6 @@ namespace Loupedeck.KritaPlugin
     public class SelectionGrowShrinkAdjustment : PluginDynamicAdjustment
     {
         private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
-        //private Timer? _timer;
 
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.

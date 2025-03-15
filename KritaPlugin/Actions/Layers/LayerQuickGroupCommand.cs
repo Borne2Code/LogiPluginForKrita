@@ -5,24 +5,24 @@ namespace Loupedeck.KritaPlugin
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
-    public class LayerNewGroup : PluginDynamicCommand
+    public class LayerQuickGroupCommand : PluginDynamicCommand
     {
         private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the command class.
-        public LayerNewGroup()
-            : base(displayName: "New group", description: "Create a new group", groupName: ActionGroups.Layers)
+        public LayerQuickGroupCommand()
+            : base(displayName: "Quick group", description: "Quick group", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.LayerNewGroup.png");
+            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.LayerQuickGroup.png");
         }
 
         protected override void RunCommand(string actionParameter)
         {
-            Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_group_layer).Wait();
+            Client.KritaInstance.ExecuteAction(ActionsNames.Create_quick_group).Wait();
         }
     }
 }

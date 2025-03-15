@@ -5,12 +5,12 @@ namespace Loupedeck.KritaPlugin
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
-    public class LayerUngroup : PluginDynamicCommand
+    public class LayerUngroupCommand : PluginDynamicCommand
     {
         private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
         // Initializes the command class.
-        public LayerUngroup()
+        public LayerUngroupCommand()
             : base(displayName: "Ungroup", description: "Quick ungroup", groupName: ActionGroups.Layers)
         {
         }

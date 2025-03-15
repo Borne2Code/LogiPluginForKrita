@@ -5,14 +5,16 @@ namespace Loupedeck.KritaPlugin
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
-    public class ViewLayerOpacityAdjustment : PluginDynamicAdjustment
+    public class LayerOpacityAdjustment : PluginDynamicAdjustment
     {
         private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
+        private int Opacity = 255;
+        private DateTime LastAdjust = DateTime.MinValue;
         private Timer? _timer;
 
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
-        public ViewLayerOpacityAdjustment()
+        public LayerOpacityAdjustment()
             : base(displayName: "Layer Opacity", description: "Adjust current layer's opacity", groupName: ActionGroups.Layers, hasReset: true)
         {
         }
@@ -25,12 +27,14 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
-            var opacity = Client.CurrentNode.Opacity().Result;
-            var newOpacity = Math.Min(Math.Max(opacity + diff, 0), 255);
+            UpdateAdjustValueIfNecessary();
 
-            if (newOpacity != opacity)
+            var newOpacity = Math.Min(Math.Max(Opacity + diff, 0), 255);
+
+            if (newOpacity != Opacity)
             {
-                Client.CurrentNode.SetOpacity(newOpacity).Wait();
+                Opacity = newOpacity;
+                Client.CurrentNode.SetOpacity(Opacity).Wait();
                 if (_timer != null)
                 {
                     _timer.Dispose();
@@ -45,7 +49,8 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
-            Client.CurrentNode.SetOpacity(255).Wait();
+            Opacity = 255;
+            Client.CurrentNode.SetOpacity(Opacity).Wait();
             Client.CurrentDocument.RefreshProjection();
             AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
         }
@@ -53,7 +58,17 @@ namespace Loupedeck.KritaPlugin
         // Returns the adjustment value that is shown next to the dial.
         protected override String GetAdjustmentValue(String actionParameter)
         {
-            return (Client.CurrentNode.Opacity().Result * 100 / 255).ToString() + " %";
+            UpdateAdjustValueIfNecessary();
+            return (Opacity * 100 / 255).ToString() + " %";
+        }
+
+        private void UpdateAdjustValueIfNecessary()
+        {
+            if ((DateTime.Now - LastAdjust).TotalMilliseconds > 500)
+            {
+                Opacity = Client.CurrentNode.Opacity().Result;
+                LastAdjust = DateTime.Now;
+            }
         }
     }
 }
