@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -10,15 +9,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
+        static internal FilterDialogDefinition GetDefinition()
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-HeightToNormal.png");
-        }
-
-        static internal DialogDefinition GetDefinition()
-        {
-            return new DialogDefinition("Height To Normal",
+            return new FilterDialogDefinition("Height To Normal",
                 FilterNames.HeightToNormal,
+                "Loupedeck.KritaPlugin.images.Filters.filters-HeightToNormal.png",
                 [
                     new CommandDefinition("Formula Prewitt", (dialog) => (dialog.Dialog as KritaFilterHeightToNormal).SetType(KritaFilterHeightToNormal.Type.Prewitt)),
                     new CommandDefinition("Formula Sobel", (dialog) => (dialog.Dialog as KritaFilterHeightToNormal).SetType(KritaFilterHeightToNormal.Type.Sobel)),

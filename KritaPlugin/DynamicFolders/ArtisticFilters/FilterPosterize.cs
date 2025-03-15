@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -10,17 +9,12 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
+        static internal FilterDialogDefinition GetDefinition()
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-Posterize.png");
-        }
-
-        static internal DialogDefinition GetDefinition()
-        {
-            return new DialogDefinition("Posterize",
+            return new FilterDialogDefinition("Posterize",
                 FilterNames.Posterize,
-                [
-                ],
+                "Loupedeck.KritaPlugin.images.Filters.filters-Posterize.png",
+                [],
                 [
                     new AdjustmentDefinition("Steps", (dialog, delta) => (dialog.Dialog as KritaFilterPosterize).AdjustSteps((int)delta).Result, 16),
                 ]);

@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -11,15 +9,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
+        static internal FilterDialogDefinition GetDefinition()
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-Levels.png");
-        }
-
-        static internal DialogDefinition GetDefinition()
-        {
-            return new DialogDefinition("Levels",
+            return new FilterDialogDefinition("Levels",
                 FilterNames.Levels,
+                "Loupedeck.KritaPlugin.images.Filters.filters-Levels.png",
                 [
                     new CommandDefinition("Lightness", (dialog) => ((KritaFilterLevels)dialog.Dialog).SetLightnessMode()),
                     new CommandDefinition("All channels", (dialog) => ((KritaFilterLevels)dialog.Dialog).SetAllChannelsMode()),

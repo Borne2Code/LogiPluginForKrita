@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -10,15 +9,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
+        static internal FilterDialogDefinition GetDefinition()
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-Desaturate.png");
-        }
-
-        static internal DialogDefinition GetDefinition()
-        {
-            return new DialogDefinition("Desaturate",
+            return new FilterDialogDefinition("Desaturate",
                 FilterNames.Desaturate,
+                "Loupedeck.KritaPlugin.images.Filters.filters-Desaturate.png",
                 [
                     new CommandDefinition("Lightness", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectLightness()),
                     new CommandDefinition("Luminosity (BT709)", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectLuminosityBT709()),

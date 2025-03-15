@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -11,15 +9,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
+        static internal FilterDialogDefinition GetDefinition()
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-CrossChannelColorAdjustment.png");
-        }
-
-        static internal DialogDefinition GetDefinition()
-        {
-            return new DialogDefinition("Cross channel Adjustment",
+            return new FilterDialogDefinition("Cross channel Adjustment",
                 FilterNames.CrossChannel,
+                "Loupedeck.KritaPlugin.images.Filters.filters-CrossChannelColorAdjustment.png",
                 [
                     new CommandDefinition("Channel RGBA", (dialog) => ((KritaFilterCrossChannel)dialog.Dialog).SetTargetChannelIndex(KritaFilterCrossChannel.TargetChannel.RGBA)),
                     new CommandDefinition("Channel Red", (dialog) => ((KritaFilterCrossChannel)dialog.Dialog).SetTargetChannelIndex(KritaFilterCrossChannel.TargetChannel.Red)),

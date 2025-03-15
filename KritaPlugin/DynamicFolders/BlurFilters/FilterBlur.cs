@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -10,15 +9,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
+        static internal FilterDialogDefinition GetDefinition()
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-Blur.png");
-        }
-
-        static internal DialogDefinition GetDefinition()
-        {
-            return new DialogDefinition("Blur",
+            return new FilterDialogDefinition("Blur",
                 FilterNames.Blur,
+                "Loupedeck.KritaPlugin.images.Filters.filters-Blur.png",
                 [
                     new CommandDefinition("Lock Hor./Vert.", (dialog) => (dialog.Dialog as KritaFilterBlur).ToggleLockAspect()),
                     new CommandDefinition("Shape Circle", (dialog) => (dialog.Dialog as KritaFilterBlur).SetShape(KritaFilterBlur.ShapeEnum.Circle)),

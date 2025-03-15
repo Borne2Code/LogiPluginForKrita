@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -10,12 +9,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
-        {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-ColorBalance.png");
-        }
-
-        static internal DialogDefinition GetDefinition()
+        static internal FilterDialogDefinition GetDefinition()
         {
             var shadowCyanRedAdj = new AdjustmentDefinition("Shadows Cyan/Red",
                 (filterDialog, diff) => ((KritaFilterColorBalance)filterDialog.Dialog).AdjustShadowsCyanRedValue((int)diff).Result);
@@ -65,8 +59,9 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             var preserveLuminosity = new CommandDefinition("Preserve Luminosity",
                 (filterDialog) => ((KritaFilterColorBalance)filterDialog.Dialog).TogglePreserveLuminosity());
 
-            return new DialogDefinition("Colors balance",
+            return new FilterDialogDefinition("Colors balance",
                 FilterNames.ColorBalance,
+                "Loupedeck.KritaPlugin.images.Filters.filters-ColorBalance.png",
                 [
                     resetShadows,
                     resetMidtones,

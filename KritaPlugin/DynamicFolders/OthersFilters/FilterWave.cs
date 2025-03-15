@@ -9,10 +9,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        static internal DialogDefinition GetDefinition()
+        static internal FilterDialogDefinition GetDefinition()
         {
-            return new DialogDefinition("Wave",
+            return new FilterDialogDefinition("Wave",
                 FilterNames.Wave,
+                null,
                 [
                     new CommandDefinition("Hor. shape Sinus", (dialog) => (dialog.Dialog as KritaFilterWave).SetHorizontalShape(KritaFilterWave.Shape.Sinusoidal)),
                     new CommandDefinition("Hor. shape Triangle", (dialog) => (dialog.Dialog as KritaFilterWave).SetHorizontalShape(KritaFilterWave.Shape.Triangle)),

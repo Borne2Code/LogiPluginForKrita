@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -10,17 +9,12 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
+        static internal FilterDialogDefinition GetDefinition()
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-RainDrops.png");
-        }
-
-        static internal DialogDefinition GetDefinition()
-        {
-            return new DialogDefinition("Rain Drops",
+            return new FilterDialogDefinition("Rain Drops",
                 FilterNames.RainDrops,
-                [
-                ],
+                "Loupedeck.KritaPlugin.images.Filters.filters-RainDrops.png",
+                [],
                 [
                     new AdjustmentDefinition("Drop size", (dialog, delta) => (dialog.Dialog as KritaFilterRainDrops).AdjustDropSize((int)delta).Result, 80),
                     new AdjustmentDefinition("Number", (dialog, delta) => (dialog.Dialog as KritaFilterRainDrops).AdjustNumberOfDrops((int)delta).Result, 80),

@@ -1,12 +1,13 @@
-﻿using LoupedeckKritaApiClient;
-using LoupedeckKritaApiClient.ClientBase;
+﻿using LoupedeckKritaApiClient.ClientBase;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
     public class LayerPropertiesDialog : DynamicFolderBase
     {
         public LayerPropertiesDialog()
-            : base("Filter Layer Properties", ActionGroups.Layers)
+            : base("Layer Properties (dynamic)",
+                  "Loupedeck.KritaPlugin.images.Layers.Properties.png",
+                  ActionGroups.Layers)
         {
         }
 

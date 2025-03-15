@@ -4,7 +4,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 {
     public static class FilterDialogDefinitionsList
     {
-        internal static readonly Dictionary<string, DialogDefinition> FilterDialogDefintionList = new() 
+        internal static readonly Dictionary<string, FilterDialogDefinition> FilterDialogDefintionList = new() 
         {
             { FilterNames.AscCdl, FilterAscCdl.GetDefinition() },
             { FilterNames.AutoConstrast, FilterAutoContrast.GetDefinition() },

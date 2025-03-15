@@ -1,4 +1,5 @@
-﻿using LoupedeckKritaApiClient;
+﻿using System.Reflection;
+using LoupedeckKritaApiClient;
 using LoupedeckKritaApiClient.ClientBase;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
@@ -8,19 +9,29 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         protected Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
         internal KritaDialogBase Dialog { get; set; }
         protected DialogDefinition dialogDefinition;
-        protected CommandDefinition[] FixedCommands;
+        private string IconResourceName = null;
 
         private const string ShowDialogString = "Show dialog";
 
         private const string CancelString = "Cancel";
         private const string ValidateString = "OK";
 
-        internal DynamicFolderBase(string displayName, string groupName, params CommandDefinition[] fixedCommands)
+        internal DynamicFolderBase(string displayName, string iconResourceName, string groupName)
         {
             DisplayName = displayName;
             GroupName = groupName;
-            FixedCommands = fixedCommands;
             dialogDefinition = null;
+            IconResourceName = iconResourceName;
+        }
+
+        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
+        {
+            if (IconResourceName == null)
+            {
+                return null;
+            }
+
+            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), IconResourceName);
         }
 
         public override PluginDynamicFolderNavigation GetNavigationArea(DeviceType _)
@@ -59,9 +70,9 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     commands.Add(CreateCommandName(command.Name));
                     commandsCount++;
 
-                    if(commandsCount == 10 - FixedCommands.Length)
+                    if(commandsCount == 10 - dialogDefinition.FixedCommands.Length)
                     { 
-                        foreach(var fixedCommand in FixedCommands)
+                        foreach(var fixedCommand in dialogDefinition.FixedCommands)
                         {
                             commands.Add(CreateCommandName(fixedCommand.Name));
                         }
@@ -74,13 +85,13 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
             if (commandsCount > 0)
             {
-                while (commandsCount < (10 - FixedCommands.Length))
+                while (commandsCount < (10 - dialogDefinition.FixedCommands.Length))
                 {
                     commands.Add(string.Empty);
                     commandsCount++;
                 }
 
-                foreach (var fixedCommand in FixedCommands)
+                foreach (var fixedCommand in dialogDefinition.FixedCommands)
                 {
                     commands.Add(CreateCommandName(fixedCommand.Name));
                 }
@@ -167,7 +178,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     }
                     else
                     {
-                        command = FixedCommands.Where(cmd => cmd.Name == actionParameter).FirstOrDefault();
+                        command = dialogDefinition.FixedCommands.Where(cmd => cmd.Name == actionParameter).FirstOrDefault();
                         if (command != null)
                         {
                             SecureCall(() => command.Action(this).Wait(), command.ShoudClose);

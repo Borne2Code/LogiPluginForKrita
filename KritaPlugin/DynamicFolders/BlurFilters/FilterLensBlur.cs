@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -10,15 +9,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
+        static internal FilterDialogDefinition GetDefinition()
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-LensBlur.png");
-        }
-
-        static internal DialogDefinition GetDefinition()
-        {
-            return new DialogDefinition("Lens Blur",
+            return new FilterDialogDefinition("Lens Blur",
                 FilterNames.LensBlur,
+                "Loupedeck.KritaPlugin.images.Filters.filters-LensBlur.png",
                 [
                     new CommandDefinition("Shape triangle", (dialog) => (dialog.Dialog as KritaFilterLensBlur).SetShape(KritaFilterLensBlur.Shape.Triangle)),
                     new CommandDefinition("Shape quadrilateral", (dialog) => (dialog.Dialog as KritaFilterLensBlur).SetShape(KritaFilterLensBlur.Shape.Quadrilateral)),

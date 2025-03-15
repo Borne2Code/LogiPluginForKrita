@@ -9,10 +9,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        static internal DialogDefinition GetDefinition()
+        static internal FilterDialogDefinition GetDefinition()
         {
-            return new DialogDefinition("Random Noise",
+            return new FilterDialogDefinition("Random Noise",
                 FilterNames.Noise,
+                null,
                 [],
                 [
                     new AdjustmentDefinition("Level", (dialog, delta) => (dialog.Dialog as KritaFilterNoise).AdjustLevel((int)delta).Result, 50),

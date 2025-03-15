@@ -9,10 +9,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        static internal DialogDefinition GetDefinition()
+        static internal FilterDialogDefinition GetDefinition()
         {
-            return new DialogDefinition("Random Pick",
+            return new FilterDialogDefinition("Random Pick",
                 FilterNames.RandomPick,
+                null,
                 [],
                 [
                     new AdjustmentDefinition("Level", (dialog, delta) => (dialog.Dialog as KritaFilterRandomPick).AdjustLevel((int)delta).Result, 50),

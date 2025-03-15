@@ -1,24 +1,26 @@
-﻿namespace Loupedeck.KritaPlugin.DynamicFolders
+﻿
+using System.Reflection;
+
+namespace Loupedeck.KritaPlugin.DynamicFolders
 {
     public abstract class FilterDialogBase : DynamicFolderBase
     {
-        private const string ShowCreateFilterMaskName = "Set as mask";
-
-        internal FilterDialogBase(string filterName): base(string.Empty, ActionGroups.Filters, 
-            new CommandDefinition(ShowCreateFilterMaskName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).CreateMask(), true), CommandDefinition.Empty)
+        internal FilterDialogBase(string filterName): base(
+            FilterDialogDefinitionsList.FilterDialogDefintionList[filterName].Name,
+            null,
+            ActionGroups.Filters)
         {
             dialogDefinition = FilterDialogDefinitionsList.FilterDialogDefintionList[filterName];
-            DisplayName = dialogDefinition.Name;
         }
 
-        public override PluginDynamicFolderNavigation GetNavigationArea(DeviceType _)
+        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
         {
-            return PluginDynamicFolderNavigation.None;
+            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), (dialogDefinition as FilterDialogDefinition).IconResourceName);
         }
 
         protected override bool ShowDialog()
         {
-            Dialog = Client.GetFilterDialog(dialogDefinition.FilterName).Result;
+            Dialog = Client.GetFilterDialog((dialogDefinition as FilterDialogDefinition).FilterName).Result;
             return true;
         }
 

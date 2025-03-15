@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -10,17 +9,12 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
+        static internal FilterDialogDefinition GetDefinition()
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-OilPaint.png");
-        }
-
-        static internal DialogDefinition GetDefinition()
-        {
-            return new DialogDefinition("Oil Paint",
+            return new FilterDialogDefinition("Oil Paint",
                 FilterNames.OilPaint,
-                [
-                ],
+                "Loupedeck.KritaPlugin.images.Filters.filters-OilPaint.png",
+                [],
                 [
                     new AdjustmentDefinition("Brush size", (dialog, delta) => (dialog.Dialog as KritaFilterOilPaint).AdjustBrushSize((int)delta).Result, 1),
                     new AdjustmentDefinition("Smooth", (dialog, delta) => (dialog.Dialog as KritaFilterOilPaint).AdjustSmooth((int)delta).Result, 30),

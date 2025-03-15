@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -10,15 +9,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
         }
 
-        public override BitmapImage GetButtonImage(PluginImageSize imageSize)
+        static internal FilterDialogDefinition GetDefinition()
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-EdgeDetection.png");
-        }
-
-        static internal DialogDefinition GetDefinition()
-        {
-            return new DialogDefinition("Edge detection",
+            return new FilterDialogDefinition("Edge detection",
                 FilterNames.EdgeDetection,
+                "Loupedeck.KritaPlugin.images.Filters.filters-EdgeDetection.png",
                 [
                     new CommandDefinition("Formula Prewitt", (dialog) => (dialog.Dialog as KritaFilterEdgeDetecttion).SelectFormula(KritaFilterEdgeDetecttion.Formula.Prewitt)),
                     new CommandDefinition("Formula Sobel", (dialog) => (dialog.Dialog as KritaFilterEdgeDetecttion).SelectFormula(KritaFilterEdgeDetecttion.Formula.Sobel)),
