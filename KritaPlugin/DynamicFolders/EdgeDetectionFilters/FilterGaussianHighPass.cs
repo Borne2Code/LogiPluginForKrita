@@ -12,7 +12,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         public override BitmapImage GetButtonImage(PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.filters-GaussianHighpass.png");
+            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-GaussianHighpass.png");
         }
 
         static internal DialogDefinition GetDefinition()

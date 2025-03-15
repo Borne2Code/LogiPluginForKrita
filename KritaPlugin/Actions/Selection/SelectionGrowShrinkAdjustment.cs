@@ -18,7 +18,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override BitmapImage GetAdjustmentImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.SelectionGrowShrink.png");
+            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Selection.GrowShrink.png");
         }
 
         // This method is called when the adjustment is executed.
