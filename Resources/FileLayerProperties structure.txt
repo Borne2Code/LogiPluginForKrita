@@ -1,0 +1,76 @@
+from krita import *
+from PyQt5.QtCore import QTimer
+from PyQt5.QtWidgets import QApplication, QPushButton
+
+_scripter_stdout = sys.stdout
+
+def listChildrenWidgets(widget, prefix = "", withgrandchildren = True):
+    for w in widget.children():
+            print(f"{prefix}{w.objectName()} [{type(w).__name__}]", file=_scripter_stdout)
+            if withgrandchildren:
+                listChildrenWidgets(w, prefix + "  ")
+
+def child(self, childName):
+    filteredChildren = list(filter(lambda w: w.objectName() == childName, self.children()))
+    if len(filteredChildren) == 0:
+        return None
+    else:
+        return filteredChildren[0]
+
+def suite():
+    dialog = QApplication.activeModalWidget()
+    listChildrenWidgets(dialog)
+
+    
+action = Krita.instance().action("layer_properties")
+QTimer.singleShot(5, action.trigger)
+#here, manually activate properties dialog
+QTimer.singleShot(5000, suite)
+---------------------------------------------------------
+==== Warning: Script not saved! ====
+ [QDialogButtonBox]
+   [QHBoxLayout]
+   [QPushButton]
+   [QPushButton]
+WdgDlgFileLayer [QWidget]
+  verticalLayout [QVBoxLayout]
+    formLayout [QFormLayout]
+    formLayout_2 [QFormLayout]
+  label [QLabel]
+  txtLayerName [QLineEdit]
+     [QObject]
+  label_2 [QLabel]
+  wdgUrlRequester [QWidget]
+    horizontalLayout [QHBoxLayout]
+    txtFileName [QLineEdit]
+       [QObject]
+    btnSelectFile [QToolButton]
+  lblWarning [QLabel]
+     [QObject]
+       [QTextDocument]
+         [QAbstractTextDocumentLayout]
+           [QObject]
+         [QTextFrame]
+  grpScalingOptions [QGroupBox]
+    gridLayout [QGridLayout]
+    radioDontScale [QRadioButton]
+    radioScaleToImageSize [QRadioButton]
+    radioScalePPI [QRadioButton]
+  label_3 [QLabel]
+  cmbFilter [QComboBox]
+     [QStandardItemModel]
+     [QFrame]
+       [QBoxLayout]
+       [QListView]
+        qt_scrollarea_viewport [QWidget]
+        qt_scrollarea_hcontainer [QWidget]
+           [QScrollBar]
+           [QBoxLayout]
+        qt_scrollarea_vcontainer [QWidget]
+           [QScrollBar]
+           [QBoxLayout]
+         [QItemSelectionModel]
+         [QAbstractItemDelegate]
+       [QWidget]
+       [QWidget]
+ [QVBoxLayout]

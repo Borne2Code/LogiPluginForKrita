@@ -219,27 +219,27 @@ namespace LoupedeckKritaApiClient.ClientBase
             return InternalExecuteCall(GetModalDialogActionName, null, null, widgetsNamesOrIndexes);
         }
 
-        internal Task ClickDialogButton(string dialogConfigWidgetReference, string[] widgetPathNames)
+        internal Task ClickDialogButton(string dialogConfigWidgetReference, params string[] widgetPathNames)
         {
             return InternalExecuteCall(ClickDialogButtonActionName, dialogConfigWidgetReference, parameters:  widgetPathNames);
         }
 
-        internal Task<ReturnValue> AdjustDialogIntSpinBoxValue(string dialogConfigWidgetReference, int value, string[] widgetPathNames)
+        internal Task<ReturnValue> AdjustDialogIntSpinBoxValue(string dialogConfigWidgetReference, int value, params string[] widgetPathNames)
         {
             return InternalExecuteCall(SetDialogSpinboxIntValueActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
-        internal Task<ReturnValue> AdjustDialogFloatSpinBoxValue(string dialogConfigWidgetReference, float value, string[] widgetPathNames)
+        internal Task<ReturnValue> AdjustDialogFloatSpinBoxValue(string dialogConfigWidgetReference, float value, params string[] widgetPathNames)
         {
             return InternalExecuteCall(SetDialogSpinboxFloatValueActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
-        internal Task<ReturnValue> SetDialogAngleSelectorValue(string dialogConfigWidgetReference, float value, string[] widgetPathNames)
+        internal Task<ReturnValue> SetDialogAngleSelectorValue(string dialogConfigWidgetReference, float value, params string[] widgetPathNames)
         {
             return InternalExecuteCall(SetDialogAngleActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
-        internal Task SetDialogComboBoxSelectedItem(string dialogConfigWidgetReference, int value, string[] widgetPathNames)
+        internal Task SetDialogComboBoxSelectedItem(string dialogConfigWidgetReference, int value, params string[] widgetPathNames)
         {
             return InternalExecuteCall(SetDialogComboSelectActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
@@ -298,7 +298,7 @@ namespace LoupedeckKritaApiClient.ClientBase
             return dialog;
         }
 
-        public async Task<(FilterDialogBase? filterDialog, string? filterName)> GetLayerPropertiesDialog()
+        public async Task<(FilterDialogBase? filterDialog, string? filterName)> GetFilterLayerPropertiesDialog()
         {
             await using var filter = await CurrentNode.Filter();
             if (filter == null)
@@ -314,6 +314,26 @@ namespace LoupedeckKritaApiClient.ClientBase
             await dialog.AttachDialog();
 
             return (dialog, filterName);
+        }
+
+        public async Task<LayerPropertiesDialog> GetLayerPropertiesDialog()
+        {
+            await KritaInstance.ExecuteAction(ActionsNames.Layer_properties);
+
+            var dialog = new LayerPropertiesDialog(this);
+            await dialog.AttachDialog();
+
+            return dialog;
+        }
+
+        public async Task<FileLayerPropertiesDialog> GetFileLayerPropertiesDialog()
+        {
+            await KritaInstance.ExecuteAction(ActionsNames.Layer_properties);
+
+            var dialog = new FileLayerPropertiesDialog(this);
+            await dialog.AttachDialog();
+
+            return dialog;
         }
     }
 }

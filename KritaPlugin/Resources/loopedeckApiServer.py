@@ -253,7 +253,7 @@ class LoopedeckApiServer(Extension):
                 QtCore.qDebug(f"Get dialog configuration widget")
                 dialogData = DialogData()
                 #try QApplication.activeWindow()
-                dialogData.dialog = self.child(Krita.instance().activeWindow().qwindow(), "FilterDialog")
+                dialogData.dialog = QApplication.activeWindow()
                 widget = dialogData.dialog
                 for param in parameters:
                     widget = self.child(widget, param)

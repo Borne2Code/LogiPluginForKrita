@@ -4,6 +4,7 @@ namespace LoupedeckKritaApiClient
 {
     public class Node(): LoupedeckClientKritaBaseClass
     {
+        public Task<string> LayerType() => GetStr("type");
         public Task<int> Opacity() => GetInt("opacity");
         public Task SetOpacity(int opacity) => Execute("setOpacity", opacity);
         public Task<bool> AlphaLocked() => GetBool("alphaLocked");
