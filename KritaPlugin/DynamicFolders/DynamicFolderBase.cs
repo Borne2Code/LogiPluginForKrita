@@ -13,9 +13,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         private const string ShowDialogString = "Show dialog";
 
-        private const string CancelString = "Cancel";
-        private const string ValidateString = "OK";
-
         internal DynamicFolderBase(string displayName, string iconResourceName, string groupName)
         {
             DisplayName = displayName;
@@ -41,8 +38,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         protected abstract bool ShowDialog();
         protected abstract void ResetDialog();
-        protected abstract void ValidateDialog();
-        protected abstract void CancelDialog();
 
         public override bool Activate()
         {
@@ -70,14 +65,12 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     commands.Add(CreateCommandName(command.Name));
                     commandsCount++;
 
-                    if(commandsCount == 10 - dialogDefinition.FixedCommands.Length)
+                    if(commandsCount == 12 - dialogDefinition.FixedCommands.Length)
                     { 
                         foreach(var fixedCommand in dialogDefinition.FixedCommands)
                         {
                             commands.Add(CreateCommandName(fixedCommand.Name));
                         }
-                        commands.Add(CreateCommandName(CancelString));
-                        commands.Add(CreateCommandName(ValidateString));
                         commandsCount = 0;
                     }
                 }
@@ -85,7 +78,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
             if (commandsCount > 0)
             {
-                while (commandsCount < (10 - dialogDefinition.FixedCommands.Length))
+                while (commandsCount < (12 - dialogDefinition.FixedCommands.Length))
                 {
                     commands.Add(string.Empty);
                     commandsCount++;
@@ -95,8 +88,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 {
                     commands.Add(CreateCommandName(fixedCommand.Name));
                 }
-                commands.Add(CreateCommandName(CancelString));
-                commands.Add(CreateCommandName(ValidateString));
             }
 
             return commands;
@@ -153,44 +144,29 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         public override void RunCommand(string actionParameter)
         {
-            switch (actionParameter)
-            {
-                case ShowDialogString:
+            if (actionParameter == ShowDialogString)
                     Activate();
-                    break;
-                case ValidateString:
-                    SecureCall(() =>
-                    {
-                        ValidateDialog();
-                    }, true);
-                    break;
-                case CancelString:
-                    SecureCall(() =>
-                    {
-                        CancelDialog();
-                    }, true);
-                    break;
-                default:
-                    var command = dialogDefinition.Commands.Where(cmd => cmd.Name == actionParameter).FirstOrDefault();
+            else
+            {
+                var command = dialogDefinition.Commands.Where(cmd => cmd.Name == actionParameter).FirstOrDefault();
+                if (command != null)
+                {
+                    SecureCall(() => command.Action(this).Wait(), command.ShoudClose);
+                }
+                else
+                {
+                    command = dialogDefinition.FixedCommands.Where(cmd => cmd.Name == actionParameter).FirstOrDefault();
                     if (command != null)
                     {
                         SecureCall(() => command.Action(this).Wait(), command.ShoudClose);
                     }
                     else
                     {
-                        command = dialogDefinition.FixedCommands.Where(cmd => cmd.Name == actionParameter).FirstOrDefault();
-                        if (command != null)
-                        {
-                            SecureCall(() => command.Action(this).Wait(), command.ShoudClose);
-                        }
-                        else
-                        {
-                            var adjustment = dialogDefinition.Adjustments.Where(adj => adj.Name == actionParameter).FirstOrDefault();
-                            if (adjustment != null)
-                                adjustment.Value = adjustment.Adjust(this, adjustment.DefaultValue - adjustment.Value);
-                        }
+                        var adjustment = dialogDefinition.Adjustments.Where(adj => adj.Name == actionParameter).FirstOrDefault();
+                        if (adjustment != null)
+                            adjustment.Value = adjustment.Adjust(this, adjustment.DefaultValue - adjustment.Value);
                     }
-                    break;
+                }
             }
         }
 

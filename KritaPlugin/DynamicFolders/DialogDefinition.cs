@@ -14,8 +14,8 @@
         }
 
         public string Name { get; }
-        public CommandDefinition[] Commands { get; }
-        public CommandDefinition[] FixedCommands { get; }
-        public AdjustmentDefinition[] Adjustments { get; }
+        public CommandDefinition[] Commands { get; internal set; }
+        public CommandDefinition[] FixedCommands { get; internal set; }
+        public AdjustmentDefinition[] Adjustments { get; internal set; }
     }
 }

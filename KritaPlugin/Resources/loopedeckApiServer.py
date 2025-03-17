@@ -70,7 +70,7 @@ class AuthorizedAction:
         instance.parametersIsMandatory = parametersIsMandatory
         return instance
 
-class FilterData:
+class DialogData:
     dialog: object
     config: object
 
@@ -78,15 +78,14 @@ class LoopedeckApiServer(Extension):
     authorizedActions = {
         'Delete': AuthorizedAction.new(True, None, None), # Delete instance
         'Execute': AuthorizedAction.new(True, True, False), # Execute method
-        'GetFilterDialog': AuthorizedAction.new(None, None, None), # Open filter dialog
-        'SetFilterAngle': AuthorizedAction.new(True, None, True), # Set filter angle selector value
-        'ClickFilterButton': AuthorizedAction.new(True, None, True), # Click on filter button, radio or checkbox
-        'SetFilterComboSelect': AuthorizedAction.new(True, None, True), # Select filter combo box selected index
-        'SetFilterSpinboxIntValue': AuthorizedAction.new(True, None, True), # Set filter spinbox int value
-        'SetFilterSpinboxFloatValue': AuthorizedAction.new(True, None, True), # Set filter spinbox float value
-        'CreateFilterAsMask': AuthorizedAction.new(True, None, None), # Create filter mask from dialog
-        'ValidateFilterDialog': AuthorizedAction.new(True, None, None), # Validate filter dialog
-        'CancelFilterDialog': AuthorizedAction.new(True, None, None) # Cancel filter dialog
+        'GetDialog': AuthorizedAction.new(None, None, True), # Open dialog dialog
+        'GetModalDialog': AuthorizedAction.new(None, None, True), # Open dialog dialog
+        'SetDialogAngle': AuthorizedAction.new(True, None, True), # Set dialog angle selector value
+        'ClickDialogButton': AuthorizedAction.new(True, None, True), # Click on dialog button, radio or checkbox
+        'SetDialogComboSelect': AuthorizedAction.new(True, None, True), # Select dialog combo box selected index
+        'SetDialogSpinboxIntValue': AuthorizedAction.new(True, None, True), # Set dialog spinbox int value
+        'SetDialogSpinboxFloatValue': AuthorizedAction.new(True, None, True), # Set dialog spinbox float value
+        'ClickMainDialogButton': AuthorizedAction.new(True, None, True), # Click on main dialog button, radio or checkbox
     }
 
     def __init__(self, parent):
@@ -211,12 +210,23 @@ class LoopedeckApiServer(Extension):
                 self.worker.objects[key] = returnValue
                 self.worker.returnValue = key
 
+    def isInteger(self, value):
+        if value[0] == "-":
+            value = value[slice(1, len(value))]
+        return value.isnumeric()
+
     def child(self, parentWidget, childName):
-        filteredChildren = list(filter(lambda w: w.objectName() == childName, parentWidget.children()))
-        if len(filteredChildren) == 0:
-            return None
+        if self.isInteger(childName):
+            childIndex = int(childName)
+            if childIndex < 0:
+                childIndex = len(parentWidget.children()) + childIndex
+            return parentWidget.children()[childIndex]
         else:
-            return filteredChildren[0]
+            filteredChildren = list(filter(lambda w: w.objectName() == childName, parentWidget.children()))
+            if len(filteredChildren) == 0:
+                return None
+            else:
+                return filteredChildren[0]
 
     @pyqtSlot(str)
     def computeMessage(self, msg):
@@ -239,70 +249,89 @@ class LoopedeckApiServer(Extension):
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
                 self.worker.result = True
-            elif action == "GetFilterDialog":
-                QtCore.qDebug(f"Get filter configuration widget")
-                filterData = FilterData()
-                filterData.dialog = self.child(Krita.instance().activeWindow().qwindow(), "FilterDialog")
-                if filterData.dialog == None:
-                    filterData.dialog = QApplication.activeModalWidget()
-                    filterData.config = filterData.dialog.children()[1].children()[3]
-                else:
-                    filterData.config = filterData.dialog.children()[1].children()[-1].children()[0].children()[0].children()[1].children()[1]
+            elif action == "GetDialog":
+                QtCore.qDebug(f"Get dialog configuration widget")
+                dialogData = DialogData()
+                #try QApplication.activeWindow()
+                dialogData.dialog = self.child(Krita.instance().activeWindow().qwindow(), "FilterDialog")
+                widget = dialogData.dialog
+                for param in parameters:
+                    widget = self.child(widget, param)
+                dialogData.config = widget
 
-                if (filterData.config is not None):
+                if (dialogData.config is not None):
                     key = str(uuid.uuid4())
-                    self.worker.objects[key] = filterData
+                    self.worker.objects[key] = dialogData
                     self.worker.returnValue = key
-                    self.worker.returnType = type(filterData.config).__name__
+                    self.worker.returnType = type(dialogData.config).__name__
                     self.worker.result = True
                 else:
                     self.worker.returnType = "None"
                     self.worker.returnValue = None
                     self.worker.result = False
-            elif action == "SetFilterSpinboxIntValue":
-                QtCore.qDebug(f"Change filter configuration spinBox")
+            elif action == "GetModalDialog":
+                QtCore.qDebug(f"Get modal dialog configuration widget")
+                dialogData = DialogData()
+                dialogData.dialog = QApplication.activeModalWidget()
+                widget = dialogData.dialog
+                for param in parameters:
+                    widget = self.child(widget, param)
+                dialogData.config = widget
+
+                if (dialogData.config is not None):
+                    key = str(uuid.uuid4())
+                    self.worker.objects[key] = dialogData
+                    self.worker.returnValue = key
+                    self.worker.returnType = type(dialogData.config).__name__
+                    self.worker.result = True
+                else:
+                    self.worker.returnType = "None"
+                    self.worker.returnValue = None
+                    self.worker.result = False
+            elif action == "SetDialogSpinboxIntValue":
+                QtCore.qDebug(f"Change dialog configuration int spinBox")
                 widget = objectInstance.config
                 value = int(parameters[0])
-                for param in parameters[slice(1, 500)]:
+                for param in parameters[slice(1, len(parameters))]:
                     widget = self.child(widget, param)
                 newValue = widget.value() + value
                 widget.setValue(newValue)
                 newValue = widget.value()
                 self.computeResponse(newValue)
                 self.worker.result = True
-            elif action == "SetFilterSpinboxFloatValue":
-                QtCore.qDebug(f"Change filter configuration spinBox")
+            elif action == "SetDialogSpinboxFloatValue":
+                QtCore.qDebug(f"Change dialog configuration float spinBox")
                 widget = objectInstance.config
                 value = float(parameters[0])
-                for param in parameters[slice(1, 500)]:
+                for param in parameters[slice(1, len(parameters))]:
                     widget = self.child(widget, param)
                 newValue = widget.value() + value
                 widget.setValue(newValue)
                 newValue = widget.value()
                 self.computeResponse(newValue)
                 self.worker.result = True
-            elif action == "SetFilterAngle":
-                QtCore.qDebug(f"Change filter configuration angle")
+            elif action == "SetDialogAngle":
+                QtCore.qDebug(f"Change dialog configuration angle")
                 widget = objectInstance.config
                 value = parameters[0]
-                for param in parameters[slice(1, 500)]:
+                for param in parameters[slice(1, len(parameters))]:
                     widget = self.child(widget, param)
                 newValue = widget.children()[1].value() + value
                 widget.children()[1].setValue(newValue)
                 self.computeResponse(newValue)
                 self.worker.result = True
-            elif action == "SetFilterComboSelect":
-                QtCore.qDebug(f"Change filter configuration combo box")
+            elif action == "SetDialogComboSelect":
+                QtCore.qDebug(f"Change dialog configuration combo box")
                 widget = objectInstance.config
                 value = parameters[0]
-                for param in parameters[slice(1, 500)]:
+                for param in parameters[slice(1, len(parameters))]:
                     widget = self.child(widget, param)
                 widget.setCurrentIndex(value)
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
                 self.worker.result = True
-            elif action == "ClickFilterButton":
-                QtCore.qDebug(f"Click filter configuration widget")
+            elif action == "ClickDialogButton":
+                QtCore.qDebug(f"Click dialog configuration widget")
                 widget = objectInstance.config
                 for param in parameters:
                     widget = self.child(widget, param)
@@ -310,38 +339,18 @@ class LoopedeckApiServer(Extension):
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
                 self.worker.result = True
-            elif action == "CreateFilterAsMask":
-                QtCore.qDebug(f"Create filtermask from dialog")
+            elif action == "ClickMainDialogButton":
+                QtCore.qDebug(f"Click main dialog button")
                 widget = objectInstance.dialog
-                widget = self.child(widget, "pushButtonCreateMaskEffect")
+                for param in parameters:
+                    widget = self.child(widget, param)
                 if widget!= None:
                     widget.click()
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
                 self.worker.result = True
-            elif action == "ValidateFilterDialog":
-                QtCore.qDebug(f"Validate filter")
-                widget = objectInstance.dialog
-                widget = self.child(widget, "buttonBox")
-                if widget!= None:
-                    widget.children()[1].click()
-                else:
-                    widget = objectInstance.dialog.children()[0]
-                    if widget.children()[1] != None and isinstance(widget.children()[1], QPushButton):
-                        widget.children()[1].click()
-                self.worker.returnType = "None"
-                self.worker.returnValue = None
-                self.worker.result = True
-            elif action == "CancelFilterDialog":
-                QtCore.qDebug(f"Cancel filter")
-                widget = objectInstance.dialog
-                widget = self.child(widget, "buttonBox")
-                if widget!= None:
-                    widget.children()[2].click()
-                else:
-                    widget = objectInstance.dialog.children()[0]
-                    if widget != None and widget.children()[2] != None and isinstance(widget.children()[2], QPushButton):
-                        widget.children()[2].click()
+            else:
+                QtCore.qDebug(f"Error: action '{action}' is unkonwn.")
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
                 self.worker.result = True

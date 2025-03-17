@@ -5,12 +5,23 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 {
     public abstract class FilterDialogBase : DynamicFolderBase
     {
+        private const string ShowCreateFilterMaskName = "Set as mask";
+        private const string CancelButtonName = "Cancel";
+        private const string OkButtonName = "OK";
+
         internal FilterDialogBase(string filterName): base(
-            FilterDialogDefinitionsList.FilterDialogDefintionList[filterName].Name,
+            null,
             null,
             ActionGroups.Filters)
         {
-            dialogDefinition = FilterDialogDefinitionsList.FilterDialogDefintionList[filterName];
+            dialogDefinition = FilterDialogDefinition.GetDialogDefinition(filterName);
+            DisplayName = dialogDefinition.Name;
+            dialogDefinition.FixedCommands = [
+                    new CommandDefinition(ShowCreateFilterMaskName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).CreateMask(), true),
+                    CommandDefinition.Empty,
+                    new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Cancel(), true),
+                    new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Confirm(), true),
+                ];
         }
 
         public override BitmapImage GetButtonImage(PluginImageSize imageSize)
@@ -37,16 +48,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     Dialog = null;
                 }
             }
-        }
-
-        protected override void ValidateDialog()
-        {
-            Dialog.Confirm().Wait();
-        }
-
-        protected override void CancelDialog()
-        {
-            Dialog.Cancel().Wait();
         }
     }
 }

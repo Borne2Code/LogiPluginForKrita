@@ -21,12 +21,14 @@ namespace LoupedeckKritaApiClient.ClientBase
 
         private const string DeleteActionName = "Delete"; // delete instance in classes proxy cache
         private const string ExecuteActionName = "Execute"; // Execute a method in an object's context
-        private const string GetFilterDialogActionName = "GetFilterDialog"; // Drive a filter dialog
-        private const string SetFilterAngleActionName = "SetFilterAngle"; // Set filter angle selector value
-        private const string ClickFilterButtonActionName = "ClickFilterButton"; // Click on filter button, radio or checkbox
-        private const string SetFilterComboSelectActionName = "SetFilterComboSelect"; // Select filter combo box selected index
-        private const string SetFilterSpinboxIntValueActionName = "SetFilterSpinboxIntValue"; // Set filter spinbox int value
-        private const string SetFilterSpinboxFloatValueActionName = "SetFilterSpinboxFloatValue"; // Set filter spinbox float value
+        private const string GetDialogActionName = "GetDialog"; // Drive a dialog
+        private const string GetModalDialogActionName = "GetModalDialog"; // Drive a modal dialog
+        private const string SetDialogAngleActionName = "SetDialogAngle"; // Set angle selector value
+        private const string ClickDialogButtonActionName = "ClickDialogButton"; // Click on widget button, radio or checkbox
+        private const string SetDialogComboSelectActionName = "SetDialogComboSelect"; // Select combo box selected index
+        private const string SetDialogSpinboxIntValueActionName = "SetDialogSpinboxIntValue"; // Set spinbox int value
+        private const string SetDialogSpinboxFloatValueActionName = "SetDialogSpinboxFloatValue"; // Set spinbox float value
+        private const string ClickMainDialogButtonActionName = "ClickMainDialogButton"; // Click on main dialog button
         private const string CreateFilterAsMaskActionName = "CreateFilterAsMask"; // Create filter mask from dialog
         private const string ValidateFilterDialogActionName = "ValidateFilterDialog"; // Validate filter dialog
         private const string CancelFilterDialogActionName = "CancelFilterDialog"; // Cancel filter dialog
@@ -207,9 +209,44 @@ namespace LoupedeckKritaApiClient.ClientBase
             return InternalExecuteCall(DeleteActionName, objectName);
         }
 
-        public Task<ReturnValue> GetFilterConfigWidget()
+        public Task<ReturnValue> GetDialogConfigWidget(params string[] widgetsNamesOrIndexes)
         {
-            return InternalExecuteCall(GetFilterDialogActionName);
+            return InternalExecuteCall(GetDialogActionName, null, null, widgetsNamesOrIndexes);
+        }
+
+        public Task<ReturnValue> GetModalDialogConfigWidget(params string[] widgetsNamesOrIndexes)
+        {
+            return InternalExecuteCall(GetModalDialogActionName, null, null, widgetsNamesOrIndexes);
+        }
+
+        internal Task ClickDialogButton(string dialogConfigWidgetReference, string[] widgetPathNames)
+        {
+            return InternalExecuteCall(ClickDialogButtonActionName, dialogConfigWidgetReference, parameters:  widgetPathNames);
+        }
+
+        internal Task<ReturnValue> AdjustDialogIntSpinBoxValue(string dialogConfigWidgetReference, int value, string[] widgetPathNames)
+        {
+            return InternalExecuteCall(SetDialogSpinboxIntValueActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+        }
+
+        internal Task<ReturnValue> AdjustDialogFloatSpinBoxValue(string dialogConfigWidgetReference, float value, string[] widgetPathNames)
+        {
+            return InternalExecuteCall(SetDialogSpinboxFloatValueActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+        }
+
+        internal Task<ReturnValue> SetDialogAngleSelectorValue(string dialogConfigWidgetReference, float value, string[] widgetPathNames)
+        {
+            return InternalExecuteCall(SetDialogAngleActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+        }
+
+        internal Task SetDialogComboBoxSelectedItem(string dialogConfigWidgetReference, int value, string[] widgetPathNames)
+        {
+            return InternalExecuteCall(SetDialogComboSelectActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+        }
+
+        internal Task ClickMainDialogButton(string filterConfigWidgetReference, params string[] widgetPathNames)
+        {
+            return InternalExecuteCall(ClickMainDialogButtonActionName, filterConfigWidgetReference, parameters: widgetPathNames);
         }
 
         internal Task ConfirmFilter(string filterConfigWidgetReference)
@@ -225,31 +262,6 @@ namespace LoupedeckKritaApiClient.ClientBase
         internal Task CreateFilterMask(string filterConfigWidgetReference)
         {
             return InternalExecuteCall(CreateFilterAsMaskActionName, filterConfigWidgetReference);
-        }
-
-        internal Task ClickFilterWidget(string filterConfigWidgetReference, string[] widgetPathNames)
-        {
-            return InternalExecuteCall(ClickFilterButtonActionName, filterConfigWidgetReference, parameters:  widgetPathNames);
-        }
-
-        internal Task<ReturnValue> AdjustFilterIntSpinBoxValue(string filterConfigWidgetReference, int value, string[] widgetPathNames)
-        {
-            return InternalExecuteCall(SetFilterSpinboxIntValueActionName, filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
-        }
-
-        internal Task<ReturnValue> AdjustFilterFloatSpinBoxValue(string filterConfigWidgetReference, float value, string[] widgetPathNames)
-        {
-            return InternalExecuteCall(SetFilterSpinboxFloatValueActionName, filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
-        }
-
-        internal Task<ReturnValue> SetFilterAngleSelectorValue(string filterConfigWidgetReference, float value, string[] widgetPathNames)
-        {
-            return InternalExecuteCall(SetFilterAngleActionName, filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
-        }
-
-        internal Task SetFilterComboBoxSelectedItem(string filterConfigWidgetReference, int value, string[] widgetPathNames)
-        {
-            return InternalExecuteCall(SetFilterComboSelectActionName, filterConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
         public async ValueTask DisposeAsync()
@@ -298,6 +310,7 @@ namespace LoupedeckKritaApiClient.ClientBase
 
             var filterName = await filter.name();
             var dialog = FilterNames.GetFilterDialogByFilterName(this, filterName);
+            dialog.IsModal = true;
             await dialog.AttachDialog();
 
             return (dialog, filterName);

@@ -4,6 +4,9 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 {
     public class LayerPropertiesDialog : DynamicFolderBase
     {
+        private const string CancelButtonName = "Cancel";
+        private const string OkButtonName = "OK";
+
         public LayerPropertiesDialog()
             : base("Layer Properties (dynamic)",
                   "Loupedeck.KritaPlugin.images.Layers.Properties.png",
@@ -17,7 +20,11 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
             if (filterName != null)
             {
-                dialogDefinition = FilterDialogDefinitionsList.FilterDialogDefintionList[filterName];
+                dialogDefinition = FilterDialogDefinition.GetDialogDefinition(filterName);
+                dialogDefinition.FixedCommands = [
+                    new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Cancel(), true),
+                    new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Confirm(), true),
+                ];
                 ButtonActionNamesChanged();
                 EncoderActionNamesChanged();
                 return true;
@@ -42,16 +49,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     Dialog = null;
                 }
             }
-        }
-
-        protected override void ValidateDialog()
-        {
-            Dialog.Confirm().Wait();
-        }
-
-        protected override void CancelDialog()
-        {
-            Dialog.Cancel().Wait();
         }
     }
 }

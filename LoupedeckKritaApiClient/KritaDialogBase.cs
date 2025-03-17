@@ -13,46 +13,34 @@ namespace LoupedeckKritaApiClient
         }
 
         public abstract Task AttachDialog();
-        
-        public async Task Confirm()
-        {
-#pragma warning disable CS8604 // Possible null reference argument.
-            await _client.ConfirmFilter(_dialogConfigWidgetReference);
-#pragma warning restore CS8604 // Possible null reference argument.
-        }
-
-        public async Task Cancel()
-        {
-#pragma warning disable CS8604 // Possible null reference argument.
-            await _client.CancelFilter(_dialogConfigWidgetReference);
-#pragma warning restore CS8604 // Possible null reference argument.
-        }
+        public abstract Task Confirm();
+        public abstract Task Cancel();
 
         protected async Task ClickRadio(params string[] widgetPathNames)
         {
 #pragma warning disable CS8604 // Possible null reference argument.
-            await _client.ClickFilterWidget(_dialogConfigWidgetReference, widgetPathNames);
+            await _client.ClickDialogButton(_dialogConfigWidgetReference, widgetPathNames);
 #pragma warning restore CS8604 // Possible null reference argument.
         }
 
         protected async Task ClickPushButton(params string[] widgetPathNames)
         {
 #pragma warning disable CS8604 // Possible null reference argument.
-            await _client.ClickFilterWidget(_dialogConfigWidgetReference, widgetPathNames);
+            await _client.ClickDialogButton(_dialogConfigWidgetReference, widgetPathNames);
 #pragma warning restore CS8604 // Possible null reference argument.
         }
 
         protected async Task ClickCheckBox(params string[] widgetPathNames)
         {
 #pragma warning disable CS8604 // Possible null reference argument.
-            await _client.ClickFilterWidget(_dialogConfigWidgetReference, widgetPathNames);
+            await _client.ClickDialogButton(_dialogConfigWidgetReference, widgetPathNames);
 #pragma warning restore CS8604 // Possible null reference argument.
         }
 
         protected async Task<int> AdjustIntSpinBoxValue(int value, params string[] widgetPathNames)
         {
 #pragma warning disable CS8604 // Possible null reference argument.
-            var returnValue = await _client.AdjustFilterIntSpinBoxValue(_dialogConfigWidgetReference, value, widgetPathNames);
+            var returnValue = await _client.AdjustDialogIntSpinBoxValue(_dialogConfigWidgetReference, value, widgetPathNames);
 #pragma warning restore CS8604 // Possible null reference argument.
 
             if (returnValue.Type != "int")
@@ -66,7 +54,7 @@ namespace LoupedeckKritaApiClient
         protected async Task<float> AdjustFloatSpinBoxValue(float value, params string[] widgetPathNames)
         {
 #pragma warning disable CS8604 // Possible null reference argument.
-            var returnValue = await _client.AdjustFilterFloatSpinBoxValue(_dialogConfigWidgetReference, value, widgetPathNames);
+            var returnValue = await _client.AdjustDialogFloatSpinBoxValue(_dialogConfigWidgetReference, value, widgetPathNames);
 #pragma warning restore CS8604 // Possible null reference argument.
 
             if (returnValue.Type != "float")
@@ -80,7 +68,7 @@ namespace LoupedeckKritaApiClient
         protected async Task<float> AdjustAngleSelectorValue(float value, params string[] widgetPathNames)
         {
 #pragma warning disable CS8604 // Possible null reference argument.
-            var returnValue = await _client.SetFilterAngleSelectorValue(_dialogConfigWidgetReference, value, widgetPathNames);
+            var returnValue = await _client.SetDialogAngleSelectorValue(_dialogConfigWidgetReference, value, widgetPathNames);
 #pragma warning restore CS8604 // Possible null reference argument.
 
             if (returnValue.Type != "float")
@@ -94,7 +82,7 @@ namespace LoupedeckKritaApiClient
         protected async Task SetComboBoxSelectedIndex(int value, params string[] widgetPathNames)
         {
 #pragma warning disable CS8604 // Possible null reference argument.
-            await _client.SetFilterComboBoxSelectedItem(_dialogConfigWidgetReference, value, widgetPathNames);
+            await _client.SetDialogComboBoxSelectedItem(_dialogConfigWidgetReference, value, widgetPathNames);
 #pragma warning restore CS8604 // Possible null reference argument.
         }
 
