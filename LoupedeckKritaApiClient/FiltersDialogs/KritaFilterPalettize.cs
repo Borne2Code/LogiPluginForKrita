@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterPalettize(Client client) : FilterDialogBase(client)
+    public class KritaFilterPalettize(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_palettize";
+        public override string ActionName => "krita_filter_palettize";
 
         // TODO, complex
     }

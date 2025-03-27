@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterGradientMap(Client client) : FilterDialogBase(client)
+    public class KritaFilterGradientMap(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_gradientmap";
+        public override string ActionName => "krita_filter_gradientmap";
 
         // TODO: complete, very complex
     }

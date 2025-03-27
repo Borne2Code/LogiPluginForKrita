@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterNoise(Client client) : FilterDialogBase(client)
+    public class KritaFilterNoise(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_noise";
+        public override string ActionName => "krita_filter_noise";
 
         public Task<int> AdjustLevel(int value)
         {

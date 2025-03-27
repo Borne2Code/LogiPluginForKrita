@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterEmbossHorizontalOnly(Client client) : FilterDialogBase(client)
+    public class KritaFilterEmbossHorizontalOnly(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_emboss horizontal only";
+        public override string ActionName => "krita_filter_emboss horizontal only";
 
         // No parameters
     }

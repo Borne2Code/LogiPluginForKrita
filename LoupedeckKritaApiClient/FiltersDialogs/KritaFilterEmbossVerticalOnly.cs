@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterEmbossVerticalOnly(Client client) : FilterDialogBase(client)
+    public class KritaFilterEmbossVerticalOnly(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_emboss vertical only";
+        public override string ActionName => "krita_filter_emboss vertical only";
 
         // No parameters
     }

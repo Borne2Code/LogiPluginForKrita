@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterAutoConstrast(Client client) : FilterDialogBase(client)
+    public class KritaFilterAutoConstrast(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_autocontrast";
+        public override string ActionName => "krita_filter_autocontrast";
 
         // No parameters
     }

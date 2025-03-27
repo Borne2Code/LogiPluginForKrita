@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterPosterize(Client client) : FilterDialogBase(client)
+    public class KritaFilterPosterize(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_posterize";
+        public override string ActionName => "krita_filter_posterize";
 
         public Task<int> AdjustSteps(int steps)
         {

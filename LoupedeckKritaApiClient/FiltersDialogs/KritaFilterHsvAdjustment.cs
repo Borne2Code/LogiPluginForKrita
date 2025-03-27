@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterHsvAdjustment(Client client) : FilterDialogBase(client)
+    public class KritaFilterHsvAdjustment(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_hsvadjustment";
+        public override string ActionName => "krita_filter_hsvadjustment";
 
         public enum Type
         {

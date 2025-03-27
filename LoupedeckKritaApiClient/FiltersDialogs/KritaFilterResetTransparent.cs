@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterResetTransparent(Client client) : FilterDialogBase(client)
+    public class KritaFilterResetTransparent(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_resettransparent";
+        public override string ActionName => "krita_filter_resettransparent";
 
         // No parameters
     }

@@ -285,55 +285,5 @@ namespace LoupedeckKritaApiClient.ClientBase
         public Node CurrentNode { get => _currentNode; }
         public Selection CurrentSelection { get => _currentSelection; }
         public Node GlobalSelectionNode { get => _globalSelectionNode; }
-
-        public async Task<FilterDialogBase> GetFilterDialog(string filterName)
-        {
-            FilterDialogBase dialog = FilterNames.GetFilterDialogByFilterName(this, filterName);
-
-            await using var action = await KritaInstance.Action(dialog.ActionName);
-            await action.Trigger();
-
-            await dialog.AttachDialog();
-
-            return dialog;
-        }
-
-        public async Task<(FilterDialogBase? filterDialog, string? filterName)> GetFilterLayerPropertiesDialog()
-        {
-            await using var filter = await CurrentNode.Filter();
-            if (filter == null)
-            {
-                return (null, null);
-            }
-
-            await KritaInstance.ExecuteAction(ActionsNames.Layer_properties);
-
-            var filterName = await filter.name();
-            var dialog = FilterNames.GetFilterDialogByFilterName(this, filterName);
-            dialog.IsModal = true;
-            await dialog.AttachDialog();
-
-            return (dialog, filterName);
-        }
-
-        public async Task<LayerPropertiesDialog> GetLayerPropertiesDialog()
-        {
-            await KritaInstance.ExecuteAction(ActionsNames.Layer_properties);
-
-            var dialog = new LayerPropertiesDialog(this);
-            await dialog.AttachDialog();
-
-            return dialog;
-        }
-
-        public async Task<FileLayerPropertiesDialog> GetFileLayerPropertiesDialog()
-        {
-            await KritaInstance.ExecuteAction(ActionsNames.Layer_properties);
-
-            var dialog = new FileLayerPropertiesDialog(this);
-            await dialog.AttachDialog();
-
-            return dialog;
-        }
     }
 }

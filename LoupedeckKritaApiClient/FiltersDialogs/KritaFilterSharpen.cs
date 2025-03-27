@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterSharpen(Client client) : FilterDialogBase(client)
+    public class KritaFilterSharpen(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_sharpen";
+        public override string ActionName => "krita_filter_sharpen";
 
         // No parameters
     }

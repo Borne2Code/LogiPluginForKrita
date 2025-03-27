@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterPhongBumpMap(Client client) : FilterDialogBase(client)
+    public class KritaFilterPhongBumpMap(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_phongbumpmap";
+        public override string ActionName => "krita_filter_phongbumpmap";
 
         // TODO: complex filter widget
     }

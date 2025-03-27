@@ -2,7 +2,7 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterBlur(Client client) : FilterDialogBase(client)
+    public class KritaFilterBlur(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
         public enum ShapeEnum
         {
@@ -10,7 +10,7 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
             Rectangle
         }
 
-        internal override string ActionName => "krita_filter_blur";
+        public override string ActionName => "krita_filter_blur";
 
         public Task<int> AdjustHorizontalRadiusValue(int value)
         {

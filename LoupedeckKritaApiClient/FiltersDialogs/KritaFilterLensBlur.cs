@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterLensBlur(Client client) : FilterDialogBase(client)
+    public class KritaFilterLensBlur(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_lens blur";
+        public override string ActionName => "krita_filter_lens blur";
 
         public enum Shape
         {

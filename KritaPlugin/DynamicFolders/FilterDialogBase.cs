@@ -1,5 +1,5 @@
-﻿
-using System.Reflection;
+﻿using System.Reflection;
+using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -31,7 +31,10 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         protected override bool ShowDialog()
         {
-            Dialog = Client.GetFilterDialog((dialogDefinition as FilterDialogDefinition).FilterName).Result;
+            Dialog = FilterNames.GetFilterDialogByFilterName(Client, (dialogDefinition as FilterDialogDefinition).FilterName, false);
+            Client.KritaInstance.ExecuteAction((Dialog as LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase).ActionName).Wait();
+            Dialog.AttachDialog().Wait();
+
             return true;
         }
 

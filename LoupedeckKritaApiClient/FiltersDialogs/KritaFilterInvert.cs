@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterInvert(Client client) : FilterDialogBase(client)
+    public class KritaFilterInvert(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_invert";
+        public override string ActionName => "krita_filter_invert";
 
         // No parameters
     }

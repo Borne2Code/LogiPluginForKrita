@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterAscCdl(Client client) : FilterDialogBase(client)
+    public class KritaFilterAscCdl(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_asc-cdl";
+        public override string ActionName => "krita_filter_asc-cdl";
 
         // TODO: Slope, Offset, Power color selection
     }

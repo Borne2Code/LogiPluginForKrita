@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterRandomPick(Client client) : FilterDialogBase(client)
+    public class KritaFilterRandomPick(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_randompick";
+        public override string ActionName => "krita_filter_randompick";
 
         public Task<int> AdjustLevel(int level)
         {

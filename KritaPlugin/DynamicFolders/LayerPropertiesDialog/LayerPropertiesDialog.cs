@@ -1,4 +1,6 @@
-﻿using LoupedeckKritaApiClient.ClientBase;
+﻿using LoupedeckKritaApiClient;
+using LoupedeckKritaApiClient.ClientBase;
+using LoupedeckKritaApiClient.FiltersDialogs;
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
@@ -16,31 +18,45 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         protected override bool ShowDialog()
         {
-            switch(Client.CurrentNode.LayerType().Result)
+            Client.KritaInstance.ExecuteAction(ActionsNames.Layer_properties).Wait();
+
+            switch (Client.CurrentNode.LayerType().Result)
             {
                 case "paintlayer":
                 case "grouplayer":
                 case "clonelayer":
                 case "vectorlayer":
                     {
-                        Dialog = Client.GetLayerPropertiesDialog().Result;
+                        Dialog = new LoupedeckKritaApiClient.LayerPropertiesDialog(Client);
+                        Dialog.AttachDialog().Wait();
                         dialogDefinition = GetLayerPropertiesDialogDefinition();
                     }; break;
                 case "filelayer":
                     {
-                        Dialog = Client.GetFileLayerPropertiesDialog().Result;
+                        Dialog = new FileLayerPropertiesDialog(Client);
+                        Dialog.AttachDialog().Wait();
                         dialogDefinition = GetFileLayerPropertiesDialogDefinition();
                     }; break;
                 case "filterlayer":
                 case "filtermask":
                     {
-                        (Dialog, var filterName) = Client.GetFilterLayerPropertiesDialog().Result;
+                        var filter = Client.CurrentNode.Filter().Result;
+                        try
+                        {
+                            var filterName = filter.name().Result;
+                            Dialog = FilterNames.GetFilterDialogByFilterName(Client, filterName, true);
+                            Dialog.AttachDialog().Wait();
 
-                        dialogDefinition = FilterDialogDefinition.GetDialogDefinition(filterName);
-                        dialogDefinition.FixedCommands = [
-                            new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Cancel(), true),
-                            new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Confirm(), true),
-                            ];
+                            dialogDefinition = FilterDialogDefinition.GetDialogDefinition(filterName);
+                            dialogDefinition.FixedCommands = [
+                                new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Cancel(), true),
+                                new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Confirm(), true),
+                                ];
+                        }
+                        finally
+                        {
+                            filter.DisposeAsync().AsTask().Wait();
+                        }
                     }; break;
                 case "filllayer":
                     {

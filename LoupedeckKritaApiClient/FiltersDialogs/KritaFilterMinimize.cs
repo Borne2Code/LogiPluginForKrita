@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterMinimize(Client client) : FilterDialogBase(client)
+    public class KritaFilterMinimize(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_minimize";
+        public override string ActionName => "krita_filter_minimize";
 
         // No parameters
     }

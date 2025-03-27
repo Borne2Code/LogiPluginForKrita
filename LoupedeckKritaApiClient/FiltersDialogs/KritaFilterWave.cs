@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterWave(Client client) : FilterDialogBase(client)
+    public class KritaFilterWave(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_wave";
+        public override string ActionName => "krita_filter_wave";
 
         public enum Shape
         {

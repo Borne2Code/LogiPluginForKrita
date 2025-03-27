@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterEmbossLaplacian(Client client) : FilterDialogBase(client)
+    public class KritaFilterEmbossLaplacian(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_emboss laplascian";
+        public override string ActionName => "krita_filter_emboss laplascian";
 
         // No parameters
     }

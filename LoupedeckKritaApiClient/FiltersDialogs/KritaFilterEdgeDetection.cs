@@ -3,9 +3,9 @@ using LoupedeckKritaApiClient.ClientBase;
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterEdgeDetecttion(Client client) : FilterDialogBase(client)
+    public class KritaFilterEdgeDetecttion(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_edge detection";
+        public override string ActionName => "krita_filter_edge detection";
 
         public enum Formula
         {

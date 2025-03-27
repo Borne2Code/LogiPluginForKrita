@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterDesaturate(Client client) : FilterDialogBase(client)
+    public class KritaFilterDesaturate(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_desaturate";
+        public override string ActionName => "krita_filter_desaturate";
 
         public Task SelectLightness()
         {

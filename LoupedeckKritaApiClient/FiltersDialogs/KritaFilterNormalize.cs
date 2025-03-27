@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterNormalize(Client client) : FilterDialogBase(client)
+    public class KritaFilterNormalize(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_normalize";
+        public override string ActionName => "krita_filter_normalize";
 
         // No parameters
     }

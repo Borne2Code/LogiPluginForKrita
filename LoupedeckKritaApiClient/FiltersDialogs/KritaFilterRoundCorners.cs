@@ -2,9 +2,9 @@
 
 namespace LoupedeckKritaApiClient.FiltersDialogs
 {
-    public class KritaFilterRoundCorners(Client client) : FilterDialogBase(client)
+    public class KritaFilterRoundCorners(Client client, bool isModal) : FilterDialogBase(client, isModal)
     {
-        internal override string ActionName => "krita_filter_roundcorners";
+        public override string ActionName => "krita_filter_roundcorners";
 
         public Task<int> AdjustRadius(int radius)
         {

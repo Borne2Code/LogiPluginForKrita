@@ -4,12 +4,14 @@ namespace LoupedeckKritaApiClient.FiltersDialogs
 {
     public abstract class FilterDialogBase : KritaDialogBase
     {
-        internal bool IsModal { get; set; }  = false;
-        public FilterDialogBase(Client client):base(client)
+        private bool IsModal { get; set; }
+
+        public FilterDialogBase(Client client, bool isModal):base(client)
         {
+            IsModal = isModal;
         }
 
-        internal abstract string ActionName { get; }
+        public abstract string ActionName { get; }
 
         public override async Task AttachDialog()
         {
