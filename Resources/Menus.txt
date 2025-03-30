@@ -98,7 +98,7 @@
 
 3. Selections
 	- Adjustments: 
-		Zoom 
+		Zoom
 		Rotation 
 		Layer (Prev/Next) + Push Open/close group
 		Grow/shrink selection
@@ -150,6 +150,7 @@
 		Other (Light green)
 		Apply Again
 		Apply Again...
+		Layer Properties
 		---------------- (Adjust)
 		Slope/Offset/Power
 		Auto-contrast
