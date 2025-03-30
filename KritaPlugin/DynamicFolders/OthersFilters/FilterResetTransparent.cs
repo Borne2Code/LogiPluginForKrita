@@ -2,13 +2,8 @@
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
-    public class FilterResetTransparent : FilterDialogBase
+    public class FilterResetTransparent
     {
-        public FilterResetTransparent()
-            : base(FilterNames.ResetTransparent)
-        {
-        }
-
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Reset Transparent",

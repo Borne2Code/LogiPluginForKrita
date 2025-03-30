@@ -2,13 +2,8 @@
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
-    public class FilterEmbossHorizontalOnly : FilterDialogBase
+    public class FilterEmbossHorizontalOnly
     {
-        public FilterEmbossHorizontalOnly()
-            : base(FilterNames.EmbossHorizontalOnly)
-        {
-        }
-
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Emboss Horizontal only",

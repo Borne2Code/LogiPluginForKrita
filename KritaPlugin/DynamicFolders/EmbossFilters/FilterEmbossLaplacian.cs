@@ -2,16 +2,11 @@
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
-    public class FilterEmbossLaplacian : FilterDialogBase
+    public class FilterEmbossLaplacian
     {
-        public FilterEmbossLaplacian()
-            : base(FilterNames.EmbossLaplascian)
-        {
-        }
-
         static internal FilterDialogDefinition GetDefinition()
         {
-            return new FilterDialogDefinition("Emboss Laplacian",
+            return new FilterDialogDefinition("Emboss Laplascian",
                 FilterNames.EmbossLaplascian,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-EmbossLaplacian.png");

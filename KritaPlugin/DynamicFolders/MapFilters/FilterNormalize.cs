@@ -2,13 +2,8 @@
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
-    public class FilterNormalize : FilterDialogBase
+    public class FilterNormalize
     {
-        public FilterNormalize()
-            : base(FilterNames.Normalize)
-        {
-        }
-
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Normalize",

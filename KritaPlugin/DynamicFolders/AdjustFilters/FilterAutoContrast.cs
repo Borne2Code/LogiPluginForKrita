@@ -2,13 +2,8 @@
 
 namespace Loupedeck.KritaPlugin.DynamicFolders
 {
-    public class FilterAutoContrast : FilterDialogBase
+    public class FilterAutoContrast
     {
-        public FilterAutoContrast()
-            : base(FilterNames.AutoConstrast)
-        {
-        }
-
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Auto Contrast",
