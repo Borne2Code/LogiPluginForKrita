@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Auto Contrast",
                 FilterNames.AutoConstrast,
+                false,
                 "Loupedeck.KritaPlugin.images.Filters.filters-AutoContrast.png");
         }
     }

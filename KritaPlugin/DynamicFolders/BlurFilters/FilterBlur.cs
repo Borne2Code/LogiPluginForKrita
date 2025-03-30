@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Blur",
                 FilterNames.Blur,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Blur.png",
                 [
                     new CommandDefinition("Lock Hor./Vert.", (dialog) => (dialog.Dialog as KritaFilterBlur).ToggleLockAspect()),

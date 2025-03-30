@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Wave",
                 FilterNames.Wave,
+                true,
                 null,
                 [
                     new CommandDefinition("Hor. shape Sinus", (dialog) => (dialog.Dialog as KritaFilterWave).SetHorizontalShape(KritaFilterWave.Shape.Sinusoidal)),

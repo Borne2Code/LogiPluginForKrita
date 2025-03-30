@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Gradient Map",
                 FilterNames.GradientMap,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-GradientMap.png",
                 [],
                 []);

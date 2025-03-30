@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Color to alpha",
                 FilterNames.ColorToAlpha,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-ColorToAlpha.png",
                 [],
                 [

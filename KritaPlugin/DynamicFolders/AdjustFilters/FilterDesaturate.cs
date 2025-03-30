@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Desaturate",
                 FilterNames.Desaturate,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Desaturate.png",
                 [
                     new CommandDefinition("Lightness", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectLightness()),

@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Gaussian Blur",
                 FilterNames.GaussianBlur,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-GaussianBlur.png",
                 [
                     new CommandDefinition("Lock aspect", (dialog) => (dialog.Dialog as KritaFilterGaussianBlur).ToggleLockHorizontalVertical()),

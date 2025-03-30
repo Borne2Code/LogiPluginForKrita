@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Emboss Laplacian",
                 FilterNames.EmbossLaplascian,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-EmbossLaplacian.png");
         }
     }

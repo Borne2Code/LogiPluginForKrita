@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Sharpen",
                 FilterNames.Sharpen,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Sharpen.png");
         }
     }

@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Dodge",
                 FilterNames.Dodge,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Dodge.png",
                 [
                     new CommandDefinition("Shadows", (dialog) => ((KritaFilterDodge)dialog.Dialog).SelectShadows()),

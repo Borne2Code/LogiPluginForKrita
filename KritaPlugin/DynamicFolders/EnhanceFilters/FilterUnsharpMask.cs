@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Unsharp Mask",
                 FilterNames.Unsharp,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Unsharp.png",
                 [
                     new CommandDefinition("Lightness only", (dialog) => (dialog.Dialog as KritaFilterUnsharp).ToggleLightnessOnly()),

@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Index colors",
                 FilterNames.IndexColors,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-IndexColors.png",
                 [],
                 []);

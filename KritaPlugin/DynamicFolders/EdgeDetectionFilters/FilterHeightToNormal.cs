@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Height To Normal",
                 FilterNames.HeightToNormal,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-HeightToNormal.png",
                 [
                     new CommandDefinition("Formula Prewitt", (dialog) => (dialog.Dialog as KritaFilterHeightToNormal).SetType(KritaFilterHeightToNormal.Type.Prewitt)),

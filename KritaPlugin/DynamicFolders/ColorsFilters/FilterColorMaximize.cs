@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Maximize channels",
                 FilterNames.Maximize,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Maximize.png");
         }
     }

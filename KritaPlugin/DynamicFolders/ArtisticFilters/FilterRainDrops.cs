@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Rain Drops",
                 FilterNames.RainDrops,
+                false,
                 "Loupedeck.KritaPlugin.images.Filters.filters-RainDrops.png",
                 [],
                 [

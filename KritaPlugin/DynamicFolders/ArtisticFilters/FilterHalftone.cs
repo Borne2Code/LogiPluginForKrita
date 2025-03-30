@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Halftone",
                 FilterNames.Halftone,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Halftone.png",
                 [],
                 []);

@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Emboss All directions",
                 FilterNames.EmbossAllDirections,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-EmbossAllDirections.png");
         }
     }

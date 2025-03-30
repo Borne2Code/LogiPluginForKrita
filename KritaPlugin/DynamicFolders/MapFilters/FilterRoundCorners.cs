@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Round Corners",
                 FilterNames.RoundCorners,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-RoundCorners.png",
                 [],
                 [

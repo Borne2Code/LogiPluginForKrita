@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Color Adjustment",
                 FilterNames.PerChannelColorAdjustment,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-ColorAdjustment.png",
                 [
                     new CommandDefinition("Channel RGBA", (dialog) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).SetChannel(KritaFilterPerChannelColorAdjustment.Channel.RGBA)),

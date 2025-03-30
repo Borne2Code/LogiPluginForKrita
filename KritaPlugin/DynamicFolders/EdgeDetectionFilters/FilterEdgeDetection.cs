@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Edge detection",
                 FilterNames.EdgeDetection,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-EdgeDetection.png",
                 [
                     new CommandDefinition("Formula Prewitt", (dialog) => (dialog.Dialog as KritaFilterEdgeDetecttion).SelectFormula(KritaFilterEdgeDetecttion.Formula.Prewitt)),

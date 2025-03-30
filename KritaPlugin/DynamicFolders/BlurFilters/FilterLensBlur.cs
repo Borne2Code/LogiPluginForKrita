@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Lens Blur",
                 FilterNames.LensBlur,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-LensBlur.png",
                 [
                     new CommandDefinition("Shape triangle", (dialog) => (dialog.Dialog as KritaFilterLensBlur).SetShape(KritaFilterLensBlur.Shape.Triangle)),

@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Gaussian High-Pass",
                 FilterNames.GaussianHighPass,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-GaussianHighpass.png",
                 [],
                 [

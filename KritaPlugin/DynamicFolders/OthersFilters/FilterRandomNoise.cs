@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Random Noise",
                 FilterNames.Noise,
+                true,
                 null,
                 [],
                 [

@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Wavelet Noise Reducer",
                 FilterNames.WaveletNoiseReducer,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-WaveletNoiseReducer.png",
                 [],
                 [

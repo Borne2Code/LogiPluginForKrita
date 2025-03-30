@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Small Tiles",
                 FilterNames.SmallTiles,
+                false,
                 "Loupedeck.KritaPlugin.images.Filters.filters-SmallTiles.png",
                 [],
                 [

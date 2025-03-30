@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Emboss",
                 FilterNames.Emboss,
+                false,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Emboss.png",
                 [],
                 [

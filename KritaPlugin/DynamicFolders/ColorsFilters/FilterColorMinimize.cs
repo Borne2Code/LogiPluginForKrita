@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Minimize channels",
                 FilterNames.Minimize,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Minimize.png");
         }
     }

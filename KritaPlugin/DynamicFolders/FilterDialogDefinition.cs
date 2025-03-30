@@ -6,6 +6,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
     {
         public FilterDialogDefinition(string name,
             string filterName,
+            bool isMaskEnabled,
             string iconResourceName = null,
             CommandDefinition[] commands = null,
             AdjustmentDefinition[] adjustments = null):
@@ -16,11 +17,13 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 adjustments)
         {
             FilterName = filterName;
+            IsMaskEnabled = isMaskEnabled;
             IconResourceName = iconResourceName;
             HasDialog = commands != null;
         }
 
         public string FilterName { get; }
+        public bool IsMaskEnabled { get; }
         public string IconResourceName { get; }
         public bool HasDialog { get; }
 

@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Hsv/Hsl Adjustment",
                 FilterNames.HsvAdjustment,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-HsvHlsAdjustments.png",
                 [
                     new CommandDefinition("Mode Hue/Sat/Value", (dialog) => ((KritaFilterHsvAdjustment)dialog.Dialog).SetType(KritaFilterHsvAdjustment.Type.HueSaturationValue)),

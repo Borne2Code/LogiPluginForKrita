@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Slope / Offset / Power (Asc-Cdl)",
                 FilterNames.AscCdl,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-AscCdl.png",
                 [],
                 []);

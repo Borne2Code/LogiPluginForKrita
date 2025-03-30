@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Palettize",
                 FilterNames.Palettize,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Paletize.png",
                 [],
                 []);

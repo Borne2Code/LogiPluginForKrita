@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Levels",
                 FilterNames.Levels,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Levels.png",
                 [
                     new CommandDefinition("Lightness", (dialog) => ((KritaFilterLevels)dialog.Dialog).SetLightnessMode()),

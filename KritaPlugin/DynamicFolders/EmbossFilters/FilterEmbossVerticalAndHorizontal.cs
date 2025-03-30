@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Emboss Vertical & Horizontal",
                 FilterNames.EmbossHorizontalAndVertical,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-EmbossHorizontalAndVertical.png");
         }
     }

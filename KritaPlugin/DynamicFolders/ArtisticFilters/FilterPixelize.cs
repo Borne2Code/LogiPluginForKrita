@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Pixelize",
                 FilterNames.Pixelize,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Pixelize.png",
                 [],
                 [

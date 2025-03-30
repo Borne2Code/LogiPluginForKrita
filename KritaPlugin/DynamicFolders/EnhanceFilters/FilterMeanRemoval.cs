@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Mean removal",
                 FilterNames.MeanRemoval,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-MeanRemoval.png");
         }
     }

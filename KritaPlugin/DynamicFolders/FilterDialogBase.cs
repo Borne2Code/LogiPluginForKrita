@@ -16,12 +16,18 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             dialogDefinition = FilterDialogDefinition.GetDialogDefinition(filterName);
             DisplayName = dialogDefinition.Name;
-            dialogDefinition.FixedCommands = [
-                    new CommandDefinition(ShowCreateFilterMaskName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).CreateMask(), true),
-                    CommandDefinition.Empty,
-                    new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Cancel(), true),
-                    new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Confirm(), true),
-                ];
+            if ((dialogDefinition as FilterDialogDefinition).IsMaskEnabled)
+                dialogDefinition.FixedCommands = [
+                        new CommandDefinition(ShowCreateFilterMaskName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).CreateMask(), true),
+                        CommandDefinition.Empty,
+                        new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Cancel(), true),
+                        new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Confirm(), true),
+                    ];
+            else
+                dialogDefinition.FixedCommands = [
+                        new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Cancel(), true),
+                        new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Confirm(), true),
+                    ];
         }
 
         public override BitmapImage GetButtonImage(PluginImageSize imageSize)

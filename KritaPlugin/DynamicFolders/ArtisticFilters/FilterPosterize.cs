@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Posterize",
                 FilterNames.Posterize,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Posterize.png",
                 [],
                 [

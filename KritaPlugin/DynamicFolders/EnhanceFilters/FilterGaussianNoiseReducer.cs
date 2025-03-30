@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Gaussian Noise Reducer",
                 FilterNames.GaussianNoiseReducer,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-GaussianNoiseReducer.png",
                 [],
                 [

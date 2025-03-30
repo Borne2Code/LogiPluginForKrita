@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Normalize",
                 FilterNames.Normalize,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Normalize.png");
         }
     }

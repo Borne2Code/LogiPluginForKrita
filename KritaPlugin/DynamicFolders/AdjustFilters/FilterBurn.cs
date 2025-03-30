@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Burn",
                 FilterNames.Burn,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Burn.png",
                 [
                     new CommandDefinition("Shadows", (dialog) => ((KritaFilterBurn)dialog.Dialog).SelectShadows()),

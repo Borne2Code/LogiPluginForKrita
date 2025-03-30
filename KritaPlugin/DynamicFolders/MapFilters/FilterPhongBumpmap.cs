@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Phong Bumpmap",
                 FilterNames.PhongBumpMap,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-PhongBumpMap.png",
                 [],
                 []);

@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Cross channel Adjustment",
                 FilterNames.CrossChannel,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-CrossChannelColorAdjustment.png",
                 [
                     new CommandDefinition("Channel RGBA", (dialog) => ((KritaFilterCrossChannel)dialog.Dialog).SetTargetChannelIndex(KritaFilterCrossChannel.TargetChannel.RGBA)),

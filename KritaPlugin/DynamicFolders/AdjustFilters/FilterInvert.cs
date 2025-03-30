@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Invert",
                 FilterNames.Invert,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Invert.png");
         }
     }

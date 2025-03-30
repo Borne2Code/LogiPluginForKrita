@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Oil Paint",
                 FilterNames.OilPaint,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-OilPaint.png",
                 [],
                 [

@@ -61,6 +61,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
             return new FilterDialogDefinition("Colors balance",
                 FilterNames.ColorBalance,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-ColorBalance.png",
                 [
                     resetShadows,

@@ -12,7 +12,9 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         static internal FilterDialogDefinition GetDefinition()
         {
             return new FilterDialogDefinition("Reset Transparent",
-                FilterNames.ResetTransparent);
+                FilterNames.ResetTransparent,
+                false,
+                null);
         }
     }
 }

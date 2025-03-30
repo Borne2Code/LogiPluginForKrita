@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Motion Blur",
                 FilterNames.MotionBlur,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-MotionBlur.png",
                 [],
                 [

@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Color transfer",
                 FilterNames.ColorTransfer,
+                false,
                 "Loupedeck.KritaPlugin.images.Filters.filters-ColorTransfer.png",
                 [
                     new CommandDefinition("Select file...", (dialog) => (dialog.Dialog as KritaFilterColorTranfer).OpenFileSelecionDialog()),

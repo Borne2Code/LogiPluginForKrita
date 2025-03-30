@@ -13,6 +13,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
         {
             return new FilterDialogDefinition("Threshold",
                 FilterNames.Threshold,
+                true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Threshold.png",
                 [],
                 [
