@@ -71,6 +71,10 @@
     <None Remove="images\filters-Threshold.png" />
     <None Remove="images\filters-Unsharp.png" />
     <None Remove="images\filters-WaveletNoiseReducer.png" />
+    <None Remove="images\Filters\filters-RandomNoise.png" />
+    <None Remove="images\Filters\filters-RandomPick.png" />
+    <None Remove="images\Filters\filters-ResetTransparent.png" />
+    <None Remove="images\Filters\filters-Wave.png" />
     <None Remove="images\GlobalSelection.png" />
     <None Remove="images\InvertSelection.png" />
     <None Remove="images\LayerDelete.png" />
@@ -184,10 +188,14 @@
     <EmbeddedResource Include="images\Filters\filters-Pixelize.png" />
     <EmbeddedResource Include="images\Filters\filters-Posterize.png" />
     <EmbeddedResource Include="images\Filters\filters-RainDrops.png" />
+    <EmbeddedResource Include="images\Filters\filters-RandomNoise.png" />
+    <EmbeddedResource Include="images\Filters\filters-RandomPick.png" />
+    <EmbeddedResource Include="images\Filters\filters-ResetTransparent.png" />
     <EmbeddedResource Include="images\Filters\filters-Sharpen.png" />
     <EmbeddedResource Include="images\Filters\filters-SmallTiles.png" />
     <EmbeddedResource Include="images\Filters\filters-Threshold.png" />
     <EmbeddedResource Include="images\Filters\filters-Unsharp.png" />
+    <EmbeddedResource Include="images\Filters\filters-Wave.png" />
     <EmbeddedResource Include="images\Filters\filters-WaveletNoiseReducer.png" />
     <EmbeddedResource Include="images\Filters\filters-RoundCorners.png" />
     <EmbeddedResource Include="images\Layers\GlobalSelection.png" />

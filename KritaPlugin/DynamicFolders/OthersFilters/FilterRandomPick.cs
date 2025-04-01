@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Random Pick",
                 FilterNames.RandomPick,
                 true,
-                null,
+                "Loupedeck.KritaPlugin.images.Filters.filters-RandomPick.png",
                 [],
                 [
                     new AdjustmentDefinition("Level", (dialog, delta) => (dialog.Dialog as KritaFilterRandomPick).AdjustLevel((int)delta).Result, 50),

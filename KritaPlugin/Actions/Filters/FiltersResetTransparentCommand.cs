@@ -15,6 +15,11 @@ namespace Loupedeck.KritaPlugin
         {
         }
 
+        protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
+        {
+            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-ResetTransparent.png");
+        }
+
         protected override void RunCommand(string actionParameter)
         {
             Client.KritaInstance.ExecuteAction(ActionsNames.Krita_filter_resettransparent).Wait();

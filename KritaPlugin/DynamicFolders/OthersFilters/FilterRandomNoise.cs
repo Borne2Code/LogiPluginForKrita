@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Random Noise",
                 FilterNames.Noise,
                 true,
-                null,
+                "Loupedeck.KritaPlugin.images.Filters.filters-RandomNoise.png",
                 [],
                 [
                     new AdjustmentDefinition("Level", (dialog, delta) => (dialog.Dialog as KritaFilterNoise).AdjustLevel((int)delta).Result, 50),

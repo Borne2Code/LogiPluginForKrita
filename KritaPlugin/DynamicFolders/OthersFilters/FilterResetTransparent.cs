@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Reset Transparent",
                 FilterNames.ResetTransparent,
                 false,
-                null);
+                "Loupedeck.KritaPlugin.images.Filters.filters-ResetTransparent.png");
         }
     }
 }

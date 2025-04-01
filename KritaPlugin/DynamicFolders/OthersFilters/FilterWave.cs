@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Wave",
                 FilterNames.Wave,
                 true,
-                null,
+                "Loupedeck.KritaPlugin.images.Filters.filters-Wave.png",
                 [
                     new CommandDefinition("Hor. shape Sinus", (dialog) => (dialog.Dialog as KritaFilterWave).SetHorizontalShape(KritaFilterWave.Shape.Sinusoidal)),
                     new CommandDefinition("Hor. shape Triangle", (dialog) => (dialog.Dialog as KritaFilterWave).SetHorizontalShape(KritaFilterWave.Shape.Triangle)),
