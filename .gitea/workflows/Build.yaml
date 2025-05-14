@@ -28,4 +28,6 @@ jobs:
       run: dotnet restore "KritaPlugin/KritaPlugin.csproj"
 
     - name: Build
-      run: dotnet build "KritaPlugin/KritaPlugin.csproj" --no-restore
+      run: |
+        ln -s "$(find -name PluginApi.dll)" /Applications/Utilities/LogiPluginService.app/Contents/MonoBundle/PluginApi.dll &&
+        dotnet build "KritaPlugin/KritaPlugin.csproj" --no-restore
