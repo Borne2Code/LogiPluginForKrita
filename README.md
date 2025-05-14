@@ -1,4 +1,4 @@
-# LoupedeckKritaPlugin
+ï»¿# LoupedeckKritaPlugin
 This plugin allows a better control of Krita with Loupedeck devices, using a direct control of the application without raising keyboard shortcuts.
 It has been developed and tested with a Loupedeck CT, it works only on Windows.
 
@@ -23,11 +23,11 @@ Here the list of features that the Loupedeck device can activate directly on Kri
 
 ### Adjustments
 * **Canvas zoom**: adjusts current view zoom (push to reset to 100%)
-* **Canvas rotation**: adjusts current view rotation (push to reset to 0°)
+* **Canvas rotation**: adjusts current view rotation (push to reset to 0Â°)
 * **Brush size**: adjusts brush size (no push)
 * **Brush opacity**: adjusts brush opcity (push to reset 100%)
 * **Brush flow**: adjusts brush flow (push to reset 100%)
-* **Brush rotation**: adjusts brush pattern rotation (push to reset 0°)
+* **Brush rotation**: adjusts brush pattern rotation (push to reset 0Â°)
 * **Brush pattern size**: adjusts brush pattern size multiplier (push to reset x1)*
 
 **: only with Krita 5.3.x - not tested*
