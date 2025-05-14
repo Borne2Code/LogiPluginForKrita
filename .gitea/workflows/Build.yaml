@@ -20,6 +20,9 @@ jobs:
     steps:
     - name: Checkout sources
       uses: actions/checkout@v3
+      
+    - name: install Loupedeck plugin SDK
+      run: dotnet tool install --global LogiPluginTool
   
     - name: Restore dependencies
       run: dotnet restore "KritaPlugin/KritaPlugin.csproj"
