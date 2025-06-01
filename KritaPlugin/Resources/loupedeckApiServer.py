@@ -1,6 +1,7 @@
 from krita import *
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QApplication, QPushButton
+import datetime
 import sys
 import socket
 import time
@@ -48,20 +49,25 @@ class Server(QObject):
                 # QtCore.qDebug(str(msg))
 
                 if not msg:
+                    QtCore.qDebug('Connection closed')
                     connected = False
                     self.objects = {} #clean objects cache
-                    QtCore.qDebug('Connection closed')
                 else:
                     try:
                         self.returnValue = None
                         self.result = None
 
                         self.message.emit(str(msg))
+
+                        timeoutDateTime = datetime.datetime.now() + datetime.timedelta(seconds=5)
                     
-                        while self.result == None:
+                        while self.result == None and datetime.datetime.now() < timeoutDateTime:
                             time.sleep(0.001)
                     
-                        c.send(self.prepareResponse())
+                        if self.result == None:
+                            QtCore.qDebug('Timeout waiting message computing')
+                        else:
+                            c.send(self.prepareResponse())
                     except Exception as ex:
                         QtCore.qDebug('Error sending message: ' + str(ex))
 
