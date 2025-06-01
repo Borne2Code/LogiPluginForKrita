@@ -24,6 +24,8 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
+            if (Client == null) return;
+
             if (diff > 0)
             {
                 var selection = Client.CurrentSelection;

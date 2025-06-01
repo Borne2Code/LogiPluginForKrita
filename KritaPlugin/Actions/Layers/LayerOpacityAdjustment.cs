@@ -27,6 +27,8 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
+            if (Client == null) return;
+
             UpdateAdjustValueIfNecessary();
 
             var newOpacity = Math.Min(Math.Max(Opacity + diff, 0), 255);
@@ -49,6 +51,8 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
+            if (Client == null) return;
+
             Opacity = 255;
             Client.CurrentNode.SetOpacity(Opacity).Wait();
             Client.CurrentDocument.RefreshProjection();
@@ -58,6 +62,8 @@ namespace Loupedeck.KritaPlugin
         // Returns the adjustment value that is shown next to the dial.
         protected override String GetAdjustmentValue(String actionParameter)
         {
+            if (Client == null) return "-";
+
             UpdateAdjustValueIfNecessary();
             return (Opacity * 100 / 255).ToString() + " %";
         }

@@ -24,6 +24,8 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
+            if (Client == null) return;
+
             if (diff > 0)
             {
                 Client.KritaInstance.ExecuteAction(ActionsNames.ActivatePreviousLayer).Wait();
@@ -38,6 +40,8 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
+            if (Client == null) return;
+
             Client.KritaInstance.ExecuteAction(ActionsNames.Isolate_active_layer).Wait();
         }
 

@@ -1,8 +1,6 @@
 namespace Loupedeck.KritaPlugin
 {
     using System;
-    using System.IO.Compression;
-    using System.Reflection;
     using LoupedeckKritaApiClient.ClientBase;
 
     // This class can be used to connect the Loupedeck plugin to an application.
@@ -14,11 +12,18 @@ namespace Loupedeck.KritaPlugin
         {
             get
             {
-                if (_client == null)
+                try
                 {
-                    var newClient = new Client();
-                    newClient.Connect().Wait();
-                    _client = newClient;
+                    if (_client == null)
+                    {
+                        var newClient = new Client();
+                        newClient.Connect().Wait();
+                        _client = newClient;
+                    }
+                }
+                catch
+                {
+                    PluginLog.Info("Plugin could not connect to the server API.");
                 }
 
                 return _client;

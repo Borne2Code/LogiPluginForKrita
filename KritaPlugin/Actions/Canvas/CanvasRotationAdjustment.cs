@@ -26,6 +26,8 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
+            if (Client == null) return;
+
             UpdateAdjustValueIfNecessary();
             Rotation += diff;
             Client.CurrentCanvas.SetRotation(Rotation).Wait();
@@ -35,6 +37,8 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
+            if (Client == null) return;
+
             Client.CurrentCanvas.ResetRotation().Wait();
             Rotation = 0;
             this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
@@ -43,6 +47,8 @@ namespace Loupedeck.KritaPlugin
         // Returns the adjustment value that is shown next to the dial.
         protected override String GetAdjustmentValue(String actionParameter)
         {
+            if (Client == null) return "-";
+
             UpdateAdjustValueIfNecessary();
             return Math.Round(Rotation, 2).ToString() + " °";
         }

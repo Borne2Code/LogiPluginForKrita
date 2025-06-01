@@ -22,6 +22,8 @@ namespace Loupedeck.KritaPlugin
 
         protected override void RunCommand(string actionParameter)
         {
+            if (Client == null) return;
+
             Client.KritaInstance.ExecuteAction(ActionsNames.Krita_filter_emboss_all_directions).Wait();
         }
     }

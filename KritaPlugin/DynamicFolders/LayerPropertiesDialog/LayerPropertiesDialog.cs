@@ -18,6 +18,8 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         protected override bool ShowDialog()
         {
+            if (Client == null) return false;
+
             Client.KritaInstance.ExecuteAction(ActionsNames.Layer_properties).Wait();
 
             switch (Client.CurrentNode.LayerType().Result)

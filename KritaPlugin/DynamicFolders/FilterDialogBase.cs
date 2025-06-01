@@ -37,6 +37,8 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         protected override bool ShowDialog()
         {
+            if (Client == null) return false;
+
             Dialog = FilterNames.GetFilterDialogByFilterName(Client, (dialogDefinition as FilterDialogDefinition).FilterName, false);
             Client.KritaInstance.ExecuteAction((Dialog as LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase).ActionName).Wait();
             Dialog.AttachDialog().Wait();

@@ -26,6 +26,8 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
+            if (Client == null) return;
+
             UpdateAdjustValueIfNecessary();
 
             var delta = Math.Max(Size * (float)Math.Abs(diff) / 40, 0.01) * Math.Sign(diff);
@@ -43,6 +45,8 @@ namespace Loupedeck.KritaPlugin
         // Returns the adjustment value that is shown next to the dial.
         protected override String GetAdjustmentValue(String actionParameter)
         {
+            if (Client == null) return "-";
+
             UpdateAdjustValueIfNecessary();
             return Math.Round(Size, 2).ToString();
         }

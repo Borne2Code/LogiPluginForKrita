@@ -26,6 +26,8 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
+            if (Client == null) return;
+
             UpdateAdjustValueIfNecessary();
             var newBrushPatternSize = (float)Math.Min(Math.Max((float)Math.Round(PatternSize + diff / 100, 2), 0.01), 20);
 
@@ -40,6 +42,8 @@ namespace Loupedeck.KritaPlugin
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
+            if (Client == null) return;
+
             PatternSize = 1;
             Client.CurrentView.SetPatternSize(PatternSize).Wait();
             this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
@@ -48,6 +52,8 @@ namespace Loupedeck.KritaPlugin
         // Returns the adjustment value that is shown next to the dial.
         protected override String GetAdjustmentValue(String actionParameter)
         {
+            if (Client == null) return "-";
+
             UpdateAdjustValueIfNecessary();
             return "0x"; // Math.Round(Client.CurrentView.PatternSize().Result, 2).ToString() + "x";
         }
