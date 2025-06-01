@@ -12,7 +12,7 @@ name: Krita
 displayName: Krita
 
 # Short description of the plugin.
-description: Plugin for Krita. Automatically installs a Krita extension named "Loopedeck API Server", please restart Krita after plugin install or update.
+description: Plugin for Krita. Automatically installs a Krita extension named "Loupedeck API Server", please restart Krita after plugin install or update.
 
 # Name of the plugin library file.
 pluginFileName: KritaPlugin.dll

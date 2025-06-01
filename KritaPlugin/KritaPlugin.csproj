@@ -139,8 +139,6 @@
     <None Remove="images\Tools\SmartPatch.png" />
     <None Remove="images\Tools\Transform.png" />
     <None Remove="images\ToolTransform.png" />
-    <None Remove="Resources\loopedeckApiServer.py" />
-    <None Remove="Resources\loopedeck_api_server.desktop" />
     <None Remove="Resources\__init__.py" />
   </ItemGroup>
 
@@ -273,8 +271,8 @@
     <EmbeddedResource Include="images\Selection\ToolSelectPolygonal.png" />
     <EmbeddedResource Include="images\Selection\ToolSelectRectangular.png" />
     <EmbeddedResource Include="images\Selection\ToolSelectSimilarColors.png" />
-    <EmbeddedResource Include="Resources\loopedeckApiServer.py" />
-    <EmbeddedResource Include="Resources\loopedeck_api_server.desktop" />
+    <EmbeddedResource Include="Resources\loupedeckApiServer.py" />
+    <EmbeddedResource Include="Resources\loupedeck_api_server.desktop" />
     <EmbeddedResource Include="Resources\__init__.py" />
   </ItemGroup>
 

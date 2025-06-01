@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=Krita/PythonPlugin
+X-KDE-Library=loupedeck_api_server
+X-Python-2-Compatible=false
+X-Krita-Manual=
+Name=Loupedeck API Server
+Comment=Plugin to server the Krita Loupedeck Plugin

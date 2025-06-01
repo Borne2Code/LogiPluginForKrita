@@ -74,7 +74,7 @@ class DialogData:
     dialog: object
     config: object
 
-class LoopedeckApiServer(Extension):
+class LoupedeckApiServer(Extension):
     authorizedActions = {
         'Delete': AuthorizedAction.new(True, None, None), # Delete instance
         'Execute': AuthorizedAction.new(True, True, False), # Execute method
@@ -371,4 +371,4 @@ class LoopedeckApiServer(Extension):
         pass
 
 # And add the extension to Krita's list of extensions:
-Krita.instance().addExtension(LoopedeckApiServer(Krita.instance()))
+Krita.instance().addExtension(LoupedeckApiServer(Krita.instance()))

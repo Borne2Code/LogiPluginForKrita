@@ -13,7 +13,7 @@ To use this plugin you need:
 
 # Installation
 From the Loupedeck Marketplace (https://loupedeckmarketplace.com/), search for the Krita plugin, and install it.
-The installation process will configure an extension into Krita, the name of this extension is *Loopedeck API Server", please don't remove it.
+The installation process will configure an extension into Krita, the name of this extension is *Loupedeck API Server", please don't remove it.
 The plugin and the Krita extension communicate through a socket on port 1247, for the moment this cannot be changed.
 
 # Features

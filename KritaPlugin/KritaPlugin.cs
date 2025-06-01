@@ -1,4 +1,3 @@
-using System.IO.Compression;
 using System.Reflection;
 
 namespace Loupedeck.KritaPlugin
@@ -42,11 +41,11 @@ namespace Loupedeck.KritaPlugin
         {
             var kritaPluginsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita");
             var thisAssembly = Assembly.GetExecutingAssembly();
-            thisAssembly.ExtractFileToDirectory("Loupedeck.KritaPlugin.Resources.loopedeck_api_server.desktop", kritaPluginsPath);
+            thisAssembly.ExtractFileToDirectory("Loupedeck.KritaPlugin.Resources.loupedeck_api_server.desktop", kritaPluginsPath);
 
-            var kritaLoopedeckPluginPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita", "loopedeck_api_server");
-            thisAssembly.ExtractFileToDirectory("Loupedeck.KritaPlugin.Resources.__init__.py", kritaLoopedeckPluginPath);
-            thisAssembly.ExtractFileToDirectory("Loupedeck.KritaPlugin.Resources.loopedeckApiServer.py", kritaLoopedeckPluginPath);
+            var kritaLoupedeckPluginPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita", "loupedeck_api_server");
+            thisAssembly.ExtractFileToDirectory("Loupedeck.KritaPlugin.Resources.__init__.py", kritaLoupedeckPluginPath);
+            thisAssembly.ExtractFileToDirectory("Loupedeck.KritaPlugin.Resources.loupedeckApiServer.py", kritaLoupedeckPluginPath);
 
             return true;
         }
@@ -55,22 +54,22 @@ namespace Loupedeck.KritaPlugin
         {
             var kritaPluginsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita");
 
-            var kritaplugInDesktopFile = Path.Combine(kritaPluginsPath, "loopedeck_api_server.desktop");
+            var kritaplugInDesktopFile = Path.Combine(kritaPluginsPath, "loupedeck_api_server.desktop");
             if (File.Exists(kritaplugInDesktopFile))
             {
                 File.Delete(kritaplugInDesktopFile);
             }
 
-            var kritaLoopedeckPluginPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita", "loopedeck_api_server");
-            if(Directory.Exists(kritaLoopedeckPluginPath))
+            var kritaLoupedeckPluginPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita", "loupedeck_api_server");
+            if(Directory.Exists(kritaLoupedeckPluginPath))
             {
-                var kritaplugInInitFile = Path.Combine(kritaLoopedeckPluginPath, "__init__.py");
+                var kritaplugInInitFile = Path.Combine(kritaLoupedeckPluginPath, "__init__.py");
                 if (File.Exists(kritaplugInInitFile))
                 {
                     File.Delete(kritaplugInInitFile);
                 }
 
-                var kritaplugInSourceFile = Path.Combine(kritaLoopedeckPluginPath, "loopedeckApiServer.py");
+                var kritaplugInSourceFile = Path.Combine(kritaLoupedeckPluginPath, "loupedeckApiServer.py");
                 if (File.Exists(kritaplugInSourceFile))
                 {
                     File.Delete(kritaplugInSourceFile);

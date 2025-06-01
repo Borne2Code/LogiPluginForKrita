@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Service
-ServiceTypes=Krita/PythonPlugin
-X-KDE-Library=loopedeck_api_server
-X-Python-2-Compatible=false
-X-Krita-Manual=
-Name=Loopedeck API Server
-Comment=Plugin to server the Krita Loopedeck Plugin
