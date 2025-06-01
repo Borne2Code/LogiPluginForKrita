@@ -17,10 +17,10 @@ namespace LoupedeckKritaApiClient
         public Task SetPatternSize(float size) => Execute("setPatternSize", size);
 
         public Task<bool> GlobalAlphaLock() => GetBool("globalAlphaLock");
-        public Task SetGlobalAlphaLock(bool alphaLock) => GetBool("setGlobalAlphaLock", alphaLock);
+        public Task SetGlobalAlphaLock(bool alphaLock) => Execute("setGlobalAlphaLock", alphaLock);
         public Task<bool> DisablePressure() => GetBool("disablePreset");
-        public Task SetDisablePressure(bool disable) => GetBool("setDisablePreset", disable);
+        public Task SetDisablePressure(bool disable) => Execute("setDisablePreset", disable);
         public Task<bool> EraserMode() => GetBool("eraserMode");
-        public Task SetEraserMode(bool disable) => GetBool("setEraserMode", disable);
+        public Task SetEraserMode(bool disable) => Execute("setEraserMode", disable);
     }
 }
