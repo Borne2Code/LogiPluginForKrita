@@ -24,20 +24,27 @@ class Server(QObject):
             return json.dumps({"result": "KO", "error": str(self.returnValue)}).encode(encoding="utf-8")
 
     def run(self):
-        
+        time.sleep(2)
         s = socket.socket()
         host = socket.gethostname()
         port = 1247
-        s.bind(("127.0.0.1",port))
+        QtCore.qDebug("bind")
+        s.bind(("127.0.0.1", port))
         QtCore.qDebug("Server started on " + host)
         s.listen(1)
         while True:
+            QtCore.qDebug("listen started, waiting for connection...")
+            time.sleep(1)
             c, addr = s.accept()
             QtCore.qDebug("Connection accepted from " + repr(addr[1]))
             connected = True
 
             while connected:
-                msg = c.recv(1026).decode(encoding="utf-8")
+                try:
+                    msg = c.recv(1026).decode(encoding="utf-8")
+                except:
+                    QtCore.qDebug('Error receiving message: ' + str(ex))
+                    msg = None
                 # QtCore.qDebug(str(msg))
 
                 if not msg:
@@ -52,11 +59,11 @@ class Server(QObject):
                         self.message.emit(str(msg))
                     
                         while self.result == None:
-                            time.sleep(0.01)
+                            time.sleep(0.001)
                     
                         c.send(self.prepareResponse())
                     except Exception as ex:
-                        QtCore.qDebug('Error: ' + str(ex))
+                        QtCore.qDebug('Error sending message: ' + str(ex))
 
 class AuthorizedAction:
     objectIsMandatory: bool #True: mandatory, False: optional, None: forbidden
