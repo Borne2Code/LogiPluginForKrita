@@ -14,7 +14,20 @@ To use this plugin you need:
 # Installation
 From the Loupedeck Marketplace (https://loupedeckmarketplace.com/), search for the Krita plugin, and install it.
 The installation process will configure an extension into Krita, the name of this extension is *Loupedeck API Server", please don't remove it.
+For the very first installation, you may have to activate the plugin extension in Krita:
+- Start Krita
+- Go to Settings/Configure Krita...
+- Go to the Python Plugin Manager section
+- Check the box on the line "Loupedeck API Server"
+- Press OK to validate, then restart Krita.
+
 The plugin and the Krita extension communicate through a socket on port 1247, for the moment this cannot be changed.
+
+# Known Issues
+- In some rare cases, due to an issue with socket management in Python, Krita will freeze at start-up.
+Unfortunately, we couldn't understand why, you may restart Krita until it starts correctly.
+- When stopping the Loupedeck Driver, or uninstalling the Krita Plugin, any running instance of Krita can freeze, please be sure to save any open document and close Krita while doing a maintenance operation in the Loupedeck driver.
+You won't be anoyed if you enter the Loupedeck driver to manage and modify profiles.
 
 # Features
 Here the list of features that the Loupedeck device can activate directly on Krita (without keyboard shortcuts).
