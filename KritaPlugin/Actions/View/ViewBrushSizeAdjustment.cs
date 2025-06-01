@@ -48,7 +48,7 @@ namespace Loupedeck.KritaPlugin
             if (Client == null) return "-";
 
             UpdateAdjustValueIfNecessary();
-            return Math.Round(Size, 2).ToString();
+            return Math.Round(Size, Size >= 100 ? 1 : 2).ToString();
         }
 
         private void UpdateAdjustValueIfNecessary()

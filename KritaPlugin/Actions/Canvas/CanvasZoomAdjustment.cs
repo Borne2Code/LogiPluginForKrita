@@ -50,7 +50,7 @@ namespace Loupedeck.KritaPlugin
             if (Client == null) return "-";
 
             UpdateAdjustValueIfNecessary();
-            return Math.Round(Zoom * 100, Zoom >= 1000 ? 0 : 1).ToString() + " %";
+            return Math.Round(Zoom * 100, Zoom >= 1 ? 0 : 1).ToString() + " %";
         }
 
         private void UpdateAdjustValueIfNecessary()

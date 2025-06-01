@@ -50,7 +50,7 @@ namespace Loupedeck.KritaPlugin
             if (Client == null) return "-";
 
             UpdateAdjustValueIfNecessary();
-            return Math.Round(Rotation, 2).ToString() + " °";
+            return Math.Round(Rotation).ToString() + " °";
         }
 
         private void UpdateAdjustValueIfNecessary()
