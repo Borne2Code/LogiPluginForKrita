@@ -53,23 +53,26 @@ class Server(QObject):
                     connected = False
                     self.objects = {} #clean objects cache
                 else:
+                    self.returnValue = None
+                    self.result = None
+
+                    self.message.emit(str(msg))
+
+                    timeoutDateTime = datetime.datetime.now() + datetime.timedelta(seconds=5)
+                    while self.result == None and datetime.datetime.now() < timeoutDateTime:
+                        time.sleep(0.001)
+                    
                     try:
-                        self.returnValue = None
-                        self.result = None
-
-                        self.message.emit(str(msg))
-
-                        timeoutDateTime = datetime.datetime.now() + datetime.timedelta(seconds=5)
-                    
-                        while self.result == None and datetime.datetime.now() < timeoutDateTime:
-                            time.sleep(0.001)
-                    
                         if self.result == None:
                             QtCore.qDebug('Timeout waiting message computing')
-                        else:
-                            c.send(self.prepareResponse())
+                            self.returnValue = "Timeout waiting message computing"
+                            self.result = False
+
+                        c.send(self.prepareResponse())
                     except Exception as ex:
                         QtCore.qDebug('Error sending message: ' + str(ex))
+                        c.close()
+                        connected = False
 
 class AuthorizedAction:
     objectIsMandatory: bool #True: mandatory, False: optional, None: forbidden
@@ -249,7 +252,8 @@ class LoupedeckApiServer(Extension):
             if action == "Execute":
                 parametersString = ", ".join(map(lambda obj: str(obj), parameters))
                 QtCore.qDebug(f"Execute method: {type(objectInstance).__name__}.{method.__name__}({parametersString})")
-                if method.__name__ == "trigger" and objectInstance.objectName() == "layer_properties":
+                if method.__name__ == "trigger" and (objectInstance.objectName() == "layer_properties" or objectInstance.objectName() == "layer_style"):
+                    #Blocking calls are executed in separated thread
                     returnValue = None
                     QTimer.singleShot(0, method)
                 else:
