@@ -17,7 +17,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Filters.filters-EmbossAllDirections.png");
+            return PluginResources.BitmapFromEmbaddedRessource("Loupedeck.KritaPlugin.images.Filters.filters-EmbossAllDirections.png");
         }
 
         protected override void RunCommand(string actionParameter)

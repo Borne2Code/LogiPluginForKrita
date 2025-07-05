@@ -32,7 +32,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         public override BitmapImage GetButtonImage(PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), (dialogDefinition as FilterDialogDefinition).IconResourceName);
+            return PluginResources.BitmapFromEmbaddedRessource((dialogDefinition as FilterDialogDefinition).IconResourceName);
         }
 
         protected override bool ShowDialog()

@@ -28,7 +28,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 return null;
             }
 
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), IconResourceName);
+            return PluginResources.BitmapFromEmbaddedRessource(IconResourceName);
         }
 
         public override PluginDynamicFolderNavigation GetNavigationArea(DeviceType _)

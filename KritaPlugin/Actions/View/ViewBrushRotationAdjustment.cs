@@ -20,7 +20,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override BitmapImage GetAdjustmentImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.View.BrushRotation.png");
+            return PluginResources.BitmapFromEmbaddedRessource("Loupedeck.KritaPlugin.images.View.BrushRotation.png");
         }
 
 

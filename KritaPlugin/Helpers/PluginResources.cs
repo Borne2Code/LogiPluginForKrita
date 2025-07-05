@@ -54,5 +54,8 @@ namespace Loupedeck.KritaPlugin
         // Throws `FileNotFoundException` if the resource file is not found, or a system exception if the output file cannot be written.
         public static void ExtractFile(String resourceName, String filePathName)
             => PluginResources._assembly.ExtractFile(PluginResources.FindFile(resourceName), filePathName);
+
+        public static BitmapImage BitmapFromEmbaddedRessource(string ressourceName)
+            => BitmapImage.FromResource(Assembly.GetExecutingAssembly(), ressourceName);
     }
 }
