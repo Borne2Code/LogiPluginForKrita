@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.SmallTiles,
                 false,
                 "Loupedeck.KritaPlugin.images.Filters.filters-SmallTiles.png",
-                [],
                 [
                     new AdjustmentDefinition("Number", (dialog, delta) => (dialog.Dialog as KritaFilterSmallTiles).AdjustNumberOfTiles((int)delta).Result, 2),
                 ]);

@@ -64,24 +64,19 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-ColorBalance.png",
                 [
-                    resetShadows,
-                    resetMidtones,
-                    resetHighlights,
-                    preserveLuminosity
-                ],
-                [
                     shadowCyanRedAdj,
                     shadowMagentaGreenAdj,
                     shadowYellowBlueAdj,
                     midtonesCyanRedAdj,
                     midtonesMagentaGreenAdj,
                     midtonesYellowBlueAdj,
-                    midtonesCyanRedAdj,
-                    midtonesMagentaGreenAdj,
-                    midtonesYellowBlueAdj,
                     highlightsCyanRedAdj,
                     highlightsMagentaGreenAdj,
-                    highlightsYellowBlueAdj
+                    highlightsYellowBlueAdj,
+                    resetShadows,
+                    resetMidtones,
+                    resetHighlights,
+                    preserveLuminosity,
                 ]);
         }
     }

@@ -16,6 +16,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Levels.png",
                 [
+                    new AdjustmentDefinition("Input Black", (dialog, delta) => ((KritaFilterLevels)dialog.Dialog).AdjustInputBlackValue((int)delta).Result, 0),
+                    new AdjustmentDefinition("Input Gamma",
+                        (dialog, delta) => ((KritaFilterLevels)dialog.Dialog).AdjustInputGamma(delta).Result,
+                        1.0f, (val, delta) => val / (1 + (float)delta / 100) - val, 3),
+                    new AdjustmentDefinition("Input White", (dialog, delta) => ((KritaFilterLevels)dialog.Dialog).AdjustInputWhiteValue((int)delta).Result, 255),
+                    new AdjustmentDefinition("Output Black", (dialog, delta) => ((KritaFilterLevels)dialog.Dialog).AdjustOutputBlackValue((int)delta).Result, 0),
+                    new AdjustmentDefinition("Output  White", (dialog, delta) => ((KritaFilterLevels)dialog.Dialog).AdjustOutputWhiteValue((int)delta).Result, 255),
+
                     new CommandDefinition("Lightness", (dialog) => ((KritaFilterLevels)dialog.Dialog).SetLightnessMode()),
                     new CommandDefinition("All channels", (dialog) => ((KritaFilterLevels)dialog.Dialog).SetAllChannelsMode()),
 
@@ -39,15 +47,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
                     new CommandDefinition("Auto levels", (dialog) => ((KritaFilterLevels)dialog.Dialog).ApplyAutoLevels()),
                     new CommandDefinition("Reset all channels", (dialog) => ((KritaFilterLevels)dialog.Dialog).ResetAllChannels()),
-                ],
-                [
-                    new AdjustmentDefinition("Input Black", (dialog, delta) => ((KritaFilterLevels)dialog.Dialog).AdjustInputBlackValue((int)delta).Result, 0),
-                    new AdjustmentDefinition("Input Gamma", 
-                        (dialog, delta) => ((KritaFilterLevels)dialog.Dialog).AdjustInputGamma(delta).Result,
-                        1.0f, (val, delta) => val / (1 + (float)delta / 100) - val, 3),
-                    new AdjustmentDefinition("Input White", (dialog, delta) => ((KritaFilterLevels)dialog.Dialog).AdjustInputWhiteValue((int)delta).Result, 255),
-                    new AdjustmentDefinition("Output Black", (dialog, delta) => ((KritaFilterLevels)dialog.Dialog).AdjustOutputBlackValue((int)delta).Result, 0),
-                    new AdjustmentDefinition("Output  White", (dialog, delta) => ((KritaFilterLevels)dialog.Dialog).AdjustOutputWhiteValue((int)delta).Result, 255),
                 ]);
         }
     }

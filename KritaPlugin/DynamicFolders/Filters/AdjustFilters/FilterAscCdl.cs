@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.AscCdl,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-AscCdl.png",
-                [],
                 []);
         }
     }

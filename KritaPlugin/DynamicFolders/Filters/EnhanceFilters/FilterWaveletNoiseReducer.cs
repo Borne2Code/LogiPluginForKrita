@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.WaveletNoiseReducer,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-WaveletNoiseReducer.png",
-                [],
                 [
                     new AdjustmentDefinition("Threshold", (dialog, delta) => (dialog.Dialog as KritaFilterWaveletNoiseReducer).AdjustThreshold(delta).Result, 7),
                 ]);

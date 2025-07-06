@@ -18,10 +18,8 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 [
                     new CommandDefinition("Shadows", (dialog) => ((KritaFilterDodge)dialog.Dialog).SelectShadows()),
                     new CommandDefinition("Midtones", (dialog) => ((KritaFilterDodge)dialog.Dialog).SelectMidTones()),
-                    new CommandDefinition("Highlights", (dialog) => ((KritaFilterDodge)dialog.Dialog).SelectHighLights())
-                ],
-                [
-                    new AdjustmentDefinition("Exposure", (dialog, delta) => ((KritaFilterDodge)dialog.Dialog).AdjustExposureValue((int)delta).Result, 50)
+                    new CommandDefinition("Highlights", (dialog) => ((KritaFilterDodge)dialog.Dialog).SelectHighLights()),
+                    new AdjustmentDefinition("Exposure", (dialog, delta) => ((KritaFilterDodge)dialog.Dialog).AdjustExposureValue((int)delta).Result, 50),
                 ]);
         }
     }

@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.ColorToAlpha,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-ColorToAlpha.png",
-                [],
                 [
                     new AdjustmentDefinition("Threshold", (dialog, delta) => (dialog.Dialog as KritaFilterColorToAlpha).AdjustThreshold((int)delta).Result, 100),
                 ]);

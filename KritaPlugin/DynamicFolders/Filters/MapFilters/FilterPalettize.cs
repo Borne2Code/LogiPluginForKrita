@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.Palettize,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Paletize.png",
-                [],
                 []);
         }
     }

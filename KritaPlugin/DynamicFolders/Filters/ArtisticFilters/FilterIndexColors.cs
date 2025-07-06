@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.IndexColors,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-IndexColors.png",
-                [],
                 []);
         }
     }

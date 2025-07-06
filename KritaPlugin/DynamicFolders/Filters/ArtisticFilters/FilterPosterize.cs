@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.Posterize,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Posterize.png",
-                [],
                 [
                     new AdjustmentDefinition("Steps", (dialog, delta) => (dialog.Dialog as KritaFilterPosterize).AdjustSteps((int)delta).Result, 16),
                 ]);

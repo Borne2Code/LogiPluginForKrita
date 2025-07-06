@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.MotionBlur,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-MotionBlur.png",
-                [],
                 [
                     new AdjustmentDefinition("Angle", (dialog, delta) => (dialog.Dialog as KritaFilterMotionBlur).AdjustBlurAngle((int)delta).Result),
                     new AdjustmentDefinition("Length", (dialog, delta) => (dialog.Dialog as KritaFilterMotionBlur).AdjustLength((int)delta).Result, 5),

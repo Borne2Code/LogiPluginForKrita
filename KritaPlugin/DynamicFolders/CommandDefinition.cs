@@ -1,14 +1,13 @@
 ﻿namespace Loupedeck.KritaPlugin.DynamicFolders
 {
-    public class CommandDefinition
+    public class CommandDefinition: ActionDefinition
     {
-        public string Name { get; }
         public Func<DynamicFolderBase, Task> Action { get; }
         public bool ShoudClose { get; }
 
         public CommandDefinition(string name, Func<DynamicFolderBase, Task> action, bool shouldClose = false)
+            :base(name)
         {
-            Name = name;
             Action = action;
             ShoudClose = shouldClose;
         }

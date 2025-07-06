@@ -16,6 +16,9 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-CrossChannelColorAdjustment.png",
                 [
+                    new AdjustmentDefinition("Input", (dialog, delta) => ((KritaFilterCrossChannel)dialog.Dialog).AdjustInputValue((int)delta).Result),
+                    new AdjustmentDefinition("Output", (dialog, delta) => ((KritaFilterCrossChannel)dialog.Dialog).AdjustOutputValue((int)delta).Result),
+
                     new CommandDefinition("Channel RGBA", (dialog) => ((KritaFilterCrossChannel)dialog.Dialog).SetTargetChannelIndex(KritaFilterCrossChannel.TargetChannel.RGBA)),
                     new CommandDefinition("Channel Red", (dialog) => ((KritaFilterCrossChannel)dialog.Dialog).SetTargetChannelIndex(KritaFilterCrossChannel.TargetChannel.Red)),
                     new CommandDefinition("Channel Green", (dialog) => ((KritaFilterCrossChannel)dialog.Dialog).SetTargetChannelIndex(KritaFilterCrossChannel.TargetChannel.Green)),
@@ -35,10 +38,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
                     new CommandDefinition("Logarithmic", (dialog) => ((KritaFilterCrossChannel)dialog.Dialog).ToggleLogarithmic()),
                     new CommandDefinition("Reset", (dialog) => ((KritaFilterCrossChannel)dialog.Dialog).Reset()),
-                ],
-                [
-                    new AdjustmentDefinition("Input", (dialog, delta) => ((KritaFilterCrossChannel)dialog.Dialog).AdjustInputValue((int)delta).Result),
-                    new AdjustmentDefinition("Output", (dialog, delta) => ((KritaFilterCrossChannel)dialog.Dialog).AdjustOutputValue((int)delta).Result),
                 ]);
         }
     }

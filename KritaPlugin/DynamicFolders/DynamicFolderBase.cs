@@ -51,21 +51,42 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return true;
         }
 
-        public override IEnumerable<string> GetButtonPressActionNames(DeviceType _)
+        public override IEnumerable<string> GetButtonPressActionNames(DeviceType deviceType)
         {
             List<string> commands = new List<string>();
+            int numberOfCommandsPerPage = 12;
+            ActionDefinition[] dialogCommands;
+
+            if (deviceType == DeviceType.Loupedeck70)
+            {
+                numberOfCommandsPerPage = 8;
+                dialogCommands = dialogDefinition.CommandsAndAdjustments;
+            }
+            else
+            {
+                dialogCommands = dialogDefinition.CommandsAndAdjustments.Where(c => c is CommandDefinition).ToArray();
+            }
 
             commands.Add(CreateCommandName(ShowDialogString));
 
             var commandsCount = 1;
             if (dialogDefinition != null)
             {
-                foreach (var command in dialogDefinition.Commands)
+                foreach (var command in dialogCommands)
                 {
-                    commands.Add(CreateCommandName(command.Name));
+                    if (command is AdjustmentDefinition adjustment)
+                    {
+                        commands.Add(CreateAdjustmentName(adjustment.Name));
+                        adjustment.ValueChanged += Adjustment_ValueChanged;
+                    }
+                    else
+                    {
+                        commands.Add(CreateCommandName(command.Name));
+                    }
                     commandsCount++;
 
-                    if(commandsCount == 12 - dialogDefinition.FixedCommands.Length)
+                    
+                    if(commandsCount == numberOfCommandsPerPage - dialogDefinition.FixedCommands.Length)
                     { 
                         foreach(var fixedCommand in dialogDefinition.FixedCommands)
                         {
@@ -78,7 +99,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
             if (commandsCount > 0)
             {
-                while (commandsCount < (12 - dialogDefinition.FixedCommands.Length))
+                while (commandsCount < (numberOfCommandsPerPage - dialogDefinition.FixedCommands.Length))
                 {
                     commands.Add(string.Empty);
                     commandsCount++;
@@ -93,13 +114,18 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return commands;
         }
 
-        public override IEnumerable<string> GetEncoderRotateActionNames(DeviceType _)
+        public override IEnumerable<string> GetEncoderRotateActionNames(DeviceType deviceType)
         {
+            if (deviceType == DeviceType.Loupedeck70)
+            {
+                return null;
+            }
+
             List<string> adjustments = new List<string>();
 
             if (dialogDefinition != null)
             {
-                foreach (var adjustment in dialogDefinition.Adjustments)
+                foreach (var adjustment in dialogDefinition.CommandsAndAdjustments.Where(c => c is AdjustmentDefinition).Select(c => c as AdjustmentDefinition))
                 {
                     adjustments.Add(CreateAdjustmentName(adjustment.Name));
                     adjustment.ValueChanged += Adjustment_ValueChanged;
@@ -109,13 +135,18 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return adjustments;
         }
 
-        public override IEnumerable<string> GetEncoderPressActionNames(DeviceType _)
+        public override IEnumerable<string> GetEncoderPressActionNames(DeviceType deviceType)
         {
+            if (deviceType == DeviceType.Loupedeck70)
+            {
+                return null;
+            }
+
             List<string> adjustments = new List<string>();
 
             if (dialogDefinition != null)
             {
-                foreach (var adjustment in dialogDefinition.Adjustments)
+                foreach (var adjustment in dialogDefinition.CommandsAndAdjustments.Where(c => c is AdjustmentDefinition).Select(c => c as AdjustmentDefinition))
                 {
                     adjustments.Add(CreateCommandName(adjustment.Name));
                 }
@@ -131,7 +162,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         public override void ApplyAdjustment(string actionParameter, int diff)
         {
-            var adjustment = dialogDefinition.Adjustments.Where(adj => adj.Name == actionParameter).First();
+            var adjustment = dialogDefinition.CommandsAndAdjustments.Where(adj => adj.Name == actionParameter).First() as AdjustmentDefinition;
 
             float targetAdjustment = diff;
             if (adjustment.OverrideAdjustmentCalculation != null)
@@ -148,7 +179,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     Activate();
             else
             {
-                var command = dialogDefinition.Commands.Where(cmd => cmd.Name == actionParameter).FirstOrDefault();
+                var command = dialogDefinition.CommandsAndAdjustments.Where(cmd => cmd.Name == actionParameter).FirstOrDefault() as CommandDefinition;
                 if (command != null)
                 {
                     SecureCall(() => command.Action(this).Wait(), command.ShoudClose);
@@ -162,7 +193,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     }
                     else
                     {
-                        var adjustment = dialogDefinition.Adjustments.Where(adj => adj.Name == actionParameter).FirstOrDefault();
+                        var adjustment = dialogDefinition.CommandsAndAdjustments.Where(adj => adj.Name == actionParameter).FirstOrDefault() as AdjustmentDefinition;
                         if (adjustment != null)
                             adjustment.Value = adjustment.Adjust(this, adjustment.DefaultValue - adjustment.Value);
                     }
@@ -172,7 +203,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         public override string GetAdjustmentValue(string actionParameter)
         {
-            return dialogDefinition.Adjustments.Where(adj => adj.Name == actionParameter).First().ToString();
+            return dialogDefinition.CommandsAndAdjustments.Where(adj => adj.Name == actionParameter).First().ToString();
         }
 
         void SecureCall(Action action, bool shouldClose)

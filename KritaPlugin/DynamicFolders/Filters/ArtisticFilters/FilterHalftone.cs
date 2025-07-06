@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.Halftone,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Halftone.png",
-                [],
                 []);
         }
     }

@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.GradientMap,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-GradientMap.png",
-                [],
                 []);
         }
     }

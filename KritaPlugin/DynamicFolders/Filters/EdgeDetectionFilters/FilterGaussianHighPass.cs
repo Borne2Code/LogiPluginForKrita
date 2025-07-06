@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.GaussianHighPass,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-GaussianHighpass.png",
-                [],
                 [
                     new AdjustmentDefinition("Radius", (dialog, delta) => (dialog.Dialog as KritaFilterGaussianHighPass).AdjustRadius(delta).Result, 1),
                 ]);

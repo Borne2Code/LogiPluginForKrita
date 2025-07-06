@@ -76,6 +76,8 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new DialogDefinition(
                 "Layer properties",
                 [
+                    new AdjustmentDefinition("Opacity", (dialog, diff) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).AdjustOpacity((int)diff).Result, 255),
+
                     new CommandDefinition("Visible", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).ToggleVIsible()),
                     new CommandDefinition("Locked", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).ToggleLocked()),
                     new CommandDefinition("Inherit Alpha", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).ToggleInheritAlpha()),
@@ -88,9 +90,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 [
                     new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.LayerPropertiesDialog)dynamicFolder.Dialog).Cancel(), true),
                     new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.LayerPropertiesDialog)dynamicFolder.Dialog).Confirm(), true),
-                ],
-                [
-                    new AdjustmentDefinition("Opacity", (dialog, diff) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).AdjustOpacity((int)diff).Result, 255),
                 ]);
         }
 
@@ -107,8 +106,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 [
                     new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FileLayerPropertiesDialog)dynamicFolder.Dialog).Cancel(), true),
                     new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FileLayerPropertiesDialog)dynamicFolder.Dialog).Confirm(), true),
-                ],
-                []);
+                ]);
         }
 
         protected override void ResetDialog()

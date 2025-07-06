@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.GaussianNoiseReducer,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-GaussianNoiseReducer.png",
-                [],
                 [
                     new AdjustmentDefinition("Threshold", (dialog, delta) => (dialog.Dialog as KritaFilterGaussianNoiseReducer).AdjustThreshold((int)delta).Result, 15),
                     new AdjustmentDefinition("Window Size", (dialog, delta) => (dialog.Dialog as KritaFilterGaussianNoiseReducer).AdjustWindowSize((int)delta).Result, 1),

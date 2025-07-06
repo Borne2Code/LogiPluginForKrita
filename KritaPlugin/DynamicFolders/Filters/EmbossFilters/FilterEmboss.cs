@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.Emboss,
                 false,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Emboss.png",
-                [],
                 [
                     new AdjustmentDefinition("Depth", (dialog, delta) => (dialog.Dialog as KritaFilterEmboss).AdjustDepth((int)delta).Result, 30),
                 ]);

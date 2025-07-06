@@ -16,6 +16,9 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-EdgeDetection.png",
                 [
+                    new AdjustmentDefinition("Horizontal radius", (dialog, delta) => (dialog.Dialog as KritaFilterEdgeDetecttion).AdjustHorizontalRadius(delta).Result, 1),
+                    new AdjustmentDefinition("Vertical radius", (dialog, delta) => (dialog.Dialog as KritaFilterEdgeDetecttion).AdjustVerticalRadius(delta).Result, 1),
+
                     new CommandDefinition("Formula Prewitt", (dialog) => (dialog.Dialog as KritaFilterEdgeDetecttion).SelectFormula(KritaFilterEdgeDetecttion.Formula.Prewitt)),
                     new CommandDefinition("Formula Sobel", (dialog) => (dialog.Dialog as KritaFilterEdgeDetecttion).SelectFormula(KritaFilterEdgeDetecttion.Formula.Sobel)),
                     new CommandDefinition("Formula Simple", (dialog) => (dialog.Dialog as KritaFilterEdgeDetecttion).SelectFormula(KritaFilterEdgeDetecttion.Formula.Simple)),
@@ -27,10 +30,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     new CommandDefinition("Output Left Edge", (dialog) => (dialog.Dialog as KritaFilterEdgeDetecttion).SelectOutput(KritaFilterEdgeDetecttion.Output.LeftEdge)),
                     new CommandDefinition("Output Direction In Radians", (dialog) => (dialog.Dialog as KritaFilterEdgeDetecttion).SelectOutput(KritaFilterEdgeDetecttion.Output.DirectionInRadians)),
                     new CommandDefinition("Apply to alpha", (dialog) => (dialog.Dialog as KritaFilterEdgeDetecttion).ToggleApplyResultToAlphaChannel()),
-                ],
-                [
-                    new AdjustmentDefinition("Horizontal radius", (dialog, delta) => (dialog.Dialog as KritaFilterEdgeDetecttion).AdjustHorizontalRadius(delta).Result, 1),
-                    new AdjustmentDefinition("Vertical radius", (dialog, delta) => (dialog.Dialog as KritaFilterEdgeDetecttion).AdjustVerticalRadius(delta).Result, 1),
                 ]);
         }
     }

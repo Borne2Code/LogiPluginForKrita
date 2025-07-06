@@ -16,6 +16,9 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-HsvHlsAdjustments.png",
                 [
+                    new AdjustmentDefinition("Hue", (dialog, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustHue((int)delta).Result),
+                    new AdjustmentDefinition("Saturation", (dialog, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustSaturation((int)delta).Result),
+                    new AdjustmentDefinition("Value", (dialog, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustValue((int)delta).Result),
                     new CommandDefinition("Mode Hue/Sat/Value", (dialog) => ((KritaFilterHsvAdjustment)dialog.Dialog).SetType(KritaFilterHsvAdjustment.Type.HueSaturationValue)),
                     new CommandDefinition("Mode Hue/Sat/Lightness", (dialog) => ((KritaFilterHsvAdjustment)dialog.Dialog).SetType(KritaFilterHsvAdjustment.Type.HueSaturationLightness)),
                     new CommandDefinition("Mode Hue/Sat/Intensity", (dialog) => ((KritaFilterHsvAdjustment)dialog.Dialog).SetType(KritaFilterHsvAdjustment.Type.HueSaturationIntensity)),
@@ -23,11 +26,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     new CommandDefinition("Mode Blue Chroma/Red Chroma/Luma", (dialog) => ((KritaFilterHsvAdjustment)dialog.Dialog).SetType(KritaFilterHsvAdjustment.Type.BlueChromaRedChromaLuma)),
                     new CommandDefinition("Colorize", (dialog) => ((KritaFilterHsvAdjustment)dialog.Dialog).ToggleColorize()),
                     new CommandDefinition("Legacy mode", (dialog) => ((KritaFilterHsvAdjustment)dialog.Dialog).ToggleLegacyMode()),
-                ],
-                [
-                    new AdjustmentDefinition("Hue", (dialog, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustHue((int)delta).Result),
-                    new AdjustmentDefinition("Saturation", (dialog, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustSaturation((int)delta).Result),
-                    new AdjustmentDefinition("Value", (dialog, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustValue((int)delta).Result),
                 ]);
         }
     }

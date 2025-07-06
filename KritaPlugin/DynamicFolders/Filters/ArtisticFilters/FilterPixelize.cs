@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.Pixelize,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Pixelize.png",
-                [],
                 [
                     new AdjustmentDefinition("Pixel width", (dialog, delta) => (dialog.Dialog as KritaFilterPixelize).AdjustPixelWidth((int)delta).Result, 10),
                     new AdjustmentDefinition("Pixel height", (dialog, delta) => (dialog.Dialog as KritaFilterPixelize).AdjustPixelHeight((int)delta).Result, 10),

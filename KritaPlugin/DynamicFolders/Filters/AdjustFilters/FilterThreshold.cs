@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.Threshold,
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-Threshold.png",
-                [],
                 [
                     new AdjustmentDefinition("Threshold", (dialog, delta) => (dialog.Dialog as KritaFilterThreshold).AdjustThreshold((int)delta).Result, 128)
                 ]);

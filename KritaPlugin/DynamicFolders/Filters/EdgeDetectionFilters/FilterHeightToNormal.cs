@@ -16,6 +16,9 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 true,
                 "Loupedeck.KritaPlugin.images.Filters.filters-HeightToNormal.png",
                 [
+                    new AdjustmentDefinition("Horizontal radius", (dialog, delta) => (dialog.Dialog as KritaFilterHeightToNormal).AdjustHorizontalRadius(delta).Result, 1),
+                    new AdjustmentDefinition("Vertical radius", (dialog, delta) => (dialog.Dialog as KritaFilterHeightToNormal).AdjustVerticalRadius(delta).Result, 1),
+
                     new CommandDefinition("Formula Prewitt", (dialog) => (dialog.Dialog as KritaFilterHeightToNormal).SetType(KritaFilterHeightToNormal.Type.Prewitt)),
                     new CommandDefinition("Formula Sobel", (dialog) => (dialog.Dialog as KritaFilterHeightToNormal).SetType(KritaFilterHeightToNormal.Type.Sobel)),
                     new CommandDefinition("Formula Simple", (dialog) => (dialog.Dialog as KritaFilterHeightToNormal).SetType(KritaFilterHeightToNormal.Type.Simple)),
@@ -45,10 +48,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     new CommandDefinition("Z=-Y", (dialog) => (dialog.Dialog as KritaFilterHeightToNormal).SetZValue(KritaFilterHeightToNormal.XYZ.YMinus)),
                     new CommandDefinition("Z=Z", (dialog) => (dialog.Dialog as KritaFilterHeightToNormal).SetZValue(KritaFilterHeightToNormal.XYZ.ZPlus)),
                     new CommandDefinition("Z=-Z", (dialog) => (dialog.Dialog as KritaFilterHeightToNormal).SetZValue(KritaFilterHeightToNormal.XYZ.ZMinus)),
-                ],
-                [
-                    new AdjustmentDefinition("Horizontal radius", (dialog, delta) => (dialog.Dialog as KritaFilterHeightToNormal).AdjustHorizontalRadius(delta).Result, 1),
-                    new AdjustmentDefinition("Vertical radius", (dialog, delta) => (dialog.Dialog as KritaFilterHeightToNormal).AdjustVerticalRadius(delta).Result, 1),
                 ]);
         }
     }

@@ -1,11 +1,10 @@
 ﻿namespace Loupedeck.KritaPlugin.DynamicFolders
 {
-    public class AdjustmentDefinition
+    public class AdjustmentDefinition: ActionDefinition
     {
         private float _value;
         public event EventHandler<ValueCHangedEventArg> ValueChanged;
 
-        public string Name { get; }
         public Func<float, int, float> OverrideAdjustmentCalculation { get; }
         public Func<DynamicFolderBase, float, float> Adjust { get; }
         public float Value
@@ -22,8 +21,8 @@
         public string DisplayUnit { get; }
 
         public AdjustmentDefinition(string name, Func<DynamicFolderBase, float, float> adjust, float defaultValue = 0, Func<float, int, float> overrideAdjustmentCalculation = null, int displayDecimals = 0, string displayUnit = "")
+            : base(name)
         {
-            Name = name;
             Adjust = adjust;
             OverrideAdjustmentCalculation = overrideAdjustmentCalculation;
             DisplayDigits = displayDecimals;

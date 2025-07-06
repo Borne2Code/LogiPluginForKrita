@@ -15,7 +15,6 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 FilterNames.RainDrops,
                 false,
                 "Loupedeck.KritaPlugin.images.Filters.filters-RainDrops.png",
-                [],
                 [
                     new AdjustmentDefinition("Drop size", (dialog, delta) => (dialog.Dialog as KritaFilterRainDrops).AdjustDropSize((int)delta).Result, 80),
                     new AdjustmentDefinition("Number", (dialog, delta) => (dialog.Dialog as KritaFilterRainDrops).AdjustNumberOfDrops((int)delta).Result, 80),

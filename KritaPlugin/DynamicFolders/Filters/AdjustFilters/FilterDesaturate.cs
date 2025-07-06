@@ -22,8 +22,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                     new CommandDefinition("Average", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectAverage()),
                     new CommandDefinition("Minimum", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectMin()),
                     new CommandDefinition("Maximum", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectMax()),
-                ],
-                []);
+                ]);
         }
     }
 }
