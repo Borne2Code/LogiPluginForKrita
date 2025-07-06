@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterHalftone : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Halftone",
                 FilterNames.Halftone,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-Halftone.png",
+                "Logi.KritaPlugin.images.Filters.filters-Halftone.png",
                 []);
         }
     }

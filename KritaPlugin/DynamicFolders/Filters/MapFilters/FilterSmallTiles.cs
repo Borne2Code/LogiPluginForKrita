@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterSmallTiles : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Small Tiles",
                 FilterNames.SmallTiles,
                 false,
-                "Loupedeck.KritaPlugin.images.Filters.filters-SmallTiles.png",
+                "Logi.KritaPlugin.images.Filters.filters-SmallTiles.png",
                 [
                     new AdjustmentDefinition("Number", (dialog, delta) => (dialog.Dialog as KritaFilterSmallTiles).AdjustNumberOfTiles((int)delta).Result, 2),
                 ]);

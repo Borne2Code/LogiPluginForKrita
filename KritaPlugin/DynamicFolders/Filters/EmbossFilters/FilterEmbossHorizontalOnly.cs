@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterEmbossHorizontalOnly
     {
@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Emboss Horizontal only",
                 FilterNames.EmbossHorizontalOnly,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-EmbossHorizontal.png");
+                "Logi.KritaPlugin.images.Filters.filters-EmbossHorizontal.png");
         }
     }
 }

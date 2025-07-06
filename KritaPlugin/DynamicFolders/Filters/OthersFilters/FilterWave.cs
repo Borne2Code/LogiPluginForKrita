@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterWave : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Wave",
                 FilterNames.Wave,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-Wave.png",
+                "Logi.KritaPlugin.images.Filters.filters-Wave.png",
                 [
                     new AdjustmentDefinition("Hor. Wave length", (dialog, delta) => (dialog.Dialog as KritaFilterWave).AdjustHorizontalWaveLength((int)delta).Result, 50),
                     new AdjustmentDefinition("Hor. Shift", (dialog, delta) => (dialog.Dialog as KritaFilterWave).AdjustHorizontalShift((int)delta).Result, 50),

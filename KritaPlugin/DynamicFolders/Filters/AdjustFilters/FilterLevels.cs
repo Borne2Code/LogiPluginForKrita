@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterLevels : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Levels",
                 FilterNames.Levels,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-Levels.png",
+                "Logi.KritaPlugin.images.Filters.filters-Levels.png",
                 [
                     new AdjustmentDefinition("Input Black", (dialog, delta) => ((KritaFilterLevels)dialog.Dialog).AdjustInputBlackValue((int)delta).Result, 0),
                     new AdjustmentDefinition("Input Gamma",

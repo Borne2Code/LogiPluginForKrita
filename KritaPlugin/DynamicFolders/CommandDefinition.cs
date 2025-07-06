@@ -1,4 +1,4 @@
-﻿namespace Loupedeck.KritaPlugin.DynamicFolders
+﻿namespace Logi.KritaPlugin.DynamicFolders
 {
     public class CommandDefinition: ActionDefinition
     {

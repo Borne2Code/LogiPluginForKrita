@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterInvert
     {
@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Invert",
                 FilterNames.Invert,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-Invert.png");
+                "Logi.KritaPlugin.images.Filters.filters-Invert.png");
         }
     }
 }

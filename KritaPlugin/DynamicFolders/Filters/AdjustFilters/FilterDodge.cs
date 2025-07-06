@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterDodge : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Dodge",
                 FilterNames.Dodge,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-Dodge.png",
+                "Logi.KritaPlugin.images.Filters.filters-Dodge.png",
                 [
                     new CommandDefinition("Shadows", (dialog) => ((KritaFilterDodge)dialog.Dialog).SelectShadows()),
                     new CommandDefinition("Midtones", (dialog) => ((KritaFilterDodge)dialog.Dialog).SelectMidTones()),

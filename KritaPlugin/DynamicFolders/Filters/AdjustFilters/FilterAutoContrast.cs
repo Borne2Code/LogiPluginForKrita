@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterAutoContrast
     {
@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Auto Contrast",
                 FilterNames.AutoConstrast,
                 false,
-                "Loupedeck.KritaPlugin.images.Filters.filters-AutoContrast.png");
+                "Logi.KritaPlugin.images.Filters.filters-AutoContrast.png");
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterWaveletNoiseReducer : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Wavelet Noise Reducer",
                 FilterNames.WaveletNoiseReducer,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-WaveletNoiseReducer.png",
+                "Logi.KritaPlugin.images.Filters.filters-WaveletNoiseReducer.png",
                 [
                     new AdjustmentDefinition("Threshold", (dialog, delta) => (dialog.Dialog as KritaFilterWaveletNoiseReducer).AdjustThreshold(delta).Result, 7),
                 ]);

@@ -1,7 +1,7 @@
-using System.Reflection;
-using LoupedeckKritaApiClient.ClientBase;
+using Loupedeck;
+using LogiKritaApiClient.ClientBase;
 
-namespace Loupedeck.KritaPlugin
+namespace Logi.KritaPlugin.Actions
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
@@ -17,7 +17,7 @@ namespace Loupedeck.KritaPlugin
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Loupedeck.KritaPlugin.images.View.ToggleMirrorView.png");
+            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.View.ToggleMirrorView.png");
         }
 
         protected override void RunCommand(string actionParameter)

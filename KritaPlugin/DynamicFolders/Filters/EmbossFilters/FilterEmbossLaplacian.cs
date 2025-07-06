@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterEmbossLaplacian
     {
@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Emboss Laplascian",
                 FilterNames.EmbossLaplascian,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-EmbossLaplacian.png");
+                "Logi.KritaPlugin.images.Filters.filters-EmbossLaplacian.png");
         }
     }
 }

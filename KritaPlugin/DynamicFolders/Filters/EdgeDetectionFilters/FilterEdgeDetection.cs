@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterEdgeDetection : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Edge detection",
                 FilterNames.EdgeDetection,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-EdgeDetection.png",
+                "Logi.KritaPlugin.images.Filters.filters-EdgeDetection.png",
                 [
                     new AdjustmentDefinition("Horizontal radius", (dialog, delta) => (dialog.Dialog as KritaFilterEdgeDetecttion).AdjustHorizontalRadius(delta).Result, 1),
                     new AdjustmentDefinition("Vertical radius", (dialog, delta) => (dialog.Dialog as KritaFilterEdgeDetecttion).AdjustVerticalRadius(delta).Result, 1),

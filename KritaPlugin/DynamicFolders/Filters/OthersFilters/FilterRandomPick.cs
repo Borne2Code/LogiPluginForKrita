@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterRandomPick : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Random Pick",
                 FilterNames.RandomPick,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-RandomPick.png",
+                "Logi.KritaPlugin.images.Filters.filters-RandomPick.png",
                 [
                     new AdjustmentDefinition("Level", (dialog, delta) => (dialog.Dialog as KritaFilterRandomPick).AdjustLevel((int)delta).Result, 50),
                     new AdjustmentDefinition("Window Size", (dialog, delta) => (dialog.Dialog as KritaFilterRandomPick).AdjustWindowSize((int)delta).Result, 3),

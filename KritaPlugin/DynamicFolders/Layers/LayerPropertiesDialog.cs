@@ -1,8 +1,9 @@
-﻿using LoupedeckKritaApiClient;
-using LoupedeckKritaApiClient.ClientBase;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using Logi.KritaPlugin;
+using LogiKritaApiClient;
+using LogiKritaApiClient.ClientBase;
+using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class LayerPropertiesDialog : DynamicFolderBase
     {
@@ -11,7 +12,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
         public LayerPropertiesDialog()
             : base("Layer Properties (dynamic)",
-                  "Loupedeck.KritaPlugin.images.Layers.Properties.png",
+                  "Logi.KritaPlugin.images.Layers.Properties.png",
                   ActionGroups.Layers)
         {
         }
@@ -29,7 +30,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
                 case "clonelayer":
                 case "vectorlayer":
                     {
-                        Dialog = new LoupedeckKritaApiClient.LayerPropertiesDialog(Client);
+                        Dialog = new LogiKritaApiClient.LayerPropertiesDialog(Client);
                         Dialog.AttachDialog().Wait();
                         dialogDefinition = GetLayerPropertiesDialogDefinition();
                     }; break;
@@ -51,8 +52,8 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
 
                             dialogDefinition = FilterDialogDefinition.GetDialogDefinition(filterName);
                             dialogDefinition.FixedCommands = [
-                                new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Cancel(), true),
-                                new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Confirm(), true),
+                                new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LogiKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Cancel(), true),
+                                new CommandDefinition(OkButtonName, (dynamicFolder) => ((LogiKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Confirm(), true),
                                 ];
                         }
                         finally
@@ -76,20 +77,20 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new DialogDefinition(
                 "Layer properties",
                 [
-                    new AdjustmentDefinition("Opacity", (dialog, diff) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).AdjustOpacity((int)diff).Result, 255),
+                    new AdjustmentDefinition("Opacity", (dialog, diff) => (dialog.Dialog as LogiKritaApiClient.LayerPropertiesDialog).AdjustOpacity((int)diff).Result, 255),
 
-                    new CommandDefinition("Visible", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).ToggleVIsible()),
-                    new CommandDefinition("Locked", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).ToggleLocked()),
-                    new CommandDefinition("Inherit Alpha", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).ToggleInheritAlpha()),
-                    new CommandDefinition("Alpha Locked", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).ToggleAlphaLocked()),
-                    new CommandDefinition("Channel Blue", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).ToggleChannelBlue()),
-                    new CommandDefinition("Channel Green", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).ToggleChannelGreen()),
-                    new CommandDefinition("Channel Red", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).ToggleChannelRed()),
-                    new CommandDefinition("Channel Alpha", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.LayerPropertiesDialog).ToggleChannelAlpha()),
+                    new CommandDefinition("Visible", (dialog) => (dialog.Dialog as LogiKritaApiClient.LayerPropertiesDialog).ToggleVIsible()),
+                    new CommandDefinition("Locked", (dialog) => (dialog.Dialog as LogiKritaApiClient.LayerPropertiesDialog).ToggleLocked()),
+                    new CommandDefinition("Inherit Alpha", (dialog) => (dialog.Dialog as LogiKritaApiClient.LayerPropertiesDialog).ToggleInheritAlpha()),
+                    new CommandDefinition("Alpha Locked", (dialog) => (dialog.Dialog as LogiKritaApiClient.LayerPropertiesDialog).ToggleAlphaLocked()),
+                    new CommandDefinition("Channel Blue", (dialog) => (dialog.Dialog as LogiKritaApiClient.LayerPropertiesDialog).ToggleChannelBlue()),
+                    new CommandDefinition("Channel Green", (dialog) => (dialog.Dialog as LogiKritaApiClient.LayerPropertiesDialog).ToggleChannelGreen()),
+                    new CommandDefinition("Channel Red", (dialog) => (dialog.Dialog as LogiKritaApiClient.LayerPropertiesDialog).ToggleChannelRed()),
+                    new CommandDefinition("Channel Alpha", (dialog) => (dialog.Dialog as LogiKritaApiClient.LayerPropertiesDialog).ToggleChannelAlpha()),
                 ],
                 [
-                    new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.LayerPropertiesDialog)dynamicFolder.Dialog).Cancel(), true),
-                    new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.LayerPropertiesDialog)dynamicFolder.Dialog).Confirm(), true),
+                    new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LogiKritaApiClient.LayerPropertiesDialog)dynamicFolder.Dialog).Cancel(), true),
+                    new CommandDefinition(OkButtonName, (dynamicFolder) => ((LogiKritaApiClient.LayerPropertiesDialog)dynamicFolder.Dialog).Confirm(), true),
                 ]);
         }
 
@@ -98,14 +99,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new DialogDefinition(
                 "File Layer properties",
                 [
-                    new CommandDefinition("Choose file", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.FileLayerPropertiesDialog).OpenFileSelector()),
-                    new CommandDefinition("No scale", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.FileLayerPropertiesDialog).SelectNoScale()),
-                    new CommandDefinition("Scale to image", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.FileLayerPropertiesDialog).SelectScaleToImage()),
-                    new CommandDefinition("Scale  to PPI", (dialog) => (dialog.Dialog as LoupedeckKritaApiClient.FileLayerPropertiesDialog).SelectScaleToPpi()),
+                    new CommandDefinition("Choose file", (dialog) => (dialog.Dialog as LogiKritaApiClient.FileLayerPropertiesDialog).OpenFileSelector()),
+                    new CommandDefinition("No scale", (dialog) => (dialog.Dialog as LogiKritaApiClient.FileLayerPropertiesDialog).SelectNoScale()),
+                    new CommandDefinition("Scale to image", (dialog) => (dialog.Dialog as LogiKritaApiClient.FileLayerPropertiesDialog).SelectScaleToImage()),
+                    new CommandDefinition("Scale  to PPI", (dialog) => (dialog.Dialog as LogiKritaApiClient.FileLayerPropertiesDialog).SelectScaleToPpi()),
                 ],
                 [
-                    new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FileLayerPropertiesDialog)dynamicFolder.Dialog).Cancel(), true),
-                    new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FileLayerPropertiesDialog)dynamicFolder.Dialog).Confirm(), true),
+                    new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LogiKritaApiClient.FileLayerPropertiesDialog)dynamicFolder.Dialog).Cancel(), true),
+                    new CommandDefinition(OkButtonName, (dynamicFolder) => ((LogiKritaApiClient.FileLayerPropertiesDialog)dynamicFolder.Dialog).Confirm(), true),
                 ]);
         }
 

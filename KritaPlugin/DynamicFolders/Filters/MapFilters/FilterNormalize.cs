@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterNormalize
     {
@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Normalize",
                 FilterNames.Normalize,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-Normalize.png");
+                "Logi.KritaPlugin.images.Filters.filters-Normalize.png");
         }
     }
 }

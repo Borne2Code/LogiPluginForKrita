@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterMotionBlur : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Motion Blur",
                 FilterNames.MotionBlur,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-MotionBlur.png",
+                "Logi.KritaPlugin.images.Filters.filters-MotionBlur.png",
                 [
                     new AdjustmentDefinition("Angle", (dialog, delta) => (dialog.Dialog as KritaFilterMotionBlur).AdjustBlurAngle((int)delta).Result),
                     new AdjustmentDefinition("Length", (dialog, delta) => (dialog.Dialog as KritaFilterMotionBlur).AdjustLength((int)delta).Result, 5),

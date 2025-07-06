@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterRoundCorners : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Round Corners",
                 FilterNames.RoundCorners,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-RoundCorners.png",
+                "Logi.KritaPlugin.images.Filters.filters-RoundCorners.png",
                 [
                     new AdjustmentDefinition("Radius", (dialog, delta) => (dialog.Dialog as KritaFilterRoundCorners).AdjustRadius((int)delta).Result, 30),
                 ]);

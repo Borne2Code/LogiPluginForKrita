@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterSharpen
     {
@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Sharpen",
                 FilterNames.Sharpen,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-Sharpen.png");
+                "Logi.KritaPlugin.images.Filters.filters-Sharpen.png");
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterColorMaximize
     {
@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Maximize channels",
                 FilterNames.Maximize,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-Maximize.png");
+                "Logi.KritaPlugin.images.Filters.filters-Maximize.png");
         }
     }
 }

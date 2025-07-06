@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterEmbossAllDirections
     {
@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Emboss All directions",
                 FilterNames.EmbossAllDirections,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-EmbossAllDirections.png");
+                "Logi.KritaPlugin.images.Filters.filters-EmbossAllDirections.png");
         }
     }
 }

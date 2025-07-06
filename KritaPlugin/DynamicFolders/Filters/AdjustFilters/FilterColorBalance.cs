@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterColorsBalance : FilterDialogBase
     {
@@ -62,7 +62,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Colors balance",
                 FilterNames.ColorBalance,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-ColorBalance.png",
+                "Logi.KritaPlugin.images.Filters.filters-ColorBalance.png",
                 [
                     shadowCyanRedAdj,
                     shadowMagentaGreenAdj,

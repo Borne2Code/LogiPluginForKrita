@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterHsvHsl : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Hsv/Hsl Adjustment",
                 FilterNames.HsvAdjustment,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-HsvHlsAdjustments.png",
+                "Logi.KritaPlugin.images.Filters.filters-HsvHlsAdjustments.png",
                 [
                     new AdjustmentDefinition("Hue", (dialog, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustHue((int)delta).Result),
                     new AdjustmentDefinition("Saturation", (dialog, delta) => ((KritaFilterHsvAdjustment)dialog.Dialog).AdjustSaturation((int)delta).Result),

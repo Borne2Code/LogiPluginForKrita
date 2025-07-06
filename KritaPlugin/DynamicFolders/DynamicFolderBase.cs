@@ -1,8 +1,9 @@
-﻿using System.Reflection;
-using LoupedeckKritaApiClient;
-using LoupedeckKritaApiClient.ClientBase;
+﻿using Loupedeck;
+using Logi.KritaPlugin;
+using LogiKritaApiClient;
+using LogiKritaApiClient.ClientBase;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public abstract class DynamicFolderBase : PluginDynamicFolder
     {

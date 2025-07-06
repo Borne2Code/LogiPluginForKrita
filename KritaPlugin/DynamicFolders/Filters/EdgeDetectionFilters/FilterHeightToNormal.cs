@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterHeightToNormal : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Height To Normal",
                 FilterNames.HeightToNormal,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-HeightToNormal.png",
+                "Logi.KritaPlugin.images.Filters.filters-HeightToNormal.png",
                 [
                     new AdjustmentDefinition("Horizontal radius", (dialog, delta) => (dialog.Dialog as KritaFilterHeightToNormal).AdjustHorizontalRadius(delta).Result, 1),
                     new AdjustmentDefinition("Vertical radius", (dialog, delta) => (dialog.Dialog as KritaFilterHeightToNormal).AdjustVerticalRadius(delta).Result, 1),

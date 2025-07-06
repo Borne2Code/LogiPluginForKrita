@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterMeanRemoval
     {
@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Mean removal",
                 FilterNames.MeanRemoval,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-MeanRemoval.png");
+                "Logi.KritaPlugin.images.Filters.filters-MeanRemoval.png");
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterDesaturate : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Desaturate",
                 FilterNames.Desaturate,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-Desaturate.png",
+                "Logi.KritaPlugin.images.Filters.filters-Desaturate.png",
                 [
                     new CommandDefinition("Lightness", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectLightness()),
                     new CommandDefinition("Luminosity (BT709)", (dialog) => ((KritaFilterDesaturate)dialog.Dialog).SelectLuminosityBT709()),

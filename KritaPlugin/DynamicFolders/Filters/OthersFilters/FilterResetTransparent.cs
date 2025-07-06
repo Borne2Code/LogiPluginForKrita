@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterResetTransparent
     {
@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Reset Transparent",
                 FilterNames.ResetTransparent,
                 false,
-                "Loupedeck.KritaPlugin.images.Filters.filters-ResetTransparent.png");
+                "Logi.KritaPlugin.images.Filters.filters-ResetTransparent.png");
         }
     }
 }

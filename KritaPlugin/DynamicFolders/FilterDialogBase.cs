@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
+using Loupedeck;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public abstract class FilterDialogBase : DynamicFolderBase
     {
@@ -18,14 +18,14 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             DisplayName = dialogDefinition.Name;
             if ((dialogDefinition as FilterDialogDefinition).IsMaskEnabled)
                 dialogDefinition.FixedCommands = [
-                        new CommandDefinition(ShowCreateFilterMaskName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).CreateMask(), true),
-                        new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Cancel(), true),
-                        new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Confirm(), true),
+                        new CommandDefinition(ShowCreateFilterMaskName, (dynamicFolder) => ((LogiKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).CreateMask(), true),
+                        new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LogiKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Cancel(), true),
+                        new CommandDefinition(OkButtonName, (dynamicFolder) => ((LogiKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Confirm(), true),
                     ];
             else
                 dialogDefinition.FixedCommands = [
-                        new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Cancel(), true),
-                        new CommandDefinition(OkButtonName, (dynamicFolder) => ((LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Confirm(), true),
+                        new CommandDefinition(CancelButtonName, (dynamicFolder) => ((LogiKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Cancel(), true),
+                        new CommandDefinition(OkButtonName, (dynamicFolder) => ((LogiKritaApiClient.FiltersDialogs.FilterDialogBase)dynamicFolder.Dialog).Confirm(), true),
                     ];
         }
 
@@ -39,7 +39,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             if (Client == null) return false;
 
             Dialog = FilterNames.GetFilterDialogByFilterName(Client, (dialogDefinition as FilterDialogDefinition).FilterName, false);
-            Client.KritaInstance.ExecuteAction((Dialog as LoupedeckKritaApiClient.FiltersDialogs.FilterDialogBase).ActionName).Wait();
+            Client.KritaInstance.ExecuteAction((Dialog as LogiKritaApiClient.FiltersDialogs.FilterDialogBase).ActionName).Wait();
             Dialog.AttachDialog().Wait();
 
             return true;

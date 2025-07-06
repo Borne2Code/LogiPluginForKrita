@@ -1,7 +1,9 @@
-namespace Loupedeck.KritaPlugin
+using Loupedeck;
+
+namespace Logi.KritaPlugin
 {
     using System;
-    using LoupedeckKritaApiClient.ClientBase;
+    using LogiKritaApiClient.ClientBase;
 
     // This class can be used to connect the Loupedeck plugin to an application.
 
@@ -39,10 +41,10 @@ namespace Loupedeck.KritaPlugin
         }
 
         // This method can be used to link the plugin to a Windows application.
-        protected override String GetProcessName() => "Krita";
+        protected override string GetProcessName() => "Krita";
 
         // This method can be used to link the plugin to a macOS application.
-        protected override String GetBundleName() => "";
+        protected override string GetBundleName() => "";
 
         protected override string GetExecutablePath()
         {

@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterAscCdl : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Slope / Offset / Power (Asc-Cdl)",
                 FilterNames.AscCdl,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-AscCdl.png",
+                "Logi.KritaPlugin.images.Filters.filters-AscCdl.png",
                 []);
         }
     }

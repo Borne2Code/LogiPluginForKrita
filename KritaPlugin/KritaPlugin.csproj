@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <RootNamespace>Loupedeck.KritaPlugin</RootNamespace>
+    <RootNamespace>Logi.KritaPlugin</RootNamespace>
 
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -271,13 +271,13 @@
     <EmbeddedResource Include="images\Selection\ToolSelectPolygonal.png" />
     <EmbeddedResource Include="images\Selection\ToolSelectRectangular.png" />
     <EmbeddedResource Include="images\Selection\ToolSelectSimilarColors.png" />
-    <EmbeddedResource Include="Resources\loupedeckApiServer.py" />
-    <EmbeddedResource Include="Resources\loupedeck_api_server.desktop" />
+    <EmbeddedResource Include="Resources\logiApiServer.py" />
+    <EmbeddedResource Include="Resources\logi_api_server.desktop" />
     <EmbeddedResource Include="Resources\__init__.py" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LoupedeckKritaApiClient\LoupedeckKritaApiClient.csproj" />
+    <ProjectReference Include="..\LogiKritaApiClient\LogiKritaApiClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>

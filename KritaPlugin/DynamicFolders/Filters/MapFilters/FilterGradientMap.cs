@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterGradientMap : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Gradient Map",
                 FilterNames.GradientMap,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-GradientMap.png",
+                "Logi.KritaPlugin.images.Filters.filters-GradientMap.png",
                 []);
         }
     }

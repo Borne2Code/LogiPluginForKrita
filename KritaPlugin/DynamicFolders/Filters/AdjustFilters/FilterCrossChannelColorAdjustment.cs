@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterCrossChannelColorAdjustment : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Cross channel Adjustment",
                 FilterNames.CrossChannel,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-CrossChannelColorAdjustment.png",
+                "Logi.KritaPlugin.images.Filters.filters-CrossChannelColorAdjustment.png",
                 [
                     new AdjustmentDefinition("Input", (dialog, delta) => ((KritaFilterCrossChannel)dialog.Dialog).AdjustInputValue((int)delta).Result),
                     new AdjustmentDefinition("Output", (dialog, delta) => ((KritaFilterCrossChannel)dialog.Dialog).AdjustOutputValue((int)delta).Result),

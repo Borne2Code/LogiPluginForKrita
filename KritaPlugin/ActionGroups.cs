@@ -1,4 +1,4 @@
-﻿namespace Loupedeck.KritaPlugin
+﻿namespace Logi.KritaPlugin
 {
     internal class ActionGroups
     {

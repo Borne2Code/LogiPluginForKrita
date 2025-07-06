@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterLensBlur : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Lens Blur",
                 FilterNames.LensBlur,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-LensBlur.png",
+                "Logi.KritaPlugin.images.Filters.filters-LensBlur.png",
                 [
                     new AdjustmentDefinition("Radius", (dialog, delta) => (dialog.Dialog as KritaFilterLensBlur).AdjustRadius((int)delta).Result, 5),
                     new AdjustmentDefinition("Iris rotation", (dialog, delta) => (dialog.Dialog as KritaFilterLensBlur).AdjustIrisRotation((int)delta).Result),

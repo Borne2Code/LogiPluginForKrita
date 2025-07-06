@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterGaussianBlur : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Gaussian Blur",
                 FilterNames.GaussianBlur,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-GaussianBlur.png",
+                "Logi.KritaPlugin.images.Filters.filters-GaussianBlur.png",
                 [
                     new AdjustmentDefinition("Horizontal radius", (dialog, delta) => (dialog.Dialog as KritaFilterGaussianBlur).AdjustHorizontalRadius(delta).Result, 5),
                     new AdjustmentDefinition("Vertical radius", (dialog, delta) => (dialog.Dialog as KritaFilterGaussianBlur).AdjustVerticalRadius(delta).Result, 5),

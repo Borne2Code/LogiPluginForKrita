@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterColorMinimize
     {
@@ -9,7 +9,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Minimize channels",
                 FilterNames.Minimize,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-Minimize.png");
+                "Logi.KritaPlugin.images.Filters.filters-Minimize.png");
         }
     }
 }

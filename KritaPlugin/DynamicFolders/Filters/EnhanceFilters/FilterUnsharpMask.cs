@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterUnsharpMask : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Unsharp Mask",
                 FilterNames.Unsharp,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-Unsharp.png",
+                "Logi.KritaPlugin.images.Filters.filters-Unsharp.png",
                 [
                     new AdjustmentDefinition("Radius", (dialog, delta) => (dialog.Dialog as KritaFilterUnsharp).AdjustRadius(delta).Result, 1),
                     new AdjustmentDefinition("Amount", (dialog, delta) => (dialog.Dialog as KritaFilterUnsharp).AdjustAmount(delta).Result, 0.5f),

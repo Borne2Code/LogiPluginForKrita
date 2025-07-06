@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterPhongBumpmap : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Phong Bumpmap",
                 FilterNames.PhongBumpMap,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-PhongBumpMap.png",
+                "Logi.KritaPlugin.images.Filters.filters-PhongBumpMap.png",
                 []);
         }
     }

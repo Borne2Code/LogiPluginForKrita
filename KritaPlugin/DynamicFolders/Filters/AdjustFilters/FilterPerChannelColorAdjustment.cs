@@ -1,6 +1,6 @@
-﻿using LoupedeckKritaApiClient.FiltersDialogs;
+﻿using LogiKritaApiClient.FiltersDialogs;
 
-namespace Loupedeck.KritaPlugin.DynamicFolders
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class FilterPerChannelColorAdjustment : FilterDialogBase
     {
@@ -14,7 +14,7 @@ namespace Loupedeck.KritaPlugin.DynamicFolders
             return new FilterDialogDefinition("Color Adjustment",
                 FilterNames.PerChannelColorAdjustment,
                 true,
-                "Loupedeck.KritaPlugin.images.Filters.filters-ColorAdjustment.png",
+                "Logi.KritaPlugin.images.Filters.filters-ColorAdjustment.png",
                 [
                     new AdjustmentDefinition("Input", (dialog, delta) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).AdjustInValue((int)delta).Result),
                     new AdjustmentDefinition("Output", (dialog, delta) => ((KritaFilterPerChannelColorAdjustment)dialog.Dialog).AdjustOutValue((int)delta).Result),
