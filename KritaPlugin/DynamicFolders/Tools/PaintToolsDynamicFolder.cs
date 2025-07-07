@@ -1,4 +1,4 @@
-﻿using Logi.KritaPlugin.Actions;
+﻿using Logi.KritaPlugin.Constants;
 using LogiKritaApiClient.ClientBase;
 using Loupedeck;
 
@@ -11,12 +11,12 @@ namespace Logi.KritaPlugin.DynamicFolders
         public PaintToolsDynamicFolder()
         {
             DisplayName = "Paint Tools";
-            GroupName = "Tools";
+            GroupName = ActionGroups.Tools;
         }
 
         public override BitmapImage GetButtonImage(PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Tools.Brush.png");
+            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Selection.ToolSelectFreehand.png");
         }
 
         public override PluginDynamicFolderNavigation GetNavigationArea(DeviceType _)

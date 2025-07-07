@@ -1,4 +1,4 @@
-﻿using Logi.KritaPlugin.Actions;
+﻿using Logi.KritaPlugin.Constants;
 using LogiKritaApiClient.ClientBase;
 using Loupedeck;
 
@@ -11,7 +11,7 @@ namespace Logi.KritaPlugin.DynamicFolders
         public ShapeToolsDynamicFolder()
         {
             DisplayName = "Shape Tools";
-            GroupName = "Tools";
+            GroupName = ActionGroups.Tools;
         }
 
         public override BitmapImage GetButtonImage(PluginImageSize imageSize)

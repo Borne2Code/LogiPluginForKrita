@@ -1,6 +1,6 @@
 ﻿using LogiKritaApiClient.ClientBase;
 
-namespace Logi.KritaPlugin.Actions
+namespace Logi.KritaPlugin.Constants
 {
     internal class ToolsConstants
     {

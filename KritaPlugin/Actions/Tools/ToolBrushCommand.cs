@@ -1,3 +1,4 @@
+using Logi.KritaPlugin.Constants;
 using LogiKritaApiClient.ClientBase;
 using Loupedeck;
 
