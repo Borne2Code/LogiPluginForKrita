@@ -11,20 +11,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolGradientCommand()
-            : base(displayName: "Gradient", description: "Activate gradient tool", groupName: ActionGroups.Tools)
+            : base(displayName: ToolsConstants.Gradient.Name, description: "Activate gradient tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Tools.Gradient.png");
+            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.Gradient.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KritaFill_KisToolGradient).Wait();
+            Client.KritaInstance.ExecuteAction(ToolsConstants.Gradient.ActionName).Wait();
         }
     }
 }

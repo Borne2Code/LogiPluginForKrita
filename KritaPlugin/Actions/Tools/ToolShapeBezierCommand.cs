@@ -11,20 +11,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolShapeBezierCommand()
-            : base(displayName: "Bezier", description: "Activate Bezier tool", groupName: ActionGroups.Tools)
+            : base(displayName: ToolsConstants.Bezier.Name, description: "Activate Bezier tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Tools.ShapeBezier.png");
+            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.Bezier.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KisToolPath).Wait();
+            Client.KritaInstance.ExecuteAction(ToolsConstants.Bezier.ActionName).Wait();
         }
     }
 }

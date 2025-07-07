@@ -11,20 +11,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolShapeTextCommand()
-            : base(displayName: "Text", description: "Activate Text tool", groupName: ActionGroups.Tools)
+            : base(displayName: ToolsConstants.Text.Name, description: "Activate Text tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Tools.ShapeText.png");
+            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.Text.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.SvgTextTool).Wait();
+            Client.KritaInstance.ExecuteAction(ToolsConstants.Text.ActionName).Wait();
         }
     }
 }

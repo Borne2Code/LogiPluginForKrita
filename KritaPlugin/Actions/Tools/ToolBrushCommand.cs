@@ -1,5 +1,5 @@
-using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Loupedeck;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +11,19 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolBrushCommand()
-            : base(displayName: "Brush", description: "Activate brush tool", groupName: ActionGroups.Tools)
+            : base(displayName: ToolsConstants.Brush.Name, description: "Activate brush tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Tools.Brush.png");
+            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.Brush.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
-
-            Client.KritaInstance.ExecuteAction(ActionsNames.KritaShape_KisToolBrush).Wait();
+            Client.KritaInstance.ExecuteAction(ToolsConstants.Brush.ActionName).Wait();
         }
     }
 }

@@ -11,20 +11,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolSmartPatchCommand()
-            : base(displayName: "Smart patch", description: "Activate Smart patch tool", groupName: ActionGroups.Tools)
+            : base(displayName: ToolsConstants.SmartPatch.Name, description: "Activate Smart patch tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Tools.SmartPatch.png");
+            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.SmartPatch.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KritaShape_KisToolSmartPatch).Wait();
+            Client.KritaInstance.ExecuteAction(ToolsConstants.SmartPatch.ActionName).Wait();
         }
     }
 }

@@ -11,20 +11,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolShapeRectangleCommand()
-            : base(displayName: "Rectangle", description: "Activate Rectangle tool", groupName: ActionGroups.Tools)
+            : base(displayName: ToolsConstants.Rectangle.Name, description: "Activate Rectangle tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Tools.ShapeRectangle.png");
+            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.Rectangle.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KritaShape_KisToolRectangle).Wait();
+            Client.KritaInstance.ExecuteAction(ToolsConstants.Rectangle.ActionName).Wait();
         }
     }
 }

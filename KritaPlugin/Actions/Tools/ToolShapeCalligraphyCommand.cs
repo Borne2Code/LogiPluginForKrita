@@ -11,20 +11,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolShapeCalligraphyCommand()
-            : base(displayName: "Calligraphy", description: "Activate Calligraphy tool", groupName: ActionGroups.Tools)
+            : base(displayName: ToolsConstants.Calligraphy.Name, description: "Activate Calligraphy tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Tools.ShapeCalligraphy.png");
+            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.Calligraphy.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KarbonCalligraphyTool).Wait();
+            Client.KritaInstance.ExecuteAction(ToolsConstants.Calligraphy.ActionName).Wait();
         }
     }
 }
