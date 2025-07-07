@@ -4,13 +4,13 @@ using Loupedeck;
 
 namespace Logi.KritaPlugin.DynamicFolders
 {
-    public class VectorToolsDynamicFolder : PluginDynamicFolder
+    public class ShapeToolsDynamicFolder : PluginDynamicFolder
     {
         protected Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
 
-        public VectorToolsDynamicFolder()
+        public ShapeToolsDynamicFolder()
         {
-            DisplayName = "Vector Tools";
+            DisplayName = "Shape Tools";
             GroupName = "Tools";
         }
 
