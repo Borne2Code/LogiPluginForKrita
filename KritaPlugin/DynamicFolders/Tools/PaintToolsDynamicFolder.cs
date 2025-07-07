@@ -21,7 +21,7 @@ namespace Logi.KritaPlugin.DynamicFolders
 
         public override PluginDynamicFolderNavigation GetNavigationArea(DeviceType _)
         {
-            return PluginDynamicFolderNavigation.None;
+            return PluginDynamicFolderNavigation.ButtonArea;
         }
 
         public override IEnumerable<string> GetButtonPressActionNames(DeviceType _)

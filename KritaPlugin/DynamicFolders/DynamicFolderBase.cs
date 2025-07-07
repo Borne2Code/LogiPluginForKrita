@@ -32,9 +32,16 @@ namespace Logi.KritaPlugin.DynamicFolders
             return PluginResources.BitmapFromEmbaddedRessource(IconResourceName);
         }
 
-        public override PluginDynamicFolderNavigation GetNavigationArea(DeviceType _)
+        public override PluginDynamicFolderNavigation GetNavigationArea(DeviceType deviceType)
         {
-            return PluginDynamicFolderNavigation.None;
+            if (deviceType == DeviceType.Loupedeck70)
+            {
+                return PluginDynamicFolderNavigation.EncoderArea; // hides builtin navigation button on MX Creative
+            }
+            else
+            {
+                return PluginDynamicFolderNavigation.None;
+            }
         }
 
         protected abstract bool ShowDialog();
@@ -60,7 +67,7 @@ namespace Logi.KritaPlugin.DynamicFolders
 
             if (deviceType == DeviceType.Loupedeck70)
             {
-                numberOfCommandsPerPage = 8;
+                numberOfCommandsPerPage = 9;
                 dialogCommands = dialogDefinition.CommandsAndAdjustments;
             }
             else
