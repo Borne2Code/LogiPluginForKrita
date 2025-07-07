@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolSelectSimilarColorsCommand()
-            : base(displayName: "SimilarColors selection", description: "Activate SimilarColors selection tool", groupName: ActionGroups.Selection)
+            : base(displayName: SelectionToolsConstants.SimilarColor.Name, description: "Activate SimilarColors selection tool", groupName: ActionGroups.Selection)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Selection.ToolSelectSimilarColors.png");
+            return PluginResources.BitmapFromEmbaddedRessource(SelectionToolsConstants.SimilarColor.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KisToolSelectSimilar).Wait();
+            Client.KritaInstance.ExecuteAction(SelectionToolsConstants.SimilarColor.ActionName).Wait();
         }
     }
 }

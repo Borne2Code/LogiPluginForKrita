@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolSelectFreehandCommand()
-            : base(displayName: "Freehand selection", description: "Activate Freehand selection tool", groupName: ActionGroups.Selection)
+            : base(displayName: SelectionToolsConstants.Freehand.Name, description: "Activate Freehand selection tool", groupName: ActionGroups.Selection)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Selection.ToolSelectFreehand.png");
+            return PluginResources.BitmapFromEmbaddedRessource(SelectionToolsConstants.Freehand.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KisToolSelectOutline).Wait();
+            Client.KritaInstance.ExecuteAction(SelectionToolsConstants.Freehand.ActionName).Wait();
         }
     }
 }

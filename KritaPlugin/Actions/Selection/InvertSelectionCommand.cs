@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public InvertSelectionCommand()
-            : base(displayName: "Invert selection", description: "Invert current selection", groupName: ActionGroups.Selection)
+            : base(displayName: SelectionToolsConstants.Invert.Name, description: "Invert current selection", groupName: ActionGroups.Selection)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Selection.Invert.png");
+            return PluginResources.BitmapFromEmbaddedRessource(SelectionToolsConstants.Invert.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Invert_selection).Wait();
+            Client.KritaInstance.ExecuteAction(SelectionToolsConstants.Invert.ActionName).Wait();
         }
     }
 }

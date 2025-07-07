@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolSelectElipticalCommand()
-            : base(displayName: "Eliptical selection", description: "Activate Eliptical selection tool", groupName: ActionGroups.Selection)
+            : base(displayName: SelectionToolsConstants.Elipse.Name, description: "Activate Eliptical selection tool", groupName: ActionGroups.Selection)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Selection.ToolSelectEliptical.png");
+            return PluginResources.BitmapFromEmbaddedRessource(SelectionToolsConstants.Elipse.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KisToolSelectElliptical).Wait();
+            Client.KritaInstance.ExecuteAction(SelectionToolsConstants.Elipse.ActionName).Wait();
         }
     }
 }

@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolSelectRectangularCommand()
-            : base(displayName: "Rectangular selection", description: "Activate Rectangular selection tool", groupName: ActionGroups.Selection)
+            : base(displayName: SelectionToolsConstants.Rectangle.Name, description: "Activate Rectangular selection tool", groupName: ActionGroups.Selection)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Selection.ToolSelectRectangular.png");
+            return PluginResources.BitmapFromEmbaddedRessource(SelectionToolsConstants.Rectangle.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KisToolSelectRectangular).Wait();
+            Client.KritaInstance.ExecuteAction(SelectionToolsConstants.Rectangle.ActionName).Wait();
         }
     }
 }

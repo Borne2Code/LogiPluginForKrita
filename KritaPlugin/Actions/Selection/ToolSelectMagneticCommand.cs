@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolSelectMagneticCommand()
-            : base(displayName: "Magnetic selection", description: "Activate Magnetic selection tool", groupName: ActionGroups.Selection)
+            : base(displayName: SelectionToolsConstants.Magnetic.Name, description: "Activate Magnetic selection tool", groupName: ActionGroups.Selection)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Selection.ToolSelectMagnetic.png");
+            return PluginResources.BitmapFromEmbaddedRessource(SelectionToolsConstants.Magnetic.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KisToolSelectMagnetic).Wait();
+            Client.KritaInstance.ExecuteAction(SelectionToolsConstants.Magnetic.ActionName).Wait();
         }
     }
 }
