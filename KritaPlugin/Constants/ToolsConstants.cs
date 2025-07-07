@@ -4,27 +4,16 @@ namespace Logi.KritaPlugin.Constants
 {
     internal class ToolsConstants
     {
-        public string Name { get; }
-        public string BitMapImageName { get; }
-        public string ActionName { get; }
+        public static DynamicFolderActionDefinition Brush => new DynamicFolderActionDefinition("Brush", "Logi.KritaPlugin.images.Tools.Brush.png", ActionsNames.KritaShape_KisToolBrush);
+        public static DynamicFolderActionDefinition Fill => new DynamicFolderActionDefinition("Fill", "Logi.KritaPlugin.images.Tools.Fill.png", ActionsNames.KritaFill_KisToolFill);
+        public static DynamicFolderActionDefinition Gradient => new DynamicFolderActionDefinition("Gradient", "Logi.KritaPlugin.images.Tools.Gradient.png", ActionsNames.KritaFill_KisToolGradient);
+        public static DynamicFolderActionDefinition DynamicBrush => new DynamicFolderActionDefinition("Dynamic Brush", "Logi.KritaPlugin.images.Tools.PaintDynamic.png", ActionsNames.KritaShape_KisToolDyna);
+        public static DynamicFolderActionDefinition MultiBrush => new DynamicFolderActionDefinition("Multi Brush", "Logi.KritaPlugin.images.Tools.PaintMultibrush.png", ActionsNames.KritaShape_KisToolMultiBrush);
+        public static DynamicFolderActionDefinition ColorizeMask => new DynamicFolderActionDefinition("Colorize Mask", "Logi.KritaPlugin.images.Tools.ColorizeMask.png", ActionsNames.KritaShape_KisToolLazyBrush);
+        public static DynamicFolderActionDefinition SmartPatch => new DynamicFolderActionDefinition("Smart patch", "Logi.KritaPlugin.images.Tools.SmartPatch.png", ActionsNames.KritaShape_KisToolSmartPatch);
+        public static DynamicFolderActionDefinition EncloseAndFill => new DynamicFolderActionDefinition("Enclose And Fill", "Logi.KritaPlugin.images.Tools.EncloseAndFill.png", ActionsNames.KisToolEncloseAndFill);
 
-        public ToolsConstants(string name, string bitmapImageName, string actionName)
-        {
-            Name = name;
-            BitMapImageName = bitmapImageName;
-            ActionName = actionName;
-        }
-
-        public static ToolsConstants Brush => new ToolsConstants("Brush", "Logi.KritaPlugin.images.Tools.Brush.png", ActionsNames.KritaShape_KisToolBrush);
-        public static ToolsConstants Fill => new ToolsConstants("Fill", "Logi.KritaPlugin.images.Tools.Fill.png", ActionsNames.KritaFill_KisToolFill);
-        public static ToolsConstants Gradient => new ToolsConstants("Gradient", "Logi.KritaPlugin.images.Tools.Gradient.png", ActionsNames.KritaFill_KisToolGradient);
-        public static ToolsConstants DynamicBrush => new ToolsConstants("Dynamic Brush", "Logi.KritaPlugin.images.Tools.PaintDynamic.png", ActionsNames.KritaShape_KisToolDyna);
-        public static ToolsConstants MultiBrush => new ToolsConstants("Multi Brush", "Logi.KritaPlugin.images.Tools.PaintMultibrush.png", ActionsNames.KritaShape_KisToolMultiBrush);
-        public static ToolsConstants ColorizeMask => new ToolsConstants("Colorize Mask", "Logi.KritaPlugin.images.Tools.ColorizeMask.png", ActionsNames.KritaShape_KisToolLazyBrush);
-        public static ToolsConstants SmartPatch => new ToolsConstants("Smart patch", "Logi.KritaPlugin.images.Tools.SmartPatch.png", ActionsNames.KritaShape_KisToolSmartPatch);
-        public static ToolsConstants EncloseAndFill => new ToolsConstants("Enclose And Fill", "Logi.KritaPlugin.images.Tools.EncloseAndFill.png", ActionsNames.KisToolEncloseAndFill);
-
-        public static IDictionary<string, ToolsConstants> PaintTools => new Dictionary<string, ToolsConstants>
+        public static IDictionary<string, DynamicFolderActionDefinition> PaintTools => new Dictionary<string, DynamicFolderActionDefinition>
         {
             { Brush.Name, Brush },
             { Fill.Name, Fill },
@@ -36,19 +25,19 @@ namespace Logi.KritaPlugin.Constants
             { EncloseAndFill.Name, EncloseAndFill }
         };
 
-        public static ToolsConstants SelectShape => new ToolsConstants("Select shape", "Logi.KritaPlugin.images.Tools.ShapeSelect.png", ActionsNames.InteractionTool);
-        public static ToolsConstants Text => new ToolsConstants("Text", "Logi.KritaPlugin.images.Tools.ShapeText.png", ActionsNames.SvgTextTool);
-        public static ToolsConstants EditShape => new ToolsConstants("Edit shape", "Logi.KritaPlugin.images.Tools.ShapeEdit.png", ActionsNames.PathTool);
-        public static ToolsConstants Calligraphy => new ToolsConstants("Calligraphy", "Logi.KritaPlugin.images.Tools.ShapeCalligraphy.png", ActionsNames.KarbonCalligraphyTool);
-        public static ToolsConstants Line => new ToolsConstants("Line", "Logi.KritaPlugin.images.Tools.ShapeLine.png", ActionsNames.KritaShape_KisToolLine);
-        public static ToolsConstants Ellipse => new ToolsConstants("Ellipse", "Logi.KritaPlugin.images.Tools.ShapeEllipse.png", ActionsNames.KritaShape_KisToolEllipse);
-        public static ToolsConstants Rectangle => new ToolsConstants("Rectangle", "Logi.KritaPlugin.images.Tools.ShapeRectangle.png", ActionsNames.KritaShape_KisToolRectangle);
-        public static ToolsConstants Polygone => new ToolsConstants("Polygon", "Logi.KritaPlugin.images.Tools.ShapePolygon.png", ActionsNames.KisToolPolygon);
-        public static ToolsConstants Polyline => new ToolsConstants("Polyline", "Logi.KritaPlugin.images.Tools.ShapePolyline.png", ActionsNames.KisToolPolyline);
-        public static ToolsConstants Bezier => new ToolsConstants("Bezier", "Logi.KritaPlugin.images.Tools.ShapeBezier.png", ActionsNames.KisToolPath);
-        public static ToolsConstants FreeHandPath => new ToolsConstants("Freehand Path", "Logi.KritaPlugin.images.Tools.ShapeFreehandPath.png", ActionsNames.KisToolPencil);
+        public static DynamicFolderActionDefinition SelectShape => new DynamicFolderActionDefinition("Select shape", "Logi.KritaPlugin.images.Tools.ShapeSelect.png", ActionsNames.InteractionTool);
+        public static DynamicFolderActionDefinition Text => new DynamicFolderActionDefinition("Text", "Logi.KritaPlugin.images.Tools.ShapeText.png", ActionsNames.SvgTextTool);
+        public static DynamicFolderActionDefinition EditShape => new DynamicFolderActionDefinition("Edit shape", "Logi.KritaPlugin.images.Tools.ShapeEdit.png", ActionsNames.PathTool);
+        public static DynamicFolderActionDefinition Calligraphy => new DynamicFolderActionDefinition("Calligraphy", "Logi.KritaPlugin.images.Tools.ShapeCalligraphy.png", ActionsNames.KarbonCalligraphyTool);
+        public static DynamicFolderActionDefinition Line => new DynamicFolderActionDefinition("Line", "Logi.KritaPlugin.images.Tools.ShapeLine.png", ActionsNames.KritaShape_KisToolLine);
+        public static DynamicFolderActionDefinition Ellipse => new DynamicFolderActionDefinition("Ellipse", "Logi.KritaPlugin.images.Tools.ShapeEllipse.png", ActionsNames.KritaShape_KisToolEllipse);
+        public static DynamicFolderActionDefinition Rectangle => new DynamicFolderActionDefinition("Rectangle", "Logi.KritaPlugin.images.Tools.ShapeRectangle.png", ActionsNames.KritaShape_KisToolRectangle);
+        public static DynamicFolderActionDefinition Polygone => new DynamicFolderActionDefinition("Polygon", "Logi.KritaPlugin.images.Tools.ShapePolygon.png", ActionsNames.KisToolPolygon);
+        public static DynamicFolderActionDefinition Polyline => new DynamicFolderActionDefinition("Polyline", "Logi.KritaPlugin.images.Tools.ShapePolyline.png", ActionsNames.KisToolPolyline);
+        public static DynamicFolderActionDefinition Bezier => new DynamicFolderActionDefinition("Bezier", "Logi.KritaPlugin.images.Tools.ShapeBezier.png", ActionsNames.KisToolPath);
+        public static DynamicFolderActionDefinition FreeHandPath => new DynamicFolderActionDefinition("Freehand Path", "Logi.KritaPlugin.images.Tools.ShapeFreehandPath.png", ActionsNames.KisToolPencil);
 
-        public static IDictionary<string, ToolsConstants> VectorTools => new Dictionary<string, ToolsConstants>
+        public static IDictionary<string, DynamicFolderActionDefinition> VectorTools => new Dictionary<string, DynamicFolderActionDefinition>
         {
             { SelectShape.Name, SelectShape },
             { Text.Name, Text },
