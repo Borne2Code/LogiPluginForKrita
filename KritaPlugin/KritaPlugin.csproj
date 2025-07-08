@@ -22,6 +22,8 @@
 
   <ItemGroup>
     <None Remove="DefaultProfile\DefaultProfile20.lp5" />
+    <None Remove="DefaultProfile\DefaultProfile70.lp5" />
+    <None Remove="DefaultProfile\DefaultProfile71.lp5" />
     <None Remove="images\DeleteSelection.png" />
     <None Remove="images\FilterApplyAgainNoPrompt.png" />
     <None Remove="images\FilterApplyAgainWithPrompt.png" />
@@ -144,6 +146,8 @@
 
   <ItemGroup>
     <EmbeddedResource Include="DefaultProfile\DefaultProfile20.lp5" />
+    <EmbeddedResource Include="DefaultProfile\DefaultProfile70.lp5" />
+    <EmbeddedResource Include="DefaultProfile\DefaultProfile71.lp5" />
     <EmbeddedResource Include="images\Filters\ApplyAgainNoPrompt.png" />
     <EmbeddedResource Include="images\Filters\ApplyAgainWithPrompt.png" />
     <EmbeddedResource Include="images\Filters\filters-AscCdl.png" />
