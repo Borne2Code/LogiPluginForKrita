@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerQuickClippingGroupCommand()
-            : base(displayName: "Quick clipping group", description: "Quick clipping group", groupName: ActionGroups.Layers)
+            : base(displayName: LayerToolsConstants.QuickClippingGroup.Name, description: "Quick clipping group", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.QuickClippingGroup.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.QuickClippingGroup.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Create_quick_clipping_group).Wait();
+            Client.KritaInstance.ExecuteAction(LayerToolsConstants.QuickClippingGroup.ActionName).Wait();
         }
     }
 }

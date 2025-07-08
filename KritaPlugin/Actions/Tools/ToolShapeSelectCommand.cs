@@ -12,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolShapeSelectCommand()
-            : base(displayName: ToolsConstants.SelectShape.Name, description: "Activate shape select tool", groupName: ActionGroups.Tools)
+            : base(displayName: ShapeToolsConstants.SelectShape.Name, description: "Activate shape select tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.SelectShape.BitMapImageName);
+            return PluginResources.BitmapFromEmbaddedRessource(ShapeToolsConstants.SelectShape.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ToolsConstants.SelectShape.ActionName).Wait();
+            Client.KritaInstance.ExecuteAction(ShapeToolsConstants.SelectShape.ActionName).Wait();
         }
     }
 }

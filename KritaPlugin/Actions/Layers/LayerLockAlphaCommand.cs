@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerLockAlphaCommand()
-            : base(displayName: "Lock Alpha", description: "Toggle layer alpha lock", groupName: ActionGroups.Layers)
+            : base(displayName: LayerToolsConstants.LockAlpha.Name, description: "Toggle layer alpha lock", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.LockAlpha.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.LockAlpha.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Toggle_layer_alpha_lock).Wait();
+            Client.KritaInstance.ExecuteAction(LayerToolsConstants.LockAlpha.ActionName).Wait();
         }
     }
 }

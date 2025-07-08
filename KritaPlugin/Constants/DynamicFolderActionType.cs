@@ -1,8 +1,9 @@
 ﻿namespace Logi.KritaPlugin.Constants
 {
-    internal enum DynamicFolderActionType
+    public enum DynamicFolderActionType
     {
         Command = 0,
-        Encoder
+        Encoder,
+        EncoderWithValue
     }
 }

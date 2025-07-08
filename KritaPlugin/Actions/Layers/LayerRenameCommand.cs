@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerRenameCommand()
-            : base(displayName: "Rename layer", description: "Rename layer", groupName: ActionGroups.Layers)
+            : base(displayName: LayerToolsConstants.Rename.Name, description: "Rename layer", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.Rename.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.Rename.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.RenameCurrentLayer).Wait();
+            Client.KritaInstance.ExecuteAction(LayerToolsConstants.Rename.ActionName).Wait();
         }
     }
 }

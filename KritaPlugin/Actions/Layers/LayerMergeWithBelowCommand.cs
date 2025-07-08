@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerMergeWithBelowCommand()
-            : base(displayName: "Merge with below", description: "Merge with layer below", groupName: ActionGroups.Layers)
+            : base(displayName: LayerToolsConstants.MergeWithBelow.Name, description: "Merge with layer below", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.MergeWithBelow.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.MergeWithBelow.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Merge_layer).Wait();
+            Client.KritaInstance.ExecuteAction(LayerToolsConstants.MergeWithBelow.ActionName).Wait();
         }
     }
 }

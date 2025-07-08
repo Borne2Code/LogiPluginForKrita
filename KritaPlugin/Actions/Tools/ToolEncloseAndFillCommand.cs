@@ -12,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolEncloseAndFillCommand()
-            : base(displayName: ToolsConstants.EncloseAndFill.Name, description: "Activate Enclose And Fill tool", groupName: ActionGroups.Tools)
+            : base(displayName: PaintToolsConstants.EncloseAndFill.Name, description: "Activate Enclose And Fill tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.EncloseAndFill.BitMapImageName);
+            return PluginResources.BitmapFromEmbaddedRessource(PaintToolsConstants.EncloseAndFill.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ToolsConstants.EncloseAndFill.ActionName).Wait();
+            Client.KritaInstance.ExecuteAction(PaintToolsConstants.EncloseAndFill.ActionName).Wait();
         }
     }
 }

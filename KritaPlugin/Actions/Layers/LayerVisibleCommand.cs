@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerVisibleCommand()
-            : base(displayName: "Toggle Layer visible", description: "Toggle current layer visible", groupName: ActionGroups.Layers)
+            : base(displayName: LayerToolsConstants.ToggleVisible.Name, description: "Toggle current layer visible", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.ToggleVisible.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.ToggleVisible.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Toggle_layer_visibility).Wait();
+            Client.KritaInstance.ExecuteAction(LayerToolsConstants.ToggleVisible.ActionName).Wait();
         }
     }
 }

@@ -12,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolDynamicBrushCommand()
-            : base(displayName: ToolsConstants.DynamicBrush.Name, description: "Activate dynamic brush tool", groupName: ActionGroups.Tools)
+            : base(displayName: PaintToolsConstants.DynamicBrush.Name, description: "Activate dynamic brush tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.DynamicBrush.BitMapImageName);
+            return PluginResources.BitmapFromEmbaddedRessource(PaintToolsConstants.DynamicBrush.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ToolsConstants.DynamicBrush.ActionName).Wait();
+            Client.KritaInstance.ExecuteAction(PaintToolsConstants.DynamicBrush.ActionName).Wait();
         }
     }
 }

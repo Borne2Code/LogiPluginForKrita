@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -12,27 +13,32 @@ namespace Logi.KritaPlugin.Actions
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public LayerCurrentAdjustment()
-            : base(displayName: "Current Layer Selector", description: "Adjust current layer selection", groupName: ActionGroups.Layers, hasReset: true)
+            : base(displayName: LayerToolsConstants.SelectCurrent.Name, description: "Adjust current layer selection", groupName: ActionGroups.Layers, hasReset: true)
         {
         }
 
         protected override BitmapImage GetAdjustmentImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.CurrentAdjust.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.SelectCurrent.BitMapImageName);
         }
 
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
-            if (Client == null) return;
+            AdjustCurrentLayer(Client, diff);
+        }
+
+        public static void AdjustCurrentLayer(Client client, int diff)
+        {
+            if (client == null) return;
 
             if (diff > 0)
             {
-                Client.KritaInstance.ExecuteAction(ActionsNames.ActivatePreviousLayer).Wait();
+                client.KritaInstance.ExecuteAction(ActionsNames.ActivatePreviousLayer).Wait();
             }
             else
             {
-                Client.KritaInstance.ExecuteAction(ActionsNames.ActivateNextLayer).Wait();
+                client.KritaInstance.ExecuteAction(ActionsNames.ActivateNextLayer).Wait();
             }
             //this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
         }

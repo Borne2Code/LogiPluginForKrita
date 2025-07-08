@@ -12,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolShapePolylineCommand()
-            : base(displayName: ToolsConstants.Polyline.Name, description: "Activate Polyline tool", groupName: ActionGroups.Tools)
+            : base(displayName: ShapeToolsConstants.Polyline.Name, description: "Activate Polyline tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.Polyline.BitMapImageName);
+            return PluginResources.BitmapFromEmbaddedRessource(ShapeToolsConstants.Polyline.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ToolsConstants.Polyline.ActionName).Wait();
+            Client.KritaInstance.ExecuteAction(ShapeToolsConstants.Polyline.ActionName).Wait();
         }
     }
 }

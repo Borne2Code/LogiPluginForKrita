@@ -12,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolShapeFreehandPathCommand()
-            : base(displayName: ToolsConstants.FreeHandPath.Name, description: "Activate Freehand Path tool", groupName: ActionGroups.Tools)
+            : base(displayName: ShapeToolsConstants.FreeHandPath.Name, description: "Activate Freehand Path tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.FreeHandPath.BitMapImageName);
+            return PluginResources.BitmapFromEmbaddedRessource(ShapeToolsConstants.FreeHandPath.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ToolsConstants.FreeHandPath.ActionName).Wait();
+            Client.KritaInstance.ExecuteAction(ShapeToolsConstants.FreeHandPath.ActionName).Wait();
         }
     }
 }

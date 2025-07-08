@@ -12,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolFillCommand()
-            : base(displayName: ToolsConstants.Fill.Name, description: "Activate fill tool", groupName: ActionGroups.Tools)
+            : base(displayName: PaintToolsConstants.Fill.Name, description: "Activate fill tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.Fill.BitMapImageName);
+            return PluginResources.BitmapFromEmbaddedRessource(PaintToolsConstants.Fill.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ToolsConstants.Fill.ActionName).Wait();
+            Client.KritaInstance.ExecuteAction(PaintToolsConstants.Fill.ActionName).Wait();
         }
     }
 }

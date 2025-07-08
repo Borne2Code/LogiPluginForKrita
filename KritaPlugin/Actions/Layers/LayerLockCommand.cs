@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerLockCommand()
-            : base(displayName: "Lock/Unlock Layer", description: "Lock or unlock current layer", groupName: ActionGroups.Layers)
+            : base(displayName: LayerToolsConstants.LockUnlock.Name, description: "Lock or unlock current layer", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.Lock.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.LockUnlock.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Toggle_layer_lock).Wait();
+            Client.KritaInstance.ExecuteAction(LayerToolsConstants.LockUnlock.ActionName).Wait();
         }
     }
 }

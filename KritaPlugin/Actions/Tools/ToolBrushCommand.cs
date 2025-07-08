@@ -12,19 +12,19 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolBrushCommand()
-            : base(displayName: ToolsConstants.Brush.Name, description: "Activate brush tool", groupName: ActionGroups.Tools)
+            : base(displayName: PaintToolsConstants.Brush.Name, description: "Activate brush tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.Brush.BitMapImageName);
+            return PluginResources.BitmapFromEmbaddedRessource(PaintToolsConstants.Brush.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
-            Client.KritaInstance.ExecuteAction(ToolsConstants.Brush.ActionName).Wait();
+            Client.KritaInstance.ExecuteAction(PaintToolsConstants.Brush.ActionName).Wait();
         }
     }
 }

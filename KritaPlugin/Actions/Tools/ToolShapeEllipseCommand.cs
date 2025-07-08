@@ -12,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolShapeEllipseCommand()
-            : base(displayName: ToolsConstants.Ellipse.Name, description: "Activate ellipse tool", groupName: ActionGroups.Tools)
+            : base(displayName: ShapeToolsConstants.Ellipse.Name, description: "Activate ellipse tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.Ellipse.BitMapImageName);
+            return PluginResources.BitmapFromEmbaddedRessource(ShapeToolsConstants.Ellipse.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ToolsConstants.Ellipse.ActionName).Wait();
+            Client.KritaInstance.ExecuteAction(ShapeToolsConstants.Ellipse.ActionName).Wait();
         }
     }
 }

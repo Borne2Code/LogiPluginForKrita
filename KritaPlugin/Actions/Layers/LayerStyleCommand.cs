@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerStyleCommand()
-            : base(displayName: "Layer style", description: "Show Layer style", groupName: ActionGroups.Layers)
+            : base(displayName: LayerToolsConstants.Style.Name, description: "Show Layer style", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.Style.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.Style.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Layer_style).Wait();
+            Client.KritaInstance.ExecuteAction(LayerToolsConstants.Style.ActionName).Wait();
         }
     }
 }

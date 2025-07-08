@@ -12,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolColorizeMaskCommand()
-            : base(displayName: ToolsConstants.ColorizeMask.Name, description: "Activate Colorize Mask tool", groupName: ActionGroups.Tools)
+            : base(displayName: PaintToolsConstants.ColorizeMask.Name, description: "Activate Colorize Mask tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.ColorizeMask.BitMapImageName);
+            return PluginResources.BitmapFromEmbaddedRessource(PaintToolsConstants.ColorizeMask.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ToolsConstants.ColorizeMask.ActionName).Wait();
+            Client.KritaInstance.ExecuteAction(PaintToolsConstants.ColorizeMask.ActionName).Wait();
         }
     }
 }

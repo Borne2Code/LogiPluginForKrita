@@ -3,7 +3,7 @@ using LogiKritaApiClient.ClientBase;
 
 namespace Logi.KritaPlugin.Constants
 {
-    internal class SelectionToolsConstants
+    public class SelectionToolsConstants
     {
         public static DynamicFolderActionDefinition Rectangle => new DynamicFolderActionDefinition("Rectangular selection", "Logi.KritaPlugin.images.Selection.ToolSelectRectangular.png", ActionsNames.KisToolSelectRectangular);
         public static DynamicFolderActionDefinition Elipse => new DynamicFolderActionDefinition("Eliptical selection", "Logi.KritaPlugin.images.Selection.ToolSelectEliptical.png", ActionsNames.KisToolSelectElliptical);

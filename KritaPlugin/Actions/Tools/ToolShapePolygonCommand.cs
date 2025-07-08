@@ -12,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolShapePolygonCommand()
-            : base(displayName: ToolsConstants.Polygone.Name, description: "Activate Polygon tool", groupName: ActionGroups.Tools)
+            : base(displayName: ShapeToolsConstants.Polygone.Name, description: "Activate Polygon tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource(ToolsConstants.Polygone.BitMapImageName);
+            return PluginResources.BitmapFromEmbaddedRessource(ShapeToolsConstants.Polygone.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ToolsConstants.Polygone.ActionName).Wait();
+            Client.KritaInstance.ExecuteAction(ShapeToolsConstants.Polygone.ActionName).Wait();
         }
     }
 }

@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -12,27 +13,32 @@ namespace Logi.KritaPlugin.Actions
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public LayerMoveAdjustment()
-            : base(displayName: "Move Layer", description: "Move layer in the stack", groupName: ActionGroups.Layers, hasReset: true)
+            : base(displayName: LayerToolsConstants.Move.Name, description: "Move layer in the stack", groupName: ActionGroups.Layers, hasReset: true)
         {
         }
 
         protected override BitmapImage GetAdjustmentImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.Move.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.Move.BitMapImageName);
         }
 
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
-            if (Client == null) return;
+            AdjustMoveLayer(Client, diff);
+        }
+
+        public static void AdjustMoveLayer(Client client, int diff)
+        {
+            if (client == null) return;
 
             if (diff > 0)
             {
-                Client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_down).Wait();
+                client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_down).Wait();
             }
             else
             {
-                Client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_up).Wait();
+                client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_up).Wait();
             }
             //this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
         }

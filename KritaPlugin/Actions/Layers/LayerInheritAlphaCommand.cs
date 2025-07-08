@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerInheritAlphaCommand()
-            : base(displayName: "Inherit Alpha", description: "Toggle layer inherit alpha", groupName: ActionGroups.Layers)
+            : base(displayName: LayerToolsConstants.InheritAlpha.Name, description: "Toggle layer inherit alpha", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.InheritAlpha.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.InheritAlpha.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Toggle_layer_inherit_alpha).Wait();
+            Client.KritaInstance.ExecuteAction(LayerToolsConstants.InheritAlpha.ActionName).Wait();
         }
     }
 }
