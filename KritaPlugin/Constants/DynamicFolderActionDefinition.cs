@@ -36,8 +36,8 @@ namespace Logi.KritaPlugin.Constants
             string bitmapImageName,
             Action<Client, Int32, Action> adjustMethod,
             Func<Client, string> getValueMethod,
-            Func<float> getMinValueMethod,
-            Func<float> getMaxValueMethod)
+            Func<float> getMinValueMethod = null,
+            Func<float> getMaxValueMethod = null)
         {
             Name = name;
             BitMapImageName = bitmapImageName;
