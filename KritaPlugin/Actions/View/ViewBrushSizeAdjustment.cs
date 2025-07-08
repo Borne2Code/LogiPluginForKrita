@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -8,27 +9,32 @@ namespace Logi.KritaPlugin.Actions
     public class ViewBrushSizeAdjustment : PluginDynamicAdjustment
     {
         private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
-        private float Size = 0;
-        private DateTime LastAdjust = DateTime.MinValue;
+        private static float Size = 0;
+        private static DateTime LastAdjust = DateTime.MinValue;
 
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public ViewBrushSizeAdjustment()
-            : base(displayName: "Brush size", description: "Adjust brush size", groupName: ActionGroups.ViewAdjustements, hasReset: false)
+            : base(displayName: ViewToolsConstants.BrushSize.Name, description: "Adjust brush size", groupName: ActionGroups.ViewAdjustements, hasReset: false)
         {
         }
 
         protected override BitmapImage GetAdjustmentImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.View.BrushSize.png");
+            return PluginResources.BitmapFromEmbaddedRessource(ViewToolsConstants.BrushSize.BitMapImageName);
         }
 
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
-            if (Client == null) return;
+            AdjustBrushSize(Client, diff, AdjustmentValueChanged);
+        }
 
-            UpdateAdjustValueIfNecessary();
+        public static void AdjustBrushSize(Client client, int diff, Action adjustValueChangedHandler)
+        {
+            if (client == null) return;
+
+            UpdateAdjustValueIfNecessary(client);
 
             var delta = Math.Max(Size * (float)Math.Abs(diff) / 40, 0.01) * Math.Sign(diff);
             var newBrushSize = (float)Math.Round(Size + delta, 2);
@@ -37,25 +43,30 @@ namespace Logi.KritaPlugin.Actions
             if (newBrushSize != Size)
             {
                 Size = newBrushSize;
-                Client.CurrentView.SetBrushSize(Size).Wait();
-                this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+                client.CurrentView.SetBrushSize(Size).Wait();
+                adjustValueChangedHandler(); // Notify the plugin service that the adjustment value has changed.
             }
         }
 
         // Returns the adjustment value that is shown next to the dial.
         protected override String GetAdjustmentValue(String actionParameter)
         {
-            if (Client == null) return "-";
+            return GetBrushSize(Client);
+        }
 
-            UpdateAdjustValueIfNecessary();
+        public static string GetBrushSize(Client client)
+        {
+            if (client == null) return "-";
+
+            UpdateAdjustValueIfNecessary(client);
             return Math.Round(Size, Size >= 100 ? 1 : 2).ToString();
         }
 
-        private void UpdateAdjustValueIfNecessary()
+        private static void UpdateAdjustValueIfNecessary(Client client)
         {
             if ((DateTime.Now - LastAdjust).TotalMilliseconds > 500)
             {
-                Size = Client.CurrentView.BrushSize().Result;
+                Size = client.CurrentView.BrushSize().Result;
                 LastAdjust = DateTime.Now;
             }
         }
