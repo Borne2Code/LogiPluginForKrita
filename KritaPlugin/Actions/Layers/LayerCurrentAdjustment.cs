@@ -50,11 +50,5 @@ namespace Logi.KritaPlugin.Actions
 
             Client.KritaInstance.ExecuteAction(ActionsNames.Isolate_active_layer).Wait();
         }
-
-        // Returns the adjustment value that is shown next to the dial.
-        protected override String GetAdjustmentValue(String actionParameter)
-        {
-            return string.Empty;
-        }
     }
 }

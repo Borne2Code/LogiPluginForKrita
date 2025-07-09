@@ -79,26 +79,6 @@ namespace Logi.KritaPlugin.Actions
             return (Opacity * 100 / 255).ToString() + " %";
         }
 
-        protected override double? GetAdjustmentMinValue(string actionParameter)
-        {
-            return GetMinOpacity();
-        }
-
-        public static float GetMinOpacity()
-        {
-            return 0.0f;
-        }
-
-        protected override double? GetAdjustmentMaxValue(string actionParameter)
-        {
-            return GetMaxOpacity();
-        }
-
-        public static float GetMaxOpacity()
-        {
-            return 255f;
-        }
-
         private static void UpdateAdjustValueIfNecessary(Client client)
         {
             if ((DateTime.Now - LastAdjust).TotalMilliseconds > 500)
