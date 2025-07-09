@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToolCropCommand()
-            : base(displayName: "Crop", description: "Activate Crop tool", groupName: ActionGroups.Tools)
+            : base(displayName: TransformToolsConstants.Crop.Name, description: "Activate Crop tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Tools.Crop.png");
+            return PluginResources.BitmapFromEmbaddedRessource(TransformToolsConstants.Crop.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KisToolCrop).Wait();
+            Client.KritaInstance.ExecuteAction(TransformToolsConstants.Crop.ActionName).Wait();
         }
     }
 }
