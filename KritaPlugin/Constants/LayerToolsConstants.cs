@@ -13,15 +13,15 @@ namespace Logi.KritaPlugin.Constants
             LayerOpacityAdjustment.GetOpcityValue,
             LayerOpacityAdjustment.GetMinOpacity,
             LayerOpacityAdjustment.GetMaxOpacity);
-        public static DynamicFolderActionDefinition Isolate => new DynamicFolderActionDefinition("Isolate Layer", "Logi.KritaPlugin.images.Layers.ToggleVisible.png", ActionsNames.Isolate_active_layer);
+        public static DynamicFolderActionDefinition Isolate => new DynamicFolderActionDefinition("Isolate Layer", "Logi.KritaPlugin.images.Layers.ToggleVisible.png", ActionsNames.Isolate_active_layer, false);
         public static DynamicFolderActionDefinition Style => new DynamicFolderActionDefinition("Layer style", "Logi.KritaPlugin.images.Layers.Style.png", ActionsNames.Layer_style);
         public static DynamicFolderActionDefinition Rename => new DynamicFolderActionDefinition("Rename layer", "Logi.KritaPlugin.images.Layers.Rename.png", ActionsNames.RenameCurrentLayer);
         public static DynamicFolderActionDefinition Duplicate => new DynamicFolderActionDefinition("Duplicate Layer", "Logi.KritaPlugin.images.Layers.Duplicate.png", ActionsNames.Duplicatelayer);
         public static DynamicFolderActionDefinition Delete => new DynamicFolderActionDefinition("Delete Layer", "Logi.KritaPlugin.images.Layers.Delete.png", ActionsNames.Remove_layer);
-        public static DynamicFolderActionDefinition LockUnlock => new DynamicFolderActionDefinition("Lock/Unlock Layer", "Logi.KritaPlugin.images.Layers.Lock.png", ActionsNames.Toggle_layer_lock);
-        public static DynamicFolderActionDefinition ToggleVisible => new DynamicFolderActionDefinition("Toggle Layer visible", "Logi.KritaPlugin.images.Layers.ToggleVisible.png", ActionsNames.Toggle_layer_visibility);
-        public static DynamicFolderActionDefinition InheritAlpha => new DynamicFolderActionDefinition("Inherit Alpha", "Logi.KritaPlugin.images.Layers.InheritAlpha.png", ActionsNames.Toggle_layer_inherit_alpha);
-        public static DynamicFolderActionDefinition LockAlpha => new DynamicFolderActionDefinition("Lock Alpha", "Logi.KritaPlugin.images.Layers.LockAlpha.png", ActionsNames.Toggle_layer_alpha_lock);
+        public static DynamicFolderActionDefinition LockUnlock => new DynamicFolderActionDefinition("Lock/Unlock Layer", "Logi.KritaPlugin.images.Layers.Lock.png", ActionsNames.Toggle_layer_lock, false);
+        public static DynamicFolderActionDefinition ToggleVisible => new DynamicFolderActionDefinition("Toggle Layer visible", "Logi.KritaPlugin.images.Layers.ToggleVisible.png", ActionsNames.Toggle_layer_visibility, false);
+        public static DynamicFolderActionDefinition InheritAlpha => new DynamicFolderActionDefinition("Inherit Alpha", "Logi.KritaPlugin.images.Layers.InheritAlpha.png", ActionsNames.Toggle_layer_inherit_alpha, false);
+        public static DynamicFolderActionDefinition LockAlpha => new DynamicFolderActionDefinition("Lock Alpha", "Logi.KritaPlugin.images.Layers.LockAlpha.png", ActionsNames.Toggle_layer_alpha_lock, false);
         public static DynamicFolderActionDefinition QuickGroup => new DynamicFolderActionDefinition("Quick group", "Logi.KritaPlugin.images.Layers.QuickGroup.png", ActionsNames.Create_quick_group);
         public static DynamicFolderActionDefinition NewGroup => new DynamicFolderActionDefinition("New group", "Logi.KritaPlugin.images.Layers.NewGroup.png", ActionsNames.Add_new_group_layer);
         public static DynamicFolderActionDefinition Ungroup => new DynamicFolderActionDefinition("Ungroup", "Logi.KritaPlugin.images.Layers.Ungroup.png", ActionsNames.Quick_ungroup);

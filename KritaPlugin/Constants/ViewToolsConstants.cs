@@ -6,7 +6,7 @@ namespace Logi.KritaPlugin.Constants
 {
     public class ViewToolsConstants
     {
-        public static DynamicFolderActionDefinition Mirror => new DynamicFolderActionDefinition("Mirror", "Logi.KritaPlugin.images.View.ToggleMirrorView.png", ActionsNames.Mirror_canvas);
+        public static DynamicFolderActionDefinition Mirror => new DynamicFolderActionDefinition("Mirror", "Logi.KritaPlugin.images.View.ToggleMirrorView.png", ActionsNames.Mirror_canvas, false);
         public static DynamicFolderActionDefinition BrushSize => new DynamicFolderActionDefinition("Brush size",
             "Logi.KritaPlugin.images.View.BrushSize.png",
             ViewBrushSizeAdjustment.AdjustBrushSize,
