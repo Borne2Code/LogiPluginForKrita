@@ -55,8 +55,12 @@ namespace Logi.KritaPlugin.DynamicFolders
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsList[actionParameter].ActionName).Wait();
-            Close();
+            var action = ActionsList[actionParameter];
+            Client.KritaInstance.ExecuteAction(action.ActionName).Wait();
+            if (action.ShouldCloseFolder)
+            {
+                Close();
+            }
         }
 
         public override void ApplyAdjustment(string actionParameter, int diff)

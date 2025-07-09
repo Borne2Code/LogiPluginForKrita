@@ -1,4 +1,4 @@
-﻿namespace Logi.KritaPlugin.Constants
+﻿namespace Logi.KritaPlugin.DynamicFolders
 {
     public enum DynamicFolderActionType
     {

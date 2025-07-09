@@ -1,4 +1,5 @@
 ﻿using Logi.KritaPlugin.Actions;
+using Logi.KritaPlugin.DynamicFolders;
 using LogiKritaApiClient.ClientBase;
 
 namespace Logi.KritaPlugin.Constants

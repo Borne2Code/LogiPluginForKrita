@@ -1,6 +1,6 @@
 ﻿using LogiKritaApiClient.ClientBase;
 
-namespace Logi.KritaPlugin.Constants
+namespace Logi.KritaPlugin.DynamicFolders
 {
     public class DynamicFolderActionDefinition
     {
@@ -8,18 +8,20 @@ namespace Logi.KritaPlugin.Constants
         public string Name { get; }
         public string BitMapImageName { get; }
         public string ActionName { get; }
+        public bool ShouldCloseFolder { get; }
         public Action<Client, Int32> AdjustMethod { get; }
         public Action<Client, Int32, Action> AdjustMethodWithValue { get; }
         public Func<Client, string> GetValueMethod { get; }
         public Func<float> GetMinValueMethod { get; }
         public Func<float> GetMaxValueMethod { get; }
 
-        public DynamicFolderActionDefinition(string name, string bitmapImageName, string actionName)
+        public DynamicFolderActionDefinition(string name, string bitmapImageName, string actionName, bool shouldCLoseFolder = true)
         {
             Name = name;
             BitMapImageName = bitmapImageName;
             ActionName = actionName;
             AdjustMethod = null;
+            ShouldCloseFolder = shouldCLoseFolder;
             ActionType = DynamicFolderActionType.Command;
         }
 
