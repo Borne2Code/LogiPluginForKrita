@@ -1,5 +1,4 @@
-﻿using Logi.KritaPlugin.Constants;
-using LogiKritaApiClient.ClientBase;
+﻿using LogiKritaApiClient.ClientBase;
 using Loupedeck;
 
 namespace Logi.KritaPlugin.DynamicFolders
@@ -31,7 +30,7 @@ namespace Logi.KritaPlugin.DynamicFolders
         public override IEnumerable<string> GetButtonPressActionNames(DeviceType _)
         {
             return ActionsList
-                .Select(e => e.Value.ActionType == DynamicFolderActionType.Command
+                .Select(e => (e.Value is DynamicFolderCommandDefinition)
                     ? CreateCommandName(e.Key)
                     : CreateAdjustmentName(e.Key)).ToList();
         }
@@ -55,8 +54,17 @@ namespace Logi.KritaPlugin.DynamicFolders
         {
             if (Client == null) return;
 
-            var action = ActionsList[actionParameter];
-            Client.KritaInstance.ExecuteAction(action.ActionName).Wait();
+            var action = ActionsList[actionParameter] as DynamicFolderCommandDefinition;
+
+            if (action.ActionName != null)
+            {
+                Client.KritaInstance.ExecuteAction(action.ActionName).Wait();
+            }
+            else
+            {
+                action.Command(Client);
+            }
+
             if (action.ShouldCloseFolder)
             {
                 Close();
@@ -69,13 +77,13 @@ namespace Logi.KritaPlugin.DynamicFolders
 
             var tool = ActionsList[actionParameter];
 
-            if (tool.ActionType == DynamicFolderActionType.Encoder)
+            if (tool is DynamicFolderAdjustmentDefinition adjustTool)
             {
-                tool.AdjustMethod(Client, diff);
+                adjustTool.AdjustMethod(Client, diff);
             }
             else
             {
-                tool.AdjustMethodWithValue(Client, diff, () => AdjustmentValueChanged(actionParameter));
+                (tool as DynamicFolderAdjustmentWithValueDefinition).AdjustMethodWithValue(Client, diff, () => AdjustmentValueChanged(actionParameter));
             }
         }
 
@@ -83,9 +91,13 @@ namespace Logi.KritaPlugin.DynamicFolders
         {
             var tool = ActionsList[actionParameter];
 
-            if (tool.ActionType == DynamicFolderActionType.EncoderWithValue)
+            if (tool is DynamicFolderAdjustmentWithValueDefinition adjustTool)
             {
-                return tool.GetValueMethod(Client);
+                return adjustTool.GetValueMethod(Client);
+            }
+            else
+            {
+                return (tool as DynamicFolderAdjustmentDefinition).Name;
             }
 
             return string.Empty;

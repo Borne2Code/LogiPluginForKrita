@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,25 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerSelectGlobalSelecionCommand()
-            : base(displayName: "Global selection", description: "Select global selection layer", groupName: ActionGroups.Layers)
+            : base(displayName: LayerToolsConstants.GlobalSelection.Name, description: "Select global selection layer", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.GlobalSelection.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.GlobalSelection.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
-            if (Client == null) return;
+            SelectGlobalSelectionMask(Client);
+        }
 
-            Client.CurrentDocument.SetActiveNode(Client.GlobalSelectionNode).Wait();
+        public static void SelectGlobalSelectionMask(Client client)
+        {
+            if (client == null) return;
+
+            client.CurrentDocument.SetActiveNode(client.GlobalSelectionNode).Wait();
         }
     }
 }
