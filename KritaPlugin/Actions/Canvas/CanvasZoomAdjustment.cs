@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -8,30 +9,35 @@ namespace Logi.KritaPlugin.Actions
     public class CanvasZoomAdjustment : PluginDynamicAdjustment
     {
         private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
-        private float Zoom = 1;
-        private DateTime LastAdjust = DateTime.MinValue;
+        private static float Zoom = 1;
+        private static DateTime LastAdjust = DateTime.MinValue;
 
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public CanvasZoomAdjustment()
-            : base(displayName: "Canvas zoom", description: "Adjust canvas zoom", groupName: ActionGroups.CanvasAdjustements, hasReset: true)
+            : base(displayName: ViewToolsConstants.CanvasZoom.Name, description: "Adjust canvas zoom", groupName: ActionGroups.CanvasAdjustements, hasReset: true)
         {
         }
 
         protected override BitmapImage GetAdjustmentImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Canvas.Zoom.png");
+            return PluginResources.BitmapFromEmbaddedRessource(ViewToolsConstants.CanvasZoom.BitMapImageName);
         }
 
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
-            if (Client == null) return;
+            AdjustCanvasZoom(Client, diff, AdjustmentValueChanged);
+        }
 
-            UpdateAdjustValueIfNecessary();
+        public static void AdjustCanvasZoom(Client client, int diff, Action valueCHangedHandler)
+        {
+            if (client == null) return;
+
+            UpdateAdjustValueIfNecessary(client);
             Zoom = Zoom + (float)diff * Zoom / 100;
-            Client.CurrentCanvas.SetZoomLevel(Zoom).Wait();
-            this.AdjustmentValueChanged();
+            client.CurrentCanvas.SetZoomLevel(Zoom).Wait();
+            valueCHangedHandler();
         }
 
         // This method is called when the reset command related to the adjustment is executed.
@@ -47,17 +53,22 @@ namespace Logi.KritaPlugin.Actions
         // Returns the adjustment value that is shown next to the dial.
         protected override String GetAdjustmentValue(String actionParameter)
         {
-            if (Client == null) return "-";
+            return GetCanvasZoom(Client);
+        }
 
-            UpdateAdjustValueIfNecessary();
+        public static string GetCanvasZoom(Client client)
+        {
+            if (client == null) return "-";
+
+            UpdateAdjustValueIfNecessary(client);
             return Math.Round(Zoom * 100, Zoom >= 1 ? 0 : 1).ToString() + " %";
         }
 
-        private void UpdateAdjustValueIfNecessary()
+        private static void UpdateAdjustValueIfNecessary(Client client)
         {
             if ((DateTime.Now - LastAdjust).TotalMilliseconds > 500)
             {
-                Zoom = Client.CurrentCanvas.ZoomLevel().Result * 72 / Client.CurrentDocument.GetResolution().Result;
+                Zoom = client.CurrentCanvas.ZoomLevel().Result * 72 / client.CurrentDocument.GetResolution().Result;
                 LastAdjust = DateTime.Now;
             }
         }
