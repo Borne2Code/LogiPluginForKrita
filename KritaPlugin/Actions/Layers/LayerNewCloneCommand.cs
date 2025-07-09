@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerNewCloneCommand()
-            : base(displayName: "New clone layer", description: "New clone layer", groupName: ActionGroups.Layers)
+            : base(displayName: NewLayerToolsConstants.CloneLayer.Name, description: "New clone layer", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.NewClone.png");
+            return PluginResources.BitmapFromEmbaddedRessource(NewLayerToolsConstants.CloneLayer.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_clone_layer).Wait();
+            Client.KritaInstance.ExecuteAction(NewLayerToolsConstants.CloneLayer.ActionName).Wait();
         }
     }
 }

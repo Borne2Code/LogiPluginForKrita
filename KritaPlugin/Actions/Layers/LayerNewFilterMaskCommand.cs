@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerNewFilterMaskCommand()
-            : base(displayName: "New filter mask", description: "New filter mask", groupName: ActionGroups.Layers)
+            : base(displayName: NewLayerToolsConstants.FilterMask.Name, description: "New filter mask", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.NewFilterMask.png");
+            return PluginResources.BitmapFromEmbaddedRessource(NewLayerToolsConstants.FilterMask.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_filter_mask).Wait();
+            Client.KritaInstance.ExecuteAction(NewLayerToolsConstants.FilterMask.ActionName).Wait();
         }
     }
 }

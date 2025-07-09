@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerNewRasterCommand()
-            : base(displayName: "New paint layer", description: "New paint layer", groupName: ActionGroups.Layers)
+            : base(displayName: NewLayerToolsConstants.PaintLayer.Name, description: "New paint layer", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.NewRaster.png");
+            return PluginResources.BitmapFromEmbaddedRessource(NewLayerToolsConstants.PaintLayer.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_paint_layer).Wait();
+            Client.KritaInstance.ExecuteAction(NewLayerToolsConstants.PaintLayer.ActionName).Wait();
         }
     }
 }

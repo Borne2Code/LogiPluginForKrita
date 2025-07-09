@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerNewFillCommand()
-            : base(displayName: "New fill layer", description: "New fill layer", groupName: ActionGroups.Layers)
+            : base(displayName: NewLayerToolsConstants.FillLayer.Name, description: "New fill layer", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.NewFill.png");
+            return PluginResources.BitmapFromEmbaddedRessource(NewLayerToolsConstants.FillLayer.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_fill_layer).Wait();
+            Client.KritaInstance.ExecuteAction(NewLayerToolsConstants.FillLayer.ActionName).Wait();
         }
     }
 }

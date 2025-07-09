@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerNewColorizeCommand()
-            : base(displayName: "New colorize mask", description: "New colorize mask", groupName: ActionGroups.Layers)
+            : base(displayName: NewLayerToolsConstants.ColorizeMask.Name, description: "New colorize mask", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.NewColorize.png");
+            return PluginResources.BitmapFromEmbaddedRessource(NewLayerToolsConstants.ColorizeMask.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_colorize_mask).Wait();
+            Client.KritaInstance.ExecuteAction(NewLayerToolsConstants.ColorizeMask.ActionName).Wait();
         }
     }
 }

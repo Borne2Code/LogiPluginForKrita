@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerNewTransformCommand()
-            : base(displayName: "New transform mask", description: "New transform mask", groupName: ActionGroups.Layers)
+            : base(displayName: NewLayerToolsConstants.TransformMask.Name, description: "New transform mask", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.NewTransform.png");
+            return PluginResources.BitmapFromEmbaddedRessource(NewLayerToolsConstants.TransformMask.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_transform_mask).Wait();
+            Client.KritaInstance.ExecuteAction(NewLayerToolsConstants.TransformMask.ActionName).Wait();
         }
     }
 }

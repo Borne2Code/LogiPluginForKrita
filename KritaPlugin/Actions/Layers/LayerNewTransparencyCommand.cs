@@ -1,5 +1,6 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -11,20 +12,20 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public LayerNewTransparencyCommand()
-            : base(displayName: "New transparency mask", description: "New transparency mask", groupName: ActionGroups.Layers)
+            : base(displayName: NewLayerToolsConstants.TransparencyMask.Name, description: "New transparency mask", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return PluginResources.BitmapFromEmbaddedRessource("Logi.KritaPlugin.images.Layers.NewTransparency.png");
+            return PluginResources.BitmapFromEmbaddedRessource(NewLayerToolsConstants.TransparencyMask.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_transparency_mask).Wait();
+            Client.KritaInstance.ExecuteAction(NewLayerToolsConstants.TransparencyMask.ActionName).Wait();
         }
     }
 }
