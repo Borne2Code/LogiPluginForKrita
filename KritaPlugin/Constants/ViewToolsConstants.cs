@@ -31,6 +31,9 @@ namespace Logi.KritaPlugin.Constants
             ViewBrushFlowAdjustment.AdjustBrushFlow,
             ViewBrushFlowAdjustment.GetBrushFlow,
             ViewBrushFlowAdjustment.ResetBrushFlow);
+        public static DynamicFolderAdjustmentDefinition BrushFade => new DynamicFolderAdjustmentDefinition("Brush fade",
+            "Logi.KritaPlugin.images.View.BrushFade.png",
+            ViewBrushFadeAdjustment.AdjustBrushFade);
         public static DynamicFolderAdjustmentWithValueDefinition BrushRotation => new DynamicFolderAdjustmentWithValueDefinition("Brush rotation",
             "Logi.KritaPlugin.images.View.BrushRotation.png",
             ViewBrushRotationAdjustment.AdjustBrushRotation,
@@ -50,6 +53,7 @@ namespace Logi.KritaPlugin.Constants
             { BrushSize.Name, BrushSize },
             { BrushOpacity.Name, BrushOpacity },
             { BrushFlow.Name, BrushFlow },
+            { BrushFade.Name, BrushFade },
             { BrushRotation.Name, BrushRotation },
             { BrushPatternSize.Name, BrushPatternSize },
         };
