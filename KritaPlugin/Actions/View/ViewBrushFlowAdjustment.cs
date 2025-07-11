@@ -50,11 +50,16 @@ namespace Logi.KritaPlugin.Actions
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
-            if (Client == null) return;
+            ResetBrushFlow(Client, AdjustmentValueChanged);
+        }
+
+        public static void ResetBrushFlow(Client client, Action adjustValueChangedHandler)
+        {
+            if (client == null) return;
 
             Flow = 1;
-            Client.CurrentView.SetPaintingFlow(1).Wait();
-            this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+            client.CurrentView.SetPaintingFlow(1).Wait();
+            adjustValueChangedHandler(); // Notify the plugin service that the adjustment value has changed.
         }
 
         // Returns the adjustment value that is shown next to the dial.

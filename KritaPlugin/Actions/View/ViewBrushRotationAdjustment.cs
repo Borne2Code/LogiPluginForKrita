@@ -44,11 +44,16 @@ namespace Logi.KritaPlugin.Actions
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
-            if (Client == null) return;
+            ResetBrushRotation(Client, AdjustmentValueChanged);
+        }
+
+        public static void ResetBrushRotation(Client client, Action adjustValueChangedHandler)
+        {
+            if (client == null) return;
 
             Rotation = 0;
-            Client.CurrentView.SetBrushRotation(Rotation).Wait();
-            this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+            client.CurrentView.SetBrushRotation(Rotation).Wait();
+            adjustValueChangedHandler(); // Notify the plugin service that the adjustment value has changed.
         }
 
         // Returns the adjustment value that is shown next to the dial.

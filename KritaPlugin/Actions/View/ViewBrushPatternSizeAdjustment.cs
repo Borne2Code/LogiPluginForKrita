@@ -48,11 +48,16 @@ namespace Logi.KritaPlugin.Actions
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
-            if (Client == null) return;
+            ResetBrushPatternSize(Client, AdjustmentValueChanged);
+        }
+
+        public static void ResetBrushPatternSize(Client client, Action adjustValueChangedHandler)
+        {
+            if (client == null) return;
 
             PatternSize = 1;
-            Client.CurrentView.SetPatternSize(PatternSize).Wait();
-            this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+            client.CurrentView.SetPatternSize(PatternSize).Wait();
+            adjustValueChangedHandler(); // Notify the plugin service that the adjustment value has changed.
         }
 
         // Returns the adjustment value that is shown next to the dial.

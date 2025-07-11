@@ -57,12 +57,17 @@ namespace Logi.KritaPlugin.Actions
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
-            if (Client == null) return;
+            ResetOpacity(Client, AdjustmentValueChanged);
+        }
+
+        public static void ResetOpacity(Client client, Action adjustValueChangedHandler)
+        {
+            if (client == null) return;
 
             Opacity = 255;
-            Client.CurrentNode.SetOpacity(Opacity).Wait();
-            Client.CurrentDocument.RefreshProjection();
-            AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+            client.CurrentNode.SetOpacity(Opacity).Wait();
+            client.CurrentDocument.RefreshProjection();
+            adjustValueChangedHandler(); // Notify the plugin service that the adjustment value has changed.
         }
 
         // Returns the adjustment value that is shown next to the dial.

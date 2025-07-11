@@ -43,11 +43,16 @@ namespace Logi.KritaPlugin.Actions
         // This method is called when the reset command related to the adjustment is executed.
         protected override void RunCommand(String actionParameter)
         {
-            if (Client == null) return;
+            ResetZoom(Client, AdjustmentValueChanged);
+        }
 
-            Client.CurrentCanvas.ResetZoom().Wait();
+        public static void ResetZoom(Client client, Action adjustValueChangedHandler)
+        {
+            if (client == null) return;
+
+            client.CurrentCanvas.ResetZoom().Wait();
             Zoom = 1;
-            this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
+            adjustValueChangedHandler(); // Notify the plugin service that the adjustment value has changed.
         }
 
         // Returns the adjustment value that is shown next to the dial.

@@ -27,12 +27,30 @@ namespace Logi.KritaPlugin.DynamicFolders
             return PluginDynamicFolderNavigation.ButtonArea;
         }
 
-        public override IEnumerable<string> GetButtonPressActionNames(DeviceType _)
+        public override IEnumerable<string> GetButtonPressActionNames(DeviceType deviceType)
         {
             return ActionsList
+                .Where(a => deviceType == DeviceType.Loupedeck70 || a.Value is DynamicFolderCommandDefinition)
                 .Select(e => (e.Value is DynamicFolderCommandDefinition)
                     ? CreateCommandName(e.Key)
-                    : CreateAdjustmentName(e.Key)).ToList();
+                    : CreateAdjustmentName(e.Key))
+                .ToList();
+        }
+
+        public override IEnumerable<string> GetEncoderRotateActionNames(DeviceType deviceType)
+        {
+            return ActionsList
+                .Where(a => deviceType == DeviceType.Loupedeck20 && (a.Value is DynamicFolderAdjustmentDefinition || a.Value is DynamicFolderAdjustmentWithValueDefinition))
+                .Select(e => CreateAdjustmentName(e.Key))
+                .ToList();
+        }
+
+        public override IEnumerable<string> GetEncoderPressActionNames(DeviceType deviceType)
+        {
+            return ActionsList
+                .Where(a => deviceType == DeviceType.Loupedeck20 && (a.Value is DynamicFolderAdjustmentDefinition || a.Value is DynamicFolderAdjustmentWithValueDefinition))
+                .Select(e => CreateCommandName(e.Key))
+                .ToList();
         }
 
         public override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
@@ -54,20 +72,31 @@ namespace Logi.KritaPlugin.DynamicFolders
         {
             if (Client == null) return;
 
-            var action = ActionsList[actionParameter] as DynamicFolderCommandDefinition;
+            var action = ActionsList[actionParameter];
 
-            if (action.ActionName != null)
+            if (action is DynamicFolderCommandDefinition command)
             {
-                Client.KritaInstance.ExecuteAction(action.ActionName).Wait();
-            }
-            else
-            {
-                action.Command(Client);
+                if (command.ActionName != null)
+                {
+                    Client.KritaInstance.ExecuteAction(command.ActionName).Wait();
+                }
+                else
+                {
+                    command.Command(Client);
+                }
+
+                if (command.ShouldCloseFolder)
+                {
+                    Close();
+                }
             }
 
-            if (action.ShouldCloseFolder)
+            if (action is DynamicFolderAdjustmentWithValueDefinition adjustReset)
             {
-                Close();
+                if (adjustReset.ResetValueMethod != null)
+                {
+                    adjustReset.ResetValueMethod(Client, () => AdjustmentValueChanged(actionParameter));
+                }
             }
         }
 
