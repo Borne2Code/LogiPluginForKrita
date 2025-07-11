@@ -12,7 +12,7 @@ namespace Logi.KritaPlugin.Constants
             LayerOpacityAdjustment.AdjustOpacity,
             LayerOpacityAdjustment.GetOpcityValue);
         public static DynamicFolderCommandDefinition Isolate => new DynamicFolderCommandDefinition("Isolate Layer", "Logi.KritaPlugin.images.Layers.ToggleVisible.png", ActionsNames.Isolate_active_layer, false);
-        public static DynamicFolderActionDefinition Move => new DynamicFolderAdjustmentDefinition("Move Layer", "Logi.KritaPlugin.images.Layers.Move.png", LayerMoveAdjustment.AdjustMoveLayer);
+        public static DynamicFolderAdjustmentDefinition Move => new DynamicFolderAdjustmentDefinition("Move Layer", "Logi.KritaPlugin.images.Layers.Move.png", LayerMoveAdjustment.AdjustMoveLayer);
         public static DynamicFolderCommandDefinition Style => new DynamicFolderCommandDefinition("Layer style", "Logi.KritaPlugin.images.Layers.Style.png", ActionsNames.Layer_style);
         public static DynamicFolderCommandDefinition GlobalSelection => new DynamicFolderCommandDefinition("Global selection", "Logi.KritaPlugin.images.Layers.GlobalSelection.png", LayerSelectGlobalSelecionCommand.SelectGlobalSelectionMask);
         public static DynamicFolderCommandDefinition Rename => new DynamicFolderCommandDefinition("Rename layer", "Logi.KritaPlugin.images.Layers.Rename.png", ActionsNames.RenameCurrentLayer);
