@@ -143,9 +143,13 @@
     <None Remove="images\Tools\Move.png" />
     <None Remove="images\Tools\PaintDynamic.png" />
     <None Remove="images\Tools\PaintMultibrush.png" />
+    <None Remove="images\Tools\PaintTools.png" />
+    <None Remove="images\Tools\ShapeTools.png" />
     <None Remove="images\Tools\SmartPatch.png" />
     <None Remove="images\Tools\Transform.png" />
+    <None Remove="images\Tools\TransformTools.png" />
     <None Remove="images\ToolTransform.png" />
+    <None Remove="images\View\BrushFade.png" />
     <None Remove="Resources\__init__.py" />
   </ItemGroup>
 
@@ -247,8 +251,12 @@
     <EmbeddedResource Include="images\Tools\Move.png" />
     <EmbeddedResource Include="images\Tools\PaintDynamic.png" />
     <EmbeddedResource Include="images\Tools\PaintMultibrush.png" />
+    <EmbeddedResource Include="images\Tools\PaintTools.png" />
+    <EmbeddedResource Include="images\Tools\ShapeTools.png" />
     <EmbeddedResource Include="images\Tools\SmartPatch.png" />
     <EmbeddedResource Include="images\Tools\Transform.png" />
+    <EmbeddedResource Include="images\Tools\TransformTools.png" />
+    <EmbeddedResource Include="images\View\BrushFade.png" />
   </ItemGroup>
 
   <ItemGroup>

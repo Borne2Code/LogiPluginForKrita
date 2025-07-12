@@ -5,7 +5,7 @@ namespace Logi.KritaPlugin.DynamicFolders
     public class ShapeToolsDynamicFolder : ToolsDynamicFolderBase
     {
         public ShapeToolsDynamicFolder()
-            : base("Shape Tools", ActionGroups.Tools, ShapeToolsConstants.Tools, "Logi.KritaPlugin.images.Tools.ShapeEdit.png")
+            : base("Shape Tools", ActionGroups.Tools, ShapeToolsConstants.Tools, "Logi.KritaPlugin.images.Tools.ShapeTools.png")
         {
         }
     }
