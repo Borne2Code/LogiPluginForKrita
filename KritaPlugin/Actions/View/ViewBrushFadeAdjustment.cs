@@ -15,7 +15,7 @@ namespace Logi.KritaPlugin.Actions
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public ViewBrushFadeAdjustment()
-            : base(displayName: ViewToolsConstants.BrushOpacity.Name, description: "Adjust brush fade", groupName: ActionGroups.View, hasReset: false)
+            : base(displayName: ViewToolsConstants.BrushFade.Name, description: "Adjust brush fade", groupName: ActionGroups.View, hasReset: false)
         {
         }
 
