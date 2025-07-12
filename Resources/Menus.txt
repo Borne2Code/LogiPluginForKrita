@@ -207,4 +207,27 @@
 		Round Corners
 		Small Tiles
 
-5. Animation
+
+Brush add :
+	Fade/shape ratio
+	Swap colors
+	Use pen pressure
+	Mirror Hor/Vert
+Tools:
+	Assistant
+	Measure
+	Reference image tool
+Selection Add:
+	Select mode Add/Subs/Inter/Replace
+	
+5. Colors
+	- Adjustments: 
+		
+	- Buttons:
+	- Wheel
+
+6. Animation
+	- Adjustments: 
+		
+	- Buttons:
+	- Wheel
