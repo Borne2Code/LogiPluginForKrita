@@ -15,7 +15,7 @@ namespace Logi.KritaPlugin.Actions
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public ViewBrushSizeAdjustment()
-            : base(displayName: ViewToolsConstants.BrushSize.Name, description: "Adjust brush size", groupName: ActionGroups.ViewAdjustements, hasReset: false)
+            : base(displayName: ViewToolsConstants.BrushSize.Name, description: "Adjust brush size", groupName: ActionGroups.View, hasReset: false)
         {
         }
 

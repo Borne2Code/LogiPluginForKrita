@@ -15,7 +15,7 @@ namespace Logi.KritaPlugin.Actions
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public ViewBrushOpacityAdjustment()
-            : base(displayName: ViewToolsConstants.BrushOpacity.Name, description: "Adjust brush opacity", groupName: ActionGroups.ViewAdjustements, hasReset: true)
+            : base(displayName: ViewToolsConstants.BrushOpacity.Name, description: "Adjust brush opacity", groupName: ActionGroups.View, hasReset: true)
         {
         }
 

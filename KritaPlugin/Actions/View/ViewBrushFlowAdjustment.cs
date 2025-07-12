@@ -15,7 +15,7 @@ namespace Logi.KritaPlugin.Actions
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public ViewBrushFlowAdjustment()
-            : base(displayName: ViewToolsConstants.BrushFlow.Name, description: "Adjust brush flow", groupName: ActionGroups.ViewAdjustements, hasReset: true)
+            : base(displayName: ViewToolsConstants.BrushFlow.Name, description: "Adjust brush flow", groupName: ActionGroups.View, hasReset: true)
         {
         }
 

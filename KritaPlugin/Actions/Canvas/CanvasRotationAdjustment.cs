@@ -15,7 +15,7 @@ namespace Logi.KritaPlugin.Actions
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public CanvasRotationAdjustment()
-            : base(displayName: ViewToolsConstants.CanvasRotation.Name, description: "Adjust canvas rotation", groupName: ActionGroups.CanvasAdjustements, hasReset: true)
+            : base(displayName: ViewToolsConstants.CanvasRotation.Name, description: "Adjust canvas rotation", groupName: ActionGroups.Canvas, hasReset: true)
         {
         }
 

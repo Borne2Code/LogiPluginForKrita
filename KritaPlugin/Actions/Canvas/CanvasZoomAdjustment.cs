@@ -15,7 +15,7 @@ namespace Logi.KritaPlugin.Actions
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public CanvasZoomAdjustment()
-            : base(displayName: ViewToolsConstants.CanvasZoom.Name, description: "Adjust canvas zoom", groupName: ActionGroups.CanvasAdjustements, hasReset: true)
+            : base(displayName: ViewToolsConstants.CanvasZoom.Name, description: "Adjust canvas zoom", groupName: ActionGroups.Canvas, hasReset: true)
         {
         }
 

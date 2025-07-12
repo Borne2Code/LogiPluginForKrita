@@ -15,7 +15,7 @@ namespace Logi.KritaPlugin.Actions
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public ViewBrushPatternSizeAdjustment()
-            : base(displayName: ViewToolsConstants.BrushPatternSize.Name, description: "Adjust brush pattern size. Available with Krita 5.3.x and above", groupName: ActionGroups.ViewAdjustements, hasReset: true)
+            : base(displayName: ViewToolsConstants.BrushPatternSize.Name, description: "Adjust brush pattern size. Available with Krita 5.3.x and above", groupName: ActionGroups.View, hasReset: true)
         {
         }
 

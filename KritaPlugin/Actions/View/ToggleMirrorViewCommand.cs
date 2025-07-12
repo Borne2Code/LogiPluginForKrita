@@ -12,7 +12,7 @@ namespace Logi.KritaPlugin.Actions
 
         // Initializes the command class.
         public ToggleMirrorViewCommand()
-            : base(displayName: ViewToolsConstants.Mirror.Name, description: "Toggle Mirror view mode", groupName: ActionGroups.ViewAdjustements)
+            : base(displayName: ViewToolsConstants.Mirror.Name, description: "Toggle Mirror view mode", groupName: ActionGroups.View)
         {
         }
 
