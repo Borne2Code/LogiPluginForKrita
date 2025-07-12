@@ -24,6 +24,11 @@
     <None Remove="DefaultProfile\DefaultProfile20.lp5" />
     <None Remove="DefaultProfile\DefaultProfile70.lp5" />
     <None Remove="DefaultProfile\DefaultProfile71.lp5" />
+    <None Remove="images\Color\Hue.png" />
+    <None Remove="images\Color\Lightness.png" />
+    <None Remove="images\Color\RedGreen.png" />
+    <None Remove="images\Color\Saturation.png" />
+    <None Remove="images\Color\YellowBlue.png" />
     <None Remove="images\DeleteSelection.png" />
     <None Remove="images\FilterApplyAgainNoPrompt.png" />
     <None Remove="images\FilterApplyAgainWithPrompt.png" />
@@ -148,6 +153,11 @@
     <EmbeddedResource Include="DefaultProfile\DefaultProfile20.lp5" />
     <EmbeddedResource Include="DefaultProfile\DefaultProfile70.lp5" />
     <EmbeddedResource Include="DefaultProfile\DefaultProfile71.lp5" />
+    <EmbeddedResource Include="images\Color\Hue.png" />
+    <EmbeddedResource Include="images\Color\Lightness.png" />
+    <EmbeddedResource Include="images\Color\RedGreen.png" />
+    <EmbeddedResource Include="images\Color\Saturation.png" />
+    <EmbeddedResource Include="images\Color\YellowBlue.png" />
     <EmbeddedResource Include="images\Filters\ApplyAgainNoPrompt.png" />
     <EmbeddedResource Include="images\Filters\ApplyAgainWithPrompt.png" />
     <EmbeddedResource Include="images\Filters\filters-AscCdl.png" />
