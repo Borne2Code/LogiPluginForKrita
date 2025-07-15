@@ -8,7 +8,7 @@
         public const string Tools = "Tools";
         public const string Layers = "Layers";
         public const string Selection = "Selection";
-        public const string General = "General";
+        public const string Edit = "Edit";
         public const string Filters = "Filters";
     }
 }
