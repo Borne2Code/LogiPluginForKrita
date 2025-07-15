@@ -29,6 +29,11 @@ namespace Logi.KritaPlugin.Constants
         public static DynamicFolderCommandDefinition QuickClippingGroup => new DynamicFolderCommandDefinition("Quick clipping group", "Logi.KritaPlugin.images.Layers.QuickClippingGroup.png", ActionsNames.Create_quick_clipping_group);
         public static DynamicFolderCommandDefinition MergeWithBelow => new DynamicFolderCommandDefinition("Merge with below", "Logi.KritaPlugin.images.Layers.MergeWithBelow.png", ActionsNames.Merge_layer);
         public static DynamicFolderCommandDefinition Flatten => new DynamicFolderCommandDefinition("Flatten", "Logi.KritaPlugin.images.Layers.Flatten.png", ActionsNames.Flatten_layer);
+        public static DynamicFolderCommandDefinition Copy => new DynamicFolderCommandDefinition("Copy", "Logi.KritaPlugin.images.Layers.Copy.png", ActionsNames.Copy_layer_clipboard, false);
+        public static DynamicFolderCommandDefinition Cut => new DynamicFolderCommandDefinition("Cut", "Logi.KritaPlugin.images.Layers.Cut.png", ActionsNames.Cut_layer_clipboard, false);
+        public static DynamicFolderCommandDefinition Paste => new DynamicFolderCommandDefinition("Paste", "Logi.KritaPlugin.images.Layers.Paste.png", ActionsNames.Paste_layer_from_clipboard, false);
+        public static DynamicFolderCommandDefinition CopyStyle => new DynamicFolderCommandDefinition("Copy Layer Style", "Logi.KritaPlugin.images.Layers.CopyStyle.png", ActionsNames.Copy_layer_style, false);
+        public static DynamicFolderCommandDefinition PasteStyle => new DynamicFolderCommandDefinition("Paste Layer Style", "Logi.KritaPlugin.images.Layers.PasteStyle.png", ActionsNames.Paste_layer_style, false);
 
         public static IDictionary<string, DynamicFolderActionDefinition> Tools => new Dictionary<string, DynamicFolderActionDefinition>
         {
@@ -36,11 +41,13 @@ namespace Logi.KritaPlugin.Constants
             { Opacity.Name, Opacity },
             { Isolate.Name, Isolate },
             { Move.Name, Move },
-            { Style.Name, Style },
             { GlobalSelection.Name, GlobalSelection },
             { Rename.Name, Rename },
             { Duplicate.Name, Duplicate },
             { Delete.Name, Delete },
+            { Copy.Name, Copy },
+            { Cut.Name, Cut },
+            { Paste.Name, Paste },
             { LockUnlock.Name, LockUnlock },
             { ToggleVisible.Name, ToggleVisible },
             { InheritAlpha.Name, InheritAlpha },
@@ -51,6 +58,9 @@ namespace Logi.KritaPlugin.Constants
             { QuickClippingGroup.Name, QuickClippingGroup },
             { MergeWithBelow.Name, MergeWithBelow },
             { Flatten.Name, Flatten },
+            { Style.Name, Style },
+            { CopyStyle.Name, CopyStyle },
+            { PasteStyle.Name, PasteStyle },
         };
     }
 }

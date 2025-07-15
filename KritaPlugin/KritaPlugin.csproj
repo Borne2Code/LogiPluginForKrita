@@ -108,10 +108,15 @@
     <None Remove="images\LayerQuickGroup.png" />
     <None Remove="images\LayerRename.png" />
     <None Remove="images\LayerStyle.png" />
+    <None Remove="images\Layers\Copy.png" />
+    <None Remove="images\Layers\CopyStyle.png" />
+    <None Remove="images\Layers\Cut.png" />
     <None Remove="images\Layers\Isolate.png" />
     <None Remove="images\Layers\LayerGroupsTools.png" />
     <None Remove="images\Layers\LayerNewTools.png" />
     <None Remove="images\Layers\LayersTools.png" />
+    <None Remove="images\Layers\Paste.png" />
+    <None Remove="images\Layers\PasteStyle.png" />
     <None Remove="images\Layers\Select.png" />
     <None Remove="images\LayerUngroup.png" />
     <None Remove="images\LockLayer.png" />
@@ -219,6 +224,9 @@
     <EmbeddedResource Include="images\Filters\filters-Wave.png" />
     <EmbeddedResource Include="images\Filters\filters-WaveletNoiseReducer.png" />
     <EmbeddedResource Include="images\Filters\filters-RoundCorners.png" />
+    <EmbeddedResource Include="images\Layers\Copy.png" />
+    <EmbeddedResource Include="images\Layers\CopyStyle.png" />
+    <EmbeddedResource Include="images\Layers\Cut.png" />
     <EmbeddedResource Include="images\Layers\GlobalSelection.png" />
     <EmbeddedResource Include="images\Layers\Delete.png" />
     <EmbeddedResource Include="images\Layers\Duplicate.png" />
@@ -243,6 +251,8 @@
     <EmbeddedResource Include="images\Layers\NewTransparency.png" />
     <EmbeddedResource Include="images\Layers\NewVector.png" />
     <EmbeddedResource Include="images\Layers\Opacity.png" />
+    <EmbeddedResource Include="images\Layers\Paste.png" />
+    <EmbeddedResource Include="images\Layers\PasteStyle.png" />
     <EmbeddedResource Include="images\Layers\Properties.png" />
     <EmbeddedResource Include="images\Layers\QuickClippingGroup.png" />
     <EmbeddedResource Include="images\Layers\QuickGroup.png" />
