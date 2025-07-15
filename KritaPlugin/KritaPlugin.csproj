@@ -108,6 +108,11 @@
     <None Remove="images\LayerQuickGroup.png" />
     <None Remove="images\LayerRename.png" />
     <None Remove="images\LayerStyle.png" />
+    <None Remove="images\Layers\Isolate.png" />
+    <None Remove="images\Layers\LayerGroupsTools.png" />
+    <None Remove="images\Layers\LayerNewTools.png" />
+    <None Remove="images\Layers\LayersTools.png" />
+    <None Remove="images\Layers\Select.png" />
     <None Remove="images\LayerUngroup.png" />
     <None Remove="images\LockLayer.png" />
     <None Remove="images\MoveLayer.png" />
@@ -219,6 +224,10 @@
     <EmbeddedResource Include="images\Layers\Duplicate.png" />
     <EmbeddedResource Include="images\Layers\Flatten.png" />
     <EmbeddedResource Include="images\Layers\InheritAlpha.png" />
+    <EmbeddedResource Include="images\Layers\Isolate.png" />
+    <EmbeddedResource Include="images\Layers\LayerGroupsTools.png" />
+    <EmbeddedResource Include="images\Layers\LayerNewTools.png" />
+    <EmbeddedResource Include="images\Layers\LayersTools.png" />
     <EmbeddedResource Include="images\Layers\LockAlpha.png" />
     <EmbeddedResource Include="images\Layers\MergeWithBelow.png" />
     <EmbeddedResource Include="images\Layers\NewClone.png" />
