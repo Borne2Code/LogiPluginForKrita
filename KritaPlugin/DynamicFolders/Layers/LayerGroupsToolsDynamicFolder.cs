@@ -5,7 +5,7 @@ namespace Logi.KritaPlugin.DynamicFolders
     public class LayerGroupsToolsDynamicFolder : ToolsDynamicFolderBase
     {
         public LayerGroupsToolsDynamicFolder()
-            :base("Groups Tools", ActionGroups.Layers, LayerGroupsToolsConstants.Tools, "Logi.KritaPlugin.images.Layers.NewGroup.png")
+            :base("Groups Tools", ActionGroups.Layers, LayerGroupsToolsConstants.Tools, "Logi.KritaPlugin.images.Layers.LayerGroupsTools.png")
         {
         }
     }

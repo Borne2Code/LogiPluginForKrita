@@ -238,6 +238,7 @@
     <EmbeddedResource Include="images\Layers\QuickClippingGroup.png" />
     <EmbeddedResource Include="images\Layers\QuickGroup.png" />
     <EmbeddedResource Include="images\Layers\Rename.png" />
+    <EmbeddedResource Include="images\Layers\Select.png" />
     <EmbeddedResource Include="images\Layers\Style.png" />
     <EmbeddedResource Include="images\Layers\Ungroup.png" />
     <EmbeddedResource Include="images\Layers\Lock.png" />
@@ -269,7 +270,6 @@
     <EmbeddedResource Include="images\Canvas\Zoom.png" />
     <EmbeddedResource Include="images\Selection\Delete.png" />
     <EmbeddedResource Include="images\Selection\Invert.png" />
-    <EmbeddedResource Include="images\Layers\CurrentAdjust.png" />
     <EmbeddedResource Include="images\Selection\SelectAll.png" />
     <EmbeddedResource Include="images\Selection\GrowShrink.png" />
     <EmbeddedResource Include="images\Tools\ShapeBezier.png" />
