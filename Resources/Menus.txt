@@ -219,14 +219,8 @@ Tools:
 	Reference image tool
 Selection Add:
 	Select mode Add/Subs/Inter/Replace
-	
-5. Colors
-	- Adjustments: 
-		
-	- Buttons:
-	- Wheel
 
-6. Animation
+5. Animation
 	- Adjustments: 
 		
 	- Buttons:
