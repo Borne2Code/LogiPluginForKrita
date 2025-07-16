@@ -9,7 +9,7 @@ namespace Logi.KritaPlugin.Constants
         public static DynamicFolderCommandDefinition Cut => new DynamicFolderCommandDefinition("Cut", "Logi.KritaPlugin.images.Edit.Cut.png", ActionsNames.Edit_cut, false);
         public static DynamicFolderCommandDefinition Paste => new DynamicFolderCommandDefinition("Paste", "Logi.KritaPlugin.images.Edit.Paste.png", ActionsNames.Edit_paste, false);
         public static DynamicFolderCommandDefinition PasteIntoLayer => new DynamicFolderCommandDefinition("Paste into layer", "Logi.KritaPlugin.images.Edit.PasteIntoLayer.png", ActionsNames.Paste_into, false);
-        public static DynamicFolderCommandDefinition PasteNewImage => new DynamicFolderCommandDefinition("Paste as new image", "Logi.KritaPlugin.images.Edit.PasteIntoLayer.png", ActionsNames.Paste_new, false);
+        public static DynamicFolderCommandDefinition PasteNewImage => new DynamicFolderCommandDefinition("Paste as new image", "Logi.KritaPlugin.images.Edit.PasteNewImage.png", ActionsNames.Paste_new, false);
         public static DynamicFolderCommandDefinition CopySharp => new DynamicFolderCommandDefinition("Copy Sharp", "Logi.KritaPlugin.images.Edit.CopySharp.png", ActionsNames.Copy_sharp, false);
         public static DynamicFolderCommandDefinition CutSharp => new DynamicFolderCommandDefinition("Cut Sharp", "Logi.KritaPlugin.images.Edit.CutSharp.png", ActionsNames.Cut_sharp, false);
         public static DynamicFolderCommandDefinition PasteCursor => new DynamicFolderCommandDefinition("Paste @cursor", "Logi.KritaPlugin.images.Edit.PasteAtCursor.png", ActionsNames.Paste_at, false);
