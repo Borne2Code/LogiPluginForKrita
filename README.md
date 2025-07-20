@@ -1,25 +1,45 @@
-﻿# LoupedeckKritaPlugin
-This plugin allows a better control of Krita with Loupedeck devices, using a direct control of the application without raising keyboard shortcuts.
-It has been developed and tested with a Loupedeck CT, it works only on Windows.
+﻿# Logi Krita Plugin (For Logitech MX Creative and Loupedeck devices)
+This plugin allows a better control of Krita with Logitech MX Creative and Loupedeck devices, using a direct control of the application without throwing keyboard shortcuts.
+It has been developed and tested with a Loupedeck CT, then adapted to the Logitech MX Creative device, it works on Windows and Mac OS.
 
-*If you're a developer and if you want want to contribute, to make it compatible with Mac OS for example, please let me know.*
+*If you're a developer and if you want want to contribute, please let me know.*
 *I'm also searching for beta-testers*
+
+# Hot news
+This version has been deeply refunded to be compatible with Logitech MX Creative and Mac OS.
+
+The support of Loupedeck devices and Windows remains, of course.
+
+It has some added features (with the [*New*] prefix in the documentation below), and many new dynamic folders.
+
+New sets of features has been added:
+* **Edit**: to manage clipboard,
+* **Color selector**: to manage the brush's current color.
+
+**WARNING**: Unfortunately, making this plugin compatible with MX Creative and Mac OS required to do structural changes that make your current profiles not working with this new version. You will have to recreate it, from the plugin's default profile or an empty profile.
+
+**I promise, that will not happen again in the future.**
 
 # Requirements
 To use this plugin you need:
 - Krita with Python capabilities (tested on Krita 5.2.9)
-- A Loupedeck device with recent driver (Tested on Loupedeck CT and driver version 5.9.x and 6.1.0)
-- Windows 10 or Windows 11
+- A compatible device:
+  - Loupedeck device with recent driver (Tested on Loupedeck CT and driver version 5.9.x and 6.1.0+)
+  - Logitech MX Creative with Logi Options+
+- A compatible computer with:
+  - Windows 10 or later
+  - Mac OS 12 or later for MX Creative or Mac OS 10.15 or later for Loupedeck CT
 
 # Installation
-From the Loupedeck Marketplace (https://loupedeckmarketplace.com/), search for the Krita plugin, and install it.
-The installation process will configure an extension into Krita, the name of this extension is *Loupedeck API Server", please don't remove it.
+From the Loupedeck Marketplace (https://loupedeckmp.logi.com/asset/Krita), search for the Krita plugin, and install it.
+From the Logi Options+ marketplace (https://www.logitech.com/software/marketplace/plugin-listing.html) search for the Krita plugin, and install it.
+The installation process will configure an extension into Krita, the name of this extension is "*Logi API Server*", please don't remove it.
 For the very first installation, you may have to activate the plugin extension in Krita:
 - Start Krita
-- Go to Settings/Configure Krita...
-- Go to the Python Plugin Manager section
-- Check the box on the line "Loupedeck API Server"
-- Press OK to validate, then restart Krita.
+- Go to *Settings*/*Configure Krita...*
+- Go to the *Python Plugin Manager* section
+- Check the box on the line "*Logi API Server*"
+- Press *OK* to validate, then restart Krita.
 
 The plugin and the Krita extension communicate through a socket on port 1247, for the moment this cannot be changed.
 
@@ -27,10 +47,10 @@ The plugin and the Krita extension communicate through a socket on port 1247, fo
 - In some rare cases, due to an issue with socket management in Python, Krita will freeze at start-up.
 Unfortunately, we couldn't understand why, you may restart Krita until it starts correctly.
 - When stopping the Loupedeck Driver, or uninstalling the Krita Plugin, any running instance of Krita can freeze, please be sure to save any open document and close Krita while doing a maintenance operation in the Loupedeck driver.
-You won't be anoyed if you enter the Loupedeck driver to manage and modify profiles.
+You won't be anoyed if you enter the Loupedeck driver or Logi Options+ to manage and modify profiles.
 
 # Features
-Here the list of features that the Loupedeck device can activate directly on Krita (without keyboard shortcuts).
+Here the list of features that the Loupedeck device or MX Creative can activate directly on Krita (without keyboard shortcuts).
 
 ## View, Canvas and general features
 
@@ -40,6 +60,7 @@ Here the list of features that the Loupedeck device can activate directly on Kri
 * **Brush size**: adjusts brush size (no push)
 * **Brush opacity**: adjusts brush opcity (push to reset 100%)
 * **Brush flow**: adjusts brush flow (push to reset 100%)
+* [*New*] - **Brush fade**: adjusts brush fade (no push)
 * **Brush rotation**: adjusts brush pattern rotation (push to reset 0°)
 * **Brush pattern size**: adjusts brush pattern size multiplier (push to reset x1)*
 
@@ -50,6 +71,18 @@ Here the list of features that the Loupedeck device can activate directly on Kri
 * **Action**: generic command to run Krita scripting actions*
 
 **: action names can be found at https://scripting.krita.org/action-dictionary.*
+
+### [*New*] - Dynamic folders
+* [*New*] - **View/Brush Tools**: opens a dynamic folder with the following actions and adjustments:
+  * **Zoom adjustment**
+  * **Rotation adjustment**
+  * **Brush size adjustment**
+  * **Brush opacity adjustment**
+  * **Brush flow adjustment**
+  * **Brush fade adjustment**
+  * **Brush rotation adjustment**
+  * **Brush pattern size adjustment**
+  * **Mirror**
 
 ## Tools
 
@@ -77,6 +110,67 @@ Here the list of features that the Loupedeck device can activate directly on Kri
 * **Text**: activates Text tool
 * **Transform**: activates Transform tool
 
+### [*New*] - Dynamic folders
+* [*New*] - **Paint Tools**: opens a dynamic folder with the following actions and adjustments:
+  * **Brush**
+  * **Fill**
+  * **Gradient**
+  * **DynamicBrush**
+  * **MultiBrush**
+  * **ColorizeMask**
+  * **SmartPatch**
+  * **EncloseAndFill**
+* [*New*] - **Vector Tools**: opens a dynamic folder with the following actions and adjustments:
+  * **SelectShape**
+  * **Text**
+  * **EditShape** 
+  * **Calligraphy**
+  * **Line**
+  * **Ellipse**
+  * **Rectangle**
+  * **Polygon**
+  * **Polyline**
+  * **Bezier**
+  * **FreeHandPath**
+* [*New*] - **Transform Tools**: opens a dynamic folder with the following actions and adjustments:
+  * **Transform**
+  * **Move**
+  * **Crop**
+
+## [*New*] - Edit
+
+### [*New*] - Commands
+* **Copy**: Copy the current layer/selection into clipboard
+* **Cut**: Cut the current layer/selection into clipboard
+* **Paste**: Paste the clipboard into a new layer
+* **Paste Into Layer**: Paste the clipboard into the current layer
+* **Paste New Image**: Paste the clipboard as new image
+* **Copy Sharp**: Copy the current layer/selection without transparency into clipboard
+* **Cut Sharp**: Cut the current layer/selection without transparency into clipboard
+* **Paste Cursor**: Paste the clipboard at cursor location
+* **Paste As Ref**: Paste the clipboard as reference image
+
+### [*New*] - Dynamic folders
+* [*New*] - **Edit tools**: opens a dynamic folder with the following actions and adjustments:
+  * **Copy**
+  * **Cut**
+  * **Paste**
+  * **Paste Into Layer**
+  * **Paste New Image**
+  * **Copy Sharp**
+  * **Cut Sharp**
+  * **Paste Cursor**
+  * **Paste As Ref**
+
+## [*New*] - Color selector
+
+### [*New*] - Adjustments
+* **Adjust color Hue**: Adjusts the Hue of the brush's color (no push)
+* **Adjust color lightness**: Adjusts the lightness of the brush's color (no push)
+* **Adjust color saturation**: Adjusts the saturation of the brush's color (no push)
+* **Adjust color Red/Green**: Adjusts the brush's color more Red or more Green
+* **Adjust color Yellow/Blue**: Adjusts the brush's color more Yellow or more Blue
+
 ## Layers
 
 ### Adjustments
@@ -85,6 +179,12 @@ Here the list of features that the Loupedeck device can activate directly on Kri
 * **Move layer**: moves selected layer up/down (push to toggle layer visible)
 
 ### Commands
+* [*New*] - **Copy layer**: copy the current layer to clipboard
+* [*New*] - **Copy layer style**: copy the current layer style to clipboard
+* [*New*] - **Cut layer**: cut the current layer to clipboard
+* [*New*] - **Isolate**: make only the current layer visible for display
+* [*New*] - **Paste layer**: paste the layer from clipboard
+* [*New*] - **Paste layer style**: Paste the layer style from clipboard to the current layer
 * **Delete Layer**: deletes selected layer
 * **Duplicate layer**: duplicates selected layer
 * **Flatten layer**: flattens selected group/layer into a single raster layer
@@ -133,6 +233,53 @@ Here the list of features that the Loupedeck device can activate directly on Kri
 	* **Scale  to PPI**: selects the Scale  to PPI radio for scaling mode
   * On a filter layer or a filter mask, allows the control of the dialog as described in the Filters' section.
   * On other layer types, the dynamic folder is empty.
+* [*New*] - **Layer tools**: opens a dynamic folder with the following actions and adjustments:
+  * **Select Current adjustment**
+  * **Opacity adjustment**
+  * **Isolate**
+  * **Move adjustment**
+  * **Style**
+  * **Global Selection**
+  * **Rename**
+  * **Duplicate**
+  * **Delete**
+  * **Lock/Unlock**
+  * **Toggle Visible**
+  * **Inherit Alpha**
+  * **Lock Alpha**
+  * **Quick Group**
+  * **New Group**
+  * **Ungroup**
+  * **Quick Clipping Group**
+  * **Merge With Below**
+  * **Flatten**
+  * **Copy**
+  * **Cut**
+  * **Paste**
+  * **Copy Style**
+  * **Paste Style**
+* [*New*] - **New layer tools**: opens a dynamic folder with the following actions and adjustments:
+  * **New Paint Layer**
+  * **New Vector Layer**
+  * **New Fill Layer**
+  * **New Filter Layer**
+  * **New Filter Mask**
+  * **New Transparency Mask**
+  * **New Transform Mask**
+  * **New Clone Layer**
+  * **New File Layer**
+  * **New Colorize Mask**
+  * **New Local Selection**
+* [*New*] - **Groups tools**: opens a dynamic folder with the following actions and adjustments:
+  * **Select Current adjustment**
+  * **Move adjustment**
+  * **Isolate**
+  * **Quick Group**
+  * **New Group**
+  * **Ungroup**
+  * **Quick Clipping Group**
+  * **Merge With Below**
+  * **Flatten**
 
 ## Selections
 
@@ -153,6 +300,21 @@ Here the list of features that the Loupedeck device can activate directly on Kri
 * **Rectangular selection**: activate the rectangular selection tool
 * **Select All**: selects the full canvas
 * **Similar colors selection**: activates the similar colors selection tool
+
+### [*New*] - Dynamic folders
+* [*New*] - **Selection tools**: opens a dynamic folder with the following actions and adjustments:
+  * **Rectangle**
+  * **Elipse**
+  * **Polygone**
+  * **Freehand**
+  * **Select All**
+  * **Invert**
+  * **Delete**
+  * **Contiguous**
+  * **Similar Color**
+  * **Bezier**
+  * **Magnetic**
+  * **GrowShrink adjustment**
 
 ## Filters
 
