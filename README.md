@@ -1,4 +1,5 @@
 ﻿# Logi Krita Plugin (For Logitech MX Creative and Loupedeck devices)
+![](./Resources/ReadmeImage.png)
 This plugin allows a better control of Krita with Logitech MX Creative and Loupedeck devices, using a direct control of the application without throwing keyboard shortcuts.
 It has been developed and tested with a Loupedeck CT, then adapted to the Logitech MX Creative device, it works on Windows and Mac OS.
 
