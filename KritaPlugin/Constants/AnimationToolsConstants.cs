@@ -14,10 +14,10 @@ namespace Logi.KritaPlugin.Constants
             AnimationKeyframeAdjustment.AdjustKeyframe);
         public static DynamicFolderCommandDefinition PlayPause => new DynamicFolderCommandDefinition("Play/Pause",
             "Logi.KritaPlugin.images.Animation.PlayPause.png",
-            ActionsNames.Toggle_playback);
+            ActionsNames.Toggle_playback, false);
         public static DynamicFolderCommandDefinition Stop => new DynamicFolderCommandDefinition("Stop playback",
             "Logi.KritaPlugin.images.Animation.Stop.png",
-            ActionsNames.Stop_playback);
+            ActionsNames.Stop_playback, false);
 
         public static IDictionary<string, DynamicFolderActionDefinition> Tools => new Dictionary<string, DynamicFolderActionDefinition>
         {
