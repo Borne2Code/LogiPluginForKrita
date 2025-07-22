@@ -27,7 +27,9 @@
     <None Remove="images\Color\Hue.png" />
     <None Remove="images\Color\Lightness.png" />
     <None Remove="images\Color\RedGreen.png" />
+    <None Remove="images\Color\Sample.png" />
     <None Remove="images\Color\Saturation.png" />
+    <None Remove="images\Color\Swap.png" />
     <None Remove="images\Color\YellowBlue.png" />
     <None Remove="images\DeleteSelection.png" />
     <None Remove="images\Edit\Copy.png" />
@@ -170,6 +172,7 @@
     <None Remove="images\Tools\TransformTools.png" />
     <None Remove="images\ToolTransform.png" />
     <None Remove="images\View\BrushFade.png" />
+    <None Remove="images\View\TogglePenPressure.png" />
     <None Remove="Resources\__init__.py" />
   </ItemGroup>
 
@@ -180,7 +183,9 @@
     <EmbeddedResource Include="images\Color\Hue.png" />
     <EmbeddedResource Include="images\Color\Lightness.png" />
     <EmbeddedResource Include="images\Color\RedGreen.png" />
+    <EmbeddedResource Include="images\Color\Sample.png" />
     <EmbeddedResource Include="images\Color\Saturation.png" />
+    <EmbeddedResource Include="images\Color\Swap.png" />
     <EmbeddedResource Include="images\Color\YellowBlue.png" />
     <EmbeddedResource Include="images\Edit\Copy.png" />
     <EmbeddedResource Include="images\Edit\CopySharp.png" />
@@ -332,6 +337,7 @@
     <EmbeddedResource Include="images\Selection\ToolSelectPolygonal.png" />
     <EmbeddedResource Include="images\Selection\ToolSelectRectangular.png" />
     <EmbeddedResource Include="images\Selection\ToolSelectSimilarColors.png" />
+    <EmbeddedResource Include="images\View\TogglePenPressure.png" />
     <EmbeddedResource Include="Resources\logiApiServer.py" />
     <EmbeddedResource Include="Resources\logi_api_server.desktop" />
     <EmbeddedResource Include="Resources\__init__.py" />

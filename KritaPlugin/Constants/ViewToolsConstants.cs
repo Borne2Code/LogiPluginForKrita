@@ -44,6 +44,7 @@ namespace Logi.KritaPlugin.Constants
             ViewBrushPatternSizeAdjustment.AdjustBrushPatternSize,
             ViewBrushPatternSizeAdjustment.GetBrushPatternSize,
             ViewBrushPatternSizeAdjustment.ResetBrushPatternSize);
+        public static DynamicFolderCommandDefinition PenPressure => new DynamicFolderCommandDefinition("Pen pressure", "Logi.KritaPlugin.images.View.TogglePenPressure.png", ActionsNames.Disable_pressure, false);
 
         public static IDictionary<string, DynamicFolderActionDefinition> Tools => new Dictionary<string, DynamicFolderActionDefinition>
         {
@@ -56,6 +57,7 @@ namespace Logi.KritaPlugin.Constants
             { BrushFade.Name, BrushFade },
             { BrushRotation.Name, BrushRotation },
             { BrushPatternSize.Name, BrushPatternSize },
+            { PenPressure.Name, PenPressure },
         };
     }
 }

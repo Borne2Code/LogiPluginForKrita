@@ -1,5 +1,6 @@
 ﻿using Logi.KritaPlugin.Actions;
 using Logi.KritaPlugin.DynamicFolders;
+using LogiKritaApiClient.ClientBase;
 
 namespace Logi.KritaPlugin.Constants
 {
@@ -20,6 +21,12 @@ namespace Logi.KritaPlugin.Constants
         public static DynamicFolderAdjustmentDefinition RedGreen => new DynamicFolderAdjustmentDefinition("R/G",
             "Logi.KritaPlugin.images.Color.RedGreen.png",
             ColorSelectorRedGreenAdjustment.AdjustRedGreen);
+        public static DynamicFolderCommandDefinition Swap => new DynamicFolderCommandDefinition("Swap",
+            "Logi.KritaPlugin.images.Color.Swap.png",
+            ActionsNames.Toggle_fg_bg, false);
+        public static DynamicFolderCommandDefinition Sample => new DynamicFolderCommandDefinition("Sample",
+            "Logi.KritaPlugin.images.Color.Sample.png",
+            ActionsNames.Sample_screen_color);
 
         public static IDictionary<string, DynamicFolderActionDefinition> Tools => new Dictionary<string, DynamicFolderActionDefinition>
         {
@@ -28,6 +35,8 @@ namespace Logi.KritaPlugin.Constants
             { Hue.Name, Hue },
             { YellowBlue.Name, YellowBlue },
             { RedGreen.Name, RedGreen },
+            { Swap.Name, Swap },
+            { Sample.Name, Sample },
         };
     }
 }
