@@ -26,7 +26,7 @@ namespace Logi.KritaPlugin.Constants
             ActionsNames.Toggle_fg_bg, false);
         public static DynamicFolderCommandDefinition Sample => new DynamicFolderCommandDefinition("Sample",
             "Logi.KritaPlugin.images.Color.Sample.png",
-            ActionsNames.Sample_screen_color);
+            ActionsNames.Sample_screen_color_real_canvas);
 
         public static IDictionary<string, DynamicFolderActionDefinition> Tools => new Dictionary<string, DynamicFolderActionDefinition>
         {

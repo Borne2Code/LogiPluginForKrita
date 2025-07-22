@@ -24,6 +24,9 @@
     <None Remove="DefaultProfile\DefaultProfile20.lp5" />
     <None Remove="DefaultProfile\DefaultProfile70.lp5" />
     <None Remove="DefaultProfile\DefaultProfile71.lp5" />
+    <None Remove="images\Animation\AnimationTools.png" />
+    <None Remove="images\Animation\PlayPause.png" />
+    <None Remove="images\Animation\Stop.png" />
     <None Remove="images\Color\Hue.png" />
     <None Remove="images\Color\Lightness.png" />
     <None Remove="images\Color\RedGreen.png" />
@@ -180,6 +183,11 @@
     <EmbeddedResource Include="DefaultProfile\DefaultProfile20.lp5" />
     <EmbeddedResource Include="DefaultProfile\DefaultProfile70.lp5" />
     <EmbeddedResource Include="DefaultProfile\DefaultProfile71.lp5" />
+    <EmbeddedResource Include="images\Animation\SelectFrame.png" />
+    <EmbeddedResource Include="images\Animation\SelectKeyFrame.png" />
+    <EmbeddedResource Include="images\Animation\AnimationTools.png" />
+    <EmbeddedResource Include="images\Animation\PlayPause.png" />
+    <EmbeddedResource Include="images\Animation\Stop.png" />
     <EmbeddedResource Include="images\Color\Hue.png" />
     <EmbeddedResource Include="images\Color\Lightness.png" />
     <EmbeddedResource Include="images\Color\RedGreen.png" />

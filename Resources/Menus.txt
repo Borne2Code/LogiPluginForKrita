@@ -209,19 +209,25 @@
 
 
 Brush add :
-	Fade/shape ratio
-	Swap colors
-	Use pen pressure
-	Mirror Hor/Vert
+	[x] Fade
+	[x] Swap colors
+	[x] Sample color
+	[x] Use pen pressure
+	[ ] Mirror Hor/Vert
 Tools:
-	Assistant
-	Measure
-	Reference image tool
+	[ ] Assistant
+	[ ] Measure
+	[ ] Reference image tool
 Selection Add:
-	Select mode Add/Subs/Inter/Replace
+	[ ] Select mode Add/Subs/Inter/Replace
 
 5. Animation
 	- Adjustments: 
-		
+		[x] Previous/Next frame
+		[x] Previous/Next keyframe
 	- Buttons:
+	    [x] Play/pause animation
+		[x] Stop animation
 	- Wheel
+		[x] Previous/Next frame
+		[x] Previous/Next keyframe

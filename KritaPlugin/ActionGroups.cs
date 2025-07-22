@@ -10,5 +10,6 @@
         public const string Selection = "Selection";
         public const string Edit = "Edit";
         public const string Filters = "Filters";
+        public const string Animation = "Animation";
     }
 }
