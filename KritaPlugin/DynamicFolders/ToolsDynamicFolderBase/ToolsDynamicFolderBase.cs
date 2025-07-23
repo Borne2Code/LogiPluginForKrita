@@ -80,7 +80,11 @@ namespace Logi.KritaPlugin.DynamicFolders
                 {
                     Client.KritaInstance.ExecuteAction(command.ActionName).Wait();
                 }
-                else
+                else if (command.ShortCut != null)
+                {
+                    Plugin.ClientApplication.SendKeyboardShortcut(command.ShortCut.Value);
+                }
+                else if (command.Command != null)
                 {
                     command.Command(Client);
                 }

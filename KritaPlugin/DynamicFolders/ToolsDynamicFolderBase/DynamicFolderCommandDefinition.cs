@@ -1,4 +1,5 @@
 ﻿using LogiKritaApiClient.ClientBase;
+using Loupedeck;
 
 namespace Logi.KritaPlugin.DynamicFolders
 {
@@ -6,6 +7,7 @@ namespace Logi.KritaPlugin.DynamicFolders
     {
         public string ActionName { get; }
         public Action<Client> Command { get; }
+        public VirtualKeyCode? ShortCut { get; }
         public bool ShouldCloseFolder { get; }
 
         public DynamicFolderCommandDefinition(string name, string bitmapImageName, string actionName, bool shouldCLoseFolder = true)
@@ -13,6 +15,7 @@ namespace Logi.KritaPlugin.DynamicFolders
         {
             ActionName = actionName;
             Command = null;
+            ShortCut = null;
             ShouldCloseFolder = shouldCLoseFolder;
         }
 
@@ -21,6 +24,16 @@ namespace Logi.KritaPlugin.DynamicFolders
         {
             ActionName = null;
             Command = command;
+            ShortCut = null;
+            ShouldCloseFolder = shouldCLoseFolder;
+        }
+
+        public DynamicFolderCommandDefinition(string name, string bitmapImageName, VirtualKeyCode shortCut, bool shouldCLoseFolder = true)
+            : base(name, bitmapImageName)
+        {
+            ActionName = null;
+            Command = null;
+            ShortCut = shortCut;
             ShouldCloseFolder = shouldCLoseFolder;
         }
     }

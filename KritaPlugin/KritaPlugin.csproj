@@ -39,7 +39,10 @@
     <None Remove="images\Edit\CopySharp.png" />
     <None Remove="images\Edit\Cut.png" />
     <None Remove="images\Edit\CutSharp.png" />
+    <None Remove="images\Edit\Delete.png" />
     <None Remove="images\Edit\EditTools.png" />
+    <None Remove="images\Edit\FillBackground.png" />
+    <None Remove="images\Edit\FillForeground.png" />
     <None Remove="images\Edit\Paste.png" />
     <None Remove="images\Edit\PasteAsRef.png" />
     <None Remove="images\Edit\PasteAtCursor.png" />
@@ -199,7 +202,10 @@
     <EmbeddedResource Include="images\Edit\CopySharp.png" />
     <EmbeddedResource Include="images\Edit\Cut.png" />
     <EmbeddedResource Include="images\Edit\CutSharp.png" />
+    <EmbeddedResource Include="images\Edit\Delete.png" />
     <EmbeddedResource Include="images\Edit\EditTools.png" />
+    <EmbeddedResource Include="images\Edit\FillBackground.png" />
+    <EmbeddedResource Include="images\Edit\FillForeground.png" />
     <EmbeddedResource Include="images\Edit\Paste.png" />
     <EmbeddedResource Include="images\Edit\PasteAsRef.png" />
     <EmbeddedResource Include="images\Edit\PasteAtCursor.png" />
