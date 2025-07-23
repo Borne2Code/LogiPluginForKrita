@@ -141,6 +141,10 @@
     <None Remove="images\MoveLayer.png" />
     <None Remove="images\SelectAll.png" />
     <None Remove="images\SelectionGrowShrink.png" />
+    <None Remove="images\Selection\ModeAdd.png" />
+    <None Remove="images\Selection\ModeIntersect.png" />
+    <None Remove="images\Selection\ModeReplace.png" />
+    <None Remove="images\Selection\ModeSubstract.png" />
     <None Remove="images\ShapeBezier.png" />
     <None Remove="images\ShapeCalligraphy.png" />
     <None Remove="images\ShapeEdit.png" />
@@ -301,6 +305,10 @@
     <EmbeddedResource Include="images\Layers\Ungroup.png" />
     <EmbeddedResource Include="images\Layers\Lock.png" />
     <EmbeddedResource Include="images\Layers\Move.png" />
+    <EmbeddedResource Include="images\Selection\ModeAdd.png" />
+    <EmbeddedResource Include="images\Selection\ModeIntersect.png" />
+    <EmbeddedResource Include="images\Selection\ModeReplace.png" />
+    <EmbeddedResource Include="images\Selection\ModeSubstract.png" />
     <EmbeddedResource Include="images\Tools\Brush.png" />
     <EmbeddedResource Include="images\Tools\ColorizeMask.png" />
     <EmbeddedResource Include="images\Tools\Crop.png" />

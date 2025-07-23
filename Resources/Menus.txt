@@ -214,12 +214,16 @@ Brush add :
 	[x] Sample color
 	[x] Use pen pressure
 	[ ] Mirror Hor/Vert
+Editx
+	[x] Delete
+	[x] Fill foreground
+	[x] Fill background
 Tools:
 	[ ] Assistant
 	[ ] Measure
 	[ ] Reference image tool
 Selection Add:
-	[ ] Select mode Add/Subs/Inter/Replace
+	[x] Select mode Add/Subs/Inter/Replace
 
 5. Animation
 	- Adjustments: 

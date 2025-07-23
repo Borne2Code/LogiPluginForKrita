@@ -18,6 +18,10 @@ namespace Logi.KritaPlugin.Constants
         public static DynamicFolderCommandDefinition Bezier => new DynamicFolderCommandDefinition("Bezier", "Logi.KritaPlugin.images.Selection.ToolSelectBezier.png", ActionsNames.KisToolSelectPath);
         public static DynamicFolderCommandDefinition Magnetic => new DynamicFolderCommandDefinition("Magnetic", "Logi.KritaPlugin.images.Selection.ToolSelectMagnetic.png", ActionsNames.KisToolSelectMagnetic);
         public static DynamicFolderAdjustmentDefinition GrowShrink => new DynamicFolderAdjustmentDefinition("Grow/Shrink", "Logi.KritaPlugin.images.Selection.GrowShrink.png", SelectionGrowShrinkAdjustment.AdjustSelectionSize);
+        public static DynamicFolderCommandDefinition ModeReplace => new DynamicFolderCommandDefinition("Mode replace", "Logi.KritaPlugin.images.Selection.ModeReplace.png", ActionsNames.Selection_tool_mode_replace);
+        public static DynamicFolderCommandDefinition ModeAdd => new DynamicFolderCommandDefinition("Mode add", "Logi.KritaPlugin.images.Selection.ModeAdd.png", ActionsNames.Selection_tool_mode_add);
+        public static DynamicFolderCommandDefinition ModeSubstract => new DynamicFolderCommandDefinition("Mode substract", "Logi.KritaPlugin.images.Selection.ModeSubstract.png", ActionsNames.Selection_tool_mode_subtract);
+        public static DynamicFolderCommandDefinition ModeIntersect => new DynamicFolderCommandDefinition("Mode Intersect", "Logi.KritaPlugin.images.Selection.ModeIntersect.png", ActionsNames.Selection_tool_mode_intersect);
 
         public static IDictionary<string, DynamicFolderActionDefinition> Tools => new Dictionary<string, DynamicFolderActionDefinition>
         {
@@ -32,7 +36,11 @@ namespace Logi.KritaPlugin.Constants
             { SimilarColor.Name, SimilarColor },
             { Bezier.Name, Bezier },
             { Magnetic.Name, Magnetic },
-            { GrowShrink.Name, GrowShrink }
+            { GrowShrink.Name, GrowShrink },
+            { ModeReplace.Name, ModeReplace },
+            { ModeAdd.Name, ModeAdd },
+            { ModeSubstract.Name, ModeSubstract },
+            { ModeIntersect.Name, ModeIntersect },
         };
     }
 }
