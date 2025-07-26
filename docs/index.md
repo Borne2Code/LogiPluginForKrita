@@ -25,8 +25,8 @@ It has some added features (with the <img src="./images/NewSymbol.png" width="20
 
 New sets of features has been added:
 * [**Edit**](./edit.md): to manage clipboard,
-* **Color selector**: to manage the brush's current color,
-* **Animation**: to manage animations
+* [**Color selector**](./color.md): to manage the brush's current color,
+* [**Animation**](./animation.md): to manage animations
 
 **WARNING**: Unfortunately, making this plugin compatible with MX Creative and Mac OS required to do structural changes that make your current profiles not working with this new version. You will have to recreate it, from the plugin's default profile or an empty profile.
 
