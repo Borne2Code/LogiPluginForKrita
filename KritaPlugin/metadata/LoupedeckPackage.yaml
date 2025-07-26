@@ -12,16 +12,16 @@ name: Krita
 displayName: Krita
 
 # Short description of the plugin.
-description: Plugin for Krita. Automatically installs a Krita extension named "Loupedeck API Server", please restart Krita after plugin install or update.
+description: Plugin for Krita. Automatically installs a Krita extension named "Logi API Server", please restart Krita after plugin install or update.
 
 # Name of the plugin library file.
 pluginFileName: KritaPlugin.dll
 
 # Plugin version.
-version: 1.2
+version: 2.0
 
 # Author of the plugin. The author can be a company or an individual developer.
-author: Born2Code
+author: Borne2Code
 
 # Copyright information.
 copyright: Copyright © 2025 Born2Code. All rights reserved.
@@ -74,7 +74,7 @@ licenseUrl: https://opensource.org/licenses/MIT
 # URL of the support page where the users can send improvement suggestions and report bugs.
 # The URL is shown in Loupedeck Marketplace. The page can be for example a GitHub issues page.
 # NOTE: This setting is recommended when publishing the plugin in Loupedeck Marketplace.
-supportPageUrl: https://github.com/christophe-borne/LoupedeckKritaPlugin/issues
+supportPageUrl: https://github.com/Borne2Code/LogiPluginForKrita/issues
 
 # URL of the plugin homepage. The URL is shown in Loupedeck Marketplace.
-homePageUrl: https://github.com/christophe-borne/LoupedeckKritaPlugin
+homePageUrl: https://borne2code.github.io/LogiPluginForKrita/

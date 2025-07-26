@@ -6,7 +6,7 @@ It has been developed and tested with a Loupedeck CT, then adapted to the Logite
 *If you're a developer and if you want want to contribute, please let me know.*
 *I'm also searching for beta-testers.*
 
-Please see the [official plugin webpage](https://christophe-borne.github.io/LogiPluginForKrita/index.html) for more information.
+Please see the [official plugin webpage](https://borne2code.github.io/LogiPluginForKrita/index.html) for more information.
 
 # Requirements
 To use this plugin you need:
@@ -38,4 +38,4 @@ Unfortunately, we couldn't understand why, you may restart Krita until it starts
 You won't be anoyed if you enter the Loupedeck driver or Logi Options+ to manage and modify profiles.
 
 # Features
-The full list of features is on the [official plugin webpage](https://christophe-borne.github.io/LogiPluginForKrita/index.html#features).
+The full list of features is on the [official plugin webpage](https://borne2code.github.io/LogiPluginForKrita/index.html#features).
