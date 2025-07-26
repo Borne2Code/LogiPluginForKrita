@@ -6,7 +6,7 @@ It has been developed and tested with a Loupedeck CT, then adapted to the Logite
 *If you're a developer and if you want want to contribute, please let me know.*
 *I'm also searching for beta-testers.*
 
-Please see the [official plugin webpage](https://christophe-borne.github.io/LogiPluginForKrita/index.html#features) for more information.
+Please see the [official plugin webpage](https://christophe-borne.github.io/LogiPluginForKrita/index.html) for more information.
 
 # Requirements
 To use this plugin you need:
