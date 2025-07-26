@@ -17,7 +17,7 @@
 * **Action**: generic command to run Krita scripting actions*
 * **Pen pressure**: Active/deactivate pen pressure sensor on the current brush
 
-**: action names can be found at https://scripting.krita.org/action-dictionary.*
+**: action names can be found at [https://scripting.krita.org/action-dictionary](https://scripting.krita.org/action-dictionary).*
 
 ## <img src="./images/NewSymbol.png" width="20px"> Dynamic folders
 * <img src="./images/NewSymbol.png" width="20px"> **View/Brush Tools**: opens a dynamic folder with the following actions and adjustments:
@@ -30,4 +30,4 @@
   * **Brush rotation adjustment**
   * **Brush pattern size adjustment**
   * **Mirror**
-
+  * **Pen pressure**
