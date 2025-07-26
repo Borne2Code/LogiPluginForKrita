@@ -1,5 +1,5 @@
 ﻿# Logi Krita Plugin (For Logitech MX Creative and Loupedeck devices)
-![](./Resources/ReadmeImage.png)
+![](./images/ReadmeImage.png)
 This plugin allows a better control of Krita with Logitech MX Creative and Loupedeck devices, using a direct control of the application without throwing keyboard shortcuts.
 It has been developed and tested with a Loupedeck CT, then adapted to the Logitech MX Creative device, it works on Windows and Mac OS.
 
@@ -11,10 +11,10 @@ This version has been deeply refunded to be compatible with Logitech MX Creative
 
 The support of Loupedeck devices and Windows remains, of course.
 
-It has some added features (with the <img src="./Resources/NewSymbol.png" width="20px"> prefix in the documentation below), and many new dynamic folders.
+It has some added features (with the <img src="./images/NewSymbol.png" width="20px"> prefix in the documentation below), and many new dynamic folders.
 
 New sets of features has been added:
-* **Edit**: to manage clipboard,
+* [**Edit**](./edit.md): to manage clipboard,
 * **Color selector**: to manage the brush's current color,
 * **Animation**: to manage animations
 
@@ -62,7 +62,7 @@ Here the list of features that the Loupedeck device or MX Creative can activate 
 * **Brush size**: adjusts brush size (no push)
 * **Brush opacity**: adjusts brush opcity (push to reset 100%)
 * **Brush flow**: adjusts brush flow (push to reset 100%)
-* <img src="./Resources/NewSymbol.png" width="20px"> **Brush fade**: adjusts brush fade (no push)
+* <img src="./images/NewSymbol.png" width="20px"> **Brush fade**: adjusts brush fade (no push)
 * **Brush rotation**: adjusts brush pattern rotation (push to reset 0°)
 * **Brush pattern size**: adjusts brush pattern size multiplier (push to reset x1)*
 
@@ -75,8 +75,8 @@ Here the list of features that the Loupedeck device or MX Creative can activate 
 
 **: action names can be found at https://scripting.krita.org/action-dictionary.*
 
-### <img src="./Resources/NewSymbol.png" width="20px"> Dynamic folders
-* <img src="./Resources/NewSymbol.png" width="20px"> **View/Brush Tools**: opens a dynamic folder with the following actions and adjustments:
+### <img src="./images/NewSymbol.png" width="20px"> Dynamic folders
+* <img src="./images/NewSymbol.png" width="20px"> **View/Brush Tools**: opens a dynamic folder with the following actions and adjustments:
   * **Zoom adjustment**
   * **Rotation adjustment**
   * **Brush size adjustment**
@@ -113,8 +113,8 @@ Here the list of features that the Loupedeck device or MX Creative can activate 
 * **Text**: activates Text tool
 * **Transform**: activates Transform tool
 
-### <img src="./Resources/NewSymbol.png" width="20px"> Dynamic folders
-* <img src="./Resources/NewSymbol.png" width="20px"> **Paint Tools**: opens a dynamic folder with the following actions and adjustments:
+### <img src="./images/NewSymbol.png" width="20px"> Dynamic folders
+* <img src="./images/NewSymbol.png" width="20px"> **Paint Tools**: opens a dynamic folder with the following actions and adjustments:
   * **Brush**
   * **Fill**
   * **Gradient**
@@ -123,7 +123,7 @@ Here the list of features that the Loupedeck device or MX Creative can activate 
   * **ColorizeMask**
   * **SmartPatch**
   * **EncloseAndFill**
-* <img src="./Resources/NewSymbol.png" width="20px"> **Vector Tools**: opens a dynamic folder with the following actions and adjustments:
+* <img src="./images/NewSymbol.png" width="20px"> **Vector Tools**: opens a dynamic folder with the following actions and adjustments:
   * **SelectShape**
   * **Text**
   * **EditShape** 
@@ -135,29 +135,29 @@ Here the list of features that the Loupedeck device or MX Creative can activate 
   * **Polyline**
   * **Bezier**
   * **FreeHandPath**
-* <img src="./Resources/NewSymbol.png" width="20px"> **Transform Tools**: opens a dynamic folder with the following actions and adjustments:
+* <img src="./images/NewSymbol.png" width="20px"> **Transform Tools**: opens a dynamic folder with the following actions and adjustments:
   * **Transform**
   * **Move**
   * **Crop**
 
-## <img src="./Resources/NewSymbol.png" width="20px"> Edit
+## <img src="./images/NewSymbol.png" width="20px"> Edit
 
 ### Commands
-* <img src="./Resources/NewSymbol.png" width="20px"> **Copy**: Copies the current layer content or selection into clipboard
-* <img src="./Resources/NewSymbol.png" width="20px"> **Cut**: Cuts the current layer content or selection into clipboard
-* <img src="./Resources/NewSymbol.png" width="20px"> **Paste**: Pastes the clipboard into a new layer
-* <img src="./Resources/NewSymbol.png" width="20px"> **Delete**: Deletes the current layer content or selection
-* <img src="./Resources/NewSymbol.png" width="20px"> **Fill with Foreground**: Fills the current layer content or selection with the foreground color
-* <img src="./Resources/NewSymbol.png" width="20px"> **Fill with Background**: Fills the current layer content or selection with the background color
-* <img src="./Resources/NewSymbol.png" width="20px"> **Paste Into Layer**: Pastes the clipboard into the current layer
-* <img src="./Resources/NewSymbol.png" width="20px"> **Paste New Image**: Pastes the clipboard as new image
-* <img src="./Resources/NewSymbol.png" width="20px"> **Copy Sharp**: Copies the current layer content or selection without transparency into clipboard
-* <img src="./Resources/NewSymbol.png" width="20px"> **Cut Sharp**: Cuts the current layer content or selection without transparency into clipboard
-* <img src="./Resources/NewSymbol.png" width="20px"> **Paste Cursor**: Pastes the clipboard at cursor location
-* <img src="./Resources/NewSymbol.png" width="20px"> **Paste As Ref**: Pastes the clipboard as reference image
+* <img src="./images/NewSymbol.png" width="20px"> **Copy**: Copies the current layer content or selection into clipboard
+* <img src="./images/NewSymbol.png" width="20px"> **Cut**: Cuts the current layer content or selection into clipboard
+* <img src="./images/NewSymbol.png" width="20px"> **Paste**: Pastes the clipboard into a new layer
+* <img src="./images/NewSymbol.png" width="20px"> **Delete**: Deletes the current layer content or selection
+* <img src="./images/NewSymbol.png" width="20px"> **Fill with Foreground**: Fills the current layer content or selection with the foreground color
+* <img src="./images/NewSymbol.png" width="20px"> **Fill with Background**: Fills the current layer content or selection with the background color
+* <img src="./images/NewSymbol.png" width="20px"> **Paste Into Layer**: Pastes the clipboard into the current layer
+* <img src="./images/NewSymbol.png" width="20px"> **Paste New Image**: Pastes the clipboard as new image
+* <img src="./images/NewSymbol.png" width="20px"> **Copy Sharp**: Copies the current layer content or selection without transparency into clipboard
+* <img src="./images/NewSymbol.png" width="20px"> **Cut Sharp**: Cuts the current layer content or selection without transparency into clipboard
+* <img src="./images/NewSymbol.png" width="20px"> **Paste Cursor**: Pastes the clipboard at cursor location
+* <img src="./images/NewSymbol.png" width="20px"> **Paste As Ref**: Pastes the clipboard as reference image
 
 ### Dynamic folders
-* <img src="./Resources/NewSymbol.png" width="20px"> **Edit tools**: opens a dynamic folder with the following actions and adjustments:
+* <img src="./images/NewSymbol.png" width="20px"> **Edit tools**: opens a dynamic folder with the following actions and adjustments:
   * **Copy**
   * **Cut**
   * **Paste**
@@ -171,21 +171,21 @@ Here the list of features that the Loupedeck device or MX Creative can activate 
   * **Paste Cursor**
   * **Paste As Ref**
 
-## <img src="./Resources/NewSymbol.png" width="20px"> Color selector
+## <img src="./images/NewSymbol.png" width="20px"> Color selector
 
-### <img src="./Resources/NewSymbol.png" width="20px"> Adjustments
-* <img src="./Resources/NewSymbol.png" width="20px"> **Adjust color Hue**: Adjusts the Hue of the brush's color (no push)
-* <img src="./Resources/NewSymbol.png" width="20px"> **Adjust color lightness**: Adjusts the lightness of the brush's color (no push)
-* <img src="./Resources/NewSymbol.png" width="20px"> **Adjust color saturation**: Adjusts the saturation of the brush's color (no push)
-* <img src="./Resources/NewSymbol.png" width="20px"> **Adjust color Red/Green**: Adjusts the brush's color more Red or more Green
-* <img src="./Resources/NewSymbol.png" width="20px"> **Adjust color Yellow/Blue**: Adjusts the brush's color more Yellow or more Blue
+### <img src="./images/NewSymbol.png" width="20px"> Adjustments
+* <img src="./images/NewSymbol.png" width="20px"> **Adjust color Hue**: Adjusts the Hue of the brush's color (no push)
+* <img src="./images/NewSymbol.png" width="20px"> **Adjust color lightness**: Adjusts the lightness of the brush's color (no push)
+* <img src="./images/NewSymbol.png" width="20px"> **Adjust color saturation**: Adjusts the saturation of the brush's color (no push)
+* <img src="./images/NewSymbol.png" width="20px"> **Adjust color Red/Green**: Adjusts the brush's color more Red or more Green
+* <img src="./images/NewSymbol.png" width="20px"> **Adjust color Yellow/Blue**: Adjusts the brush's color more Yellow or more Blue
 
-### <img src="./Resources/NewSymbol.png" width="20px"> Commands
-* <img src="./Resources/NewSymbol.png" width="20px"> **Swap colors**: Swap colors between foreground and background
-* <img src="./Resources/NewSymbol.png" width="20px"> **Sample color**: Samples the color under the cursor and sets it as foreground color
+### <img src="./images/NewSymbol.png" width="20px"> Commands
+* <img src="./images/NewSymbol.png" width="20px"> **Swap colors**: Swap colors between foreground and background
+* <img src="./images/NewSymbol.png" width="20px"> **Sample color**: Samples the color under the cursor and sets it as foreground color
 
-### <img src="./Resources/NewSymbol.png" width="20px"> Dynamic folders
-* <img src="./Resources/NewSymbol.png" width="20px"> **ColorSelector tools**: opens a dynamic folder with the following actions and adjustments:
+### <img src="./images/NewSymbol.png" width="20px"> Dynamic folders
+* <img src="./images/NewSymbol.png" width="20px"> **ColorSelector tools**: opens a dynamic folder with the following actions and adjustments:
   * **Adjust color Hue**
   * **Adjust color lightness**
   * **Adjust color saturation**
@@ -202,12 +202,12 @@ Here the list of features that the Loupedeck device or MX Creative can activate 
 * **Move layer**: moves selected layer up/down (push to toggle layer visible)
 
 ### Commands
-* <img src="./Resources/NewSymbol.png" width="20px"> **Copy layer**: copy the current layer to clipboard
-* <img src="./Resources/NewSymbol.png" width="20px"> **Copy layer style**: copy the current layer style to clipboard
-* <img src="./Resources/NewSymbol.png" width="20px"> **Cut layer**: cut the current layer to clipboard
-* <img src="./Resources/NewSymbol.png" width="20px"> **Isolate**: make only the current layer visible for display
-* <img src="./Resources/NewSymbol.png" width="20px"> **Paste layer**: paste the layer from clipboard
-* <img src="./Resources/NewSymbol.png" width="20px"> **Paste layer style**: Paste the layer style from clipboard to the current layer
+* <img src="./images/NewSymbol.png" width="20px"> **Copy layer**: copy the current layer to clipboard
+* <img src="./images/NewSymbol.png" width="20px"> **Copy layer style**: copy the current layer style to clipboard
+* <img src="./images/NewSymbol.png" width="20px"> **Cut layer**: cut the current layer to clipboard
+* <img src="./images/NewSymbol.png" width="20px"> **Isolate**: make only the current layer visible for display
+* <img src="./images/NewSymbol.png" width="20px"> **Paste layer**: paste the layer from clipboard
+* <img src="./images/NewSymbol.png" width="20px"> **Paste layer style**: Paste the layer style from clipboard to the current layer
 * **Delete Layer**: deletes selected layer
 * **Duplicate layer**: duplicates selected layer
 * **Flatten layer**: flattens selected group/layer into a single raster layer
@@ -256,7 +256,7 @@ Here the list of features that the Loupedeck device or MX Creative can activate 
 	* **Scale  to PPI**: selects the Scale  to PPI radio for scaling mode
   * On a filter layer or a filter mask, allows the control of the dialog as described in the Filters' section.
   * On other layer types, the dynamic folder is empty.
-* <img src="./Resources/NewSymbol.png" width="20px"> **Layer tools**: opens a dynamic folder with the following actions and adjustments:
+* <img src="./images/NewSymbol.png" width="20px"> **Layer tools**: opens a dynamic folder with the following actions and adjustments:
   * **Select Current adjustment**
   * **Opacity adjustment**
   * **Isolate**
@@ -281,7 +281,7 @@ Here the list of features that the Loupedeck device or MX Creative can activate 
   * **Paste**
   * **Copy Style**
   * **Paste Style**
-* <img src="./Resources/NewSymbol.png" width="20px"> **New layer tools**: opens a dynamic folder with the following actions and adjustments:
+* <img src="./images/NewSymbol.png" width="20px"> **New layer tools**: opens a dynamic folder with the following actions and adjustments:
   * **New Paint Layer**
   * **New Vector Layer**
   * **New Fill Layer**
@@ -293,7 +293,7 @@ Here the list of features that the Loupedeck device or MX Creative can activate 
   * **New File Layer**
   * **New Colorize Mask**
   * **New Local Selection**
-* <img src="./Resources/NewSymbol.png" width="20px"> **Groups tools**: opens a dynamic folder with the following actions and adjustments:
+* <img src="./images/NewSymbol.png" width="20px"> **Groups tools**: opens a dynamic folder with the following actions and adjustments:
   * **Select Current adjustment**
   * **Move adjustment**
   * **Isolate**
@@ -323,13 +323,13 @@ Here the list of features that the Loupedeck device or MX Creative can activate 
 * **Rectangular selection**: activate the rectangular selection tool
 * **Select All**: selects the full canvas
 * **Similar colors selection**: activates the similar colors selection tool
-* <img src="./Resources/NewSymbol.png" width="20px"> **Mode Replace**: replace the existing selection by a new one
-* <img src="./Resources/NewSymbol.png" width="20px"> **Mode Add**: adds the new selection to the existing selection
-* <img src="./Resources/NewSymbol.png" width="20px"> **Mode Substract**: substracts the new selection from the existing selection
-* <img src="./Resources/NewSymbol.png" width="20px"> **Mode Intersect**: intersects the new selection with the existing selection
+* <img src="./images/NewSymbol.png" width="20px"> **Mode Replace**: replace the existing selection by a new one
+* <img src="./images/NewSymbol.png" width="20px"> **Mode Add**: adds the new selection to the existing selection
+* <img src="./images/NewSymbol.png" width="20px"> **Mode Substract**: substracts the new selection from the existing selection
+* <img src="./images/NewSymbol.png" width="20px"> **Mode Intersect**: intersects the new selection with the existing selection
 
-### <img src="./Resources/NewSymbol.png" width="20px"> Dynamic folders
-* <img src="./Resources/NewSymbol.png" width="20px"> **Selection tools**: opens a dynamic folder with the following actions and adjustments:
+### <img src="./images/NewSymbol.png" width="20px"> Dynamic folders
+* <img src="./images/NewSymbol.png" width="20px"> **Selection tools**: opens a dynamic folder with the following actions and adjustments:
   * **Rectangle**
   * **Elipse**
   * **Polygone**
@@ -346,24 +346,24 @@ Here the list of features that the Loupedeck device or MX Creative can activate 
   * **Mode Add**
   * **Mode Substract**
   * **Mode Intersect**
-* <img src="./Resources/NewSymbol.png" width="20px"> **Selection mode tools**: opens a dynamic folder with the following actions and adjustments:
+* <img src="./images/NewSymbol.png" width="20px"> **Selection mode tools**: opens a dynamic folder with the following actions and adjustments:
   * **Mode Replace**
   * **Mode Add**
   * **Mode Substract**
   * **Mode Intersect**
 
-## <img src="./Resources/NewSymbol.png" width="20px"> Animation
+## <img src="./images/NewSymbol.png" width="20px"> Animation
 
 ### Adjustments
-* <img src="./Resources/NewSymbol.png" width="20px"> **Frame adjustment**: changes current frame to next/previous
-* <img src="./Resources/NewSymbol.png" width="20px"> **Keyframe adjustment**: changes current frame to next/previous keyframe
+* <img src="./images/NewSymbol.png" width="20px"> **Frame adjustment**: changes current frame to next/previous
+* <img src="./images/NewSymbol.png" width="20px"> **Keyframe adjustment**: changes current frame to next/previous keyframe
 
 ### Commmands
-* <img src="./Resources/NewSymbol.png" width="20px"> **Play/pause**: starts or pauses the animation playback
-* <img src="./Resources/NewSymbol.png" width="20px"> **Stop**: stops the animation playback and select first frame
+* <img src="./images/NewSymbol.png" width="20px"> **Play/pause**: starts or pauses the animation playback
+* <img src="./images/NewSymbol.png" width="20px"> **Stop**: stops the animation playback and select first frame
 
 ### Dynamic folders
-* <img src="./Resources/NewSymbol.png" width="20px"> **Animation tools**: opens a dynamic folder with the following actions and adjustments:
+* <img src="./images/NewSymbol.png" width="20px"> **Animation tools**: opens a dynamic folder with the following actions and adjustments:
   * **Frame adjustment**
   * **Keyframe adjustment**
   * **Play/pause**
