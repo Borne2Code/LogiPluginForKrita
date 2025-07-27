@@ -40,11 +40,11 @@ namespace Logi.KritaPlugin
 
         public override bool Install()
         {
-            var kritaPluginsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita");
+            var kritaPluginsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Krita", "pykrita");
             var thisAssembly = Assembly.GetExecutingAssembly();
             thisAssembly.ExtractFileToDirectory("Logi.KritaPlugin.Resources.logi_api_server.desktop", kritaPluginsPath);
 
-            var kritaLogiPluginPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita", "logi_api_server");
+            var kritaLogiPluginPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Krita", "pykrita", "logi_api_server");
             thisAssembly.ExtractFileToDirectory("Logi.KritaPlugin.Resources.__init__.py", kritaLogiPluginPath);
             thisAssembly.ExtractFileToDirectory("Logi.KritaPlugin.Resources.logiApiServer.py", kritaLogiPluginPath);
 
@@ -53,7 +53,7 @@ namespace Logi.KritaPlugin
 
         public override bool Uninstall()
         {
-            var kritaPluginsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita");
+            var kritaPluginsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Krita", "pykrita");
 
             var kritaplugInDesktopFile = Path.Combine(kritaPluginsPath, "logi_api_server.desktop");
             if (File.Exists(kritaplugInDesktopFile))
@@ -61,7 +61,7 @@ namespace Logi.KritaPlugin
                 File.Delete(kritaplugInDesktopFile);
             }
 
-            var kritaLogiPluginPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "krita", "pykrita", "logi_api_server");
+            var kritaLogiPluginPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Krita", "pykrita", "logi_api_server");
             if(Directory.Exists(kritaLogiPluginPath))
             {
                 var kritaplugInInitFile = Path.Combine(kritaLogiPluginPath, "__init__.py");

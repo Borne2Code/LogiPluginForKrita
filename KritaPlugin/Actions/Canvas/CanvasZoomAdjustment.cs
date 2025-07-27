@@ -1,6 +1,7 @@
 using Loupedeck;
 using LogiKritaApiClient.ClientBase;
 using Logi.KritaPlugin.Constants;
+using System.Runtime.InteropServices;
 
 namespace Logi.KritaPlugin.Actions
 {
@@ -9,6 +10,7 @@ namespace Logi.KritaPlugin.Actions
     public class CanvasZoomAdjustment : PluginDynamicAdjustment
     {
         private Client Client => ((KritaApplication)Plugin.ClientApplication).Client;
+        private static int referenceDpi = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? 72 : 144; // Reference DPI for Krita, used to calculate zoom level.
         private static float Zoom = 1;
         private static DateTime LastAdjust = DateTime.MinValue;
 
@@ -73,7 +75,7 @@ namespace Logi.KritaPlugin.Actions
         {
             if ((DateTime.Now - LastAdjust).TotalMilliseconds > 500)
             {
-                Zoom = client.CurrentCanvas.ZoomLevel().Result * 72 / client.CurrentDocument.GetResolution().Result;
+                Zoom = client.CurrentCanvas.ZoomLevel().Result * referenceDpi / client.CurrentDocument.GetResolution().Result;
                 LastAdjust = DateTime.Now;
             }
         }

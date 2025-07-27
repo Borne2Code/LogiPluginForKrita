@@ -24,7 +24,7 @@ version: 2.0
 author: Borne2Code
 
 # Copyright information.
-copyright: Copyright © 2025 Born2Code. All rights reserved.
+copyright: Copyright © 2025 Borne2Code. All rights reserved.
 
 
 # ==================================================================================================
@@ -37,7 +37,7 @@ pluginFolderWin: .
 
 # Location of plugin files on macOS (relative to the plugin base directory).
 # This parameter is required to support Mac.
-#pluginFolderMac: .
+pluginFolderMac: .
 
 # List of devices the plugin is optimized for.
 supportedDevices:

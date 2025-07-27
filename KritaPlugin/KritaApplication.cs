@@ -44,7 +44,11 @@ namespace Logi.KritaPlugin
         protected override string GetProcessName() => "Krita";
 
         // This method can be used to link the plugin to a macOS application.
-        protected override string GetBundleName() => "";
+        protected override string GetBundleName() => "krita";
+        protected override bool IsProcessNameSupported(string processName)
+        {
+            return processName.ContainsNoCase("krita");
+        }
 
         protected override string GetExecutablePath()
         {
