@@ -64,13 +64,13 @@ You won't be anoyed if you enter the Loupedeck driver or Logi Options+ to manage
 # Features
 Here the list of features that the Loupedeck device or MX Creative can activate directly on Krita (without keyboard shortcuts).
 They're organized by feature groups:
-* [**View, Canvas and general features**](./view.md)
-* [**Brush tools**](./brush_tools.md)
+* [**View, Canvas and general features**](./view.md) <img src="./images/NewSymbol.png" width="20px">
+* [**Brush tools**](./brush_tools.md) <img src="./images/NewSymbol.png" width="20px">
 * [**Edit**](./edit.md) <img src="./images/NewSymbol.png" width="20px">
-* [**Color selector**](./color.md) <img src="./images/NewSymbol.png" width="20px"> 
-* [**Layers**](./layers.md)
-* [**Selection**](./selection.md)
-* [**Animation**](./animation.md) <img src="./images/NewSymbol.png" width="20px"> 
+* [**Color selector**](./color.md) <img src="./images/NewSymbol.png" width="20px">
+* [**Layers**](./layers.md) <img src="./images/NewSymbol.png" width="20px">
+* [**Selection**](./selection.md) <img src="./images/NewSymbol.png" width="20px">
+* [**Animation**](./animation.md) <img src="./images/NewSymbol.png" width="20px">
 * [**Filters**](./filters.md)
 
 # Default Profile configuration
