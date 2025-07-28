@@ -1,4 +1,6 @@
-namespace Loupedeck.KritaPlugin
+using Loupedeck;
+
+namespace Logi.KritaPlugin
 {
     using System;
 

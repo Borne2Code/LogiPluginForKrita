@@ -1,7 +1,8 @@
-using System.Reflection;
-using LoupedeckKritaApiClient.ClientBase;
+using Loupedeck;
+using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
-namespace Loupedeck.KritaPlugin
+namespace Logi.KritaPlugin.Actions
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
@@ -11,20 +12,20 @@ namespace Loupedeck.KritaPlugin
 
         // Initializes the command class.
         public LayerNewSelectionCommand()
-            : base(displayName: "New local selection", description: "New local selection", groupName: ActionGroups.Layers)
+            : base(displayName: NewLayerToolsConstants.NewLocalSelection.Name, description: "New local selection", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Layers.NewSelection.png");
+            return PluginResources.BitmapFromEmbaddedRessource(NewLayerToolsConstants.NewLocalSelection.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Add_new_selection_mask).Wait();
+            Client.KritaInstance.ExecuteAction(NewLayerToolsConstants.NewLocalSelection.ActionName).Wait();
         }
     }
 }

@@ -1,7 +1,8 @@
-using System.Reflection;
-using LoupedeckKritaApiClient.ClientBase;
+using Loupedeck;
+using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
-namespace Loupedeck.KritaPlugin
+namespace Logi.KritaPlugin.Actions
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
@@ -11,20 +12,20 @@ namespace Loupedeck.KritaPlugin
 
         // Initializes the command class.
         public ToolShapeLineCommand()
-            : base(displayName: "Line", description: "Activate Line tool", groupName: ActionGroups.Tools)
+            : base(displayName: ShapeToolsConstants.Line.Name, description: "Activate Line tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Tools.ShapeLine.png");
+            return PluginResources.BitmapFromEmbaddedRessource(ShapeToolsConstants.Line.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KritaShape_KisToolLine).Wait();
+            Client.KritaInstance.ExecuteAction(ShapeToolsConstants.Line.ActionName).Wait();
         }
     }
 }

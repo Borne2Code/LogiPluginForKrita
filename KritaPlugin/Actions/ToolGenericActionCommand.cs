@@ -1,6 +1,7 @@
-using LoupedeckKritaApiClient.ClientBase;
+using Loupedeck;
+using LogiKritaApiClient.ClientBase;
 
-namespace Loupedeck.KritaPlugin
+namespace Logi.KritaPlugin.Actions
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 

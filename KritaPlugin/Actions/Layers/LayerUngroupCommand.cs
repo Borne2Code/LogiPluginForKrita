@@ -1,7 +1,8 @@
-using System.Reflection;
-using LoupedeckKritaApiClient.ClientBase;
+using Loupedeck;
+using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
-namespace Loupedeck.KritaPlugin
+namespace Logi.KritaPlugin.Actions
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
@@ -11,20 +12,20 @@ namespace Loupedeck.KritaPlugin
 
         // Initializes the command class.
         public LayerUngroupCommand()
-            : base(displayName: "Ungroup", description: "Quick ungroup", groupName: ActionGroups.Layers)
+            : base(displayName: LayerToolsConstants.Ungroup.Name, description: "Quick ungroup", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Layers.Ungroup.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.Ungroup.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Quick_ungroup).Wait();
+            Client.KritaInstance.ExecuteAction(LayerToolsConstants.Ungroup.ActionName).Wait();
         }
     }
 }

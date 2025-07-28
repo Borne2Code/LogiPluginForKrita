@@ -1,7 +1,8 @@
-using System.Reflection;
-using LoupedeckKritaApiClient.ClientBase;
+using Loupedeck;
+using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
-namespace Loupedeck.KritaPlugin
+namespace Logi.KritaPlugin.Actions
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
@@ -12,27 +13,32 @@ namespace Loupedeck.KritaPlugin
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public LayerMoveAdjustment()
-            : base(displayName: "Move Layer", description: "Move layer in the stack", groupName: ActionGroups.Layers, hasReset: true)
+            : base(displayName: LayerToolsConstants.Move.Name, description: "Move layer in the stack", groupName: ActionGroups.Layers, hasReset: true)
         {
         }
 
         protected override BitmapImage GetAdjustmentImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Layers.Move.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.Move.BitMapImageName);
         }
 
         // This method is called when the adjustment is executed.
         protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
-            if (Client == null) return;
+            AdjustMoveLayer(Client, diff);
+        }
+
+        public static void AdjustMoveLayer(Client client, int diff)
+        {
+            if (client == null) return;
 
             if (diff > 0)
             {
-                Client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_down).Wait();
+                client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_down).Wait();
             }
             else
             {
-                Client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_up).Wait();
+                client.KritaInstance.ExecuteAction(ActionsNames.Move_layer_up).Wait();
             }
             //this.AdjustmentValueChanged(); // Notify the plugin service that the adjustment value has changed.
         }
@@ -43,12 +49,6 @@ namespace Loupedeck.KritaPlugin
             if (Client == null) return;
 
             Client.KritaInstance.ExecuteAction(ActionsNames.Toggle_layer_visibility).Wait();
-        }
-
-        // Returns the adjustment value that is shown next to the dial.
-        protected override String GetAdjustmentValue(String actionParameter)
-        {
-            return string.Empty;
         }
     }
 }

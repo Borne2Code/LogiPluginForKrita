@@ -1,7 +1,8 @@
-using System.Reflection;
-using LoupedeckKritaApiClient.ClientBase;
+using Loupedeck;
+using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
-namespace Loupedeck.KritaPlugin
+namespace Logi.KritaPlugin.Actions
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
@@ -11,20 +12,20 @@ namespace Loupedeck.KritaPlugin
 
         // Initializes the command class.
         public SelectAllCommand()
-            : base(displayName: "Select all", description: "Select all", groupName: ActionGroups.Selection)
+            : base(displayName: SelectionToolsConstants.SelectAll.Name, description: "Select all", groupName: ActionGroups.Selection)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Selection.SelectAll.png");
+            return PluginResources.BitmapFromEmbaddedRessource(SelectionToolsConstants.SelectAll.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Select_all).Wait();
+            Client.KritaInstance.ExecuteAction(SelectionToolsConstants.SelectAll.ActionName).Wait();
         }
     }
 }

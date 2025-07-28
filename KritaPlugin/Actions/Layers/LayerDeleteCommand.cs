@@ -1,7 +1,8 @@
-using System.Reflection;
-using LoupedeckKritaApiClient.ClientBase;
+using Loupedeck;
+using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
-namespace Loupedeck.KritaPlugin
+namespace Logi.KritaPlugin.Actions
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
@@ -11,20 +12,20 @@ namespace Loupedeck.KritaPlugin
 
         // Initializes the command class.
         public LayerDeleteCommand()
-            : base(displayName: "Delete Layer", description: "Delete layer or mask", groupName: ActionGroups.Layers)
+            : base(displayName: LayerToolsConstants.Delete.Name, description: "Delete layer or mask", groupName: ActionGroups.Layers)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Layers.Delete.png");
+            return PluginResources.BitmapFromEmbaddedRessource(LayerToolsConstants.Delete.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.Remove_layer).Wait();
+            Client.KritaInstance.ExecuteAction(LayerToolsConstants.Delete.ActionName).Wait();
         }
     }
 }

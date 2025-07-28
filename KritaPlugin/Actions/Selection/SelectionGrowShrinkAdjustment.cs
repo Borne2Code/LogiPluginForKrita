@@ -1,7 +1,8 @@
-using System.Reflection;
-using LoupedeckKritaApiClient.ClientBase;
+using Loupedeck;
+using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
-namespace Loupedeck.KritaPlugin
+namespace Logi.KritaPlugin.Actions
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
@@ -12,13 +13,13 @@ namespace Loupedeck.KritaPlugin
         // Initializes the adjustment class.
         // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
         public SelectionGrowShrinkAdjustment()
-            : base(displayName: "Selection Grow/Shrink", description: "Adjust selection grow/shrink", groupName: ActionGroups.Selection, hasReset: false)
+            : base(displayName: SelectionToolsConstants.GrowShrink.Name, description: "Adjust selection grow/shrink", groupName: ActionGroups.Selection, hasReset: false)
         {
         }
 
         protected override BitmapImage GetAdjustmentImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Selection.GrowShrink.png");
+            return PluginResources.BitmapFromEmbaddedRessource(SelectionToolsConstants.GrowShrink.BitMapImageName);
         }
 
         // This method is called when the adjustment is executed.
@@ -26,14 +27,19 @@ namespace Loupedeck.KritaPlugin
         {
             if (Client == null) return;
 
+            AdjustSelectionSize(Client, diff);
+        }
+
+        internal static void AdjustSelectionSize(Client client, int diff)
+        {
             if (diff > 0)
             {
-                var selection = Client.CurrentSelection;
+                var selection = client.CurrentSelection;
                 {
                     if (selection != null)
                     {
                         selection.Grow(diff).Wait();
-                        var action = Client.KritaInstance.Action(ActionsNames.Invert_selection).Result;
+                        var action = client.KritaInstance.Action(ActionsNames.Invert_selection).Result;
                         action.Trigger();
                         action.Trigger();
                         action.DisposeAsync().AsTask().Wait();
@@ -43,13 +49,13 @@ namespace Loupedeck.KritaPlugin
             }
             else if (diff < 0)
             {
-                var selection = Client.CurrentSelection;
+                var selection = client.CurrentSelection;
                 if (selection != null)
                 {
                     if (selection != null)
                     {
                         selection.Shrink(-diff).Wait();
-                        var action = Client.KritaInstance.Action(ActionsNames.Invert_selection).Result;
+                        var action = client.KritaInstance.Action(ActionsNames.Invert_selection).Result;
                         action.Trigger();
                         action.Trigger();
                         action.DisposeAsync().AsTask().Wait();

@@ -1,7 +1,8 @@
-using System.Reflection;
-using LoupedeckKritaApiClient.ClientBase;
+using Loupedeck;
+using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
-namespace Loupedeck.KritaPlugin
+namespace Logi.KritaPlugin.Actions
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
@@ -11,20 +12,20 @@ namespace Loupedeck.KritaPlugin
 
         // Initializes the command class.
         public ToolColorizeMaskCommand()
-            : base(displayName: "Colorize Mask", description: "Activate Colorize Mask tool", groupName: ActionGroups.Tools)
+            : base(displayName: PaintToolsConstants.ColorizeMask.Name, description: "Activate Colorize Mask tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Tools.ColorizeMask.png");
+            return PluginResources.BitmapFromEmbaddedRessource(PaintToolsConstants.ColorizeMask.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KritaShape_KisToolLazyBrush).Wait();
+            Client.KritaInstance.ExecuteAction(PaintToolsConstants.ColorizeMask.ActionName).Wait();
         }
     }
 }

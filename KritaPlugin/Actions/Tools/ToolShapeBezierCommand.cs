@@ -1,7 +1,8 @@
-using System.Reflection;
-using LoupedeckKritaApiClient.ClientBase;
+using Loupedeck;
+using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
-namespace Loupedeck.KritaPlugin
+namespace Logi.KritaPlugin.Actions
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
@@ -11,20 +12,20 @@ namespace Loupedeck.KritaPlugin
 
         // Initializes the command class.
         public ToolShapeBezierCommand()
-            : base(displayName: "Bezier", description: "Activate Bezier tool", groupName: ActionGroups.Tools)
+            : base(displayName: ShapeToolsConstants.Bezier.Name, description: "Activate Bezier tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Tools.ShapeBezier.png");
+            return PluginResources.BitmapFromEmbaddedRessource(ShapeToolsConstants.Bezier.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KisToolPath).Wait();
+            Client.KritaInstance.ExecuteAction(ShapeToolsConstants.Bezier.ActionName).Wait();
         }
     }
 }

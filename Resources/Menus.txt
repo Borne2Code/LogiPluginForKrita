@@ -207,4 +207,31 @@
 		Round Corners
 		Small Tiles
 
+
+Brush add :
+	[x] Fade
+	[x] Swap colors
+	[x] Sample color
+	[x] Use pen pressure
+	[ ] Mirror Hor/Vert
+Editx
+	[x] Delete
+	[x] Fill foreground
+	[x] Fill background
+Tools:
+	[ ] Assistant
+	[ ] Measure
+	[ ] Reference image tool
+Selection Add:
+	[x] Select mode Add/Subs/Inter/Replace
+
 5. Animation
+	- Adjustments: 
+		[x] Previous/Next frame
+		[x] Previous/Next keyframe
+	- Buttons:
+	    [x] Play/pause animation
+		[x] Stop animation
+	- Wheel
+		[x] Previous/Next frame
+		[x] Previous/Next keyframe

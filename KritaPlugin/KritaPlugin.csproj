@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <RootNamespace>Loupedeck.KritaPlugin</RootNamespace>
+    <RootNamespace>Logi.KritaPlugin</RootNamespace>
 
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -22,7 +22,46 @@
 
   <ItemGroup>
     <None Remove="DefaultProfile\DefaultProfile20.lp5" />
+    <None Remove="DefaultProfile\DefaultProfile70.lp5" />
+    <None Remove="DefaultProfile\DefaultProfile71.lp5" />
+    <None Remove="images\Animation\AnimationEditTools.png" />
+    <None Remove="images\Animation\AnimationTools.png" />
+    <None Remove="images\Animation\Copy.png" />
+    <None Remove="images\Animation\CreateBlank.png" />
+    <None Remove="images\Animation\CreateDuplicate.png" />
+    <None Remove="images\Animation\Cut.png" />
+    <None Remove="images\Animation\HoldColumn.png" />
+    <None Remove="images\Animation\HoldFrame.png" />
+    <None Remove="images\Animation\InsertLeft.png" />
+    <None Remove="images\Animation\InsertRight.png" />
+    <None Remove="images\Animation\OnionSkin.png" />
+    <None Remove="images\Animation\Paste.png" />
+    <None Remove="images\Animation\PinTimeline.png" />
+    <None Remove="images\Animation\PlayPause.png" />
+    <None Remove="images\Animation\RemoveFrame.png" />
+    <None Remove="images\Animation\RemoveFramePull.png" />
+    <None Remove="images\Animation\Stop.png" />
+    <None Remove="images\Color\Hue.png" />
+    <None Remove="images\Color\Lightness.png" />
+    <None Remove="images\Color\RedGreen.png" />
+    <None Remove="images\Color\Sample.png" />
+    <None Remove="images\Color\Saturation.png" />
+    <None Remove="images\Color\Swap.png" />
+    <None Remove="images\Color\YellowBlue.png" />
     <None Remove="images\DeleteSelection.png" />
+    <None Remove="images\Edit\Copy.png" />
+    <None Remove="images\Edit\CopySharp.png" />
+    <None Remove="images\Edit\Cut.png" />
+    <None Remove="images\Edit\CutSharp.png" />
+    <None Remove="images\Edit\Delete.png" />
+    <None Remove="images\Edit\EditTools.png" />
+    <None Remove="images\Edit\FillBackground.png" />
+    <None Remove="images\Edit\FillForeground.png" />
+    <None Remove="images\Edit\Paste.png" />
+    <None Remove="images\Edit\PasteAsRef.png" />
+    <None Remove="images\Edit\PasteAtCursor.png" />
+    <None Remove="images\Edit\PasteIntoLayer.png" />
+    <None Remove="images\Edit\PasteNewImage.png" />
     <None Remove="images\FilterApplyAgainNoPrompt.png" />
     <None Remove="images\FilterApplyAgainWithPrompt.png" />
     <None Remove="images\filters-AscCdl.png" />
@@ -101,11 +140,25 @@
     <None Remove="images\LayerQuickGroup.png" />
     <None Remove="images\LayerRename.png" />
     <None Remove="images\LayerStyle.png" />
+    <None Remove="images\Layers\Copy.png" />
+    <None Remove="images\Layers\CopyStyle.png" />
+    <None Remove="images\Layers\Cut.png" />
+    <None Remove="images\Layers\Isolate.png" />
+    <None Remove="images\Layers\LayerGroupsTools.png" />
+    <None Remove="images\Layers\LayerNewTools.png" />
+    <None Remove="images\Layers\LayersTools.png" />
+    <None Remove="images\Layers\Paste.png" />
+    <None Remove="images\Layers\PasteStyle.png" />
+    <None Remove="images\Layers\Select.png" />
     <None Remove="images\LayerUngroup.png" />
     <None Remove="images\LockLayer.png" />
     <None Remove="images\MoveLayer.png" />
     <None Remove="images\SelectAll.png" />
     <None Remove="images\SelectionGrowShrink.png" />
+    <None Remove="images\Selection\ModeAdd.png" />
+    <None Remove="images\Selection\ModeIntersect.png" />
+    <None Remove="images\Selection\ModeReplace.png" />
+    <None Remove="images\Selection\ModeSubstract.png" />
     <None Remove="images\ShapeBezier.png" />
     <None Remove="images\ShapeCalligraphy.png" />
     <None Remove="images\ShapeEdit.png" />
@@ -136,14 +189,60 @@
     <None Remove="images\Tools\Move.png" />
     <None Remove="images\Tools\PaintDynamic.png" />
     <None Remove="images\Tools\PaintMultibrush.png" />
+    <None Remove="images\Tools\PaintTools.png" />
+    <None Remove="images\Tools\ShapeTools.png" />
     <None Remove="images\Tools\SmartPatch.png" />
     <None Remove="images\Tools\Transform.png" />
+    <None Remove="images\Tools\TransformTools.png" />
     <None Remove="images\ToolTransform.png" />
+    <None Remove="images\View\BrushFade.png" />
+    <None Remove="images\View\TogglePenPressure.png" />
     <None Remove="Resources\__init__.py" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="DefaultProfile\DefaultProfile20.lp5" />
+    <EmbeddedResource Include="DefaultProfile\DefaultProfile70.lp5" />
+    <EmbeddedResource Include="DefaultProfile\DefaultProfile71.lp5" />
+    <EmbeddedResource Include="images\Animation\AnimationEditTools.png" />
+    <EmbeddedResource Include="images\Animation\Copy.png" />
+    <EmbeddedResource Include="images\Animation\CreateBlank.png" />
+    <EmbeddedResource Include="images\Animation\CreateDuplicate.png" />
+    <EmbeddedResource Include="images\Animation\Cut.png" />
+    <EmbeddedResource Include="images\Animation\HoldColumn.png" />
+    <EmbeddedResource Include="images\Animation\HoldFrame.png" />
+    <EmbeddedResource Include="images\Animation\InsertLeft.png" />
+    <EmbeddedResource Include="images\Animation\InsertRight.png" />
+    <EmbeddedResource Include="images\Animation\OnionSkin.png" />
+    <EmbeddedResource Include="images\Animation\Paste.png" />
+    <EmbeddedResource Include="images\Animation\PinTimeline.png" />
+    <EmbeddedResource Include="images\Animation\RemoveFrame.png" />
+    <EmbeddedResource Include="images\Animation\RemoveFramePull.png" />
+    <EmbeddedResource Include="images\Animation\SelectFrame.png" />
+    <EmbeddedResource Include="images\Animation\SelectKeyFrame.png" />
+    <EmbeddedResource Include="images\Animation\AnimationTools.png" />
+    <EmbeddedResource Include="images\Animation\PlayPause.png" />
+    <EmbeddedResource Include="images\Animation\Stop.png" />
+    <EmbeddedResource Include="images\Color\Hue.png" />
+    <EmbeddedResource Include="images\Color\Lightness.png" />
+    <EmbeddedResource Include="images\Color\RedGreen.png" />
+    <EmbeddedResource Include="images\Color\Sample.png" />
+    <EmbeddedResource Include="images\Color\Saturation.png" />
+    <EmbeddedResource Include="images\Color\Swap.png" />
+    <EmbeddedResource Include="images\Color\YellowBlue.png" />
+    <EmbeddedResource Include="images\Edit\Copy.png" />
+    <EmbeddedResource Include="images\Edit\CopySharp.png" />
+    <EmbeddedResource Include="images\Edit\Cut.png" />
+    <EmbeddedResource Include="images\Edit\CutSharp.png" />
+    <EmbeddedResource Include="images\Edit\Delete.png" />
+    <EmbeddedResource Include="images\Edit\EditTools.png" />
+    <EmbeddedResource Include="images\Edit\FillBackground.png" />
+    <EmbeddedResource Include="images\Edit\FillForeground.png" />
+    <EmbeddedResource Include="images\Edit\Paste.png" />
+    <EmbeddedResource Include="images\Edit\PasteAsRef.png" />
+    <EmbeddedResource Include="images\Edit\PasteAtCursor.png" />
+    <EmbeddedResource Include="images\Edit\PasteIntoLayer.png" />
+    <EmbeddedResource Include="images\Edit\PasteNewImage.png" />
     <EmbeddedResource Include="images\Filters\ApplyAgainNoPrompt.png" />
     <EmbeddedResource Include="images\Filters\ApplyAgainWithPrompt.png" />
     <EmbeddedResource Include="images\Filters\filters-AscCdl.png" />
@@ -196,11 +295,18 @@
     <EmbeddedResource Include="images\Filters\filters-Wave.png" />
     <EmbeddedResource Include="images\Filters\filters-WaveletNoiseReducer.png" />
     <EmbeddedResource Include="images\Filters\filters-RoundCorners.png" />
+    <EmbeddedResource Include="images\Layers\Copy.png" />
+    <EmbeddedResource Include="images\Layers\CopyStyle.png" />
+    <EmbeddedResource Include="images\Layers\Cut.png" />
     <EmbeddedResource Include="images\Layers\GlobalSelection.png" />
     <EmbeddedResource Include="images\Layers\Delete.png" />
     <EmbeddedResource Include="images\Layers\Duplicate.png" />
     <EmbeddedResource Include="images\Layers\Flatten.png" />
     <EmbeddedResource Include="images\Layers\InheritAlpha.png" />
+    <EmbeddedResource Include="images\Layers\Isolate.png" />
+    <EmbeddedResource Include="images\Layers\LayerGroupsTools.png" />
+    <EmbeddedResource Include="images\Layers\LayerNewTools.png" />
+    <EmbeddedResource Include="images\Layers\LayersTools.png" />
     <EmbeddedResource Include="images\Layers\LockAlpha.png" />
     <EmbeddedResource Include="images\Layers\MergeWithBelow.png" />
     <EmbeddedResource Include="images\Layers\NewClone.png" />
@@ -216,14 +322,21 @@
     <EmbeddedResource Include="images\Layers\NewTransparency.png" />
     <EmbeddedResource Include="images\Layers\NewVector.png" />
     <EmbeddedResource Include="images\Layers\Opacity.png" />
+    <EmbeddedResource Include="images\Layers\Paste.png" />
+    <EmbeddedResource Include="images\Layers\PasteStyle.png" />
     <EmbeddedResource Include="images\Layers\Properties.png" />
     <EmbeddedResource Include="images\Layers\QuickClippingGroup.png" />
     <EmbeddedResource Include="images\Layers\QuickGroup.png" />
     <EmbeddedResource Include="images\Layers\Rename.png" />
+    <EmbeddedResource Include="images\Layers\Select.png" />
     <EmbeddedResource Include="images\Layers\Style.png" />
     <EmbeddedResource Include="images\Layers\Ungroup.png" />
     <EmbeddedResource Include="images\Layers\Lock.png" />
     <EmbeddedResource Include="images\Layers\Move.png" />
+    <EmbeddedResource Include="images\Selection\ModeAdd.png" />
+    <EmbeddedResource Include="images\Selection\ModeIntersect.png" />
+    <EmbeddedResource Include="images\Selection\ModeReplace.png" />
+    <EmbeddedResource Include="images\Selection\ModeSubstract.png" />
     <EmbeddedResource Include="images\Tools\Brush.png" />
     <EmbeddedResource Include="images\Tools\ColorizeMask.png" />
     <EmbeddedResource Include="images\Tools\Crop.png" />
@@ -233,8 +346,12 @@
     <EmbeddedResource Include="images\Tools\Move.png" />
     <EmbeddedResource Include="images\Tools\PaintDynamic.png" />
     <EmbeddedResource Include="images\Tools\PaintMultibrush.png" />
+    <EmbeddedResource Include="images\Tools\PaintTools.png" />
+    <EmbeddedResource Include="images\Tools\ShapeTools.png" />
     <EmbeddedResource Include="images\Tools\SmartPatch.png" />
     <EmbeddedResource Include="images\Tools\Transform.png" />
+    <EmbeddedResource Include="images\Tools\TransformTools.png" />
+    <EmbeddedResource Include="images\View\BrushFade.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -247,7 +364,6 @@
     <EmbeddedResource Include="images\Canvas\Zoom.png" />
     <EmbeddedResource Include="images\Selection\Delete.png" />
     <EmbeddedResource Include="images\Selection\Invert.png" />
-    <EmbeddedResource Include="images\Layers\CurrentAdjust.png" />
     <EmbeddedResource Include="images\Selection\SelectAll.png" />
     <EmbeddedResource Include="images\Selection\GrowShrink.png" />
     <EmbeddedResource Include="images\Tools\ShapeBezier.png" />
@@ -271,13 +387,14 @@
     <EmbeddedResource Include="images\Selection\ToolSelectPolygonal.png" />
     <EmbeddedResource Include="images\Selection\ToolSelectRectangular.png" />
     <EmbeddedResource Include="images\Selection\ToolSelectSimilarColors.png" />
-    <EmbeddedResource Include="Resources\loupedeckApiServer.py" />
-    <EmbeddedResource Include="Resources\loupedeck_api_server.desktop" />
+    <EmbeddedResource Include="images\View\TogglePenPressure.png" />
+    <EmbeddedResource Include="Resources\logiApiServer.py" />
+    <EmbeddedResource Include="Resources\logi_api_server.desktop" />
     <EmbeddedResource Include="Resources\__init__.py" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LoupedeckKritaApiClient\LoupedeckKritaApiClient.csproj" />
+    <ProjectReference Include="..\LogiKritaApiClient\LogiKritaApiClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,8 @@
-using System.Reflection;
-using LoupedeckKritaApiClient.ClientBase;
+using Loupedeck;
+using LogiKritaApiClient.ClientBase;
+using Logi.KritaPlugin.Constants;
 
-namespace Loupedeck.KritaPlugin
+namespace Logi.KritaPlugin.Actions
 {
     // This class implements an example adjustment that counts the rotation ticks of a dial.
 
@@ -11,20 +12,20 @@ namespace Loupedeck.KritaPlugin
 
         // Initializes the command class.
         public ToolCropCommand()
-            : base(displayName: "Crop", description: "Activate Crop tool", groupName: ActionGroups.Tools)
+            : base(displayName: TransformToolsConstants.Crop.Name, description: "Activate Crop tool", groupName: ActionGroups.Tools)
         {
         }
 
         protected override BitmapImage GetCommandImage(string actionParameter, PluginImageSize imageSize)
         {
-            return BitmapImage.FromResource(Assembly.GetExecutingAssembly(), "Loupedeck.KritaPlugin.images.Tools.Crop.png");
+            return PluginResources.BitmapFromEmbaddedRessource(TransformToolsConstants.Crop.BitMapImageName);
         }
 
         protected override void RunCommand(string actionParameter)
         {
             if (Client == null) return;
 
-            Client.KritaInstance.ExecuteAction(ActionsNames.KisToolCrop).Wait();
+            Client.KritaInstance.ExecuteAction(TransformToolsConstants.Crop.ActionName).Wait();
         }
     }
 }
