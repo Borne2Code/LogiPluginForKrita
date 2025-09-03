@@ -7,6 +7,7 @@
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Features](#features)
+* [Feedbacks and issues](#feedbacks-and-issues)
 * [Default Profile configuration](#default-profile-configuration)
 
 # Summary
@@ -55,7 +56,7 @@ For the very first installation, you may have to activate the plugin extension i
 
 The plugin and the Krita extension communicate through a socket on port 1247, for the moment this cannot be changed.
 
-# Known Issues
+# Feedbacks and issues
 If you need to give a feedback or raise a bug issue, you can use the following page: [https://github.com/Borne2Code/LogiPluginForKrita/issues](https://github.com/Borne2Code/LogiPluginForKrita/issues).
 
 In addition, you may face some freezing situations, I daily use my Loupedeck device with Krita and usually don't face them, but during the development process, these cases occurred:
