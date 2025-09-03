@@ -7,6 +7,7 @@
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Features](#features)
+* [Feedbacks and issues](#feedbacks-and-issues)
 * [Default Profile configuration](#default-profile-configuration)
 
 # Summary
@@ -55,10 +56,13 @@ For the very first installation, you may have to activate the plugin extension i
 
 The plugin and the Krita extension communicate through a socket on port 1247, for the moment this cannot be changed.
 
-# Known Issues
+# Feedbacks and issues
+If you need to give a feedback or raise a bug issue, you can use the following page: [https://github.com/Borne2Code/LogiPluginForKrita/issues](https://github.com/Borne2Code/LogiPluginForKrita/issues).
+
+In addition, you may face some freezing situations, I daily use my Loupedeck device with Krita and usually don't face them, but during the development process, these cases occurred:
 - In some rare cases, due to an issue with socket management in Python, Krita will freeze at start-up.
 Unfortunately, we couldn't understand why, you may restart Krita until it starts correctly.
-- When stopping the Loupedeck Driver, or uninstalling the Krita Plugin, any running instance of Krita can freeze, please be sure to save any open document and close Krita while doing a maintenance operation in the Loupedeck driver.
+- When stopping the Loupedeck Driver, or uninstalling the Krita Plugin, any running instance of Krita can freeze, please be sure to save any open document and close Krita while doing a maintenance operation in the Loupedeck or Logi drivers.
 You won't be anoyed if you enter the Loupedeck driver or Logi Options+ to manage and modify profiles.
 
 # Features
