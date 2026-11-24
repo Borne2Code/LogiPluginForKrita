@@ -22,7 +22,7 @@ class Server(QObject):
         if self.result:
             return json.dumps({"result": "OK", "returnType": self.returnType, "returnValue": self.returnValue}).encode(encoding="utf-8")
         else:
-            return json.dumps({"result": "KO", "error": str(self.returnValue)}).encode(encoding="utf-8")
+            return json.dumps({"result": "KO", "error": str(self.returnValue) + " Krita's plugin server will be disconnected"}).encode(encoding="utf-8")
 
     def run(self):
         time.sleep(2)
@@ -69,6 +69,8 @@ class Server(QObject):
                             self.result = False
 
                         c.send(self.prepareResponse())
+
+                        if self.result == False: connected = False
                     except Exception as ex:
                         QtCore.qDebug('Error sending message: ' + str(ex))
                         c.close()

@@ -191,6 +191,7 @@ namespace LogiKritaApiClient.ClientBase
                         }
                     else
                     {
+                        client.Disconnect(false);
                         throw new Exception((string)(response?.error ?? "Unknown error"));
                     }
                 }
