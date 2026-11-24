@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using LogiKritaApiClient.FiltersDialogs;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
