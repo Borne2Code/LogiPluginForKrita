@@ -86,6 +86,14 @@ class AuthorizedAction:
         instance.parametersIsMandatory = parametersIsMandatory
         return instance
 
+class ObjectAuthorizedMethods:
+    authorizedMethods: list[str]
+
+    def new(authorizedMethods):
+        instance = ObjectAuthorizedMethods()
+        instance.authorizedMethods = authorizedMethods
+        return instance
+
 class DialogData:
     dialog: object
     config: object
@@ -102,6 +110,29 @@ class LogiApiServer(Extension):
         'SetDialogSpinboxIntValue': AuthorizedAction.new(True, None, True), # Set dialog spinbox int value
         'SetDialogSpinboxFloatValue': AuthorizedAction.new(True, None, True), # Set dialog spinbox float value
         'ClickMainDialogButton': AuthorizedAction.new(True, None, True), # Click on main dialog button, radio or checkbox
+    }
+
+    objectsAuthorizedMethods = {
+        'Canvas': ObjectAuthorizedMethods.new(['resetRotation', 'resetZoom', 'rotation', 'setRotation', 'setZoomLevel', 'zoomLevel']),
+        'Document': ObjectAuthorizedMethods.new(['activeNode', 'resolution', 'refreshProjection', 'setActiveNode', ]),
+        'Filter': ObjectAuthorizedMethods.new(['name']),
+        'Krita': ObjectAuthorizedMethods.new(['action']),
+        'Node': ObjectAuthorizedMethods.new(['type', 'opacity', 'setOpacity', 'filter']),
+        'PaintLayer': ObjectAuthorizedMethods.new(['type', 'opacity', 'setOpacity', 'filter']),
+        'VectorLayer': ObjectAuthorizedMethods.new(['type', 'opacity', 'setOpacity', 'filter']),
+        'FillLayer': ObjectAuthorizedMethods.new(['type', 'opacity', 'setOpacity', 'filter']),
+        'FilterLayer': ObjectAuthorizedMethods.new(['type', 'opacity', 'setOpacity', 'filter']),
+        'FilterMask': ObjectAuthorizedMethods.new(['type', 'opacity', 'setOpacity', 'filter']),
+        'TransparencyMask': ObjectAuthorizedMethods.new(['type', 'opacity', 'setOpacity', 'filter']),
+        'TransformMask': ObjectAuthorizedMethods.new(['type', 'opacity', 'setOpacity', 'filter']),
+        'CloneLayer': ObjectAuthorizedMethods.new(['type', 'opacity', 'setOpacity', 'filter']),
+        'FileLayer': ObjectAuthorizedMethods.new(['type', 'opacity', 'setOpacity', 'filter']),
+        'ColorizeMask': ObjectAuthorizedMethods.new(['type', 'opacity', 'setOpacity', 'filter']),
+        'NewLocalSelection': ObjectAuthorizedMethods.new(['type', 'opacity', 'setOpacity', 'filter']),
+        'QAction': ObjectAuthorizedMethods.new(['trigger']),
+        'QWidgetAction': ObjectAuthorizedMethods.new(['trigger']),
+        'Selection': ObjectAuthorizedMethods.new(['grow', 'shrink']),
+        'View': ObjectAuthorizedMethods.new(['brushSize', 'setBrushSize', 'brushRotation', 'setBrushRotation', 'paintingFlow', 'setPaintingFlow', 'paintingOpacity', 'setPaintingOpacity', 'patternSize', 'setPatternSize'])
     }
 
     def __init__(self, parent):
@@ -162,8 +193,12 @@ class LogiApiServer(Extension):
 
 
     def getMethod(self, object, request):
+        authorizedMethods = self.objectsAuthorizedMethods.get(type(object).__name__, None)
         if 'method' in request:
-            methodName = request["method"]
+            if authorizedMethods and request["method"] in authorizedMethods.authorizedMethods:
+                methodName = request["method"]
+            else:
+                raise ValueError(f"Invalid method {request['method']} for the specified object {type(object).__name__}")
         else:
             return None
 
