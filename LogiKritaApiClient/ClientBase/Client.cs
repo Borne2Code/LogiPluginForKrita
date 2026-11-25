@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -9,6 +10,7 @@ namespace LogiKritaApiClient.ClientBase
     public class Client : IAsyncDisposable
     {
         private Socket? client;
+        private string securityToken = string.Empty;
         private readonly KritaInstance _kritaInstance;
         private readonly Canvas _currentCanvas;
         private readonly View _currentView;
@@ -18,6 +20,7 @@ namespace LogiKritaApiClient.ClientBase
         private readonly Node _globalSelectionNode;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
 
+        private const string InitializeActionName = "Initialize"; // Initialize the client
         private const string DeleteActionName = "Delete"; // delete instance in classes proxy cache
         private const string ExecuteActionName = "Execute"; // Execute a method in an object's context
         private const string GetDialogActionName = "GetDialog"; // Drive a dialog
@@ -80,14 +83,35 @@ namespace LogiKritaApiClient.ClientBase
                 SocketType.Stream,
                 ProtocolType.Tcp);
             await client.ConnectAsync(ipEndPoint);
+
+            CreateSecurityToken();
+            await SendInitializationMessage();
+        }
+
+        private async Task SendInitializationMessage()
+        {
+            var result = await InternalExecuteCall(securityToken, InitializeActionName);
+
+            if (result.Type == "bool" && (bool)result.Value == true)
+            {
+                return;
+            }
+
+            throw new Exception("Could not initialize the client");
+        }
+
+        private void CreateSecurityToken()
+        {
+            // Convert.ToBase64String(RandomNumberGenerator.GetBytes(count));
+            securityToken = "abcdef";
         }
 
         internal Task<ReturnValue> ExecuteCall(string objectName, string methodName, params object[] parameters)
         {
-            return InternalExecuteCall(ExecuteActionName, objectName, methodName, parameters);
+            return InternalExecuteCall(securityToken, ExecuteActionName, objectName, methodName, parameters);
         }
 
-        private async Task<ReturnValue> InternalExecuteCall(string action, string? objectName = null, string? methodName = null, params object[] parameters)
+        private async Task<ReturnValue> InternalExecuteCall(string securityToken, string action, string? objectName = null, string? methodName = null, params object[] parameters)
         {
 
             if (client == null || !client.Connected)
@@ -148,7 +172,7 @@ namespace LogiKritaApiClient.ClientBase
                         })
                     ) + "]";
 
-                var message = $"{{\"action\":\"{action}\"";
+                var message = $"{{\"action\":\"{action}\",\"securityToken\":\"{securityToken}\"";
                 if (methodName != null) message += $",\"method\":\"{methodName}\"";
                 if (objectName != null) message += $",\"object\":\"{objectName}\"";
                 if (parameters.Length > 0) message += $",\"parameters\":{parametersListString}";
@@ -206,62 +230,62 @@ namespace LogiKritaApiClient.ClientBase
 
         public Task Delete(string objectName)
         {
-            return InternalExecuteCall(DeleteActionName, objectName);
+            return InternalExecuteCall(securityToken, DeleteActionName, objectName);
         }
 
         public Task<ReturnValue> GetDialogConfigWidget(params string[] widgetsNamesOrIndexes)
         {
-            return InternalExecuteCall(GetDialogActionName, null, null, widgetsNamesOrIndexes);
+            return InternalExecuteCall(securityToken, GetDialogActionName, null, null, widgetsNamesOrIndexes);
         }
 
         public Task<ReturnValue> GetModalDialogConfigWidget(params string[] widgetsNamesOrIndexes)
         {
-            return InternalExecuteCall(GetModalDialogActionName, null, null, widgetsNamesOrIndexes);
+            return InternalExecuteCall(securityToken, GetModalDialogActionName, null, null, widgetsNamesOrIndexes);
         }
 
         internal Task ClickDialogButton(string dialogConfigWidgetReference, params string[] widgetPathNames)
         {
-            return InternalExecuteCall(ClickDialogButtonActionName, dialogConfigWidgetReference, parameters:  widgetPathNames);
+            return InternalExecuteCall(securityToken, ClickDialogButtonActionName, dialogConfigWidgetReference, parameters: widgetPathNames);
         }
 
         internal Task<ReturnValue> AdjustDialogIntSpinBoxValue(string dialogConfigWidgetReference, int value, params string[] widgetPathNames)
         {
-            return InternalExecuteCall(SetDialogSpinboxIntValueActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+            return InternalExecuteCall(securityToken, SetDialogSpinboxIntValueActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
         internal Task<ReturnValue> AdjustDialogFloatSpinBoxValue(string dialogConfigWidgetReference, float value, params string[] widgetPathNames)
         {
-            return InternalExecuteCall(SetDialogSpinboxFloatValueActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+            return InternalExecuteCall(securityToken, SetDialogSpinboxFloatValueActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
         internal Task<ReturnValue> SetDialogAngleSelectorValue(string dialogConfigWidgetReference, float value, params string[] widgetPathNames)
         {
-            return InternalExecuteCall(SetDialogAngleActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+            return InternalExecuteCall(securityToken, SetDialogAngleActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
         internal Task SetDialogComboBoxSelectedItem(string dialogConfigWidgetReference, int value, params string[] widgetPathNames)
         {
-            return InternalExecuteCall(SetDialogComboSelectActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
+            return InternalExecuteCall(securityToken, SetDialogComboSelectActionName, dialogConfigWidgetReference, parameters: [value, .. widgetPathNames]);
         }
 
         internal Task ClickMainDialogButton(string filterConfigWidgetReference, params string[] widgetPathNames)
         {
-            return InternalExecuteCall(ClickMainDialogButtonActionName, filterConfigWidgetReference, parameters: widgetPathNames);
+            return InternalExecuteCall(securityToken, ClickMainDialogButtonActionName, filterConfigWidgetReference, parameters: widgetPathNames);
         }
 
         internal Task ConfirmFilter(string filterConfigWidgetReference)
         {
-            return InternalExecuteCall(ValidateFilterDialogActionName, filterConfigWidgetReference);
+            return InternalExecuteCall(securityToken, ValidateFilterDialogActionName, filterConfigWidgetReference);
         }
 
         internal Task CancelFilter(string filterConfigWidgetReference)
         {
-            return InternalExecuteCall(CancelFilterDialogActionName, filterConfigWidgetReference);
+            return InternalExecuteCall(securityToken, CancelFilterDialogActionName, filterConfigWidgetReference);
         }
 
         internal Task CreateFilterMask(string filterConfigWidgetReference)
         {
-            return InternalExecuteCall(CreateFilterAsMaskActionName, filterConfigWidgetReference);
+            return InternalExecuteCall(securityToken, CreateFilterAsMaskActionName, filterConfigWidgetReference);
         }
 
         public async ValueTask DisposeAsync()

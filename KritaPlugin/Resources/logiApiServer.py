@@ -13,6 +13,7 @@ class Server(QObject):
     objects = {}
     returnValue = None
     result = None
+    security_token = None
 
     def __init__(self):
         super().__init__()
@@ -23,6 +24,35 @@ class Server(QObject):
             return json.dumps({"result": "OK", "returnType": self.returnType, "returnValue": self.returnValue}).encode(encoding="utf-8")
         else:
             return json.dumps({"result": "KO", "error": str(self.returnValue) + " Krita's plugin server will be disconnected"}).encode(encoding="utf-8")
+
+    def getSecurityToken(self):
+        self.security_token = "abcdef"
+        return True
+
+    def initializationConnection(self, connection):
+        try:
+            msg = connection.recv(1026).decode(encoding="utf-8")
+            jsonMessage = json.loads(msg)
+
+            if jsonMessage.get("action", None) == "Initialize":
+                if self.checkSecurityToken(jsonMessage):
+                    connection.send(json.dumps({"result": "OK", "returnType": "bool", "returnValue": True}).encode(encoding="utf-8"))
+                    return True
+                else:
+                    QtCore.qDebug('Invalid security Token: the connection will be closed')
+                    connection.send(json.dumps({"result": "KO", "error": "Invalid security token"}).encode(encoding="utf-8"))
+                    return False
+            else:
+                QtCore.qDebug('Invalid initialization message: the connection will be closed')
+                connection.send(json.dumps({"result": "KO", "error": "Invalid initialization message"}).encode(encoding="utf-8"))
+                return False
+        except Exception as ex:
+            QtCore.qDebug('Error occurred: ' + str(ex))
+            return None
+
+    def checkSecurityToken(self, jsonMessage):
+        clientToken = jsonMessage.get("securityToken", None)
+        return self.security_token != None and self.security_token == clientToken
 
     def run(self):
         time.sleep(2)
@@ -38,7 +68,12 @@ class Server(QObject):
             time.sleep(1)
             c, addr = s.accept()
             QtCore.qDebug("Connection accepted from " + repr(addr[1]))
-            connected = True
+
+            if self.getSecurityToken() and self.initializationConnection(c):
+                connected = True
+            else:
+                connected = False
+                c.close()
 
             while connected:
                 try:
@@ -56,21 +91,28 @@ class Server(QObject):
                     self.returnValue = None
                     self.result = None
 
-                    self.message.emit(str(msg))
+                    if self.checkSecurityToken(json.loads(msg)):
+                        self.message.emit(str(msg))
 
-                    timeoutDateTime = datetime.datetime.now() + datetime.timedelta(seconds=5)
-                    while self.result == None and datetime.datetime.now() < timeoutDateTime:
-                        time.sleep(0.001)
+                        timeoutDateTime = datetime.datetime.now() + datetime.timedelta(seconds=5)
+                        while self.result == None and datetime.datetime.now() < timeoutDateTime:
+                            time.sleep(0.001)
+                    else:
+                        QtCore.qDebug('Invalid security Token: the connection will be closed')
+                        self.result = False
+                        self.returnValue = "Bad security token"
                     
                     try:
                         if self.result == None:
                             QtCore.qDebug('Timeout waiting message computing')
-                            self.returnValue = "Timeout waiting message computing"
                             self.result = False
+                            self.returnValue = "Timeout waiting message computing"
 
                         c.send(self.prepareResponse())
 
-                        if self.result == False: connected = False
+                        if self.result == False:
+                            connected = False
+                            c.close()
                     except Exception as ex:
                         QtCore.qDebug('Error sending message: ' + str(ex))
                         c.close()
