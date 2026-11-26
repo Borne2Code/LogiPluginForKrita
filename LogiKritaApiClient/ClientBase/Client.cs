@@ -23,6 +23,7 @@ namespace LogiKritaApiClient.ClientBase
         private const string InitializeActionName = "Initialize"; // Initialize the client
         private const string DeleteActionName = "Delete"; // delete instance in classes proxy cache
         private const string ExecuteActionName = "Execute"; // Execute a method in an object's context
+        private const string ExecuteActionActionName = "ExecuteAction"; // Execute a Krita Action
         private const string GetDialogActionName = "GetDialog"; // Drive a dialog
         private const string GetModalDialogActionName = "GetModalDialog"; // Drive a modal dialog
         private const string SetDialogAngleActionName = "SetDialogAngle"; // Set angle selector value
@@ -225,6 +226,11 @@ namespace LogiKritaApiClient.ClientBase
             {
                 _semaphore.Release();
             }
+        }
+
+        public Task ExecuteAction(string actionName)
+        {
+            return InternalExecuteCall(securityToken, ExecuteActionActionName, null, null, actionName);
         }
 
         public Task Delete(string objectName)

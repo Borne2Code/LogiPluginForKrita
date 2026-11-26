@@ -63,18 +63,16 @@ class Server(QObject):
         return self.security_token != None and self.security_token == clientToken
 
     def run(self):
-        time.sleep(2)
         s = socket.socket()
         host = socket.gethostname()
         port = 1247
         QtCore.qDebug("starting Logi plugin...")
-        time.sleep(5)
+        time.sleep(3)
         s.bind(("127.0.0.1", port))
         QtCore.qDebug("Server started on " + host)
         s.listen(1)
         while True:
             QtCore.qDebug("listen started, waiting for connection...")
-            time.sleep(1)
             c, addr = s.accept()
 
             if self.getSecurityToken() and self.initializationConnection(c):
@@ -152,6 +150,7 @@ class LogiApiServer(Extension):
     authorizedActions = {
         'Delete': AuthorizedAction.new(True, None, None), # Delete instance
         'Execute': AuthorizedAction.new(True, True, False), # Execute method
+        'ExecuteAction': AuthorizedAction.new(None, None, True), # Execute a Krita Action
         'GetDialog': AuthorizedAction.new(None, None, True), # Open dialog dialog
         'GetModalDialog': AuthorizedAction.new(None, None, True), # Open dialog dialog
         'SetDialogAngle': AuthorizedAction.new(True, None, True), # Set dialog angle selector value
@@ -353,6 +352,25 @@ class LogiApiServer(Extension):
                         returnValue = method(*parameters)
                     self.computeResponse(returnValue)
                     self.worker.result = "OK"
+            elif action == "ExecuteAction":
+                actionName = parameters[0]
+                QtCore.qDebug(f"Execute Krita action: {actionName}")
+                action = Krita.instance().action(actionName)
+                if action is not None:
+                    if actionName == "layer_properties" or actionName == "layer_style":
+                        #Blocking calls are executed in separated thread
+                        returnValue = None
+                        QTimer.singleShot(0, action.trigger)
+                    else:
+                        returnValue = action.trigger()
+
+                    self.worker.returnType = "None"
+                    self.worker.returnValue = None
+                    self.worker.result = "OK"
+                else:
+                    self.worker.returnType = "Error"
+                    self.worker.returnValue = f"Krita action '{actionName}' not found"
+                    self.worker.result = "Error"
             elif action == "Delete":
                 QtCore.qDebug(f"Delete instance {objectName} of type {type(objectInstance).__name__}")
                 self.worker.objects.pop(objectName, None)

@@ -12,23 +12,21 @@
         {
             ValidateInstance();
 
-#pragma warning disable CS8604 // Possible null reference argument.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-            await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-#pragma warning restore CS8604 // Possible null reference argument.
+            await Client!.ExecuteCall(Reference ?? PrimitiveName!, methodName, parameters);
         }
 
+        protected async Task ExecuteActionAsync(string actionName)
+        {
+            ValidateInstance();
+
+            await Client!.ExecuteAction(actionName);
+        }
 
         protected async Task<float> GetFloat(string methodName, params object[] parameters)
         {
             ValidateInstance();
 
-#pragma warning disable CS8604 // Possible null reference argument.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var returnValue = await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-#pragma warning restore CS8604 // Possible null reference argument.
+            var returnValue = await Client!.ExecuteCall(Reference ?? PrimitiveName!, methodName, parameters);
 
             if (returnValue.Type != "float")
             {
@@ -42,11 +40,7 @@
         {
             ValidateInstance();
 
-#pragma warning disable CS8604 // Possible null reference argument.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var returnValue = await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-#pragma warning restore CS8604 // Possible null reference argument.
+            var returnValue = await Client!.ExecuteCall(Reference ?? PrimitiveName!, methodName, parameters);
 
             if (returnValue.Type != "int")
             {
@@ -60,11 +54,7 @@
         {
             ValidateInstance();
 
-#pragma warning disable CS8604 // Possible null reference argument.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var returnValue = await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-#pragma warning restore CS8604 // Possible null reference argument.
+            var returnValue = await Client!.ExecuteCall(Reference ?? PrimitiveName!, methodName, parameters);
 
             if (returnValue.Type != "str")
             {
@@ -78,11 +68,7 @@
         {
             ValidateInstance();
 
-#pragma warning disable CS8604 // Possible null reference argument.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var returnValue = await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-#pragma warning restore CS8604 // Possible null reference argument.
+            var returnValue = await Client!.ExecuteCall(Reference ?? PrimitiveName!, methodName, parameters);
 
             if (returnValue.Type != "list")
             {
@@ -96,11 +82,7 @@
         {
             ValidateInstance();
 
-#pragma warning disable CS8604 // Possible null reference argument.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var returnValue = await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-#pragma warning restore CS8604 // Possible null reference argument.
+            var returnValue = await Client!.ExecuteCall(Reference ?? PrimitiveName!, methodName, parameters);
 
             if (returnValue.Type != "bool")
             {
@@ -114,11 +96,7 @@
         {
             ValidateInstance();
 
-#pragma warning disable CS8604 // Possible null reference argument.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var returnValue = await Client.ExecuteCall(Reference ?? PrimitiveName, methodName, parameters);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-#pragma warning restore CS8604 // Possible null reference argument.
+            var returnValue = await Client!.ExecuteCall(Reference ?? PrimitiveName!, methodName, parameters);
 
             if (returnValue.Type != typeof(T).Name)
             {
