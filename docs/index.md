@@ -18,24 +18,12 @@ It has been developed and tested with a Loupedeck CT, then adapted to the Logite
 *I'm also searching for beta-testers*
 
 # Hot news
-This version has been deeply refunded to be compatible with Logitech MX Creative and Mac OS.
-
-The support of Loupedeck devices and Windows remains, of course.
-
-It has some added features (with the <img src="./images/NewSymbol.png" width="20px"> prefix in the documentation below), and many new dynamic folders.
-
-New sets of features has been added:
-* [**Edit**](./edit.md): to manage clipboard,
-* [**Color selector**](./color.md): to manage the brush's current color,
-* [**Animation**](./animation.md): to manage animations
-
-**WARNING**: Unfortunately, making this plugin compatible with MX Creative and Mac OS required to do structural changes that make your current profiles not working with this new version. You will have to recreate it, from the plugin's default profile or an empty profile.
-
-**I promise, that will not happen again in the future.**
+This version supports Krita 5.3.x and newest vesions, please note that it can produce unexpected behavior with older versions, espacially using the zoom rotary button.
+It also fixes some security breaks in the communication between the plugin and Krita (many thanks to the Logitech team for their feedbacks).
 
 # Requirements
 To use this plugin you need:
-- Krita with Python capabilities (tested on Krita 5.2.9)
+- Latest Krita with Python capabilities (tested on Krita 5.3.4, may not work with 5.2.x and older versions)
 - A compatible device:
   - Loupedeck device with recent driver (Tested on Loupedeck CT and driver version 5.9.x and 6.1.0+)
   - Logitech MX Creative with Logi Options+
