@@ -20,10 +20,14 @@ class Server(QObject):
         self.__abort = False
       
     def prepareResponse(self):
-        if self.result:
+        if self.result == "OK":
             return json.dumps({"result": "OK", "returnType": self.returnType, "returnValue": self.returnValue}).encode(encoding="utf-8")
-        else:
-            return json.dumps({"result": "KO", "error": str(self.returnValue) + " Krita's plugin server will be disconnected"}).encode(encoding="utf-8")
+        elif self.result == "Error":
+            QtCore.qDebug("error: " + str(self.returnValue))
+            return json.dumps({"result": "KO", "error": str(self.returnValue)}).encode(encoding="utf-8")
+        elif self.result == "SEC":
+            QtCore.qDebug('Invalid security Token: the connection will be closed')
+            return json.dumps({"result": "KO", "error": "Invalid security token, connection will be closed"}).encode(encoding="utf-8")
 
     def getSecurityToken(self):
         self.security_token = "abcdef"
@@ -36,15 +40,19 @@ class Server(QObject):
 
             if jsonMessage.get("action", None) == "Initialize":
                 if self.checkSecurityToken(jsonMessage):
-                    connection.send(json.dumps({"result": "OK", "returnType": "bool", "returnValue": True}).encode(encoding="utf-8"))
+                    self.result = "OK"
+                    self.returnType = "bool"
+                    self.returnValue = True
+                    connection.send(self.prepareResponse())
                     return True
                 else:
-                    QtCore.qDebug('Invalid security Token: the connection will be closed')
-                    connection.send(json.dumps({"result": "KO", "error": "Invalid security token"}).encode(encoding="utf-8"))
+                    self.result = "SEC"
+                    connection.send(self.prepareResponse())
                     return False
             else:
-                QtCore.qDebug('Invalid initialization message: the connection will be closed')
-                connection.send(json.dumps({"result": "KO", "error": "Invalid initialization message"}).encode(encoding="utf-8"))
+                self.result = "Error"
+                self.returnValue = "Invalid initialization message, the connection will be closed"
+                connection.send(self.prepareResponse())
                 return False
         except Exception as ex:
             QtCore.qDebug('Error occurred: ' + str(ex))
@@ -59,7 +67,8 @@ class Server(QObject):
         s = socket.socket()
         host = socket.gethostname()
         port = 1247
-        QtCore.qDebug("bind")
+        QtCore.qDebug("starting Logi plugin...")
+        time.sleep(5)
         s.bind(("127.0.0.1", port))
         QtCore.qDebug("Server started on " + host)
         s.listen(1)
@@ -67,9 +76,9 @@ class Server(QObject):
             QtCore.qDebug("listen started, waiting for connection...")
             time.sleep(1)
             c, addr = s.accept()
-            QtCore.qDebug("Connection accepted from " + repr(addr[1]))
 
             if self.getSecurityToken() and self.initializationConnection(c):
+                QtCore.qDebug("Connection accepted from " + repr(addr[1]))
                 connected = True
             else:
                 connected = False
@@ -97,22 +106,19 @@ class Server(QObject):
                         timeoutDateTime = datetime.datetime.now() + datetime.timedelta(seconds=5)
                         while self.result == None and datetime.datetime.now() < timeoutDateTime:
                             time.sleep(0.001)
+
+                        if self.result == None:
+                            self.result = "Error"
+                            self.returnValue = "Timeout waiting message computing"
                     else:
-                        QtCore.qDebug('Invalid security Token: the connection will be closed')
-                        self.result = False
-                        self.returnValue = "Bad security token"
+                        self.result = "SEC"
                     
                     try:
-                        if self.result == None:
-                            QtCore.qDebug('Timeout waiting message computing')
-                            self.result = False
-                            self.returnValue = "Timeout waiting message computing"
-
                         c.send(self.prepareResponse())
 
-                        if self.result == False:
-                            connected = False
+                        if self.result == "SEC":
                             c.close()
+                            connected = False
                     except Exception as ex:
                         QtCore.qDebug('Error sending message: ' + str(ex))
                         c.close()
@@ -200,33 +206,40 @@ class LogiApiServer(Extension):
         if 'parameters' in request and authorizedAction.parametersIsMandatory == None: raise ValueError("parameters is forbidden in the request")
 
         objectName, objectInstance = self.getObject(request)
-        method = self.getMethod(objectInstance, request)
+        if objectInstance != None:
+            method = self.getMethod(objectInstance, request)
+        else:
+            method = None
+
         parameters = self.parseParameters(request)
 
         return action, objectName, objectInstance, method, parameters
 
     def getObjectByName(self, objectName):
-        match objectName:
-            case "kritaInstance":
-                return Krita.instance()
-            case 'currentCanvas':
-                return Krita.instance().activeWindow().activeView().canvas()
-            case 'currentView':
-                return Krita.instance().activeWindow().activeView()
-            case 'currentDocument':
-                return Krita.instance().activeDocument()
-            case 'currentNode':
-                return Krita.instance().activeDocument().activeNode()
-            case 'currentSelection':
-                return Krita.instance().activeDocument().selection()
-            case 'globalSelectionNode':
-                node = Krita.instance().activeDocument().rootNode().childNodes()[-1]
-                if node.type() == 'selectionmask':
-                    return node
-                else:
-                    return None
-            case _:
-                return self.worker.objects[objectName]
+        try:
+            match objectName:
+                case "kritaInstance":
+                    return Krita.instance()
+                case 'currentCanvas':
+                    return Krita.instance().activeWindow().activeView().canvas()
+                case 'currentView':
+                    return Krita.instance().activeWindow().activeView()
+                case 'currentDocument':
+                    return Krita.instance().activeDocument()
+                case 'currentNode':
+                    return Krita.instance().activeDocument().activeNode()
+                case 'currentSelection':
+                    return Krita.instance().activeDocument().selection()
+                case 'globalSelectionNode':
+                    node = Krita.instance().activeDocument().rootNode().childNodes()[-1]
+                    if node.type() == 'selectionmask':
+                        return node
+                    else:
+                        return None
+                case _:
+                    return self.worker.objects[objectName]
+        except:
+            return None
 
     def getObject(self, request):
         if 'object' in request:
@@ -238,11 +251,8 @@ class LogiApiServer(Extension):
 
     def getMethod(self, object, request):
         authorizedMethods = self.objectsAuthorizedMethods.get(type(object).__name__, None)
-        if 'method' in request:
-            if authorizedMethods and request["method"] in authorizedMethods.authorizedMethods:
-                methodName = request["method"]
-            else:
-                raise ValueError(f"Invalid method {request['method']} for the specified object {type(object).__name__}")
+        if 'method' in request and authorizedMethods and request["method"] in authorizedMethods.authorizedMethods:
+            methodName = request["method"]
         else:
             return None
 
@@ -330,21 +340,25 @@ class LogiApiServer(Extension):
 
             if action == "Execute":
                 parametersString = ", ".join(map(lambda obj: str(obj), parameters))
-                QtCore.qDebug(f"Execute method: {type(objectInstance).__name__}.{method.__name__}({parametersString})")
-                if method.__name__ == "trigger" and (objectInstance.objectName() == "layer_properties" or objectInstance.objectName() == "layer_style"):
-                    #Blocking calls are executed in separated thread
-                    returnValue = None
-                    QTimer.singleShot(0, method)
+                if method == None:
+                    QtCore.qDebug(f"Not allowed method call: {type(objectInstance).__name__}.{method.__name__}")
+                    self.worker.result = "SEC"
                 else:
-                    returnValue = method(*parameters)
-                self.computeResponse(returnValue)
-                self.worker.result = True
+                    QtCore.qDebug(f"Execute method: {type(objectInstance).__name__}.{method.__name__}({parametersString})")
+                    if method.__name__ == "trigger" and (objectInstance.objectName() == "layer_properties" or objectInstance.objectName() == "layer_style"):
+                        #Blocking calls are executed in separated thread
+                        returnValue = None
+                        QTimer.singleShot(0, method)
+                    else:
+                        returnValue = method(*parameters)
+                    self.computeResponse(returnValue)
+                    self.worker.result = "OK"
             elif action == "Delete":
                 QtCore.qDebug(f"Delete instance {objectName} of type {type(objectInstance).__name__}")
                 self.worker.objects.pop(objectName, None)
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
-                self.worker.result = True
+                self.worker.result = "OK"
             elif action == "GetDialog":
                 QtCore.qDebug(f"Get dialog configuration widget")
                 dialogData = DialogData()
@@ -360,11 +374,11 @@ class LogiApiServer(Extension):
                     self.worker.objects[key] = dialogData
                     self.worker.returnValue = key
                     self.worker.returnType = type(dialogData.config).__name__
-                    self.worker.result = True
+                    self.worker.result = "OK"
                 else:
-                    self.worker.returnType = "None"
-                    self.worker.returnValue = None
-                    self.worker.result = False
+                    self.worker.returnType = "Error"
+                    self.worker.returnValue = "Dialog is not open"
+                    self.worker.result = "Error"
             elif action == "GetModalDialog":
                 QtCore.qDebug(f"Get modal dialog configuration widget")
                 dialogData = DialogData()
@@ -379,11 +393,11 @@ class LogiApiServer(Extension):
                     self.worker.objects[key] = dialogData
                     self.worker.returnValue = key
                     self.worker.returnType = type(dialogData.config).__name__
-                    self.worker.result = True
+                    self.worker.result = "OK"
                 else:
-                    self.worker.returnType = "None"
-                    self.worker.returnValue = None
-                    self.worker.result = False
+                    self.worker.returnType = "Error"
+                    self.worker.returnValue = "Modal dialog is not open"
+                    self.worker.result = "Error"
             elif action == "SetDialogSpinboxIntValue":
                 QtCore.qDebug(f"Change dialog configuration int spinBox")
                 widget = objectInstance.config
@@ -394,7 +408,7 @@ class LogiApiServer(Extension):
                 widget.setValue(newValue)
                 newValue = widget.value()
                 self.computeResponse(newValue)
-                self.worker.result = True
+                self.worker.result = "OK"
             elif action == "SetDialogSpinboxFloatValue":
                 QtCore.qDebug(f"Change dialog configuration float spinBox")
                 widget = objectInstance.config
@@ -405,7 +419,7 @@ class LogiApiServer(Extension):
                 widget.setValue(newValue)
                 newValue = widget.value()
                 self.computeResponse(newValue)
-                self.worker.result = True
+                self.worker.result = "OK"
             elif action == "SetDialogAngle":
                 QtCore.qDebug(f"Change dialog configuration angle")
                 widget = objectInstance.config
@@ -415,7 +429,7 @@ class LogiApiServer(Extension):
                 newValue = widget.children()[1].value() + value
                 widget.children()[1].setValue(newValue)
                 self.computeResponse(newValue)
-                self.worker.result = True
+                self.worker.result = "OK"
             elif action == "SetDialogComboSelect":
                 QtCore.qDebug(f"Change dialog configuration combo box")
                 widget = objectInstance.config
@@ -425,7 +439,7 @@ class LogiApiServer(Extension):
                 widget.setCurrentIndex(value)
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
-                self.worker.result = True
+                self.worker.result = "OK"
             elif action == "ClickDialogButton":
                 QtCore.qDebug(f"Click dialog configuration widget")
                 widget = objectInstance.config
@@ -434,7 +448,7 @@ class LogiApiServer(Extension):
                 widget.click()
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
-                self.worker.result = True
+                self.worker.result = "OK"
             elif action == "ClickMainDialogButton":
                 QtCore.qDebug(f"Click main dialog button")
                 widget = objectInstance.dialog
@@ -444,16 +458,16 @@ class LogiApiServer(Extension):
                     widget.click()
                 self.worker.returnType = "None"
                 self.worker.returnValue = None
-                self.worker.result = True
+                self.worker.result = "OK"
             else:
                 QtCore.qDebug(f"Error: action '{action}' is unkonwn.")
-                self.worker.returnType = "None"
-                self.worker.returnValue = None
-                self.worker.result = True
+                self.worker.returnType = "Error"
+                self.worker.returnValue = "Action '{action}' is unkonwn."
+                self.worker.result = "Error"
         except Exception as ex:
             QtCore.qDebug(f"Error: [{type(ex).__name__}] {str(ex)}")
             self.worker.returnValue = ex
-            self.worker.result = False
+            self.worker.result = "Error"
 
     def setup(self):
         self.thread = QtCore.QThread()
