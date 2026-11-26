@@ -2,6 +2,7 @@ from krita import *
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QApplication, QPushButton
 import datetime
+import os
 import sys
 import socket
 import time
@@ -30,7 +31,17 @@ class Server(QObject):
             return json.dumps({"result": "KO", "error": "Invalid security token, connection will be closed"}).encode(encoding="utf-8")
 
     def getSecurityToken(self):
-        self.security_token = "abcdef"
+        try:
+            filePath = f"{os.getenv('APPDATA')}/Krita/pykrita/logi_api_server/security_token"
+            print(filePath)
+            with open(filePath, "r", encoding="utf-8") as file:
+                for line in file:
+                    self.security_token = line
+            os.remove(filePath)
+        except Exception as ex:
+            QtCore.qDebug('Error occurred while reading security token: ' + str(ex))
+            return False
+
         return True
 
     def initializationConnection(self, connection):

@@ -79,13 +79,14 @@ namespace LogiKritaApiClient.ClientBase
         {
             IPEndPoint ipEndPoint = new(IPAddress.Parse("127.0.0.1"), 1247);
 
+            await CreateSecurityToken();
+
             client = new(
                 ipEndPoint.AddressFamily,
                 SocketType.Stream,
                 ProtocolType.Tcp);
             await client.ConnectAsync(ipEndPoint);
 
-            CreateSecurityToken();
             await SendInitializationMessage();
         }
 
@@ -101,10 +102,14 @@ namespace LogiKritaApiClient.ClientBase
             throw new Exception("Could not initialize the client");
         }
 
-        private void CreateSecurityToken()
+        private async Task CreateSecurityToken()
         {
-            // Convert.ToBase64String(RandomNumberGenerator.GetBytes(count));
-            securityToken = "abcdef";
+            securityToken = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
+
+            var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Krita", "pykrita", "logi_api_server", "security_token");
+            using var writer = new StreamWriter(filePath, false);
+            await writer.WriteAsync(securityToken);
+            writer.Close();
         }
 
         internal Task<ReturnValue> ExecuteCall(string objectName, string methodName, params object[] parameters)
